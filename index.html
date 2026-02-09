@@ -247,6 +247,7 @@
     <main>
       <section id="quizSection" class="card hide">
         <div class="quiz" id="quiz"></div>
+        <div class="notice">Tip: puedes tocar la misma opción para desmarcarla, o usar “Dejar en blanco”.</div>
       </section>
 
       <div class="footer-actions hide" id="actions">
@@ -274,7 +275,17 @@
 
         <div class="review" id="review"></div>
 
-        <div class="notice">Tip: si vuelves a darle a “Generar examen”, te saldrá otra combinación aleatoria.</div>
+        <div class="card" style="margin-top:14px;">
+          <div class="grid2">
+            <button id="newExamBtn">Nuevo examen (mismo tipo)</button>
+            <button id="backTopBtn" class="secondary">Volver arriba</button>
+          </div>
+          <div class="grid2" style="margin-top:10px;">
+            <button id="restartFromResultsBtn" class="secondary">Reiniciar (borrar todo)</button>
+            <button id="changeConfigBtn" class="secondary">Cambiar temario / tipo</button>
+          </div>
+          <div class="notice">Tip: “Nuevo examen” genera otra combinación aleatoria.</div>
+        </div>
       </section>
     </main>
   </div>
@@ -432,11 +443,15 @@
     const totalScoreEl = document.getElementById('totalScore');
     const summaryTextEl = document.getElementById('summaryText');
 
+    const newExamBtn = document.getElementById('newExamBtn');
+    const backTopBtn = document.getElementById('backTopBtn');
+    const restartFromResultsBtn = document.getElementById('restartFromResultsBtn');
+    const changeConfigBtn = document.getElementById('changeConfigBtn');
+
     let currentExam = [];
     let locked = false;
 
     function fmt(n){
-      // show up to 2 decimals, trim trailing zeros
       const s = (Math.round(n * 100) / 100).toFixed(2);
       return s.replace(/\.00$/, '').replace(/(\.[0-9])0$/, '$1');
     }
@@ -463,8 +478,7 @@
       if(pool.length < n){
         throw new Error(`No hay suficientes preguntas en el banco (${pool.length}) para generar ${n}.`);
       }
-      const chosen = shuffle([...pool]).slice(0, n);
-      return chosen;
+      return shuffle([...pool]).slice(0, n);
     }
 
     function renderExam(){
@@ -484,8 +498,13 @@
           </div>
           <div class="options">
             ${renderOption(q, idx, 'a', q.a)}
-            ${renderOption(q, idx, 'b', q.b, q.b)}
-            ${renderOption(q, idx, 'c', q.c, q.c)}
+            ${renderOption(q, idx, 'b', q.b)}
+            ${renderOption(q, idx, 'c', q.c)}
+          </div>
+          <div style="margin-top:10px;">
+            <button type="button" class="secondary" data-clear="${idx}" style="padding:10px 12px;">
+              Dejar en blanco
+            </button>
           </div>
         `;
 
@@ -536,7 +555,6 @@
       let score = 0;
 
       const byId = new Map(currentExam.map(q => [q.id, q]));
-
       const reviewNodes = [];
 
       answers.forEach((a, i) => {
@@ -564,6 +582,7 @@
 
       // Lock inputs
       document.querySelectorAll('#quiz input[type="radio"]').forEach(r => r.disabled = true);
+      document.querySelectorAll('#quiz button[data-clear]').forEach(b => b.disabled = true);
 
       // Show results
       totalScoreEl.textContent = fmt(score);
@@ -583,6 +602,37 @@
       const chosenTxt = chosen ? chosen.toUpperCase() : '—';
       const correctTxt = q.correct.toUpperCase();
 
+      const opts = [
+        { k: 'a', t: q.a },
+        { k: 'b', t: q.b },
+        { k: 'c', t: q.c },
+      ];
+
+      const optionsHtml = opts.map(o => {
+        const isCorrect = o.k === q.correct;
+        const isChosen = chosen === o.k;
+
+        let badge = '';
+        if(isCorrect) badge += `<span class="tag good" style="margin-left:8px;">CORRECTA</span>`;
+        if(isChosen && isCorrect) badge += `<span class="tag good" style="margin-left:8px;">TU RESPUESTA</span>`;
+        if(isChosen && !isCorrect) badge += `<span class="tag bad" style="margin-left:8px;">TU RESPUESTA</span>`;
+
+        const extraStyle = isCorrect
+          ? 'border:1px solid rgba(57,217,138,.45); background: rgba(57,217,138,.08);'
+          : (isChosen && !isCorrect)
+            ? 'border:1px solid rgba(255,92,122,.45); background: rgba(255,92,122,.07);'
+            : '';
+
+        return `
+          <div class="opt" style="${extraStyle}">
+            <div style="min-width:28px; font-weight:900; color: var(--muted);">${o.k.toUpperCase()}.</div>
+            <div style="flex:1;">
+              <div style="font-size:14px;">${escapeHtml(o.t)} ${badge}</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
       node.innerHTML = `
         <div class="qhead">
           <div class="qnum">${index + 1}</div>
@@ -592,12 +642,21 @@
               <span class="tag ${status.type}">${status.label}</span>
             </div>
             <div class="answerline">Tu respuesta: <b>${chosenTxt}</b> · Correcta: <b>${correctTxt}</b></div>
+            <div class="options" style="margin-top:10px;">${optionsHtml}</div>
             <div class="why">${escapeHtml(q.why)}</div>
           </div>
         </div>
       `;
 
       return node;
+    }
+
+    function clearQuestion(idx){
+      const name = `q_${idx}`;
+      document.querySelectorAll(`#quiz input[name="${name}"]`).forEach(r => {
+        r.checked = false;
+        r.dataset.wasChecked = '0';
+      });
     }
 
     function resetAll(){
@@ -622,13 +681,11 @@
       quizSection.classList.remove('hide');
       actions.classList.remove('hide');
 
-      // Jump to quiz
       quizSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     // Events
     elSize.addEventListener('change', setRulesUI);
-    elTopic.addEventListener('change', () => { /* nothing */ });
 
     startBtn.addEventListener('click', () => {
       try { start(); }
@@ -637,6 +694,48 @@
 
     evaluateBtn.addEventListener('click', evaluate);
     restartBtn.addEventListener('click', resetAll);
+
+    // Dejar en blanco
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-clear]');
+      if(!btn) return;
+      if(locked) return;
+      clearQuestion(Number(btn.dataset.clear));
+    });
+
+    // Tap again to unselect (mobile-friendly)
+    document.addEventListener('click', (e) => {
+      const r = e.target.closest('#quiz input[type="radio"]');
+      if(!r) return;
+      if(locked) return;
+
+      if(r.dataset.wasChecked === '1'){
+        e.preventDefault();
+        r.checked = false;
+        r.dataset.wasChecked = '0';
+      } else {
+        const name = r.name;
+        document.querySelectorAll(`#quiz input[name="${name}"]`).forEach(x => x.dataset.wasChecked = '0');
+        r.dataset.wasChecked = '1';
+      }
+    }, true);
+
+    // Result footer actions
+    newExamBtn.addEventListener('click', () => {
+      resetAll();
+      start();
+    });
+
+    backTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    restartFromResultsBtn.addEventListener('click', resetAll);
+
+    changeConfigBtn.addEventListener('click', () => {
+      resetAll();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
     // Init
     setRulesUI();
