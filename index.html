@@ -225,9 +225,12 @@
             <select id="topic">
               <option value="ud1">Preguntas Unidad 1 (Anatomía básica)</option>
               <option value="seminario1">Preguntas Seminario Unidad 1 (TME / prevención)</option>
+              <option value="quiz17">Test Anatomía (17 preguntas, fijo)</option>
+              <option value="vf">Verdadero / Falso (fijo)</option>
             </select>
           </div>
-          <div>
+
+          <div id="sizeWrap">
             <label for="size">2) Tipo de examen</label>
             <select id="size">
               <option value="10">10 preguntas</option>
@@ -235,6 +238,7 @@
               <option value="30">30 preguntas</option>
             </select>
           </div>
+
           <div>
             <label>&nbsp;</label>
             <button id="startBtn">Generar examen</button>
@@ -284,7 +288,7 @@
             <button id="restartFromResultsBtn" class="secondary">Reiniciar (borrar todo)</button>
             <button id="changeConfigBtn" class="secondary">Cambiar temario / tipo</button>
           </div>
-          <div class="notice">Tip: “Nuevo examen” genera otra combinación aleatoria.</div>
+          <div class="notice">Tip: “Nuevo examen” genera otra combinación aleatoria (en modos aleatorios).</div>
         </div>
       </section>
     </main>
@@ -293,7 +297,9 @@
   <script>
     // =========================================
     //  BANCO DE PREGUNTAS (sin backend)
-    //  Formato: { id, topic, q, a, b, c, correct, why }
+    //  Formato base:
+    //   - MCQ: { id, topic, q, a,b,c (y opcional d), correct, why }
+    //   - Genérico: { id, topic, q, options:[{k,t}], correct, why }
     // =========================================
 
     const QUESTION_BANK = [
@@ -413,10 +419,41 @@
       { id:"sem-038", topic:"seminario1", q:"Para evitar lesión en movilización, una regla es:", a:"No girarse con peso en alto", b:"Girar rápido con el tronco", c:"Mantener la carga lejos", correct:"a", why:"Evitar torsión con carga reduce riesgo dorsolumbar." },
       { id:"sem-039", topic:"seminario1", q:"La postura neutra lumbar se consigue:", a:"Buscando máxima flexión y máxima extensión y luego el punto medio", b:"Forzando siempre máxima extensión", c:"Encogiendo hombros", correct:"a", why:"Se propone encontrar el recorrido y colocar la columna en posición media." },
       { id:"sem-040", topic:"seminario1", q:"Beneficio para el cuidador de una movilización correcta:", a:"Previene patología del raquis y ahorra energía", b:"Aumenta la fatiga", c:"Elimina necesidad de coordinación", correct:"a", why:"Reduce lesiones y economiza energía." },
+
+      // ====== TEST ANATOMÍA (17 PREGUNTAS, FIJO) ======
+      {"id":"quiz17-001","topic":"quiz17","q":"¿En cuántos sistemas o aparatos está constituido el cuerpo humano?","options":[{"k":"a","t":"En seis"},{"k":"b","t":"En ocho"},{"k":"c","t":"En diez"},{"k":"d","t":"En cinco"}],"correct":"b","why":"El cuerpo humano está organizado en ocho sistemas o aparatos: aparato digestivo, respiratorio, circulatorio, excretor, locomotor, endocrino, nervioso y reproductor."},
+      {"id":"quiz17-002","topic":"quiz17","q":"¿Qué es el aparato locomotor?","options":[{"k":"a","t":"La suma de todos los órganos del cuerpo"},{"k":"b","t":"El conjunto de huesos y músculos"},{"k":"c","t":"El conjunto de huesos, músculos y articulaciones"},{"k":"d","t":"Solo los músculos"}],"correct":"c","why":"El aparato locomotor está formado por el sistema óseo, el sistema muscular y las articulaciones, que permiten el movimiento y sostén del cuerpo."},
+      {"id":"quiz17-003","topic":"quiz17","q":"¿Cuál es la función principal del sistema esquelético?","options":[{"k":"a","t":"Producir energía"},{"k":"b","t":"Proteger órganos internos y dar sostén"},{"k":"c","t":"Transportar oxígeno"},{"k":"d","t":"Regular hormonas"}],"correct":"b","why":"El esqueleto da soporte y protege estructuras vitales (cráneo, caja torácica, etc.), además de servir de palanca para el movimiento."},
+      {"id":"quiz17-004","topic":"quiz17","q":"¿Qué hueso protege el encéfalo?","options":[{"k":"a","t":"La pelvis"},{"k":"b","t":"El cráneo"},{"k":"c","t":"El esternón"},{"k":"d","t":"La columna lumbar"}],"correct":"b","why":"El cráneo forma una caja ósea que protege el encéfalo."},
+      {"id":"quiz17-005","topic":"quiz17","q":"¿Qué estructura protege el corazón y los pulmones?","options":[{"k":"a","t":"La pelvis"},{"k":"b","t":"La caja torácica"},{"k":"c","t":"El fémur"},{"k":"d","t":"El radio"}],"correct":"b","why":"Las costillas y el esternón forman la caja torácica, que protege corazón y pulmones."},
+      {"id":"quiz17-006","topic":"quiz17","q":"¿Qué es la citología?","options":[{"k":"a","t":"El estudio de los tejidos"},{"k":"b","t":"El estudio de las células"},{"k":"c","t":"El estudio de los órganos"},{"k":"d","t":"El estudio de los sistemas"}],"correct":"b","why":"La citología estudia la célula, su estructura y función."},
+      {"id":"quiz17-007","topic":"quiz17","q":"¿Qué rama estudia los tejidos?","options":[{"k":"a","t":"Fisiología"},{"k":"b","t":"Citología"},{"k":"c","t":"Histología"},{"k":"d","t":"Anatomía"}],"correct":"c","why":"La histología es la rama que estudia los tejidos biológicos."},
+      {"id":"quiz17-008","topic":"quiz17","q":"Las células del cuerpo humano son principalmente:","options":[{"k":"a","t":"Procariotas"},{"k":"b","t":"Eucariotas"},{"k":"c","t":"Bacterianas"},{"k":"d","t":"Sin núcleo"}],"correct":"b","why":"Las células humanas son eucariotas: tienen núcleo definido y orgánulos."},
+      {"id":"quiz17-009","topic":"quiz17","q":"¿Qué se entiende por homeostasis?","options":[{"k":"a","t":"El equilibrio interno del organismo"},{"k":"b","t":"El crecimiento del cuerpo"},{"k":"c","t":"La respiración"},{"k":"d","t":"La digestión"}],"correct":"a","why":"Homeostasis es la capacidad del organismo para mantener constantes sus condiciones internas."},
+      {"id":"quiz17-010","topic":"quiz17","q":"¿Cuál es el órgano principal del sistema respiratorio?","options":[{"k":"a","t":"El estómago"},{"k":"b","t":"Los pulmones"},{"k":"c","t":"El corazón"},{"k":"d","t":"El hígado"}],"correct":"b","why":"Los pulmones son el órgano principal donde se realiza el intercambio gaseoso."},
+      {"id":"quiz17-011","topic":"quiz17","q":"¿En qué estructura se produce el intercambio gaseoso?","options":[{"k":"a","t":"Tráquea"},{"k":"b","t":"Bronquios"},{"k":"c","t":"Alvéolos"},{"k":"d","t":"Laringe"}],"correct":"c","why":"El intercambio O2/CO2 ocurre en los alvéolos, por su gran superficie y capilares asociados."},
+      {"id":"quiz17-012","topic":"quiz17","q":"¿Cuántos lóbulos tiene el pulmón derecho?","options":[{"k":"a","t":"1"},{"k":"b","t":"2"},{"k":"c","t":"3"},{"k":"d","t":"4"}],"correct":"c","why":"El pulmón derecho tiene 3 lóbulos; el izquierdo tiene 2."},
+      {"id":"quiz17-013","topic":"quiz17","q":"¿Cuál es la función principal del sistema circulatorio?","options":[{"k":"a","t":"Transportar sustancias por el cuerpo"},{"k":"b","t":"Formar hueso"},{"k":"c","t":"Digestionar alimentos"},{"k":"d","t":"Producir hormonas"}],"correct":"a","why":"El sistema circulatorio distribuye oxígeno, nutrientes y otras sustancias, y recoge desechos."},
+      {"id":"quiz17-014","topic":"quiz17","q":"¿Qué componente de la sangre se encarga principalmente de la defensa?","options":[{"k":"a","t":"Glóbulos rojos"},{"k":"b","t":"Glóbulos blancos"},{"k":"c","t":"Plaquetas"},{"k":"d","t":"Plasma"}],"correct":"b","why":"Los glóbulos blancos (leucocitos) participan en la defensa e inmunidad."},
+      {"id":"quiz17-015","topic":"quiz17","q":"¿Qué estructura lleva sangre desde el ventrículo izquierdo?","options":[{"k":"a","t":"Vena cava"},{"k":"b","t":"Arteria pulmonar"},{"k":"c","t":"Aorta"},{"k":"d","t":"Venas pulmonares"}],"correct":"c","why":"La aorta sale del ventrículo izquierdo y distribuye sangre al organismo."},
+      {"id":"quiz17-016","topic":"quiz17","q":"¿Qué es la sístole?","options":[{"k":"a","t":"Relajación del corazón"},{"k":"b","t":"Contracción del corazón"},{"k":"c","t":"Parada cardiaca"},{"k":"d","t":"Expansión de los pulmones"}],"correct":"b","why":"Sístole es la fase de contracción del corazón (diástole es la de relajación)."},
+      {"id":"quiz17-017","topic":"quiz17","q":"¿Cómo se denomina el músculo del corazón?","options":[{"k":"a","t":"Pericardio"},{"k":"b","t":"Endocardio"},{"k":"c","t":"Miocardio"},{"k":"d","t":"Pleura"}],"correct":"c","why":"Miocardio es el tejido muscular del corazón."},
+
+      // ====== VERDADERO / FALSO (FIJO) ======
+      {"id":"vf-001","topic":"vf","q":"La columna vertebral presenta 4 curvaturas en el plano sagital.","options":[{"k":"v","t":"Verdadero"},{"k":"f","t":"Falso"}],"correct":"v","why":""},
+      {"id":"vf-002","topic":"vf","q":"La lordosis cervical presenta convexidad posterior.","options":[{"k":"v","t":"Verdadero"},{"k":"f","t":"Falso"}],"correct":"f","why":""},
+      {"id":"vf-003","topic":"vf","q":"La cifosis dorsal presenta convexidad posterior.","options":[{"k":"v","t":"Verdadero"},{"k":"f","t":"Falso"}],"correct":"v","why":""},
+      {"id":"vf-004","topic":"vf","q":"La lordosis lumbar presenta concavidad posterior.","options":[{"k":"v","t":"Verdadero"},{"k":"f","t":"Falso"}],"correct":"v","why":""},
+      {"id":"vf-005","topic":"vf","q":"La curva sacra presenta convexidad anterior.","options":[{"k":"v","t":"Verdadero"},{"k":"f","t":"Falso"}],"correct":"v","why":""},
+      {"id":"vf-006","topic":"vf","q":"Las curvas raquídeas aumentan la resistencia del raquis a la compresión axial.","options":[{"k":"v","t":"Verdadero"},{"k":"f","t":"Falso"}],"correct":"v","why":""},
+      {"id":"vf-007","topic":"vf","q":"La mecánica corporal es el uso coordinado y seguro del cuerpo para moverse y mantener equilibrio.","options":[{"k":"v","t":"Verdadero"},{"k":"f","t":"Falso"}],"correct":"v","why":""},
+      {"id":"vf-008","topic":"vf","q":"Una base de apoyo amplia y centro de gravedad bajo disminuyen la estabilidad.","options":[{"k":"v","t":"Verdadero"},{"k":"f","t":"Falso"}],"correct":"f","why":""},
+      {"id":"vf-009","topic":"vf","q":"Tirar o deslizar un objeto suele requerir más esfuerzo que levantarlo.","options":[{"k":"v","t":"Verdadero"},{"k":"f","t":"Falso"}],"correct":"f","why":""},
+      {"id":"vf-010","topic":"vf","q":"Para evitar torsión vertebral al girar es mejor girar con cadera y rodillas (mover los pies).","options":[{"k":"v","t":"Verdadero"},{"k":"f","t":"Falso"}],"correct":"v","why":""}
     ];
 
     // =========================================
-    //  CONFIG DE PUNTUACIÓN
+    //  CONFIG DE PUNTUACIÓN (solo para modos aleatorios)
     // =========================================
     const SCORING = {
       10: { ok: 1, bad: -0.33, blank: 0 },
@@ -424,11 +461,15 @@
       30: { ok: 0.33, bad: -0.11, blank: 0 },
     };
 
+    // Modos fijos
+    const FIXED_TOPICS = new Set(['quiz17','vf']);
+
     // =========================================
     //  ESTADO
     // =========================================
     const elTopic = document.getElementById('topic');
     const elSize = document.getElementById('size');
+    const sizeWrap = document.getElementById('sizeWrap');
     const startBtn = document.getElementById('startBtn');
     const quizSection = document.getElementById('quizSection');
     const quizEl = document.getElementById('quiz');
@@ -456,10 +497,27 @@
       return s.replace(/\.00$/, '').replace(/(\.[0-9])0$/, '$1');
     }
 
+    function isFixedMode(){
+      return FIXED_TOPICS.has(elTopic.value);
+    }
+
     function setRulesUI(){
-      const n = Number(elSize.value);
-      const s = SCORING[n];
-      const txt = `Reglas: Bien +${fmt(s.ok)} · Mal ${fmt(s.bad)} · Blanco +${fmt(s.blank)}.`;
+      const topic = elTopic.value;
+      const fixed = FIXED_TOPICS.has(topic);
+
+      // Toggle selector de tamaño
+      sizeWrap.classList.toggle('hide', fixed);
+
+      let txt = '';
+      if(!fixed){
+        const n = Number(elSize.value);
+        const s = SCORING[n];
+        txt = `Reglas: Bien +${fmt(s.ok)} · Mal ${fmt(s.bad)} · Blanco +${fmt(s.blank)}.`;
+      } else {
+        const total = QUESTION_BANK.filter(q => q.topic === topic).length;
+        txt = `Reglas: 1 punto por acierto · 0 por fallo · blanco 0. Total: ${total} preguntas.`;
+      }
+
       rulesText.textContent = txt;
       rulesKpi.textContent = txt;
       scorePill.textContent = txt;
@@ -481,6 +539,16 @@
       return shuffle([...pool]).slice(0, n);
     }
 
+    function getOptionsForQuestion(q){
+      if(q.options && Array.isArray(q.options)) return q.options;
+      const opts = [];
+      if(q.a) opts.push({ k:'a', t:q.a });
+      if(q.b) opts.push({ k:'b', t:q.b });
+      if(q.c) opts.push({ k:'c', t:q.c });
+      if(q.d) opts.push({ k:'d', t:q.d });
+      return opts;
+    }
+
     function renderExam(){
       quizEl.innerHTML = '';
       results.style.display = 'none';
@@ -491,15 +559,16 @@
         qWrap.className = 'q';
         qWrap.dataset.qid = q.id;
 
+        const opts = getOptionsForQuestion(q);
+        const optionsHtml = opts.map(o => renderOption(q, idx, o.k, o.t)).join('');
+
         qWrap.innerHTML = `
           <div class="qhead">
             <div class="qnum">${idx + 1}</div>
-            <p class="qtext">${q.q}</p>
+            <p class="qtext">${escapeHtml(q.q)}</p>
           </div>
           <div class="options">
-            ${renderOption(q, idx, 'a', q.a)}
-            ${renderOption(q, idx, 'b', q.b)}
-            ${renderOption(q, idx, 'c', q.c)}
+            ${optionsHtml}
           </div>
           <div style="margin-top:10px;">
             <button type="button" class="secondary" data-clear="${idx}" style="padding:10px 12px;">
@@ -512,13 +581,13 @@
       });
     }
 
-    function renderOption(q, idx, letter, text){
+    function renderOption(q, idx, key, text){
       const name = `q_${idx}`;
-      const id = `${name}_${letter}`;
-      const label = letter.toUpperCase();
+      const id = `${name}_${key}`;
+      const label = String(key).toUpperCase();
       return `
         <label class="opt" for="${id}">
-          <input type="radio" id="${id}" name="${name}" value="${letter}" ${locked ? 'disabled' : ''} />
+          <input type="radio" id="${id}" name="${name}" value="${escapeHtml(key)}" ${locked ? 'disabled' : ''} />
           <span><b>${label}.</b> ${escapeHtml(text)}</span>
         </label>
       `;
@@ -547,12 +616,15 @@
       if(locked) return;
       locked = true;
 
-      const n = Number(elSize.value);
-      const scoring = SCORING[n];
+      const topic = elTopic.value;
+      const fixed = FIXED_TOPICS.has(topic);
       const answers = getAnswers();
 
       let ok = 0, bad = 0, blank = 0;
       let score = 0;
+
+      const n = Number(elSize.value);
+      const scoring = SCORING[n];
 
       const byId = new Map(currentExam.map(q => [q.id, q]));
       const reviewNodes = [];
@@ -565,15 +637,15 @@
         let status;
         if(!chosen){
           blank++;
-          score += scoring.blank;
+          score += fixed ? 0 : scoring.blank;
           status = { type: 'blank', label: 'EN BLANCO' };
         } else if(chosen === correct){
           ok++;
-          score += scoring.ok;
+          score += fixed ? 1 : scoring.ok;
           status = { type: 'good', label: 'CORRECTA' };
         } else {
           bad++;
-          score += scoring.bad;
+          score += fixed ? 0 : scoring.bad;
           status = { type: 'bad', label: 'INCORRECTA' };
         }
 
@@ -585,7 +657,12 @@
       document.querySelectorAll('#quiz button[data-clear]').forEach(b => b.disabled = true);
 
       // Show results
-      totalScoreEl.textContent = fmt(score);
+      if(fixed){
+        totalScoreEl.textContent = `${ok} / ${currentExam.length}`;
+      } else {
+        totalScoreEl.textContent = fmt(score);
+      }
+
       summaryTextEl.textContent = `${ok} bien · ${bad} mal · ${blank} en blanco`;
 
       review.innerHTML = '';
@@ -599,14 +676,10 @@
       const node = document.createElement('div');
       node.className = 'q';
 
-      const chosenTxt = chosen ? chosen.toUpperCase() : '—';
-      const correctTxt = q.correct.toUpperCase();
+      const chosenTxt = chosen ? String(chosen).toUpperCase() : '—';
+      const correctTxt = String(q.correct).toUpperCase();
 
-      const opts = [
-        { k: 'a', t: q.a },
-        { k: 'b', t: q.b },
-        { k: 'c', t: q.c },
-      ];
+      const opts = getOptionsForQuestion(q);
 
       const optionsHtml = opts.map(o => {
         const isCorrect = o.k === q.correct;
@@ -625,7 +698,7 @@
 
         return `
           <div class="opt" style="${extraStyle}">
-            <div style="min-width:28px; font-weight:900; color: var(--muted);">${o.k.toUpperCase()}.</div>
+            <div style="min-width:28px; font-weight:900; color: var(--muted);">${escapeHtml(String(o.k).toUpperCase())}.</div>
             <div style="flex:1;">
               <div style="font-size:14px;">${escapeHtml(o.t)} ${badge}</div>
             </div>
@@ -633,17 +706,21 @@
         `;
       }).join('');
 
+      const why = (q.why && String(q.why).trim().length > 0)
+        ? `<div class="why">${escapeHtml(q.why)}</div>`
+        : '';
+
       node.innerHTML = `
         <div class="qhead">
           <div class="qnum">${index + 1}</div>
           <div style="flex:1;">
-            <p class="qtext" style="margin:0;">${q.q}</p>
+            <p class="qtext" style="margin:0;">${escapeHtml(q.q)}</p>
             <div style="margin-top:8px;">
               <span class="tag ${status.type}">${status.label}</span>
             </div>
             <div class="answerline">Tu respuesta: <b>${chosenTxt}</b> · Correcta: <b>${correctTxt}</b></div>
             <div class="options" style="margin-top:10px;">${optionsHtml}</div>
-            <div class="why">${escapeHtml(q.why)}</div>
+            ${why}
           </div>
         </div>
       `;
@@ -673,9 +750,15 @@
     function start(){
       locked = false;
       const topic = elTopic.value;
-      const n = Number(elSize.value);
 
-      currentExam = pickExam(topic, n);
+      if(FIXED_TOPICS.has(topic)){
+        // fijo (sin shuffle)
+        currentExam = QUESTION_BANK.filter(q => q.topic === topic);
+      } else {
+        const n = Number(elSize.value);
+        currentExam = pickExam(topic, n);
+      }
+
       renderExam();
 
       quizSection.classList.remove('hide');
@@ -686,6 +769,7 @@
 
     // Events
     elSize.addEventListener('change', setRulesUI);
+    elTopic.addEventListener('change', setRulesUI);
 
     startBtn.addEventListener('click', () => {
       try { start(); }
