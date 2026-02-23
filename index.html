@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Simulacro Celador - Unidad 1</title>
+  <title>Simulacro Celador - Unidades 1 y 2</title>
   <style>
     :root{
       --bg:#0b1220;
@@ -58,7 +58,7 @@
     }
 
     .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
-    .row > *{flex:1 1 220px;}
+    .row > *{flex:1 1 200px;}
 
     label{display:block; font-size:12px; color:var(--muted); margin:0 0 6px;}
 
@@ -87,9 +87,6 @@
       border:1px solid var(--border);
       font-weight:600;
     }
-    button.danger{
-      background: linear-gradient(180deg, rgba(255,92,122,.95), rgba(255,92,122,.65));
-    }
 
     .pill{
       display:inline-flex;
@@ -103,7 +100,6 @@
       font-size:12px;
       white-space:nowrap;
     }
-
     .pill b{color:var(--text); font-weight:800;}
 
     .quiz{
@@ -150,7 +146,6 @@
 
     .opt input{margin-top:3px;}
     .opt span{color: var(--text); font-size:14px;}
-    .opt small{color: var(--muted); display:block; margin-top:3px; font-size:12px;}
 
     .footer-actions{
       position: sticky;
@@ -197,14 +192,19 @@
     .tag.blank{background: rgba(255,209,102,.12); color: var(--warn); border:1px solid rgba(255,209,102,.35);}
 
     .review{margin-top:12px; display:flex; flex-direction:column; gap:10px;}
-
     .review .q{background: rgba(255,255,255,.03);}
-    .review .answerline{margin-top:10px; color:var(--muted); font-size:13px;}
-    .review .answerline b{color:var(--text);}
-    .review .why{margin-top:8px; font-size:13px; color:var(--muted);}
+
+    .answerline{margin-top:10px; color:var(--muted); font-size:13px;}
+    .answerline b{color:var(--text);}
+    .why{margin-top:8px; font-size:13px; color:var(--muted);}
 
     .notice{color:var(--muted); font-size:12px; margin-top:10px;}
     .hide{display:none !important;}
+
+    .disabled{
+      opacity:.6;
+      filter: grayscale(.1);
+    }
   </style>
 </head>
 <body>
@@ -212,8 +212,8 @@
     <header>
       <div class="title">
         <div>
-          <h1>Simulacro (Celador) • Unidad 1</h1>
-          <div class="subtitle">Sin backend. Se elige un examen aleatorio cada vez. Pensado para móvil.</div>
+          <h1>Simulacro (Celador) • Unidades 1 y 2</h1>
+          <div class="subtitle">Sin backend. Exámenes aleatorios. Pensado para móvil.</div>
         </div>
         <div class="pill" id="scorePill">Puntuación: <b id="pillPoints">-</b></div>
       </div>
@@ -221,17 +221,20 @@
       <div class="card">
         <div class="row">
           <div>
-            <label for="topic">1) Temario</label>
-            <select id="topic">
-              <option value="ud1">Preguntas Unidad 1 (Anatomía básica)</option>
-              <option value="seminario1">Preguntas Seminario Unidad 1 (TME / prevención)</option>
-              <option value="quiz17">Test Anatomía (17 preguntas, fijo)</option>
-              <option value="vf">Verdadero / Falso (fijo)</option>
+            <label for="unit">1) Unidad</label>
+            <select id="unit">
+              <option value="u1">Unidad 1</option>
+              <option value="u2">Unidad 2</option>
             </select>
           </div>
 
+          <div>
+            <label for="examType">2) Tipo de examen</label>
+            <select id="examType"></select>
+          </div>
+
           <div id="sizeWrap">
-            <label for="size">2) Tipo de examen</label>
+            <label for="size">3) Nº preguntas</label>
             <select id="size">
               <option value="10">10 preguntas</option>
               <option value="20">20 preguntas</option>
@@ -264,7 +267,7 @@
       <section id="results" class="results card">
         <div class="summary">
           <div class="kpi">
-            <div class="label">Puntuación total</div>
+            <div class="label" id="scoreLabel">Puntuación total</div>
             <div class="value" id="totalScore">0</div>
           </div>
           <div class="kpi">
@@ -286,196 +289,467 @@
           </div>
           <div class="grid2" style="margin-top:10px;">
             <button id="restartFromResultsBtn" class="secondary">Reiniciar (borrar todo)</button>
-            <button id="changeConfigBtn" class="secondary">Cambiar temario / tipo</button>
+            <button id="changeConfigBtn" class="secondary">Cambiar unidad / tipo</button>
           </div>
-          <div class="notice">Tip: “Nuevo examen” genera otra combinación aleatoria (en modos aleatorios).</div>
+          <div class="notice">Tip: “Nuevo examen” genera otra combinación aleatoria.</div>
         </div>
       </section>
     </main>
   </div>
 
   <script>
-    // =========================================
-    //  BANCO DE PREGUNTAS (sin backend)
-    //  Formato base:
-    //   - MCQ: { id, topic, q, a,b,c (y opcional d), correct, why }
-    //   - Genérico: { id, topic, q, options:[{k,t}], correct, why }
-    // =========================================
+    // ==========================================================
+    //  CONFIG: unidades y tipos
+    // ==========================================================
+    const EXAM_TYPES = {
+      // Unidad 1 (lo que ya tenías, y mantenemos)
+      u1_ud1:   { unit:"u1", label:"U1 • Preguntas (Anatomía básica)", mode:"mcq", sizeMode:"variable", scoringMode:"points" },
+      u1_sem1:  { unit:"u1", label:"U1 • Seminario (TME / prevención)", mode:"mcq", sizeMode:"variable", scoringMode:"points" },
+
+      // BONUS opcional (si luego quieres rellenarlo mejor)
+      // Por ahora lo dejo funcional con un banco pequeño.
+      u1_test17:{ unit:"u1", label:"U1 • Cuestionario (17 preguntas)", mode:"mcq", sizeMode:"fixed", fixedCount:17, scoringMode:"count" },
+      u1_vf:    { unit:"u1", label:"U1 • Verdadero / Falso", mode:"vf",  sizeMode:"fixed", fixedCount:null, scoringMode:"count" },
+
+      // Unidad 2 (solo 10/20/30)
+      u2_ud2:   { unit:"u2", label:"U2 • Movilización y traslado (Nivel 1)", mode:"mcq", sizeMode:"variable", scoringMode:"points" },
+    };
+
+    // ==========================================================
+    //  BANCO DE PREGUNTAS
+    //  Formato normalizado:
+    //   {
+    //     id, typeKey,
+    //     q,
+    //     options: [{k:'a', t:'...'}, {k:'b', t:'...'}, ...],
+    //     correct:'a',
+    //     why:'...'
+    //   }
+    // ==========================================================
 
     const QUESTION_BANK = [
-      // ====== UNIDAD 1 (ANATOMÍA BÁSICA) ======
-      { id:"ud1-001", topic:"ud1", q:"¿Cuál es la unidad mínima de la vida?", a:"El tejido", b:"La célula", c:"El órgano", correct:"b", why:"La célula es la unidad mínima de la vida; tejidos y órganos son niveles superiores." },
-      { id:"ud1-002", topic:"ud1", q:"¿Qué estudia la Citología?", a:"Las células", b:"Los huesos", c:"Los órganos", correct:"a", why:"La citología estudia las células." },
-      { id:"ud1-003", topic:"ud1", q:"Las células humanas son principalmente:", a:"Procariotas", b:"Eucariotas", c:"Bacterianas", correct:"b", why:"Las células humanas son eucariotas (con núcleo y orgánulos)." },
-      { id:"ud1-004", topic:"ud1", q:"¿Qué rama estudia los tejidos biológicos?", a:"Histología", b:"Citología", c:"Fisiología", correct:"a", why:"La histología se ocupa del estudio de los tejidos." },
-      { id:"ud1-005", topic:"ud1", q:"El sistema musculoesquelético está constituido por:", a:"Sistema esquelético y músculos", b:"Sistema endocrino y nervioso", c:"Sistema digestivo y excretor", correct:"a", why:"Incluye huesos/articulaciones y músculos/tendones." },
+      // =========================
+      // U1 (recortado a lo esencial: usamos tus preguntas)
+      // =========================
+      { id:"ud1-001", typeKey:"u1_ud1", q:"¿Cuál es la unidad mínima de la vida?", options:[
+        {k:"a",t:"El tejido"},{k:"b",t:"La célula"},{k:"c",t:"El órgano"}
+      ], correct:"b", why:"La célula es la unidad mínima de la vida; tejidos y órganos son niveles superiores." },
 
-      { id:"ud1-006", topic:"ud1", q:"Función del sistema esquelético:", a:"Protección de órganos internos", b:"Producción de bilis", c:"Intercambio gaseoso", correct:"a", why:"El cráneo protege el encéfalo y la caja torácica al corazón y pulmones." },
-      { id:"ud1-007", topic:"ud1", q:"La homeostasis de minerales del hueso se relaciona sobre todo con:", a:"Sodio y potasio", b:"Calcio y fósforo", c:"Hierro y yodo", correct:"b", why:"El hueso almacena y libera calcio y fósforo para mantener su equilibrio." },
-      { id:"ud1-008", topic:"ud1", q:"¿Dónde se produce la hematopoyesis?", a:"Médula ósea roja", b:"Médula ósea amarilla", c:"Cartílago articular", correct:"a", why:"En la médula ósea roja se producen glóbulos rojos, blancos y plaquetas." },
-      { id:"ud1-009", topic:"ud1", q:"La cavidad medular de la diáfisis contiene normalmente:", a:"Líquido sinovial", b:"Médula ósea amarilla (grasa)", c:"Médula ósea roja", correct:"b", why:"La cavidad medular suele contener médula amarilla grasa (especialmente en adultos)." },
-      { id:"ud1-010", topic:"ud1", q:"El periostio es:", a:"Cartílago que cubre la epífisis", b:"Capa resistente que rodea al hueso (sin cartílago)", c:"Espacio interno del hueso largo", correct:"b", why:"Protege, ayuda a reparar fracturas y sirve de inserción para tendones y ligamentos." },
+      { id:"ud1-002", typeKey:"u1_ud1", q:"¿Qué estudia la Citología?", options:[
+        {k:"a",t:"Las células"},{k:"b",t:"Los huesos"},{k:"c",t:"Los órganos"}
+      ], correct:"a", why:"La citología estudia las células." },
 
-      { id:"ud1-011", topic:"ud1", q:"Las células que construyen hueso y sintetizan matriz ósea son:", a:"Osteoclastos", b:"Osteoblastos", c:"Osteocitos", correct:"b", why:"Los osteoblastos forman hueso; los osteoclastos lo reabsorben; los osteocitos son maduros." },
-      { id:"ud1-012", topic:"ud1", q:"Las células responsables de la destrucción/reabsorción ósea son:", a:"Osteocitos", b:"Osteoclastos", c:"Células osteógenas", correct:"b", why:"Osteoclastos = destrucción ósea." },
-      { id:"ud1-013", topic:"ud1", q:"La dureza del hueso depende sobre todo de:", a:"Sales minerales cristalizadas", b:"Fibras colágenas", c:"Agua", correct:"a", why:"La dureza se asocia a las sales minerales; la flexibilidad a fibras colágenas." },
-      { id:"ud1-014", topic:"ud1", q:"El cartílago NO tiene irrigación capilar propia porque:", a:"Es muy rígido", b:"Recibe nutrientes por difusión desde el pericondrio", c:"No tiene células", correct:"b", why:"Los condrocitos se nutren por difusión desde el pericondrio." },
-      { id:"ud1-015", topic:"ud1", q:"El esqueleto axial incluye principalmente:", a:"Miembros superiores e inferiores", b:"Cabeza, cuello y tronco", c:"Solo pelvis y fémur", correct:"b", why:"Axial = cabeza, cuello y tronco (80 huesos)." },
+      { id:"ud1-003", typeKey:"u1_ud1", q:"Las células humanas son principalmente:", options:[
+        {k:"a",t:"Procariotas"},{k:"b",t:"Eucariotas"},{k:"c",t:"Bacterianas"}
+      ], correct:"b", why:"Las células humanas son eucariotas (con núcleo y orgánulos)." },
 
-      { id:"ud1-016", topic:"ud1", q:"Un ejemplo de hueso sesamoideo es:", a:"Vértebra lumbar", b:"Rótula", c:"Húmero", correct:"b", why:"Los sesamoideos están en tendones; ejemplo típico: rótula." },
-      { id:"ud1-017", topic:"ud1", q:"Las vértebras cervicales son:", a:"12", b:"7", c:"5", correct:"b", why:"Hay 7 vértebras cervicales." },
-      { id:"ud1-018", topic:"ud1", q:"Las vértebras dorsales o torácicas son:", a:"12", b:"7", c:"5", correct:"a", why:"Hay 12 vértebras torácicas." },
-      { id:"ud1-019", topic:"ud1", q:"Las vértebras lumbares son:", a:"4", b:"5", c:"6", correct:"b", why:"Hay 5 vértebras lumbares." },
-      { id:"ud1-020", topic:"ud1", q:"Las costillas verdaderas son:", a:"7 pares", b:"5 pares", c:"12 pares", correct:"a", why:"Las 7 primeras se unen al esternón (verdaderas)." },
+      { id:"ud1-004", typeKey:"u1_ud1", q:"¿Qué rama estudia los tejidos biológicos?", options:[
+        {k:"a",t:"Histología"},{k:"b",t:"Citología"},{k:"c",t:"Fisiología"}
+      ], correct:"a", why:"La histología se ocupa del estudio de los tejidos." },
 
-      { id:"ud1-021", topic:"ud1", q:"El esternón se compone de:", a:"Manubrio, cuerpo y apéndice xifoideo", b:"Diáfisis y epífisis", c:"Atlas, axis y sacro", correct:"a", why:"Son sus tres partes principales." },
-      { id:"ud1-022", topic:"ud1", q:"¿Qué tipo de articulación permite movimientos libres en todas direcciones (como hombro/cadera)?", a:"Bisagra", b:"Esfera-cavidad", c:"Deslizante", correct:"b", why:"Hombro y cadera son tipo esfera-cavidad." },
-      { id:"ud1-023", topic:"ud1", q:"¿Qué articulación permite rotación y es típica entre atlas-axis?", a:"Pivote", b:"Bisagra", c:"Sinartrosis", correct:"a", why:"La articulación en pivote permite rotación, como atlas-axis." },
-      { id:"ud1-024", topic:"ud1", q:"Los músculos lisos se caracterizan por contracción:", a:"Rápida y voluntaria", b:"Lenta e involuntaria", c:"Rápida e involuntaria", correct:"b", why:"El músculo liso es involuntario y de contracción lenta." },
-      { id:"ud1-025", topic:"ud1", q:"El músculo cardíaco es:", a:"Liso e involuntario", b:"Estriado e involuntario", c:"Estriado y voluntario", correct:"b", why:"Es estriado, pero de control involuntario." },
+      { id:"ud1-005", typeKey:"u1_ud1", q:"El sistema musculoesquelético está constituido por:", options:[
+        {k:"a",t:"Sistema esquelético y músculos"},{k:"b",t:"Sistema endocrino y nervioso"},{k:"c",t:"Sistema digestivo y excretor"}
+      ], correct:"a", why:"Incluye huesos/articulaciones y músculos/tendones." },
 
-      { id:"ud1-026", topic:"ud1", q:"Propiedades del músculo esquelético (estriado) incluyen:", a:"Excitabilidad, contractilidad, elasticidad y tonicidad", b:"Osmosis, difusión y filtración", c:"Digestión y absorción", correct:"a", why:"Son propiedades típicas descritas para músculo estriado." },
-      { id:"ud1-027", topic:"ud1", q:"El tendón sirve para:", a:"Lubricar articulaciones", b:"Insertar músculo en hueso y transmitir fuerza", c:"Formar glóbulos rojos", correct:"b", why:"El tendón transmite cargas para producir movimiento o mantener postura." },
-      { id:"ud1-028", topic:"ud1", q:"Las vías respiratorias incluyen:", a:"Tráquea, bronquios y bronquiolos", b:"Aorta, venas y capilares", c:"Hígado, páncreas y bazo", correct:"a", why:"Son parte del sistema respiratorio." },
-      { id:"ud1-029", topic:"ud1", q:"La laringe es importante porque:", a:"Produce bilis", b:"Contiene cuerdas vocales y la epiglotis", c:"Produce plaquetas", correct:"b", why:"La epiglotis evita que los alimentos pasen a vías respiratorias; cuerdas vocales producen voz." },
-      { id:"ud1-030", topic:"ud1", q:"La tráquea se mantiene abierta gracias a:", a:"20 anillos cartilaginosos aprox.", b:"Vellosidades intestinales", c:"Pleura", correct:"a", why:"Los anillos cartilaginosos mantienen la tráquea abierta." },
+      { id:"ud1-008", typeKey:"u1_ud1", q:"¿Dónde se produce la hematopoyesis?", options:[
+        {k:"a",t:"Médula ósea roja"},{k:"b",t:"Médula ósea amarilla"},{k:"c",t:"Cartílago articular"}
+      ], correct:"a", why:"En la médula ósea roja se producen glóbulos rojos, blancos y plaquetas." },
 
-      { id:"ud1-031", topic:"ud1", q:"El intercambio gaseoso principal ocurre en:", a:"Bronquios", b:"Alvéolos", c:"Faringe", correct:"b", why:"En los alvéolos se realiza el intercambio O2/CO2." },
-      { id:"ud1-032", topic:"ud1", q:"El pulmón derecho tiene:", a:"2 lóbulos", b:"3 lóbulos", c:"4 lóbulos", correct:"b", why:"Derecho: 3 lóbulos; izquierdo: 2." },
-      { id:"ud1-033", topic:"ud1", q:"La pleura es:", a:"Un hueso del tórax", b:"Membrana de doble pared que rodea los pulmones", c:"Un músculo respiratorio", correct:"b", why:"La pleura envuelve los pulmones." },
-      { id:"ud1-034", topic:"ud1", q:"En la inspiración:", a:"El diafragma se relaja", b:"El diafragma se contrae", c:"Las costillas descienden", correct:"b", why:"En inspiración el diafragma se contrae y aumenta el volumen torácico." },
-      { id:"ud1-035", topic:"ud1", q:"La sangre está compuesta por:", a:"Plasma y células (glóbulos rojos, blancos y plaquetas)", b:"Solo agua", c:"Solo glóbulos rojos", correct:"a", why:"Plasma + elementos formes: eritrocitos, leucocitos y plaquetas." },
+      { id:"ud1-011", typeKey:"u1_ud1", q:"Las células que construyen hueso y sintetizan matriz ósea son:", options:[
+        {k:"a",t:"Osteoclastos"},{k:"b",t:"Osteoblastos"},{k:"c",t:"Osteocitos"}
+      ], correct:"b", why:"Los osteoblastos forman hueso; los osteoclastos lo reabsorben; los osteocitos son maduros." },
 
-      { id:"ud1-036", topic:"ud1", q:"Los glóbulos rojos transportan principalmente:", a:"Oxígeno", b:"Hormonas", c:"Bilis", correct:"a", why:"Los eritrocitos distribuyen O2 gracias a la hemoglobina." },
-      { id:"ud1-037", topic:"ud1", q:"La hemoglobina es:", a:"Una hormona", b:"Un pigmento con proteína (hemo) que fija O2", c:"Un tipo de leucocito", correct:"b", why:"La hemoglobina fija oxígeno y da color rojizo." },
-      { id:"ud1-038", topic:"ud1", q:"Los glóbulos blancos se relacionan con:", a:"Coagulación", b:"Defensa e inmunidad", c:"Transporte de CO2 exclusivamente", correct:"b", why:"Leucocitos participan en defensa (fagocitos, linfocitos)." },
-      { id:"ud1-039", topic:"ud1", q:"Las plaquetas sirven principalmente para:", a:"Transportar O2", b:"Taponar heridas y evitar hemorragias", c:"Producir voz", correct:"b", why:"Plaquetas intervienen en la coagulación." },
-      { id:"ud1-040", topic:"ud1", q:"Capas del corazón (de interior a exterior):", a:"Pericardio, miocardio, endocardio", b:"Endocardio, miocardio, pericardio", c:"Pleura, peritoneo, periostio", correct:"b", why:"Endocardio (interior), miocardio, pericardio (exterior)." },
+      { id:"ud1-017", typeKey:"u1_ud1", q:"Las vértebras cervicales son:", options:[
+        {k:"a",t:"12"},{k:"b",t:"7"},{k:"c",t:"5"}
+      ], correct:"b", why:"Hay 7 vértebras cervicales." },
 
-      { id:"ud1-041", topic:"ud1", q:"El corazón está dividido en:", a:"Dos mitades que NO se comunican", b:"Tres mitades", c:"Dos mitades que se comunican", correct:"a", why:"Mitad derecha e izquierda separadas." },
-      { id:"ud1-042", topic:"ud1", q:"Las cavidades superiores del corazón se llaman:", a:"Ventrículos", b:"Aurículas", c:"Alvéolos", correct:"b", why:"Aurículas arriba; ventrículos abajo." },
-      { id:"ud1-043", topic:"ud1", q:"Sístole es:", a:"Contracción", b:"Dilatación", c:"Reposo definitivo", correct:"a", why:"Contracción = sístole; dilatación = diástole." },
-      { id:"ud1-044", topic:"ud1", q:"Del ventrículo izquierdo sale:", a:"Arteria pulmonar", b:"Aorta", c:"Vena cava inferior", correct:"b", why:"Aorta sale del ventrículo izquierdo." },
-      { id:"ud1-045", topic:"ud1", q:"La arteria pulmonar lleva sangre:", a:"Del ventrículo derecho a los pulmones", b:"De los pulmones a la aurícula izquierda", c:"Del hígado al corazón", correct:"a", why:"Arteria pulmonar sale del ventrículo derecho." },
+      { id:"ud1-020", typeKey:"u1_ud1", q:"Las costillas verdaderas son:", options:[
+        {k:"a",t:"7 pares"},{k:"b",t:"5 pares"},{k:"c",t:"12 pares"}
+      ], correct:"a", why:"Las 7 primeras se unen al esternón (verdaderas)." },
 
-      { id:"ud1-046", topic:"ud1", q:"Las venas pulmonares desembocan en:", a:"Aurícula derecha", b:"Aurícula izquierda", c:"Ventrículo derecho", correct:"b", why:"Traen sangre oxigenada a la aurícula izquierda." },
-      { id:"ud1-047", topic:"ud1", q:"Los vasos más finos donde se realiza intercambio con tejidos son:", a:"Arterias", b:"Capilares", c:"Venas", correct:"b", why:"El intercambio gaseoso y de sustancias se realiza en capilares." },
-      { id:"ud1-048", topic:"ud1", q:"El sistema nervioso central está formado por:", a:"Encéfalo y médula espinal", b:"Nervios craneales y ganglios", c:"Solo cerebro", correct:"a", why:"SNC = encéfalo + médula." },
-      { id:"ud1-049", topic:"ud1", q:"Las meninges son:", a:"Tres membranas que envuelven el encéfalo", b:"Tres huesos del cráneo", c:"Tres músculos del cuello", correct:"a", why:"Duramadre, aracnoides y piamadre." },
-      { id:"ud1-050", topic:"ud1", q:"El cerebro tiene:", a:"Sustancia gris por fuera y blanca por dentro", b:"Sustancia blanca por fuera y gris por dentro", c:"Solo sustancia gris", correct:"a", why:"Corteza gris externa y blanca interna." },
+      { id:"ud1-031", typeKey:"u1_ud1", q:"El intercambio gaseoso principal ocurre en:", options:[
+        {k:"a",t:"Bronquios"},{k:"b",t:"Alvéolos"},{k:"c",t:"Faringe"}
+      ], correct:"b", why:"En los alvéolos se realiza el intercambio O2/CO2." },
 
-      { id:"ud1-051", topic:"ud1", q:"Los nervios craneales son:", a:"12 pares", b:"31 pares", c:"43 pares", correct:"a", why:"Del encéfalo salen 12 pares de nervios craneales." },
-      { id:"ud1-052", topic:"ud1", q:"Los nervios raquídeos/espinales son:", a:"12 pares", b:"31 pares", c:"7 pares", correct:"b", why:"De la médula espinal salen 31 pares de nervios." },
-      { id:"ud1-053", topic:"ud1", q:"El tubo digestivo incluye:", a:"Boca, esófago, estómago, intestino", b:"Tráquea y bronquios", c:"Aorta y venas", correct:"a", why:"Es la secuencia básica del tubo digestivo." },
-      { id:"ud1-054", topic:"ud1", q:"El intestino delgado está formado por:", a:"Duodeno, yeyuno e íleon", b:"Ciego, colon y recto", c:"Esófago, estómago y píloro", correct:"a", why:"Son las tres partes del intestino delgado." },
-      { id:"ud1-055", topic:"ud1", q:"El intestino grueso comienza en:", a:"Píloro", b:"Válvula ileocecal y ciego", c:"Duodeno", correct:"b", why:"Se inicia en el ciego tras la válvula ileocecal." },
-      { id:"ud1-056", topic:"ud1", q:"El colon sigmoideo está:", a:"Antes del colon ascendente", b:"Antes del recto", c:"Dentro del estómago", correct:"b", why:"Tras descendente aparece el sigmoideo y luego recto y ano." },
+      { id:"ud1-040", typeKey:"u1_ud1", q:"Capas del corazón (de interior a exterior):", options:[
+        {k:"a",t:"Pericardio, miocardio, endocardio"},{k:"b",t:"Endocardio, miocardio, pericardio"},{k:"c",t:"Pleura, peritoneo, periostio"}
+      ], correct:"b", why:"Endocardio (interior), miocardio, pericardio (exterior)." },
 
-      // ====== SEMINARIO 1 (TME / PREVENCIÓN) ======
-      { id:"sem-001", topic:"seminario1", q:"Los trastornos musculoesqueléticos (TME) afectan principalmente a:", a:"Músculos, tendones, ligamentos, articulaciones y nervios", b:"Solo al corazón", c:"Solo a la piel", correct:"a", why:"La definición incluye músculos, tendones, ligamentos, articulaciones y nervios." },
-      { id:"sem-002", topic:"seminario1", q:"La zona anatómica con mayor afectación de TME suele ser:", a:"Columna vertebral", b:"Orejas", c:"Dedos del pie", correct:"a", why:"La columna vertebral es la zona de mayor afectación." },
-      { id:"sem-003", topic:"seminario1", q:"Los síntomas de los TME suelen aparecer:", a:"De forma gradual", b:"Siempre de golpe", c:"Solo de noche", correct:"a", why:"Suelen ser leves al inicio y se agravan si no se corrige." },
-      { id:"sem-004", topic:"seminario1", q:"Un síntoma frecuente de TME es:", a:"Hormigueo", b:"Mejora de la visión", c:"Aumento de estatura", correct:"a", why:"Hormigueo, dolor, rigidez, pérdida de fuerza o sensibilidad." },
-      { id:"sem-005", topic:"seminario1", q:"Ejemplo de patología frecuente en extremidad superior:", a:"Síndrome del túnel carpiano", b:"Neumonía", c:"Gastritis", correct:"a", why:"Entre las más frecuentes en EE.SS. está el túnel carpiano." },
+      // --- Seminario 1 (mantenemos estilo)
+      { id:"sem-011", typeKey:"u1_sem1", q:"La mecánica corporal es:", options:[
+        {k:"a",t:"Uso eficaz, coordinado y seguro del cuerpo para moverse y mantener equilibrio"},{k:"b",t:"Solo levantar pesas"},{k:"c",t:"Solo estiramientos"}
+      ], correct:"a", why:"Incluye alineación, equilibrio y movimiento coordinado." },
 
-      { id:"sem-006", topic:"seminario1", q:"La columna vertebral está constituida por:", a:"Vértebras, discos intervertebrales y médula espinal", b:"Costillas y esternón", c:"Alvéolos y bronquios", correct:"a", why:"Incluye vértebras y discos, y protege la médula espinal." },
-      { id:"sem-007", topic:"seminario1", q:"En el plano sagital la columna presenta:", a:"4 curvas", b:"1 curva", c:"0 curvas", correct:"a", why:"Lordosis cervical, cifosis dorsal, lordosis lumbar y curva sacra." },
-      { id:"sem-008", topic:"seminario1", q:"La lordosis cervical tiene:", a:"Concavidad posterior", b:"Convexidad posterior", c:"Concavidad anterior", correct:"a", why:"Lordosis cervical: concavidad posterior." },
-      { id:"sem-009", topic:"seminario1", q:"La cifosis dorsal tiene:", a:"Concavidad posterior", b:"Convexidad posterior", c:"Convexidad anterior", correct:"b", why:"Cifosis dorsal: convexidad posterior." },
-      { id:"sem-010", topic:"seminario1", q:"Las curvas raquídeas sirven para:", a:"Aumentar resistencia a compresión axial", b:"Eliminar el equilibrio", c:"Reducir movilidad", correct:"a", why:"Aumentan la resistencia del raquis frente a fuerzas de compresión." },
+      { id:"sem-013", typeKey:"u1_sem1", q:"Base de apoyo amplia y centro de gravedad bajo:", options:[
+        {k:"a",t:"Aumentan la estabilidad"},{k:"b",t:"Disminuyen estabilidad"},{k:"c",t:"No afectan"}
+      ], correct:"a", why:"Principio básico: más base y CG bajo = más estabilidad." },
 
-      { id:"sem-011", topic:"seminario1", q:"La mecánica corporal es:", a:"Uso eficaz, coordinado y seguro del cuerpo para moverse y mantener equilibrio", b:"Solo levantar pesas", c:"Solo estiramientos", correct:"a", why:"Incluye alineación, equilibrio y movimiento coordinado." },
-      { id:"sem-012", topic:"seminario1", q:"La mecánica corporal comprende:", a:"Alineación, equilibrio y movimiento coordinado", b:"Respiración, digestión y excreción", c:"Memoria, atención y lenguaje", correct:"a", why:"Son sus tres elementos fundamentales." },
-      { id:"sem-013", topic:"seminario1", q:"Base de apoyo amplia y centro de gravedad bajo:", a:"Aumentan la estabilidad", b:"Disminuyen estabilidad", c:"No afectan", correct:"a", why:"Principio básico: más base y CG bajo = más estabilidad." },
-      { id:"sem-014", topic:"seminario1", q:"Mover una carga cerca del centro de gravedad:", a:"Requiere menos esfuerzo", b:"Requiere más esfuerzo", c:"Es igual", correct:"a", why:"Cuanto más cerca, menor brazo de palanca y menor esfuerzo." },
-      { id:"sem-015", topic:"seminario1", q:"Tirar o deslizar un objeto suele requerir menos esfuerzo que:", a:"Levantarlo", b:"Mirarlo", c:"Señalarlo", correct:"a", why:"Levantar va contra la gravedad." },
+      { id:"sem-014", typeKey:"u1_sem1", q:"Mover una carga cerca del centro de gravedad:", options:[
+        {k:"a",t:"Requiere menos esfuerzo"},{k:"b",t:"Requiere más esfuerzo"},{k:"c",t:"Es igual"}
+      ], correct:"a", why:"Cuanto más cerca, menor brazo de palanca y menor esfuerzo." },
 
-      { id:"sem-016", topic:"seminario1", q:"En bipedestación mantenida, un problema frecuente es:", a:"Estancamiento circulatorio en EEII", b:"Mejora automática del retorno venoso", c:"Disminución de carga en columna", correct:"a", why:"Puede haber estancamiento circulatorio y sobrecarga." },
-      { id:"sem-017", topic:"seminario1", q:"Para mejorar estabilidad en bipedestación se recomienda:", a:"Separar ligeramente los pies", b:"Juntar los pies", c:"Ponerse de puntillas", correct:"a", why:"Aumenta la base de sustentación." },
-      { id:"sem-018", topic:"seminario1", q:"Para evitar torsión vertebral al girar, es mejor:", a:"Girar con cadera y rodillas", b:"Girar solo con columna lumbar", c:"No mover los pies nunca", correct:"a", why:"Evitar torsiones de columna; girar con pies/cadera." },
-      { id:"sem-019", topic:"seminario1", q:"La higiene postural es:", a:"Conjunto de normas y hábitos para mantener alineación corporal", b:"Solo hacer cardio", c:"Solo dormir 8 horas", correct:"a", why:"Incluye consejos posturales estáticos y dinámicos." },
-      { id:"sem-020", topic:"seminario1", q:"En sedestación suele haber más sobrecarga lumbar porque:", a:"La pelvis bascula hacia atrás y se rectifica la lordosis lumbar", b:"Aumentan las curvas fisiológicas", c:"Se reduce la presión en discos", correct:"a", why:"La rectificación lumbar aumenta la carga en discos." },
+      { id:"sem-021", typeKey:"u1_sem1", q:"Peso máximo recomendado para manipulación de cargas en sedestación:", options:[
+        {k:"a",t:"5 kg"},{k:"b",t:"25 kg"},{k:"c",t:"50 kg"}
+      ], correct:"a", why:"Se recomienda no superar 5 kg en sedestación." },
 
-      { id:"sem-021", topic:"seminario1", q:"Peso máximo recomendado para manipulación de cargas en sedestación (según el material):", a:"5 kg", b:"25 kg", c:"50 kg", correct:"a", why:"Se recomienda no superar 5 kg en sedestación." },
-      { id:"sem-022", topic:"seminario1", q:"Una carga de más de 25 kg:", a:"Constituye riesgo por sí misma", b:"Nunca es un riesgo", c:"Solo es riesgo si es blanda", correct:"a", why:">25 kg ya supone riesgo independientemente de ergonomía." },
-      { id:"sem-023", topic:"seminario1", q:"Al levantar una carga del suelo, se aconseja:", a:"Flexionar rodillas y mantener espalda recta", b:"Flexionar la columna lumbar", c:"Girar el tronco con peso en alto", correct:"a", why:"Usar rodillas/caderas y minimizar participación de columna." },
-      { id:"sem-024", topic:"seminario1", q:"En general, para desplazar una carga es preferible:", a:"Empujar o deslizar antes que levantar a pulso", b:"Siempre levantar a pulso", c:"Saltar con la carga", correct:"a", why:"Deslizar/empujar reduce trabajo contra gravedad." },
-      { id:"sem-025", topic:"seminario1", q:"Ergonomía (según el material) es:", a:"Adaptar trabajo y entorno a capacidades y limitaciones de la persona", b:"Obligar al trabajador a adaptarse a cualquier herramienta", c:"Solo decorar el puesto", correct:"a", why:"Busca adaptar sistemas/productos/ambientes a la persona." },
+      { id:"sem-023", typeKey:"u1_sem1", q:"Al levantar una carga del suelo, se aconseja:", options:[
+        {k:"a",t:"Flexionar rodillas y mantener espalda recta"},{k:"b",t:"Flexionar la columna lumbar"},{k:"c",t:"Girar el tronco con peso en alto"}
+      ], correct:"a", why:"Usar rodillas/caderas y minimizar participación de columna." },
 
-      { id:"sem-026", topic:"seminario1", q:"En movilización de pacientes, una recomendación clave es:", a:"Buscar participación máxima del paciente", b:"No avisar nunca", c:"Hacer movimientos bruscos", correct:"a", why:"Avisar y pedir colaboración reduce esfuerzo y mejora seguridad." },
-      { id:"sem-027", topic:"seminario1", q:"En movilización de pacientes, antes de actuar es importante:", a:"Reflexionar y preparar material", b:"Empezar sin plan", c:"Evitar usar ayudas mecánicas", correct:"a", why:"Preparación reduce riesgos." },
-      { id:"sem-028", topic:"seminario1", q:"Principio recomendado al movilizar/transferir pacientes:", a:"Pies separados y piernas flexionadas", b:"Pies juntos y piernas estiradas", c:"Espalda flexionada", correct:"a", why:"Mejora base de apoyo y reduce carga lumbar." },
-      { id:"sem-029", topic:"seminario1", q:"Para evitar úlceras por presión, en decúbito supino zonas comprometidas incluyen:", a:"Talones y sacro", b:"Oreja y nariz", c:"Muñeca", correct:"a", why:"Talones, sacro, codos, omóplatos y occipital." },
-      { id:"sem-030", topic:"seminario1", q:"Una transferencia de paciente es:", a:"Movimiento de una superficie a otra", b:"Cambio de postura en la misma cama", c:"Un estiramiento", correct:"a", why:"Transferencia implica cambio de superficie/plano." },
+      // --- Cuestionario 17 (banco pequeño pero funcional; puedes ampliarlo luego)
+      { id:"q17-01", typeKey:"u1_test17", q:"¿Qué estructura separa cavidad torácica y abdominal?", options:[
+        {k:"a",t:"Diafragma"},{k:"b",t:"Pleura"},{k:"c",t:"Periostio"}
+      ], correct:"a", why:"El diafragma es el músculo que separa tórax y abdomen y participa en la respiración." },
+      { id:"q17-02", typeKey:"u1_test17", q:"¿Cuántos lóbulos tiene el pulmón izquierdo?", options:[
+        {k:"a",t:"1"},{k:"b",t:"2"},{k:"c",t:"3"}
+      ], correct:"b", why:"El pulmón izquierdo tiene 2 lóbulos; el derecho 3." },
+      { id:"q17-03", typeKey:"u1_test17", q:"La unidad funcional del riñón es:", options:[
+        {k:"a",t:"Alvéolo"},{k:"b",t:"Neurona"},{k:"c",t:"Nefrona"}
+      ], correct:"c", why:"La nefrona filtra la sangre y forma la orina." },
+      { id:"q17-04", typeKey:"u1_test17", q:"La sangre llega al corazón desde el cuerpo por:", options:[
+        {k:"a",t:"Venas cavas"},{k:"b",t:"Aorta"},{k:"c",t:"Arteria pulmonar"}
+      ], correct:"a", why:"Las venas cavas desembocan en la aurícula derecha." },
+      { id:"q17-05", typeKey:"u1_test17", q:"El sistema nervioso central está formado por:", options:[
+        {k:"a",t:"Encéfalo y médula espinal"},{k:"b",t:"Nervios y ganglios"},{k:"c",t:"Solo médula"}
+      ], correct:"a", why:"SNC = encéfalo + médula espinal." },
+      { id:"q17-06", typeKey:"u1_test17", q:"¿Qué estructura evita el paso de alimentos a la tráquea?", options:[
+        {k:"a",t:"Epiglotis"},{k:"b",t:"Laringe"},{k:"c",t:"Bronquio"}
+      ], correct:"a", why:"La epiglotis cierra la entrada laríngea durante la deglución." },
+      { id:"q17-07", typeKey:"u1_test17", q:"Las plaquetas participan principalmente en:", options:[
+        {k:"a",t:"Defensa"},{k:"b",t:"Coagulación"},{k:"c",t:"Intercambio gaseoso"}
+      ], correct:"b", why:"Ayudan a taponar heridas y formar coágulos." },
+      { id:"q17-08", typeKey:"u1_test17", q:"La tráquea se mantiene abierta por:", options:[
+        {k:"a",t:"Anillos cartilaginosos"},{k:"b",t:"Vellosidades"},{k:"c",t:"Músculo liso circular"}
+      ], correct:"a", why:"Los anillos de cartílago evitan el colapso." },
+      { id:"q17-09", typeKey:"u1_test17", q:"El esqueleto axial incluye:", options:[
+        {k:"a",t:"Cabeza, cuello y tronco"},{k:"b",t:"Solo extremidades"},{k:"c",t:"Solo pelvis"}
+      ], correct:"a", why:"Axial = cabeza, cuello y tronco." },
+      { id:"q17-10", typeKey:"u1_test17", q:"Un hueso sesamoideo típico es:", options:[
+        {k:"a",t:"Rótula"},{k:"b",t:"Húmero"},{k:"c",t:"Esternón"}
+      ], correct:"a", why:"La rótula es el ejemplo clásico." },
+      { id:"q17-11", typeKey:"u1_test17", q:"Los alvéolos son importantes porque:", options:[
+        {k:"a",t:"Producen bilis"},{k:"b",t:"Realizan intercambio O2/CO2"},{k:"c",t:"Forman plaquetas"}
+      ], correct:"b", why:"Allí ocurre el intercambio gaseoso." },
+      { id:"q17-12", typeKey:"u1_test17", q:"¿Cuál es el intestino delgado?", options:[
+        {k:"a",t:"Duodeno, yeyuno e íleon"},{k:"b",t:"Ciego, colon y recto"},{k:"c",t:"Faringe, laringe y tráquea"}
+      ], correct:"a", why:"Son las 3 porciones del intestino delgado." },
+      { id:"q17-13", typeKey:"u1_test17", q:"Los osteoclastos se encargan de:", options:[
+        {k:"a",t:"Formar hueso"},{k:"b",t:"Reabsorber/destruir hueso"},{k:"c",t:"Nutrir el cartílago"}
+      ], correct:"b", why:"Osteoclastos = destrucción ósea." },
+      { id:"q17-14", typeKey:"u1_test17", q:"La diástole es:", options:[
+        {k:"a",t:"Contracción"},{k:"b",t:"Relajación/llenado"},{k:"c",t:"Paro cardiaco"}
+      ], correct:"b", why:"Diástole = relajación y llenado." },
+      { id:"q17-15", typeKey:"u1_test17", q:"Los nervios craneales son:", options:[
+        {k:"a",t:"12 pares"},{k:"b",t:"31 pares"},{k:"c",t:"7 pares"}
+      ], correct:"a", why:"Del encéfalo salen 12 pares." },
+      { id:"q17-16", typeKey:"u1_test17", q:"El músculo cardíaco es:", options:[
+        {k:"a",t:"Liso y voluntario"},{k:"b",t:"Estriado e involuntario"},{k:"c",t:"Liso e involuntario"}
+      ], correct:"b", why:"Es estriado, pero de control involuntario." },
+      { id:"q17-17", typeKey:"u1_test17", q:"El colon sigmoideo está:", options:[
+        {k:"a",t:"Antes del recto"},{k:"b",t:"Antes del duodeno"},{k:"c",t:"Dentro del estómago"}
+      ], correct:"a", why:"Va tras el colon descendente y antes del recto." },
 
-      { id:"sem-031", topic:"seminario1", q:"Una movilización de paciente es:", a:"Movimiento sobre la misma superficie (cambios de posición)", b:"Salir del hospital", c:"Un cambio de medicación", correct:"a", why:"Movilización: cambio de posición en la misma superficie." },
-      { id:"sem-032", topic:"seminario1", q:"Las pausas para evitar fatiga postural suelen recomendar:", a:"Descansos/cambios posturales cada hora", b:"Una pausa al final del día", c:"No hacer pausas", correct:"a", why:"Se recomienda alternar posiciones y hacer pausas cortas." },
-      { id:"sem-033", topic:"seminario1", q:"La exposición conjunta a varios factores de riesgo:", a:"Aumenta posibilidades de TME", b:"No cambia nada", c:"Elimina el riesgo", correct:"a", why:"La combinación de factores incrementa la probabilidad." },
-      { id:"sem-034", topic:"seminario1", q:"En decúbito lateral, una zona de presión típica es:", a:"Trocánter mayor", b:"Lengua", c:"Codo (siempre)", correct:"a", why:"En lateral: tobillo, rodilla, trocánter, costillas, hombro, oreja." },
-      { id:"sem-035", topic:"seminario1", q:"Objetivo de la alineación corporal del paciente:", a:"Evitar zonas de presión y rigideces", b:"Aumentar dolor", c:"Evitar oxigenación", correct:"a", why:"Busca prevenir úlceras, contracturas y complicaciones." },
+      // --- Verdadero/Falso (u1_vf) -> 2 opciones
+      { id:"vf-01", typeKey:"u1_vf", q:"La higiene de manos es la medida más eficaz para prevenir infecciones cruzadas.", options:[
+        {k:"a",t:"Verdadero"},{k:"b",t:"Falso"}
+      ], correct:"a", why:"Es una medida clave para evitar transmisión de microorganismos." },
+      { id:"vf-02", typeKey:"u1_vf", q:"En sedestación siempre disminuye la carga sobre los discos lumbares.", options:[
+        {k:"a",t:"Verdadero"},{k:"b",t:"Falso"}
+      ], correct:"b", why:"A menudo aumenta por la basculación posterior de la pelvis y rectificación lumbar." },
+      { id:"vf-03", typeKey:"u1_vf", q:"Los músculos grandes se fatigan con menor rapidez que los pequeños.", options:[
+        {k:"a",t:"Verdadero"},{k:"b",t:"Falso"}
+      ], correct:"a", why:"Principio básico en mecánica corporal." },
+      { id:"vf-04", typeKey:"u1_vf", q:"Es recomendable girar el tronco con carga en alto para ahorrar pasos.", options:[
+        {k:"a",t:"Verdadero"},{k:"b",t:"Falso"}
+      ], correct:"b", why:"Aumenta el riesgo de lesión; se gira con pies/cadera/rodillas." },
+      { id:"vf-05", typeKey:"u1_vf", q:"La lordosis cervical presenta concavidad posterior.", options:[
+        {k:"a",t:"Verdadero"},{k:"b",t:"Falso"}
+      ], correct:"a", why:"Lordosis: concavidad posterior en cervical y lumbar." },
 
-      { id:"sem-036", topic:"seminario1", q:"Una úlcera por presión se produce por:", a:"Compresión entre hueso y soporte que reduce riego sanguíneo", b:"Exceso de luz", c:"Beber agua", correct:"a", why:"La presión reduce oxígeno/nutrientes y puede necrosar el tejido." },
-      { id:"sem-037", topic:"seminario1", q:"Para levantar cargas, cuanto más lejos esté del cuerpo:", a:"Más fuerza compresiva en columna", b:"Menos riesgo", c:"No afecta", correct:"a", why:"Aumenta el brazo de palanca y la carga en columna." },
-      { id:"sem-038", topic:"seminario1", q:"Para evitar lesión en movilización, una regla es:", a:"No girarse con peso en alto", b:"Girar rápido con el tronco", c:"Mantener la carga lejos", correct:"a", why:"Evitar torsión con carga reduce riesgo dorsolumbar." },
-      { id:"sem-039", topic:"seminario1", q:"La postura neutra lumbar se consigue:", a:"Buscando máxima flexión y máxima extensión y luego el punto medio", b:"Forzando siempre máxima extensión", c:"Encogiendo hombros", correct:"a", why:"Se propone encontrar el recorrido y colocar la columna en posición media." },
-      { id:"sem-040", topic:"seminario1", q:"Beneficio para el cuidador de una movilización correcta:", a:"Previene patología del raquis y ahorra energía", b:"Aumenta la fatiga", c:"Elimina necesidad de coordinación", correct:"a", why:"Reduce lesiones y economiza energía." },
+      // =========================
+      // U2 • Movilización y traslado (Nivel 1) — banco ampliado (>30)
+      // Basado en conceptos del dossier UD2 (higiene, posiciones, material, IAP, traslados, oxígeno, etc.)
+      // =========================
 
-      // ====== TEST ANATOMÍA (17 PREGUNTAS, FIJO) ======
-      {"id":"quiz17-001","topic":"quiz17","q":"¿En cuántos sistemas o aparatos está constituido el cuerpo humano?","options":[{"k":"a","t":"En seis"},{"k":"b","t":"En ocho"},{"k":"c","t":"En diez"},{"k":"d","t":"En cinco"}],"correct":"b","why":"El cuerpo humano está organizado en ocho sistemas o aparatos: aparato digestivo, respiratorio, circulatorio, excretor, locomotor, endocrino, nervioso y reproductor."},
-      {"id":"quiz17-002","topic":"quiz17","q":"¿Qué es el aparato locomotor?","options":[{"k":"a","t":"La suma de todos los órganos del cuerpo"},{"k":"b","t":"El conjunto de huesos y músculos"},{"k":"c","t":"El conjunto de huesos, músculos y articulaciones"},{"k":"d","t":"Solo los músculos"}],"correct":"c","why":"El aparato locomotor está formado por el sistema óseo, el sistema muscular y las articulaciones, que permiten el movimiento y sostén del cuerpo."},
-      {"id":"quiz17-003","topic":"quiz17","q":"¿Cuál es la función principal del sistema esquelético?","options":[{"k":"a","t":"Producir energía"},{"k":"b","t":"Proteger órganos internos y dar sostén"},{"k":"c","t":"Transportar oxígeno"},{"k":"d","t":"Regular hormonas"}],"correct":"b","why":"El esqueleto da soporte y protege estructuras vitales (cráneo, caja torácica, etc.), además de servir de palanca para el movimiento."},
-      {"id":"quiz17-004","topic":"quiz17","q":"¿Qué hueso protege el encéfalo?","options":[{"k":"a","t":"La pelvis"},{"k":"b","t":"El cráneo"},{"k":"c","t":"El esternón"},{"k":"d","t":"La columna lumbar"}],"correct":"b","why":"El cráneo forma una caja ósea que protege el encéfalo."},
-      {"id":"quiz17-005","topic":"quiz17","q":"¿Qué estructura protege el corazón y los pulmones?","options":[{"k":"a","t":"La pelvis"},{"k":"b","t":"La caja torácica"},{"k":"c","t":"El fémur"},{"k":"d","t":"El radio"}],"correct":"b","why":"Las costillas y el esternón forman la caja torácica, que protege corazón y pulmones."},
-      {"id":"quiz17-006","topic":"quiz17","q":"¿Qué es la citología?","options":[{"k":"a","t":"El estudio de los tejidos"},{"k":"b","t":"El estudio de las células"},{"k":"c","t":"El estudio de los órganos"},{"k":"d","t":"El estudio de los sistemas"}],"correct":"b","why":"La citología estudia la célula, su estructura y función."},
-      {"id":"quiz17-007","topic":"quiz17","q":"¿Qué rama estudia los tejidos?","options":[{"k":"a","t":"Fisiología"},{"k":"b","t":"Citología"},{"k":"c","t":"Histología"},{"k":"d","t":"Anatomía"}],"correct":"c","why":"La histología es la rama que estudia los tejidos biológicos."},
-      {"id":"quiz17-008","topic":"quiz17","q":"Las células del cuerpo humano son principalmente:","options":[{"k":"a","t":"Procariotas"},{"k":"b","t":"Eucariotas"},{"k":"c","t":"Bacterianas"},{"k":"d","t":"Sin núcleo"}],"correct":"b","why":"Las células humanas son eucariotas: tienen núcleo definido y orgánulos."},
-      {"id":"quiz17-009","topic":"quiz17","q":"¿Qué se entiende por homeostasis?","options":[{"k":"a","t":"El equilibrio interno del organismo"},{"k":"b","t":"El crecimiento del cuerpo"},{"k":"c","t":"La respiración"},{"k":"d","t":"La digestión"}],"correct":"a","why":"Homeostasis es la capacidad del organismo para mantener constantes sus condiciones internas."},
-      {"id":"quiz17-010","topic":"quiz17","q":"¿Cuál es el órgano principal del sistema respiratorio?","options":[{"k":"a","t":"El estómago"},{"k":"b","t":"Los pulmones"},{"k":"c","t":"El corazón"},{"k":"d","t":"El hígado"}],"correct":"b","why":"Los pulmones son el órgano principal donde se realiza el intercambio gaseoso."},
-      {"id":"quiz17-011","topic":"quiz17","q":"¿En qué estructura se produce el intercambio gaseoso?","options":[{"k":"a","t":"Tráquea"},{"k":"b","t":"Bronquios"},{"k":"c","t":"Alvéolos"},{"k":"d","t":"Laringe"}],"correct":"c","why":"El intercambio O2/CO2 ocurre en los alvéolos, por su gran superficie y capilares asociados."},
-      {"id":"quiz17-012","topic":"quiz17","q":"¿Cuántos lóbulos tiene el pulmón derecho?","options":[{"k":"a","t":"1"},{"k":"b","t":"2"},{"k":"c","t":"3"},{"k":"d","t":"4"}],"correct":"c","why":"El pulmón derecho tiene 3 lóbulos; el izquierdo tiene 2."},
-      {"id":"quiz17-013","topic":"quiz17","q":"¿Cuál es la función principal del sistema circulatorio?","options":[{"k":"a","t":"Transportar sustancias por el cuerpo"},{"k":"b","t":"Formar hueso"},{"k":"c","t":"Digestionar alimentos"},{"k":"d","t":"Producir hormonas"}],"correct":"a","why":"El sistema circulatorio distribuye oxígeno, nutrientes y otras sustancias, y recoge desechos."},
-      {"id":"quiz17-014","topic":"quiz17","q":"¿Qué componente de la sangre se encarga principalmente de la defensa?","options":[{"k":"a","t":"Glóbulos rojos"},{"k":"b","t":"Glóbulos blancos"},{"k":"c","t":"Plaquetas"},{"k":"d","t":"Plasma"}],"correct":"b","why":"Los glóbulos blancos (leucocitos) participan en la defensa e inmunidad."},
-      {"id":"quiz17-015","topic":"quiz17","q":"¿Qué estructura lleva sangre desde el ventrículo izquierdo?","options":[{"k":"a","t":"Vena cava"},{"k":"b","t":"Arteria pulmonar"},{"k":"c","t":"Aorta"},{"k":"d","t":"Venas pulmonares"}],"correct":"c","why":"La aorta sale del ventrículo izquierdo y distribuye sangre al organismo."},
-      {"id":"quiz17-016","topic":"quiz17","q":"¿Qué es la sístole?","options":[{"k":"a","t":"Relajación del corazón"},{"k":"b","t":"Contracción del corazón"},{"k":"c","t":"Parada cardiaca"},{"k":"d","t":"Expansión de los pulmones"}],"correct":"b","why":"Sístole es la fase de contracción del corazón (diástole es la de relajación)."},
-      {"id":"quiz17-017","topic":"quiz17","q":"¿Cómo se denomina el músculo del corazón?","options":[{"k":"a","t":"Pericardio"},{"k":"b","t":"Endocardio"},{"k":"c","t":"Miocardio"},{"k":"d","t":"Pleura"}],"correct":"c","why":"Miocardio es el tejido muscular del corazón."},
+      // Higiene / manos
+      { id:"u2-001", typeKey:"u2_ud2", q:"¿Cuál es la medida más eficaz para luchar contra la infección hospitalaria?", options:[
+        {k:"a",t:"Lavado/higiene de manos"},{k:"b",t:"Usar doble guante siempre"},{k:"c",t:"Abrir ventanas"}
+      ], correct:"a", why:"La higiene de manos reduce la transmisión y la infección cruzada." },
 
-      // ====== VERDADERO / FALSO (FIJO) ======
-      {"id":"vf-001","topic":"vf","q":"La columna vertebral presenta 4 curvaturas en el plano sagital.","options":[{"k":"v","t":"Verdadero"},{"k":"f","t":"Falso"}],"correct":"v","why":""},
-      {"id":"vf-002","topic":"vf","q":"La lordosis cervical presenta convexidad posterior.","options":[{"k":"v","t":"Verdadero"},{"k":"f","t":"Falso"}],"correct":"f","why":""},
-      {"id":"vf-003","topic":"vf","q":"La cifosis dorsal presenta convexidad posterior.","options":[{"k":"v","t":"Verdadero"},{"k":"f","t":"Falso"}],"correct":"v","why":""},
-      {"id":"vf-004","topic":"vf","q":"La lordosis lumbar presenta concavidad posterior.","options":[{"k":"v","t":"Verdadero"},{"k":"f","t":"Falso"}],"correct":"v","why":""},
-      {"id":"vf-005","topic":"vf","q":"La curva sacra presenta convexidad anterior.","options":[{"k":"v","t":"Verdadero"},{"k":"f","t":"Falso"}],"correct":"v","why":""},
-      {"id":"vf-006","topic":"vf","q":"Las curvas raquídeas aumentan la resistencia del raquis a la compresión axial.","options":[{"k":"v","t":"Verdadero"},{"k":"f","t":"Falso"}],"correct":"v","why":""},
-      {"id":"vf-007","topic":"vf","q":"La mecánica corporal es el uso coordinado y seguro del cuerpo para moverse y mantener equilibrio.","options":[{"k":"v","t":"Verdadero"},{"k":"f","t":"Falso"}],"correct":"v","why":""},
-      {"id":"vf-008","topic":"vf","q":"Una base de apoyo amplia y centro de gravedad bajo disminuyen la estabilidad.","options":[{"k":"v","t":"Verdadero"},{"k":"f","t":"Falso"}],"correct":"f","why":""},
-      {"id":"vf-009","topic":"vf","q":"Tirar o deslizar un objeto suele requerir más esfuerzo que levantarlo.","options":[{"k":"v","t":"Verdadero"},{"k":"f","t":"Falso"}],"correct":"f","why":""},
-      {"id":"vf-010","topic":"vf","q":"Para evitar torsión vertebral al girar es mejor girar con cadera y rodillas (mover los pies).","options":[{"k":"v","t":"Verdadero"},{"k":"f","t":"Falso"}],"correct":"v","why":""}
+      { id:"u2-002", typeKey:"u2_ud2", q:"Los “cinco momentos” de higiene de manos incluyen:", options:[
+        {k:"a",t:"Antes del contacto con el paciente"},{k:"b",t:"Solo al entrar al hospital"},{k:"c",t:"Solo después de comer"}
+      ], correct:"a", why:"Se incluyen momentos antes/después del contacto, tareas asépticas y exposición a fluidos." },
+
+      { id:"u2-003", typeKey:"u2_ud2", q:"Si las manos están visiblemente sucias, se recomienda:", options:[
+        {k:"a",t:"Solución alcohólica siempre"},{k:"b",t:"Agua y jabón"},{k:"c",t:"Solo guantes"}
+      ], correct:"b", why:"Con suciedad visible se usa agua y jabón." },
+
+      // Principios básicos movilización
+      { id:"u2-004", typeKey:"u2_ud2", q:"Principio básico antes de movilizar a un paciente:", options:[
+        {k:"a",t:"Actuar rápido sin pensar"},{k:"b",t:"Reflexionar antes de actuar"},{k:"c",t:"No preparar material"}
+      ], correct:"b", why:"Se recomienda reflexionar y planificar antes de iniciar la maniobra." },
+
+      { id:"u2-005", typeKey:"u2_ud2", q:"Al movilizar, es recomendable:", options:[
+        {k:"a",t:"Dar órdenes breves y concretas"},{k:"b",t:"Hablar muy largo y sin parar"},{k:"c",t:"No coordinarse con el compañero"}
+      ], correct:"a", why:"Órdenes claras facilitan la colaboración y la seguridad." },
+
+      { id:"u2-006", typeKey:"u2_ud2", q:"En mecánica corporal para movilizar, se recomienda:", options:[
+        {k:"a",t:"Espalda recta y flexionar piernas"},{k:"b",t:"Espalda flexionada y piernas rectas"},{k:"c",t:"Cargar lejos del cuerpo"}
+      ], correct:"a", why:"Piernas flexionadas y espalda recta reducen carga lumbar." },
+
+      { id:"u2-007", typeKey:"u2_ud2", q:"Para aumentar la estabilidad del profesional durante una movilización:", options:[
+        {k:"a",t:"Juntar los pies"},{k:"b",t:"Separar los pies (ampliar base de sustentación)"},{k:"c",t:"Ponerse de puntillas"}
+      ], correct:"b", why:"Base amplia = más estabilidad." },
+
+      { id:"u2-008", typeKey:"u2_ud2", q:"Un objetivo importante en movilización es:", options:[
+        {k:"a",t:"Buscar participación del paciente"},{k:"b",t:"Evitar que el paciente participe"},{k:"c",t:"No usar ayudas técnicas"}
+      ], correct:"a", why:"La participación del paciente reduce esfuerzo y mejora seguridad." },
+
+      { id:"u2-009", typeKey:"u2_ud2", q:"Al dar instrucciones al paciente durante la movilización, se recomienda evitar:", options:[
+        {k:"a",t:"Decir “derecha/izquierda”"},{k:"b",t:"Decir “cuando te lo diga”"},{k:"c",t:"Dar instrucciones breves"}
+      ], correct:"a", why:"Se recomienda evitar derecha/izquierda para reducir confusiones." },
+
+      { id:"u2-010", typeKey:"u2_ud2", q:"Antes de movilizar, hay que identificar puntos de “impotencia funcional” como:", options:[
+        {k:"a",t:"Dolor, vías, yesos o drenajes"},{k:"b",t:"Color de ojos"},{k:"c",t:"Preferencias de comida"}
+      ], correct:"a", why:"Son elementos que condicionan la movilización." },
+
+      // Posiciones corporales
+      { id:"u2-011", typeKey:"u2_ud2", q:"Decúbito supino (dorsal) significa:", options:[
+        {k:"a",t:"Tumbado sobre la espalda"},{k:"b",t:"Tumbado sobre el abdomen"},{k:"c",t:"Sentado a 90º"}
+      ], correct:"a", why:"Supino = boca arriba." },
+
+      { id:"u2-012", typeKey:"u2_ud2", q:"Decúbito prono (ventral) significa:", options:[
+        {k:"a",t:"Tumbado sobre la espalda"},{k:"b",t:"Tumbado sobre el abdomen"},{k:"c",t:"De pie"}
+      ], correct:"b", why:"Prono = boca abajo." },
+
+      { id:"u2-013", typeKey:"u2_ud2", q:"La posición de Fowler se caracteriza por:", options:[
+        {k:"a",t:"Cabezal elevado ~45º-60º"},{k:"b",t:"Cabeza más baja que el tronco"},{k:"c",t:"Cama inclinada con cabeza arriba y pies abajo (plano completo)"}
+      ], correct:"a", why:"Fowler: paciente en supino con cabezal elevado." },
+
+      { id:"u2-014", typeKey:"u2_ud2", q:"La posición de Trendelenburg es:", options:[
+        {k:"a",t:"Cabeza por encima de las piernas"},{k:"b",t:"Cabeza más baja que el tronco"},{k:"c",t:"Paciente sentado con piernas colgando"}
+      ], correct:"b", why:"Trendelenburg: inclinación con cabeza baja." },
+
+      { id:"u2-015", typeKey:"u2_ud2", q:"La posición anti-Trendelenburg es:", options:[
+        {k:"a",t:"Cabeza por encima de los miembros inferiores"},{k:"b",t:"Cabeza más baja que el tronco"},{k:"c",t:"Decúbito prono"}
+      ], correct:"a", why:"Anti-Trendelenburg: cabeza más alta que piernas." },
+
+      { id:"u2-016", typeKey:"u2_ud2", q:"La “posición de seguridad” se usa sobre todo para:", options:[
+        {k:"a",t:"Evitar broncoaspiración en caso de vómito"},{k:"b",t:"Aumentar la tensión lumbar"},{k:"c",t:"Hacer pruebas de visión"}
+      ], correct:"a", why:"En lateral facilita drenaje de vómito y reduce riesgo de aspiración." },
+
+      // Material (cama, silla, disco, transfer, grúa, trapecio)
+      { id:"u2-017", typeKey:"u2_ud2", q:"La barandilla de la cama tiene como función principal:", options:[
+        {k:"a",t:"Aumentar la velocidad de traslado"},{k:"b",t:"Proteger al paciente y evitar caídas"},{k:"c",t:"Sujetar el palo de suero"}
+      ], correct:"b", why:"Su función es seguridad/prevención de caídas." },
+
+      { id:"u2-018", typeKey:"u2_ud2", q:"El pedal de freno de la cama sirve para:", options:[
+        {k:"a",t:"Bloquear las ruedas"},{k:"b",t:"Elevar el cabezal"},{k:"c",t:"Subir el caudal de O2"}
+      ], correct:"a", why:"Frena las ruedas para estabilidad." },
+
+      { id:"u2-019", typeKey:"u2_ud2", q:"El “tope de pies” de la cama ayuda a:", options:[
+        {k:"a",t:"Evitar que el paciente se resbale al elevar el cabezal"},{k:"b",t:"Conectar el suero"},{k:"c",t:"Inmovilizar una fractura"}
+      ], correct:"a", why:"Evita deslizamiento del paciente." },
+
+      { id:"u2-020", typeKey:"u2_ud2", q:"El sillón móvil suele incluir:", options:[
+        {k:"a",t:"Ruedas y reposapiés abatible"},{k:"b",t:"Solo respaldo fijo sin ruedas"},{k:"c",t:"Manómetro digital de O2"}
+      ], correct:"a", why:"Sillón móvil: ruedas, reposapiés, más posiciones." },
+
+      { id:"u2-021", typeKey:"u2_ud2", q:"El disco giratorio se utiliza principalmente para:", options:[
+        {k:"a",t:"Girar al paciente en bipedestación cuando no puede dar pasos"},{k:"b",t:"Elevar el paciente del suelo"},{k:"c",t:"Medir saturación"}
+      ], correct:"a", why:"Facilita la rotación sin que el paciente tenga que pivotar con pasos." },
+
+      { id:"u2-022", typeKey:"u2_ud2", q:"El transfer (Rollbord®) sirve para:", options:[
+        {k:"a",t:"Transferir pacientes facilitando el deslizamiento"},{k:"b",t:"Inmovilizar fracturas de fémur"},{k:"c",t:"Ventilar al paciente"}
+      ], correct:"a", why:"Se coloca bajo el paciente para deslizar y transferir de forma segura." },
+
+      { id:"u2-023", typeKey:"u2_ud2", q:"Las grúas ayudan especialmente en:", options:[
+        {k:"a",t:"Sedestación e higiene de pacientes dependientes"},{k:"b",t:"Medir glucosa"},{k:"c",t:"Hacer radiografías"}
+      ], correct:"a", why:"Grúa: movilización de pacientes sin movilidad o muy voluminosos." },
+
+      { id:"u2-024", typeKey:"u2_ud2", q:"Tipos habituales de grúa:", options:[
+        {k:"a",t:"Grúa de techo y grúa móvil"},{k:"b",t:"Grúa hidráulica y grúa nuclear"},{k:"c",t:"Grúa manual y grúa eléctrica (únicos)"}
+      ], correct:"a", why:"Se describen grúa de techo y grúa móvil." },
+
+      { id:"u2-025", typeKey:"u2_ud2", q:"El trapecio en cama es recomendable cuando:", options:[
+        {k:"a",t:"No hay afectación de extremidad superior o contraindicación médica"},{k:"b",t:"Siempre, aunque haya lesión de hombro"},{k:"c",t:"Solo en niños"}
+      ], correct:"a", why:"Da independencia al paciente y ayuda al personal, si está indicado." },
+
+      // Traslado: conceptos generales
+      { id:"u2-026", typeKey:"u2_ud2", q:"La prioridad del celador en el traslado intrahospitalario es:", options:[
+        {k:"a",t:"Rapidez máxima"},{k:"b",t:"Máximas condiciones de seguridad y confort"},{k:"c",t:"Evitar higiene de manos para ahorrar tiempo"}
+      ], correct:"b", why:"Seguridad y confort del paciente son prioridad." },
+
+      { id:"u2-027", typeKey:"u2_ud2", q:"El traslado empieza:", options:[
+        {k:"a",t:"Al llegar al destino"},{k:"b",t:"Cuando se recibe la orden/petición de traslado"},{k:"c",t:"Cuando el paciente se duerme"}
+      ], correct:"b", why:"Desde que se entrega la orden de traslado." },
+
+      { id:"u2-028", typeKey:"u2_ud2", q:"Datos básicos que debemos conocer antes del traslado:", options:[
+        {k:"a",t:"Nombre, punto de recogida, destino y material"},{k:"b",t:"Solo el destino"},{k:"c",t:"Solo el nombre"}
+      ], correct:"a", why:"Información mínima para realizar el traslado correctamente." },
+
+      // IAP
+      { id:"u2-029", typeKey:"u2_ud2", q:"La Identificación Activa del Paciente (IAP) se realiza preguntando:", options:[
+        {k:"a",t:"Nombre, apellidos y fecha de nacimiento"},{k:"b",t:"Dirección completa"},{k:"c",t:"Grupo musical favorito"}
+      ], correct:"a", why:"Se pide verbalización y se comprueba con pulsera." },
+
+      { id:"u2-030", typeKey:"u2_ud2", q:"Tras preguntar al paciente, debemos comprobar los datos con:", options:[
+        {k:"a",t:"La historia clínica en el ordenador únicamente"},{k:"b",t:"La pulsera identificativa"},{k:"c",t:"La opinión del acompañante"}
+      ], correct:"b", why:"La pulsera es referencia inmediata en el proceso." },
+
+      { id:"u2-031", typeKey:"u2_ud2", q:"La pulsera identificativa debe contener al menos:", options:[
+        {k:"a",t:"Nombre, apellidos, fecha de nacimiento e historia clínica"},{k:"b",t:"Nombre y cama"},{k:"c",t:"Solo historia clínica"}
+      ], correct:"a", why:"Mínimo 4 indicadores." },
+
+      { id:"u2-032", typeKey:"u2_ud2", q:"¿Quién es responsable de la correcta identificación del paciente?", options:[
+        {k:"a",t:"Solo el médico"},{k:"b",t:"Todos los profesionales en contacto con el paciente"},{k:"c",t:"Solo el celador"}
+      ], correct:"b", why:"La responsabilidad es compartida por profesionales en contacto." },
+
+      // Silla de traslado y detalles
+      { id:"u2-033", typeKey:"u2_ud2", q:"La silla de traslado se usa típicamente para:", options:[
+        {k:"a",t:"Pacientes que no revisten gravedad"},{k:"b",t:"Reanimación cardiopulmonar"},{k:"c",t:"Cirugía mayor"}
+      ], correct:"a", why:"Silla para pacientes estables." },
+
+      { id:"u2-034", typeKey:"u2_ud2", q:"Al sentar a un paciente en una silla de traslado, debemos:", options:[
+        {k:"a",t:"Sujetar/frenar la silla para evitar movimiento y caída"},{k:"b",t:"Dejar la silla libre para que gire"},{k:"c",t:"Quitar reposabrazos siempre sin mirar"}
+      ], correct:"a", why:"Evita desplazamiento de la silla durante la sedestación." },
+
+      { id:"u2-035", typeKey:"u2_ud2", q:"Elementos habituales en una silla de traslado:", options:[
+        {k:"a",t:"Reposabrazos abatible/extraíble"},{k:"b",t:"Tanque de agua"},{k:"c",t:"Oxímetro integrado obligatorio"}
+      ], correct:"a", why:"Suelen tener reposabrazos, reposapiés, soporte O2/portaobjetos, etc." },
+
+      // Palo de suero
+      { id:"u2-036", typeKey:"u2_ud2", q:"El palo porta-sueros se utiliza para:", options:[
+        {k:"a",t:"Colgar sueros conectados al paciente"},{k:"b",t:"Medir tensión arterial"},{k:"c",t:"Sujetar el transfer"}
+      ], correct:"a", why:"Su función es portar/colgar sueros durante traslados." },
+
+      // Oxígeno
+      { id:"u2-037", typeKey:"u2_ud2", q:"Las botellas de oxígeno para traslado se caracterizan por:", options:[
+        {k:"a",t:"Ser compactas y con cantidad limitada de O2"},{k:"b",t:"Ser de uso doméstico"},{k:"c",t:"Tener suministro ilimitado"}
+      ], correct:"a", why:"Diseñadas para traslados hospitalarios." },
+
+      { id:"u2-038", typeKey:"u2_ud2", q:"Antes de iniciar un traslado con O2, es importante:", options:[
+        {k:"a",t:"Comprobar el O2 disponible en la botella"},{k:"b",t:"Abrir ventanas"},{k:"c",t:"Aumentar el caudal al máximo siempre"}
+      ], correct:"a", why:"Se verifica cantidad/tiempo estimado de uso." },
+
+      { id:"u2-039", typeKey:"u2_ud2", q:"Para evitar problemas, se recomienda abrir y regular el caudal de O2:", options:[
+        {k:"a",t:"Después de conectar la mascarilla al paciente"},{k:"b",t:"Antes de conectar la mascarilla a la botella/paciente"},{k:"c",t:"No hace falta regular"}
+      ], correct:"b", why:"Se regula antes para detectar fallos y evitar incidencias." },
+
+      // Secuencia de acciones (traslado convencional)
+      { id:"u2-040", typeKey:"u2_ud2", q:"Durante el traslado, las barandillas deben ir:", options:[
+        {k:"a",t:"Siempre bajadas"},{k:"b",t:"Siempre levantadas"},{k:"c",t:"Solo en ascensores"}
+      ], correct:"b", why:"Seguridad del paciente durante el desplazamiento." },
+
+      { id:"u2-041", typeKey:"u2_ud2", q:"Durante el traslado, la responsabilidad del paciente es:", options:[
+        {k:"a",t:"De la unidad de origen"},{k:"b",t:"Del celador que traslada"},{k:"c",t:"Del acompañante"}
+      ], correct:"b", why:"Durante el traslado la responsabilidad recae en quien lo realiza." },
+
+      { id:"u2-042", typeKey:"u2_ud2", q:"Antes de la transferencia, la camilla se coloca:", options:[
+        {k:"a",t:"En paralelo a la cama"},{k:"b",t:"En diagonal lejos"},{k:"c",t:"En otra habitación"}
+      ], correct:"a", why:"Paralelo facilita transferencia segura." },
+
+      { id:"u2-043", typeKey:"u2_ud2", q:"En traslado convencional, debemos vigilar especialmente:", options:[
+        {k:"a",t:"Vías, drenajes, oxígeno, etc."},{k:"b",t:"Que el paciente mire al techo"},{k:"c",t:"Que el celador corra"}
+      ], correct:"a", why:"Evita arrancamientos y complicaciones." },
+
+      { id:"u2-044", typeKey:"u2_ud2", q:"Para hacer uso del transfer, se suele:", options:[
+        {k:"a",t:"Girar al paciente hacia el lado opuesto a la camilla para colocarlo debajo"},{k:"b",t:"Colocarlo encima del paciente y empujar"},{k:"c",t:"Meterlo debajo sin mover al paciente"}
+      ], correct:"a", why:"Se coloca por debajo con el paciente girado para facilitar." },
+
+      { id:"u2-045", typeKey:"u2_ud2", q:"Para realizar la transferencia del paciente, siempre contaremos con:", options:[
+        {k:"a",t:"Presencia de personal de enfermería de la unidad"},{k:"b",t:"Solo el acompañante"},{k:"c",t:"Nadie más aunque el paciente dependa totalmente"}
+      ], correct:"a", why:"Se destaca coordinación y soporte de enfermería." },
+
+      { id:"u2-046", typeKey:"u2_ud2", q:"Al finalizar un traslado, es correcto:", options:[
+        {k:"a",t:"Dejar material en el pasillo si hay prisa"},{k:"b",t:"Limpiar/desinfectar material si procede y devolverlo a su sitio"},{k:"c",t:"No hacer higiene de manos"}
+      ], correct:"b", why:"Higiene + orden del material son parte del procedimiento." },
+
+      // Traslado traumático
+      { id:"u2-047", typeKey:"u2_ud2", q:"En traslado de paciente traumático, se debe prestar especial atención a:", options:[
+        {k:"a",t:"Fracturas e inmovilizaciones"},{k:"b",t:"Que el paciente vaya hablando"},{k:"c",t:"Solo a la documentación"}
+      ], correct:"a", why:"Se vigilan lesiones e inmovilizaciones." },
+
+      { id:"u2-048", typeKey:"u2_ud2", q:"Una inmovilización común en traumatología mencionada es:", options:[
+        {k:"a",t:"Férula de Brown"},{k:"b",t:"Transfer"},{k:"c",t:"Disco giratorio"}
+      ], correct:"a", why:"Se cita la férula de Brown para fractura supracondílea de fémur." },
+
+      { id:"u2-049", typeKey:"u2_ud2", q:"En el traslado traumático, al entrar y salir del ascensor es importante:", options:[
+        {k:"a",t:"Ir rápido para acabar antes"},{k:"b",t:"Evitar golpes y desniveles que causen dolor"},{k:"c",t:"Bajar barandillas"}
+      ], correct:"b", why:"Evitar golpes innecesarios y controlar desniveles." },
+
+      // Aislamiento protector / inmunodeprimidos
+      { id:"u2-050", typeKey:"u2_ud2", q:"Un paciente inmunodeprimido con aislamiento protector requiere:", options:[
+        {k:"a",t:"Evitar contaminación por gérmenes externos"},{k:"b",t:"Ventilar la habitación con público"},{k:"c",t:"Retirar mascarillas al paciente"}
+      ], correct:"a", why:"Son más susceptibles a infecciones." },
+
+      { id:"u2-051", typeKey:"u2_ud2", q:"Mascarilla quirúrgica: su filtrado principal es:", options:[
+        {k:"a",t:"De dentro hacia fuera"},{k:"b",t:"De fuera hacia dentro"},{k:"c",t:"No filtra"}
+      ], correct:"a", why:"La quirúrgica protege al entorno del portador (filtrado interior→exterior)." },
+
+      { id:"u2-052", typeKey:"u2_ud2", q:"Mascarilla FFP2: su filtrado principal es:", options:[
+        {k:"a",t:"De dentro hacia fuera"},{k:"b",t:"De fuera hacia dentro"},{k:"c",t:"Solo lateral"}
+      ], correct:"b", why:"FFP2 filtra aire inspirado (exterior→interior)." },
+
+      { id:"u2-053", typeKey:"u2_ud2", q:"En aislamiento protector, antes de salir de la habitación se recomienda colocar al paciente:", options:[
+        {k:"a",t:"Mascarilla FFP2"},{k:"b",t:"Mascarilla quirúrgica al celador y nada al paciente"},{k:"c",t:"Sin mascarilla"}
+      ], correct:"a", why:"Se indica FFP2 para el paciente antes de salir." },
+
+      { id:"u2-054", typeKey:"u2_ud2", q:"Durante el traslado de un paciente en aislamiento protector:", options:[
+        {k:"a",t:"El paciente lleva mascarilla; el profesional no lleva EPI durante el trayecto (según el protocolo descrito)"},{k:"b",t:"Todos deben llevar doble EPI siempre"},{k:"c",t:"Se quita la mascarilla al paciente para que respire mejor"}
+      ], correct:"a", why:"Según el procedimiento descrito: paciente protegido con su mascarilla durante el traslado." },
+
+      // Extra (función del celador / actitud)
+      { id:"u2-055", typeKey:"u2_ud2", q:"Una actitud profesional clave del celador con el paciente es:", options:[
+        {k:"a",t:"Ser amable y respetuoso"},{k:"b",t:"Ignorar al paciente"},{k:"c",t:"Discutir con familiares"}
+      ], correct:"a", why:"El trato influye en la experiencia del paciente y acompañantes." },
+
+      { id:"u2-056", typeKey:"u2_ud2", q:"Al movilizar pacientes, para preservar intimidad se recomienda:", options:[
+        {k:"a",t:"Cerrar puerta o cortinas del box"},{k:"b",t:"Dejar puerta abierta siempre"},{k:"c",t:"Pedir al paciente que no mire"}
+      ], correct:"a", why:"Intimidad y respeto: puerta/cortinas." },
+
+      // Extras para tener más variabilidad
+      { id:"u2-057", typeKey:"u2_ud2", q:"Antes de entrar en la habitación para un traslado, suele prepararse:", options:[
+        {k:"a",t:"Ropa/sábanas/manta necesarias"},{k:"b",t:"Un informe de laboratorio"},{k:"c",t:"Solo el ascensor"}
+      ], correct:"a", why:"Se prepara ropa para confort y seguridad." },
+
+      { id:"u2-058", typeKey:"u2_ud2", q:"Durante el traslado, ante un imprevisto con el paciente:", options:[
+        {k:"a",t:"Esperar a llegar al destino"},{k:"b",t:"Entrar en la unidad más próxima y avisar"},{k:"c",t:"Continuar sin avisar"}
+      ], correct:"b", why:"Se recomienda no esperar y buscar ayuda en unidad cercana." },
+
+      { id:"u2-059", typeKey:"u2_ud2", q:"Nunca se debe dejar al paciente solo durante el traslado porque:", options:[
+        {k:"a",t:"Puede caer o empeorar sin vigilancia"},{k:"b",t:"Es más rápido si va solo"},{k:"c",t:"No importa si está dormido"}
+      ], correct:"a", why:"Seguridad: vigilancia continua durante traslado." },
+
+      { id:"u2-060", typeKey:"u2_ud2", q:"En maniobras entre 2 o más sanitarios, antes de iniciar es importante:", options:[
+        {k:"a",t:"Acordar cómo se hará y quién coordina"},{k:"b",t:"Cada uno actúa por su cuenta"},{k:"c",t:"Empezar sin hablar para ahorrar tiempo"}
+      ], correct:"a", why:"Reduce indecisiones y mejora seguridad." },
     ];
 
-    // =========================================
-    //  CONFIG DE PUNTUACIÓN (solo para modos aleatorios)
-    // =========================================
+    // ==========================================================
+    //  PUNTUACIÓN (modo points)
+    // ==========================================================
     const SCORING = {
       10: { ok: 1, bad: -0.33, blank: 0 },
       20: { ok: 0.5, bad: -0.16, blank: 0 },
       30: { ok: 0.33, bad: -0.11, blank: 0 },
     };
 
-    // Modos fijos
-    const FIXED_TOPICS = new Set(['quiz17','vf']);
-
-    // =========================================
-    //  ESTADO
-    // =========================================
-    const elTopic = document.getElementById('topic');
+    // ==========================================================
+    //  DOM
+    // ==========================================================
+    const elUnit = document.getElementById('unit');
+    const elExamType = document.getElementById('examType');
     const elSize = document.getElementById('size');
     const sizeWrap = document.getElementById('sizeWrap');
+
     const startBtn = document.getElementById('startBtn');
     const quizSection = document.getElementById('quizSection');
     const quizEl = document.getElementById('quiz');
     const actions = document.getElementById('actions');
     const evaluateBtn = document.getElementById('evaluateBtn');
     const restartBtn = document.getElementById('restartBtn');
+
     const results = document.getElementById('results');
     const review = document.getElementById('review');
     const rulesText = document.getElementById('rulesText');
@@ -483,12 +757,16 @@
     const scorePill = document.getElementById('pillPoints');
     const totalScoreEl = document.getElementById('totalScore');
     const summaryTextEl = document.getElementById('summaryText');
+    const scoreLabel = document.getElementById('scoreLabel');
 
     const newExamBtn = document.getElementById('newExamBtn');
     const backTopBtn = document.getElementById('backTopBtn');
     const restartFromResultsBtn = document.getElementById('restartFromResultsBtn');
     const changeConfigBtn = document.getElementById('changeConfigBtn');
 
+    // ==========================================================
+    //  ESTADO
+    // ==========================================================
     let currentExam = [];
     let locked = false;
 
@@ -497,30 +775,13 @@
       return s.replace(/\.00$/, '').replace(/(\.[0-9])0$/, '$1');
     }
 
-    function isFixedMode(){
-      return FIXED_TOPICS.has(elTopic.value);
-    }
-
-    function setRulesUI(){
-      const topic = elTopic.value;
-      const fixed = FIXED_TOPICS.has(topic);
-
-      // Toggle selector de tamaño
-      sizeWrap.classList.toggle('hide', fixed);
-
-      let txt = '';
-      if(!fixed){
-        const n = Number(elSize.value);
-        const s = SCORING[n];
-        txt = `Reglas: Bien +${fmt(s.ok)} · Mal ${fmt(s.bad)} · Blanco +${fmt(s.blank)}.`;
-      } else {
-        const total = QUESTION_BANK.filter(q => q.topic === topic).length;
-        txt = `Reglas: 1 punto por acierto · 0 por fallo · blanco 0. Total: ${total} preguntas.`;
-      }
-
-      rulesText.textContent = txt;
-      rulesKpi.textContent = txt;
-      scorePill.textContent = txt;
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
     }
 
     function shuffle(arr){
@@ -531,22 +792,91 @@
       return arr;
     }
 
-    function pickExam(topic, n){
-      const pool = QUESTION_BANK.filter(q => q.topic === topic);
+    function getActiveTypeKey(){
+      return elExamType.value;
+    }
+
+    function getTypeCfg(typeKey){
+      return EXAM_TYPES[typeKey];
+    }
+
+    function getCountForSelection(){
+      const cfg = getTypeCfg(getActiveTypeKey());
+      if(cfg.sizeMode === "fixed"){
+        const pool = QUESTION_BANK.filter(q => q.typeKey === getActiveTypeKey());
+        const fixed = cfg.fixedCount ?? pool.length;
+        return fixed;
+      }
+      return Number(elSize.value);
+    }
+
+    function setRulesUI(){
+      const cfg = getTypeCfg(getActiveTypeKey());
+
+      if(cfg.scoringMode === "count"){
+        scoreLabel.textContent = "Aciertos";
+        const n = getCountForSelection();
+        const txt = `Reglas: ${n} preguntas · Resultado = aciertos / ${n}.`;
+        rulesText.textContent = txt;
+        rulesKpi.textContent = txt;
+        scorePill.textContent = txt;
+        return;
+      }
+
+      scoreLabel.textContent = "Puntuación total";
+      const n = Number(elSize.value);
+      const s = SCORING[n];
+      const txt = `Reglas: Bien +${fmt(s.ok)} · Mal ${fmt(s.bad)} · Blanco +${fmt(s.blank)}.`;
+      rulesText.textContent = txt;
+      rulesKpi.textContent = txt;
+      scorePill.textContent = txt;
+    }
+
+    function rebuildExamTypeOptions(){
+      const unit = elUnit.value;
+      const options = Object.entries(EXAM_TYPES)
+        .filter(([,cfg]) => cfg.unit === unit)
+        .map(([k,cfg]) => ({k, label: cfg.label}));
+
+      elExamType.innerHTML = options.map(o => `<option value="${o.k}">${escapeHtml(o.label)}</option>`).join("");
+
+      // Prefer defaults
+      if(unit === "u1") elExamType.value = "u1_ud1";
+      if(unit === "u2") elExamType.value = "u2_ud2";
+
+      applyTypeUI();
+      setRulesUI();
+    }
+
+    function applyTypeUI(){
+      const cfg = getTypeCfg(getActiveTypeKey());
+      if(cfg.sizeMode === "fixed"){
+        sizeWrap.classList.add("disabled");
+        elSize.disabled = true;
+      } else {
+        sizeWrap.classList.remove("disabled");
+        elSize.disabled = false;
+      }
+    }
+
+    function pickExam(typeKey, n){
+      const pool = QUESTION_BANK.filter(q => q.typeKey === typeKey);
       if(pool.length < n){
         throw new Error(`No hay suficientes preguntas en el banco (${pool.length}) para generar ${n}.`);
       }
       return shuffle([...pool]).slice(0, n);
     }
 
-    function getOptionsForQuestion(q){
-      if(q.options && Array.isArray(q.options)) return q.options;
-      const opts = [];
-      if(q.a) opts.push({ k:'a', t:q.a });
-      if(q.b) opts.push({ k:'b', t:q.b });
-      if(q.c) opts.push({ k:'c', t:q.c });
-      if(q.d) opts.push({ k:'d', t:q.d });
-      return opts;
+    function renderOption(idx, opt){
+      const name = `q_${idx}`;
+      const id = `${name}_${opt.k}`;
+      const label = opt.k.toUpperCase();
+      return `
+        <label class="opt" for="${id}">
+          <input type="radio" id="${id}" name="${name}" value="${opt.k}" ${locked ? 'disabled' : ''} />
+          <span><b>${label}.</b> ${escapeHtml(opt.t)}</span>
+        </label>
+      `;
     }
 
     function renderExam(){
@@ -559,8 +889,7 @@
         qWrap.className = 'q';
         qWrap.dataset.qid = q.id;
 
-        const opts = getOptionsForQuestion(q);
-        const optionsHtml = opts.map(o => renderOption(q, idx, o.k, o.t)).join('');
+        const optsHtml = q.options.map(opt => renderOption(idx, opt)).join("");
 
         qWrap.innerHTML = `
           <div class="qhead">
@@ -568,7 +897,7 @@
             <p class="qtext">${escapeHtml(q.q)}</p>
           </div>
           <div class="options">
-            ${optionsHtml}
+            ${optsHtml}
           </div>
           <div style="margin-top:10px;">
             <button type="button" class="secondary" data-clear="${idx}" style="padding:10px 12px;">
@@ -581,27 +910,6 @@
       });
     }
 
-    function renderOption(q, idx, key, text){
-      const name = `q_${idx}`;
-      const id = `${name}_${key}`;
-      const label = String(key).toUpperCase();
-      return `
-        <label class="opt" for="${id}">
-          <input type="radio" id="${id}" name="${name}" value="${escapeHtml(key)}" ${locked ? 'disabled' : ''} />
-          <span><b>${label}.</b> ${escapeHtml(text)}</span>
-        </label>
-      `;
-    }
-
-    function escapeHtml(str){
-      return String(str)
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;')
-        .replaceAll("'", '&#039;');
-    }
-
     function getAnswers(){
       const answers = [];
       currentExam.forEach((q, idx) => {
@@ -612,76 +920,14 @@
       return answers;
     }
 
-    function evaluate(){
-      if(locked) return;
-      locked = true;
-
-      const topic = elTopic.value;
-      const fixed = FIXED_TOPICS.has(topic);
-      const answers = getAnswers();
-
-      let ok = 0, bad = 0, blank = 0;
-      let score = 0;
-
-      const n = Number(elSize.value);
-      const scoring = SCORING[n];
-
-      const byId = new Map(currentExam.map(q => [q.id, q]));
-      const reviewNodes = [];
-
-      answers.forEach((a, i) => {
-        const q = byId.get(a.id);
-        const chosen = a.chosen;
-        const correct = q.correct;
-
-        let status;
-        if(!chosen){
-          blank++;
-          score += fixed ? 0 : scoring.blank;
-          status = { type: 'blank', label: 'EN BLANCO' };
-        } else if(chosen === correct){
-          ok++;
-          score += fixed ? 1 : scoring.ok;
-          status = { type: 'good', label: 'CORRECTA' };
-        } else {
-          bad++;
-          score += fixed ? 0 : scoring.bad;
-          status = { type: 'bad', label: 'INCORRECTA' };
-        }
-
-        reviewNodes.push(renderReviewItem(i, q, chosen, status));
-      });
-
-      // Lock inputs
-      document.querySelectorAll('#quiz input[type="radio"]').forEach(r => r.disabled = true);
-      document.querySelectorAll('#quiz button[data-clear]').forEach(b => b.disabled = true);
-
-      // Show results
-      if(fixed){
-        totalScoreEl.textContent = `${ok} / ${currentExam.length}`;
-      } else {
-        totalScoreEl.textContent = fmt(score);
-      }
-
-      summaryTextEl.textContent = `${ok} bien · ${bad} mal · ${blank} en blanco`;
-
-      review.innerHTML = '';
-      reviewNodes.forEach(n => review.appendChild(n));
-
-      results.style.display = 'block';
-      results.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
     function renderReviewItem(index, q, chosen, status){
       const node = document.createElement('div');
       node.className = 'q';
 
-      const chosenTxt = chosen ? String(chosen).toUpperCase() : '—';
-      const correctTxt = String(q.correct).toUpperCase();
+      const chosenTxt = chosen ? chosen.toUpperCase() : '—';
+      const correctTxt = q.correct.toUpperCase();
 
-      const opts = getOptionsForQuestion(q);
-
-      const optionsHtml = opts.map(o => {
+      const optionsHtml = q.options.map(o => {
         const isCorrect = o.k === q.correct;
         const isChosen = chosen === o.k;
 
@@ -698,17 +944,13 @@
 
         return `
           <div class="opt" style="${extraStyle}">
-            <div style="min-width:28px; font-weight:900; color: var(--muted);">${escapeHtml(String(o.k).toUpperCase())}.</div>
+            <div style="min-width:28px; font-weight:900; color: var(--muted);">${escapeHtml(o.k.toUpperCase())}.</div>
             <div style="flex:1;">
               <div style="font-size:14px;">${escapeHtml(o.t)} ${badge}</div>
             </div>
           </div>
         `;
       }).join('');
-
-      const why = (q.why && String(q.why).trim().length > 0)
-        ? `<div class="why">${escapeHtml(q.why)}</div>`
-        : '';
 
       node.innerHTML = `
         <div class="qhead">
@@ -720,12 +962,80 @@
             </div>
             <div class="answerline">Tu respuesta: <b>${chosenTxt}</b> · Correcta: <b>${correctTxt}</b></div>
             <div class="options" style="margin-top:10px;">${optionsHtml}</div>
-            ${why}
+            <div class="why">${escapeHtml(q.why || "")}</div>
           </div>
         </div>
       `;
 
       return node;
+    }
+
+    function evaluate(){
+      if(locked) return;
+      locked = true;
+
+      const typeKey = getActiveTypeKey();
+      const cfg = getTypeCfg(typeKey);
+      const answers = getAnswers();
+
+      let ok = 0, bad = 0, blank = 0;
+      let score = 0;
+
+      const byId = new Map(currentExam.map(q => [q.id, q]));
+      const reviewNodes = [];
+
+      answers.forEach((a, i) => {
+        const q = byId.get(a.id);
+        const chosen = a.chosen;
+        const correct = q.correct;
+
+        let status;
+        if(!chosen){
+          blank++;
+          status = { type: 'blank', label: 'EN BLANCO' };
+        } else if(chosen === correct){
+          ok++;
+          status = { type: 'good', label: 'CORRECTA' };
+        } else {
+          bad++;
+          status = { type: 'bad', label: 'INCORRECTA' };
+        }
+
+        // Scoring
+        if(cfg.scoringMode === "points"){
+          const n = Number(elSize.value);
+          const s = SCORING[n];
+          if(!chosen) score += s.blank;
+          else if(chosen === correct) score += s.ok;
+          else score += s.bad;
+        } else {
+          // count mode -> score = ok only
+          score = ok;
+        }
+
+        reviewNodes.push(renderReviewItem(i, q, chosen, status));
+      });
+
+      // Lock inputs
+      document.querySelectorAll('#quiz input[type="radio"]').forEach(r => r.disabled = true);
+      document.querySelectorAll('#quiz button[data-clear]').forEach(b => b.disabled = true);
+
+      // Show results
+      const total = currentExam.length;
+
+      if(cfg.scoringMode === "count"){
+        totalScoreEl.textContent = `${ok} / ${total}`;
+        summaryTextEl.textContent = `${ok} bien · ${bad} mal · ${blank} en blanco`;
+      } else {
+        totalScoreEl.textContent = fmt(score);
+        summaryTextEl.textContent = `${ok} bien · ${bad} mal · ${blank} en blanco`;
+      }
+
+      review.innerHTML = '';
+      reviewNodes.forEach(n => review.appendChild(n));
+
+      results.style.display = 'block';
+      results.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
     function clearQuestion(idx){
@@ -749,16 +1059,12 @@
 
     function start(){
       locked = false;
-      const topic = elTopic.value;
 
-      if(FIXED_TOPICS.has(topic)){
-        // fijo (sin shuffle)
-        currentExam = QUESTION_BANK.filter(q => q.topic === topic);
-      } else {
-        const n = Number(elSize.value);
-        currentExam = pickExam(topic, n);
-      }
+      const typeKey = getActiveTypeKey();
+      const cfg = getTypeCfg(typeKey);
+      const n = getCountForSelection();
 
+      currentExam = pickExam(typeKey, n);
       renderExam();
 
       quizSection.classList.remove('hide');
@@ -767,9 +1073,19 @@
       quizSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
-    // Events
+    // ==========================================================
+    //  EVENTS
+    // ==========================================================
+    elUnit.addEventListener('change', () => {
+      rebuildExamTypeOptions();
+    });
+
+    elExamType.addEventListener('change', () => {
+      applyTypeUI();
+      setRulesUI();
+    });
+
     elSize.addEventListener('change', setRulesUI);
-    elTopic.addEventListener('change', setRulesUI);
 
     startBtn.addEventListener('click', () => {
       try { start(); }
@@ -822,6 +1138,7 @@
     });
 
     // Init
+    rebuildExamTypeOptions();
     setRulesUI();
   </script>
 </body>
