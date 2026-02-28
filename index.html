@@ -312,7 +312,10 @@
       u1_vf:    { unit:"u1", label:"U1 • Verdadero / Falso", mode:"vf",  sizeMode:"fixed", fixedCount:null, scoringMode:"count" },
 
       // Unidad 2 (solo 10/20/30)
-      u2_ud2:   { unit:"u2", label:"U2 • Movilización y traslado (Nivel 1)", mode:"mcq", sizeMode:"variable", scoringMode:"points" },
+      u2_ud2:    { unit:"u2", label:"U2 • Movilización y traslado (Nivel 1)", mode:"mcq", sizeMode:"variable", scoringMode:"points" },
+
+      // NUEVO: U2 • Cuestionario (11 preguntas) (fixed)
+      u2_test11: { unit:"u2", label:"U2 • Cuestionario (11 preguntas)", mode:"mcq", sizeMode:"fixed", fixedCount:11, scoringMode:"count" },
     };
 
     // ==========================================================
@@ -468,7 +471,6 @@
 
       // =========================
       // U2 • Movilización y traslado (Nivel 1) — banco ampliado (>30)
-      // Basado en conceptos del dossier UD2 (higiene, posiciones, material, IAP, traslados, oxígeno, etc.)
       // =========================
 
       // Higiene / manos
@@ -509,7 +511,7 @@
         {k:"a",t:"Decir “derecha/izquierda”"},{k:"b",t:"Decir “cuando te lo diga”"},{k:"c",t:"Dar instrucciones breves"}
       ], correct:"a", why:"Se recomienda evitar derecha/izquierda para reducir confusiones." },
 
-      { id:"u2-010", typeKey:"u2_ud2", q:"Antes de movilizar, hay que identificar puntos de “impotencia funcional” como:", options:[
+      { id:"u2-010", typeKey:"u2_ud2", q:"Antes de movilizar, hay que identificar puntos que dificulten la maniobra, como:", options:[
         {k:"a",t:"Dolor, vías, yesos o drenajes"},{k:"b",t:"Color de ojos"},{k:"c",t:"Preferencias de comida"}
       ], correct:"a", why:"Son elementos que condicionan la movilización." },
 
@@ -523,7 +525,7 @@
       ], correct:"b", why:"Prono = boca abajo." },
 
       { id:"u2-013", typeKey:"u2_ud2", q:"La posición de Fowler se caracteriza por:", options:[
-        {k:"a",t:"Cabezal elevado ~45º-60º"},{k:"b",t:"Cabeza más baja que el tronco"},{k:"c",t:"Cama inclinada con cabeza arriba y pies abajo (plano completo)"}
+        {k:"a",t:"Cabezal elevado (aprox. 45º-60º)"},{k:"b",t:"Cabeza más baja que el tronco"},{k:"c",t:"Paciente completamente sentado fuera de la cama"}
       ], correct:"a", why:"Fowler: paciente en supino con cabezal elevado." },
 
       { id:"u2-014", typeKey:"u2_ud2", q:"La posición de Trendelenburg es:", options:[
@@ -556,7 +558,7 @@
       ], correct:"a", why:"Sillón móvil: ruedas, reposapiés, más posiciones." },
 
       { id:"u2-021", typeKey:"u2_ud2", q:"El disco giratorio se utiliza principalmente para:", options:[
-        {k:"a",t:"Girar al paciente en bipedestación cuando no puede dar pasos"},{k:"b",t:"Elevar el paciente del suelo"},{k:"c",t:"Medir saturación"}
+        {k:"a",t:"Girar al paciente de pie cuando no puede dar pasos"},{k:"b",t:"Elevar el paciente del suelo"},{k:"c",t:"Medir saturación"}
       ], correct:"a", why:"Facilita la rotación sin que el paciente tenga que pivotar con pasos." },
 
       { id:"u2-022", typeKey:"u2_ud2", q:"El transfer (Rollbord®) sirve para:", options:[
@@ -564,7 +566,7 @@
       ], correct:"a", why:"Se coloca bajo el paciente para deslizar y transferir de forma segura." },
 
       { id:"u2-023", typeKey:"u2_ud2", q:"Las grúas ayudan especialmente en:", options:[
-        {k:"a",t:"Sedestación e higiene de pacientes dependientes"},{k:"b",t:"Medir glucosa"},{k:"c",t:"Hacer radiografías"}
+        {k:"a",t:"Movilizar a pacientes muy dependientes"},{k:"b",t:"Medir glucosa"},{k:"c",t:"Hacer radiografías"}
       ], correct:"a", why:"Grúa: movilización de pacientes sin movilidad o muy voluminosos." },
 
       { id:"u2-024", typeKey:"u2_ud2", q:"Tipos habituales de grúa:", options:[
@@ -572,7 +574,7 @@
       ], correct:"a", why:"Se describen grúa de techo y grúa móvil." },
 
       { id:"u2-025", typeKey:"u2_ud2", q:"El trapecio en cama es recomendable cuando:", options:[
-        {k:"a",t:"No hay afectación de extremidad superior o contraindicación médica"},{k:"b",t:"Siempre, aunque haya lesión de hombro"},{k:"c",t:"Solo en niños"}
+        {k:"a",t:"No hay lesión en brazos/hombros y no está contraindicado"},{k:"b",t:"Siempre, aunque haya lesión de hombro"},{k:"c",t:"Solo en niños"}
       ], correct:"a", why:"Da independencia al paciente y ayuda al personal, si está indicado." },
 
       // Traslado: conceptos generales
@@ -611,17 +613,17 @@
       ], correct:"a", why:"Silla para pacientes estables." },
 
       { id:"u2-034", typeKey:"u2_ud2", q:"Al sentar a un paciente en una silla de traslado, debemos:", options:[
-        {k:"a",t:"Sujetar/frenar la silla para evitar movimiento y caída"},{k:"b",t:"Dejar la silla libre para que gire"},{k:"c",t:"Quitar reposabrazos siempre sin mirar"}
+        {k:"a",t:"Frenar la silla para evitar que se mueva"},{k:"b",t:"Dejar la silla libre para que gire"},{k:"c",t:"Quitar reposabrazos sin mirar"}
       ], correct:"a", why:"Evita desplazamiento de la silla durante la sedestación." },
 
-      { id:"u2-035", typeKey:"u2_ud2", q:"Elementos habituales en una silla de traslado:", options:[
-        {k:"a",t:"Reposabrazos abatible/extraíble"},{k:"b",t:"Tanque de agua"},{k:"c",t:"Oxímetro integrado obligatorio"}
-      ], correct:"a", why:"Suelen tener reposabrazos, reposapiés, soporte O2/portaobjetos, etc." },
+      { id:"u2-035", typeKey:"u2_ud2", q:"Elemento habitual en una silla de traslado:", options:[
+        {k:"a",t:"Reposabrazos abatible o extraíble"},{k:"b",t:"Tanque de agua"},{k:"c",t:"Oxímetro obligatorio integrado"}
+      ], correct:"a", why:"Suelen tener reposabrazos, reposapiés, etc." },
 
       // Palo de suero
       { id:"u2-036", typeKey:"u2_ud2", q:"El palo porta-sueros se utiliza para:", options:[
         {k:"a",t:"Colgar sueros conectados al paciente"},{k:"b",t:"Medir tensión arterial"},{k:"c",t:"Sujetar el transfer"}
-      ], correct:"a", why:"Su función es portar/colgar sueros durante traslados." },
+      ], correct:"a", why:"Permite portar/colgar sueros durante traslados." },
 
       // Oxígeno
       { id:"u2-037", typeKey:"u2_ud2", q:"Las botellas de oxígeno para traslado se caracterizan por:", options:[
@@ -633,7 +635,7 @@
       ], correct:"a", why:"Se verifica cantidad/tiempo estimado de uso." },
 
       { id:"u2-039", typeKey:"u2_ud2", q:"Para evitar problemas, se recomienda abrir y regular el caudal de O2:", options:[
-        {k:"a",t:"Después de conectar la mascarilla al paciente"},{k:"b",t:"Antes de conectar la mascarilla a la botella/paciente"},{k:"c",t:"No hace falta regular"}
+        {k:"a",t:"Después de conectar la mascarilla al paciente"},{k:"b",t:"Antes de conectar la mascarilla"},{k:"c",t:"No hace falta regular"}
       ], correct:"b", why:"Se regula antes para detectar fallos y evitar incidencias." },
 
       // Secuencia de acciones (traslado convencional)
@@ -654,11 +656,11 @@
       ], correct:"a", why:"Evita arrancamientos y complicaciones." },
 
       { id:"u2-044", typeKey:"u2_ud2", q:"Para hacer uso del transfer, se suele:", options:[
-        {k:"a",t:"Girar al paciente hacia el lado opuesto a la camilla para colocarlo debajo"},{k:"b",t:"Colocarlo encima del paciente y empujar"},{k:"c",t:"Meterlo debajo sin mover al paciente"}
+        {k:"a",t:"Girar al paciente para colocar el transfer debajo"},{k:"b",t:"Colocarlo encima del paciente y empujar"},{k:"c",t:"Meterlo debajo sin mover al paciente"}
       ], correct:"a", why:"Se coloca por debajo con el paciente girado para facilitar." },
 
       { id:"u2-045", typeKey:"u2_ud2", q:"Para realizar la transferencia del paciente, siempre contaremos con:", options:[
-        {k:"a",t:"Presencia de personal de enfermería de la unidad"},{k:"b",t:"Solo el acompañante"},{k:"c",t:"Nadie más aunque el paciente dependa totalmente"}
+        {k:"a",t:"Personal de enfermería (según el procedimiento)"},{k:"b",t:"Solo el acompañante"},{k:"c",t:"Nadie más aunque dependa totalmente"}
       ], correct:"a", why:"Se destaca coordinación y soporte de enfermería." },
 
       { id:"u2-046", typeKey:"u2_ud2", q:"Al finalizar un traslado, es correcto:", options:[
@@ -724,6 +726,142 @@
       { id:"u2-060", typeKey:"u2_ud2", q:"En maniobras entre 2 o más sanitarios, antes de iniciar es importante:", options:[
         {k:"a",t:"Acordar cómo se hará y quién coordina"},{k:"b",t:"Cada uno actúa por su cuenta"},{k:"c",t:"Empezar sin hablar para ahorrar tiempo"}
       ], correct:"a", why:"Reduce indecisiones y mejora seguridad." },
+
+     // =========================
+// U2 • Cuestionario trabajado en clase (11 preguntas)
+// =========================
+
+{ id:"u2-custom-01", typeKey:"u2_ud2",
+  q:"¿Qué debemos hacer cuando acudimos a una habitación a movilizar a un paciente?",
+  options:[
+    {k:"a",t:"Pedir a la familia que nos ayude a movilizarlo"},
+    {k:"b",t:"Pedir a la familia que esperen fuera de la habitación hasta que terminemos nuestro trabajo"},
+    {k:"c",t:"Pedir a enfermería que deje de hacer lo que está haciendo para venir a ayudarnos"},
+    {k:"d",t:"Antes de comenzar el procedimiento explicaremos al paciente su estado de salud"}
+  ],
+  correct:"b",
+  why:"Debemos preservar la intimidad del paciente. Si hay visitas, se les explica que vamos a realizar una técnica y se les pide que esperen fuera. Es una cuestión de profesionalidad, respeto e intimidad. La familia no debe ayudar en movilizaciones, no corresponde al celador explicar el estado de salud y la coordinación con enfermería se realiza previamente."
+},
+
+{ id:"u2-custom-02", typeKey:"u2_ud2",
+  q:"No es objetivo de la movilización:",
+  options:[
+    {k:"a",t:"Contribuir con nuestro trabajo en la recuperación del paciente"},
+    {k:"b",t:"Evitar posibles complicaciones"},
+    {k:"c",t:"Ayudar totalmente al paciente a moverse"},
+    {k:"d",t:"Mantener el cuerpo alineado"}
+  ],
+  correct:"c",
+  why:"Los objetivos de la movilización son mantener alineación corporal, prevenir complicaciones, prevenir úlceras y favorecer la recuperación. 'Ayudar totalmente al paciente a moverse' no es un objetivo, sino la definición de movilización."
+},
+
+{ id:"u2-custom-03", typeKey:"u2_ud2",
+  q:"Es consecuencia del reposo absoluto prolongado en pacientes:",
+  options:[
+    {k:"a",t:"La debilidad muscular"},
+    {k:"b",t:"La aparición de úlceras por decúbito"},
+    {k:"c",t:"Los problemas circulatorios"},
+    {k:"d",t:"Todas las respuestas son correctas"}
+  ],
+  correct:"d",
+  why:"El reposo prolongado puede provocar pérdida de masa muscular, aparición de úlceras por presión y alteraciones circulatorias. Todas son consecuencias descritas en la Unidad 2."
+},
+
+{ id:"u2-custom-04", typeKey:"u2_ud2",
+  q:"Cuando encontramos que el paciente tiene puntos de presión en los dedos, rodillas o genitales, pensamos que la posición que tiene el paciente es:",
+  options:[
+    {k:"a",t:"Decúbito supino"},
+    {k:"b",t:"Decúbito prono"},
+    {k:"c",t:"Decúbito lateral"},
+    {k:"d",t:"Sedestación"}
+  ],
+  correct:"b",
+  why:"En decúbito prono los puntos de presión característicos son dedos, rodillas y genitales (hombres) o mamas (mujeres). En supino y lateral los puntos de presión son diferentes."
+},
+
+{ id:"u2-custom-05", typeKey:"u2_ud2",
+  q:"¿Cuál es el origen de que se produzcan las úlceras en los pacientes?",
+  options:[
+    {k:"a",t:"El colapso de los capilares que nutren la piel en una zona con presión"},
+    {k:"b",t:"La falta de higiene del paciente"},
+    {k:"c",t:"La sedestación"},
+    {k:"d",t:"El uso excesivo de apósitos y esparadrapos"}
+  ],
+  correct:"a",
+  why:"Las úlceras por presión se producen por presión mantenida que colapsa los capilares, impide el riego sanguíneo y provoca isquemia y necrosis. No se originan por falta de higiene ni por sedestación en sí misma."
+},
+
+{ id:"u2-custom-06", typeKey:"u2_ud2",
+  q:"Si el paciente se encuentra en la cama con el cabezal elevado 90 cm, decimos que su posición es:",
+  options:[
+    {k:"a",t:"Trendelenburg"},
+    {k:"b",t:"Decúbito supino"},
+    {k:"c",t:"Antitrendelenburg"},
+    {k:"d",t:"Posición de Fowler"}
+  ],
+  correct:"d",
+  why:"La posición de Fowler consiste en paciente en decúbito supino con el cabezal elevado aproximadamente entre 45º y 60º (o más según la cama). Trendelenburg y antitrendelenburg implican inclinación completa del plano de la cama."
+},
+
+{ id:"u2-custom-07", typeKey:"u2_ud2",
+  q:"Colocar al paciente en posición de seguridad podría evitar:",
+  options:[
+    {k:"a",t:"Un ictus"},
+    {k:"b",t:"Una muerte súbita"},
+    {k:"c",t:"Una broncoaspiración"},
+    {k:"d",t:"Que se muerda la lengua"}
+  ],
+  correct:"c",
+  why:"La posición lateral de seguridad mantiene la vía aérea permeable y permite que el vómito o secreciones salgan al exterior, evitando broncoaspiración."
+},
+
+{ id:"u2-custom-08", typeKey:"u2_ud2",
+  q:"En la movilización del paciente hacia la cabecera de la cama no debemos:",
+  options:[
+    {k:"a",t:"Lavarnos las manos antes del contacto con el paciente"},
+    {k:"b",t:"Elevar la cabecera"},
+    {k:"c",t:"Pedir al paciente que flexione las rodillas y haga fuerza con la planta de los pies"},
+    {k:"d",t:"Poner uno de nuestros brazos por debajo de la cadera"}
+  ],
+  correct:"b",
+  why:"Para desplazar al paciente hacia la cabecera el cabezal debe estar completamente bajado. Se recomienda higiene de manos, pedir colaboración y colocar brazos bajo hombros y cadera."
+},
+
+{ id:"u2-custom-09", typeKey:"u2_ud2",
+  q:"En la movilización de cama a sillón no debemos:",
+  options:[
+    {k:"a",t:"Poner previamente una sábana en el sillón"},
+    {k:"b",t:"Al incorporarlo, colocar los brazos del paciente sobre el tórax"},
+    {k:"c",t:"Dejar que el paciente nos sujete por el cuello"},
+    {k:"d",t:"Si no hay riesgos, dejar que pase sólo de la cama al sillón"}
+  ],
+  correct:"c",
+  why:"El paciente nunca debe sujetarse al cuello del celador porque puede provocar lesiones cervicales y pérdida de equilibrio. La sujeción correcta es bajo las axilas."
+},
+
+{ id:"u2-custom-10", typeKey:"u2_ud2",
+  q:"Referente al uso de las grúas es cierto que:",
+  options:[
+    {k:"a",t:"Hay arneses de diferentes tamaños"},
+    {k:"b",t:"Con ella evitamos que el paciente haga cualquier esfuerzo"},
+    {k:"c",t:"Es doloroso si nos quedan pliegues al colocar el arnés"},
+    {k:"d",t:"Todas las respuestas son ciertas"}
+  ],
+  correct:"d",
+  why:"Existen arneses de diferentes tallas, la grúa evita esfuerzos innecesarios y si el arnés tiene pliegues puede resultar doloroso o lesivo. Todas son correctas."
+},
+
+{ id:"u2-custom-11", typeKey:"u2_ud2",
+  q:"¿Cómo se denomina a la pérdida de sensibilidad y fuerza de la parte inferior del cuerpo del paciente?",
+  options:[
+    {k:"a",t:"Hemiplejia"},
+    {k:"b",t:"Paraplejia"},
+    {k:"c",t:"Hemiparesia"},
+    {k:"d",t:"Tetraplejia"}
+  ],
+  correct:"b",
+  why:"Paraplejia es la pérdida de fuerza y sensibilidad en miembros inferiores. Hemiplejia afecta a un lado del cuerpo, hemiparesia es pérdida parcial y tetraplejia afecta a las cuatro extremidades."
+},
     ];
 
     // ==========================================================
