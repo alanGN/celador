@@ -5,205 +5,338 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Simulacro Celador - Unidades 1 y 2</title>
   <style>
-    :root{
-      --bg:#0b1220;
-      --card:#121b2d;
-      --muted:#9fb0d0;
-      --text:#eaf0ff;
-      --accent:#6ea8fe;
-      --good:#39d98a;
-      --bad:#ff5c7a;
-      --warn:#ffd166;
-      --border:rgba(255,255,255,.12);
-      --shadow:0 10px 30px rgba(0,0,0,.35);
-      --radius:18px;
+    :root {
+      --bg: #0b1220;
+      --card: #121b2d;
+      --muted: #9fb0d0;
+      --text: #eaf0ff;
+      --accent: #6ea8fe;
+      --good: #39d98a;
+      --bad: #ff5c7a;
+      --warn: #ffd166;
+      --border: rgba(255, 255, 255, 0.12);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      --radius: 18px;
     }
 
-    *{box-sizing:border-box;}
-    body{
-      margin:0;
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 800px at 20% -10%, rgba(110,168,254,.25), transparent 55%),
-                  radial-gradient(1000px 700px at 90% 0%, rgba(57,217,138,.18), transparent 50%),
-                  var(--bg);
-      color:var(--text);
-      line-height:1.35;
+      background: radial-gradient(
+          1200px 800px at 20% -10%,
+          rgba(110, 168, 254, 0.25),
+          transparent 55%
+        ),
+        radial-gradient(
+          1000px 700px at 90% 0%,
+          rgba(57, 217, 138, 0.18),
+          transparent 50%
+        ),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.35;
     }
 
-    .wrap{max-width:980px; margin:0 auto; padding:20px 14px 80px;}
-
-    header{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      margin:8px 0 18px;
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 20px 14px 80px;
     }
 
-    .title{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 8px 0 18px;
     }
 
-    h1{margin:0; font-size:22px; letter-spacing:.2px;}
-    .subtitle{color:var(--muted); font-size:13px; margin-top:4px;}
+    .title {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
 
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border:1px solid var(--border);
+    h1 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 0.2px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+      border: 1px solid var(--border);
       box-shadow: var(--shadow);
       border-radius: var(--radius);
-      padding:14px;
+      padding: 14px;
     }
 
-    .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
-    .row > *{flex:1 1 200px;}
+    .row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
 
-    label{display:block; font-size:12px; color:var(--muted); margin:0 0 6px;}
+    .row > * {
+      flex: 1 1 200px;
+    }
 
-    select, button{
-      width:100%;
-      background: rgba(255,255,255,.06);
-      border:1px solid var(--border);
+    label {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin: 0 0 6px;
+    }
+
+    select,
+    button {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
       color: var(--text);
-      padding:12px 12px;
+      padding: 12px 12px;
       border-radius: 14px;
-      font-size:14px;
-      outline:none;
+      font-size: 14px;
+      outline: none;
     }
 
-    button{
-      cursor:pointer;
-      background: linear-gradient(180deg, rgba(110,168,254,.95), rgba(110,168,254,.65));
-      border:none;
-      font-weight:700;
-      letter-spacing:.2px;
-      transition: transform .06s ease, filter .15s ease;
-    }
-    button:active{transform: translateY(1px) scale(.99);}
-    button.secondary{
-      background: rgba(255,255,255,.08);
-      border:1px solid var(--border);
-      font-weight:600;
+    button {
+      cursor: pointer;
+      background: linear-gradient(180deg, rgba(110, 168, 254, 0.95), rgba(110, 168, 254, 0.65));
+      border: none;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      transition: transform 0.06s ease, filter 0.15s ease;
     }
 
-    .pill{
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-      padding:8px 10px;
+    button:active {
+      transform: translateY(1px) scale(0.99);
+    }
+
+    button.secondary {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      font-weight: 600;
+    }
+
+    .pill {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 10px;
       border-radius: 999px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.05);
       color: var(--muted);
-      font-size:12px;
-      white-space:nowrap;
-    }
-    .pill b{color:var(--text); font-weight:800;}
-
-    .quiz{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      margin-top:12px;
+      font-size: 12px;
+      white-space: nowrap;
     }
 
-    .q{
-      padding:14px;
+    .pill b {
+      color: var(--text);
+      font-weight: 800;
+    }
+
+    .quiz {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .q {
+      padding: 14px;
       border-radius: var(--radius);
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.04);
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
     }
 
-    .qhead{display:flex; gap:10px; align-items:flex-start; justify-content:space-between;}
+    .qhead {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
 
-    .qnum{
-      min-width:44px;
-      text-align:center;
-      padding:8px 10px;
+    .qnum {
+      min-width: 44px;
+      text-align: center;
+      padding: 8px 10px;
       border-radius: 14px;
-      background: rgba(255,255,255,.06);
-      border:1px solid var(--border);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
       color: var(--muted);
-      font-weight:800;
-      font-size:12px;
+      font-weight: 800;
+      font-size: 12px;
     }
 
-    .qtext{font-size:15px; margin:0; padding-top:2px;}
+    .qtext {
+      font-size: 15px;
+      margin: 0;
+      padding-top: 2px;
+    }
 
-    .options{margin-top:10px; display:flex; flex-direction:column; gap:8px;}
+    .options {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
 
-    .opt{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      padding:10px 10px;
+    .opt {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 10px 10px;
       border-radius: 14px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.03);
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.03);
     }
 
-    .opt input{margin-top:3px;}
-    .opt span{color: var(--text); font-size:14px;}
+    .opt input {
+      margin-top: 3px;
+    }
 
-    .footer-actions{
+    .opt span {
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .footer-actions {
       position: sticky;
       bottom: 12px;
       z-index: 10;
       margin-top: 16px;
     }
 
-    .footer-actions .card{padding:12px;}
-
-    .grid2{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
-    @media (max-width:700px){
-      .grid2{grid-template-columns:1fr;}
-      .title{flex-direction:column;}
+    .footer-actions .card {
+      padding: 12px;
     }
 
-    .results{
-      margin-top:14px;
-      display:none;
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
     }
 
-    .results .summary{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:space-between;
+    @media (max-width: 700px) {
+      .grid2 {
+        grid-template-columns: 1fr;
+      }
+      .title {
+        flex-direction: column;
+      }
     }
 
-    .kpi{
-      flex:1 1 220px;
-      border:1px solid var(--border);
+    .results {
+      margin-top: 14px;
+      display: none;
+    }
+
+    .results .summary {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .kpi {
+      flex: 1 1 220px;
+      border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding:12px;
-      background: rgba(255,255,255,.04);
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.04);
     }
 
-    .kpi .label{color:var(--muted); font-size:12px;}
-    .kpi .value{font-size:22px; font-weight:900; margin-top:4px;}
+    .kpi .label {
+      color: var(--muted);
+      font-size: 12px;
+    }
 
-    .tag{display:inline-block; padding:6px 10px; border-radius:999px; font-weight:800; font-size:12px;}
-    .tag.good{background: rgba(57,217,138,.14); color: var(--good); border:1px solid rgba(57,217,138,.35);}
-    .tag.bad{background: rgba(255,92,122,.12); color: var(--bad); border:1px solid rgba(255,92,122,.35);}
-    .tag.blank{background: rgba(255,209,102,.12); color: var(--warn); border:1px solid rgba(255,209,102,.35);}
+    .kpi .value {
+      font-size: 22px;
+      font-weight: 900;
+      margin-top: 4px;
+    }
 
-    .review{margin-top:12px; display:flex; flex-direction:column; gap:10px;}
-    .review .q{background: rgba(255,255,255,.03);}
+    .tag {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 12px;
+    }
 
-    .answerline{margin-top:10px; color:var(--muted); font-size:13px;}
-    .answerline b{color:var(--text);}
-    .why{margin-top:8px; font-size:13px; color:var(--muted);}
+    .tag.good {
+      background: rgba(57, 217, 138, 0.14);
+      color: var(--good);
+      border: 1px solid rgba(57, 217, 138, 0.35);
+    }
 
-    .notice{color:var(--muted); font-size:12px; margin-top:10px;}
-    .hide{display:none !important;}
+    .tag.bad {
+      background: rgba(255, 92, 122, 0.12);
+      color: var(--bad);
+      border: 1px solid rgba(255, 92, 122, 0.35);
+    }
 
-    .disabled{
-      opacity:.6;
-      filter: grayscale(.1);
+    .tag.blank {
+      background: rgba(255, 209, 102, 0.12);
+      color: var(--warn);
+      border: 1px solid rgba(255, 209, 102, 0.35);
+    }
+
+    .review {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .review .q {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .answerline {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .answerline b {
+      color: var(--text);
+    }
+
+    .why {
+      margin-top: 8px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .notice {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 10px;
+    }
+
+    .hide {
+      display: none !important;
+    }
+
+    .disabled {
+      opacity: 0.6;
+      filter: grayscale(0.1);
     }
   </style>
 </head>
@@ -276,18 +409,18 @@
           </div>
           <div class="kpi">
             <div class="label">Reglas</div>
-            <div class="value" id="rulesKpi" style="font-size:14px; font-weight:800;">-</div>
+            <div class="value" id="rulesKpi" style="font-size: 14px; font-weight: 800;">-</div>
           </div>
         </div>
 
         <div class="review" id="review"></div>
 
-        <div class="card" style="margin-top:14px;">
+        <div class="card" style="margin-top: 14px;">
           <div class="grid2">
             <button id="newExamBtn">Nuevo examen (mismo tipo)</button>
             <button id="backTopBtn" class="secondary">Volver arriba</button>
           </div>
-          <div class="grid2" style="margin-top:10px;">
+          <div class="grid2" style="margin-top: 10px;">
             <button id="restartFromResultsBtn" class="secondary">Reiniciar (borrar todo)</button>
             <button id="changeConfigBtn" class="secondary">Cambiar unidad / tipo</button>
           </div>
@@ -303,17 +436,17 @@
     // ==========================================================
     const EXAM_TYPES = {
       // Unidad 1 (mantenemos)
-      u1_ud1:   { unit:"u1", label:"U1 • Preguntas (Anatomía básica)", mode:"mcq", sizeMode:"variable", scoringMode:"points" },
-      u1_sem1:  { unit:"u1", label:"U1 • Seminario (TME / prevención)", mode:"mcq", sizeMode:"variable", scoringMode:"points" },
-      u1_test17:{ unit:"u1", label:"U1 • Cuestionario (17 preguntas)", mode:"mcq", sizeMode:"fixed", fixedCount:17, scoringMode:"count" },
-      u1_vf:    { unit:"u1", label:"U1 • Verdadero / Falso", mode:"vf",  sizeMode:"fixed", fixedCount:null, scoringMode:"count" },
+      u1_ud1: { unit: "u1", label: "U1 • Preguntas (Anatomía básica)", mode: "mcq", sizeMode: "variable", scoringMode: "points" },
+      u1_sem1: { unit: "u1", label: "U1 • Seminario (TME / prevención)", mode: "mcq", sizeMode: "variable", scoringMode: "points" },
+      u1_test17: { unit: "u1", label: "U1 • Cuestionario (17 preguntas)", mode: "mcq", sizeMode: "fixed", fixedCount: 17, scoringMode: "count" },
+      u1_vf: { unit: "u1", label: "U1 • Verdadero / Falso", mode: "vf", sizeMode: "fixed", fixedCount: null, scoringMode: "count" },
 
       // Unidad 2 (10/20/30)
-      u2_ud2:    { unit:"u2", label:"U2 • Movilización y traslado (Nivel 1)", mode:"mcq", sizeMode:"variable", scoringMode:"points" },
+      u2_ud2: { unit: "u2", label: "U2 • Movilización y traslado (Nivel 1)", mode: "mcq", sizeMode: "variable", scoringMode: "points" },
       // Mantenemos el cuestionario fijo (el de clase)
-      u2_test11: { unit:"u2", label:"U2 • Cuestionario (11 preguntas)", mode:"mcq", sizeMode:"fixed", fixedCount:11, scoringMode:"count" },
-      // NUEVO: Verdadero/Falso U2 (incluye el VF que me pasaste + más)
-      u2_vf:     { unit:"u2", label:"U2 • Verdadero / Falso", mode:"vf", sizeMode:"fixed", fixedCount:null, scoringMode:"count" },
+      u2_test11: { unit: "u2", label: "U2 • Cuestionario (11 preguntas)", mode: "mcq", sizeMode: "fixed", fixedCount: 11, scoringMode: "count" },
+      // Verdadero/Falso U2
+      u2_vf: { unit: "u2", label: "U2 • Verdadero / Falso", mode: "vf", sizeMode: "fixed", fixedCount: null, scoringMode: "count" }
     };
 
     // ==========================================================
@@ -321,875 +454,1162 @@
     // ==========================================================
     const QUESTION_BANK = [
       // =========================
-      // U1 (dejo lo que tenías tal cual)
+      // U1
       // =========================
-      { id:"ud1-001", typeKey:"u1_ud1", q:"¿Cuál es la unidad mínima de la vida?", options:[
-        {k:"a",t:"El tejido"},{k:"b",t:"La célula"},{k:"c",t:"El órgano"}
-      ], correct:"b", why:"La célula es la unidad mínima de la vida; tejidos y órganos son niveles superiores." },
-
-      { id:"ud1-002", typeKey:"u1_ud1", q:"¿Qué estudia la Citología?", options:[
-        {k:"a",t:"Las células"},{k:"b",t:"Los huesos"},{k:"c",t:"Los órganos"}
-      ], correct:"a", why:"La citología estudia las células." },
-
-      { id:"ud1-003", typeKey:"u1_ud1", q:"Las células humanas son principalmente:", options:[
-        {k:"a",t:"Procariotas"},{k:"b",t:"Eucariotas"},{k:"c",t:"Bacterianas"}
-      ], correct:"b", why:"Las células humanas son eucariotas (con núcleo y orgánulos)." },
-
-      { id:"ud1-004", typeKey:"u1_ud1", q:"¿Qué rama estudia los tejidos biológicos?", options:[
-        {k:"a",t:"Histología"},{k:"b",t:"Citología"},{k:"c",t:"Fisiología"}
-      ], correct:"a", why:"La histología se ocupa del estudio de los tejidos." },
-
-      { id:"ud1-005", typeKey:"u1_ud1", q:"El sistema musculoesquelético está constituido por:", options:[
-        {k:"a",t:"Sistema esquelético y músculos"},{k:"b",t:"Sistema endocrino y nervioso"},{k:"c",t:"Sistema digestivo y excretor"}
-      ], correct:"a", why:"Incluye huesos/articulaciones y músculos/tendones." },
-
-      { id:"ud1-008", typeKey:"u1_ud1", q:"¿Dónde se produce la hematopoyesis?", options:[
-        {k:"a",t:"Médula ósea roja"},{k:"b",t:"Médula ósea amarilla"},{k:"c",t:"Cartílago articular"}
-      ], correct:"a", why:"En la médula ósea roja se producen glóbulos rojos, blancos y plaquetas." },
-
-      { id:"ud1-011", typeKey:"u1_ud1", q:"Las células que construyen hueso y sintetizan matriz ósea son:", options:[
-        {k:"a",t:"Osteoclastos"},{k:"b",t:"Osteoblastos"},{k:"c",t:"Osteocitos"}
-      ], correct:"b", why:"Los osteoblastos forman hueso; los osteoclastos lo reabsorben; los osteocitos son maduros." },
-
-      { id:"ud1-017", typeKey:"u1_ud1", q:"Las vértebras cervicales son:", options:[
-        {k:"a",t:"12"},{k:"b",t:"7"},{k:"c",t:"5"}
-      ], correct:"b", why:"Hay 7 vértebras cervicales." },
-
-      { id:"ud1-020", typeKey:"u1_ud1", q:"Las costillas verdaderas son:", options:[
-        {k:"a",t:"7 pares"},{k:"b",t:"5 pares"},{k:"c",t:"12 pares"}
-      ], correct:"a", why:"Las 7 primeras se unen al esternón (verdaderas)." },
-
-      { id:"ud1-031", typeKey:"u1_ud1", q:"El intercambio gaseoso principal ocurre en:", options:[
-        {k:"a",t:"Bronquios"},{k:"b",t:"Alvéolos"},{k:"c",t:"Faringe"}
-      ], correct:"b", why:"En los alvéolos se realiza el intercambio O2/CO2." },
-
-      { id:"ud1-040", typeKey:"u1_ud1", q:"Capas del corazón (de interior a exterior):", options:[
-        {k:"a",t:"Pericardio, miocardio, endocardio"},{k:"b",t:"Endocardio, miocardio, pericardio"},{k:"c",t:"Pleura, peritoneo, periostio"}
-      ], correct:"b", why:"Endocardio (interior), miocardio, pericardio (exterior)." },
+      {
+        id: "ud1-001",
+        typeKey: "u1_ud1",
+        q: "¿Cuál es la unidad mínima de la vida?",
+        options: [{ k: "a", t: "El tejido" }, { k: "b", t: "La célula" }, { k: "c", t: "El órgano" }],
+        correct: "b",
+        why: "La célula es la unidad mínima de la vida; tejidos y órganos son niveles superiores."
+      },
+      {
+        id: "ud1-002",
+        typeKey: "u1_ud1",
+        q: "¿Qué estudia la Citología?",
+        options: [{ k: "a", t: "Las células" }, { k: "b", t: "Los huesos" }, { k: "c", t: "Los órganos" }],
+        correct: "a",
+        why: "La citología estudia las células."
+      },
+      {
+        id: "ud1-003",
+        typeKey: "u1_ud1",
+        q: "Las células humanas son principalmente:",
+        options: [{ k: "a", t: "Procariotas" }, { k: "b", t: "Eucariotas" }, { k: "c", t: "Bacterianas" }],
+        correct: "b",
+        why: "Las células humanas son eucariotas (con núcleo y orgánulos)."
+      },
+      {
+        id: "ud1-004",
+        typeKey: "u1_ud1",
+        q: "¿Qué rama estudia los tejidos biológicos?",
+        options: [{ k: "a", t: "Histología" }, { k: "b", t: "Citología" }, { k: "c", t: "Fisiología" }],
+        correct: "a",
+        why: "La histología se ocupa del estudio de los tejidos."
+      },
+      {
+        id: "ud1-005",
+        typeKey: "u1_ud1",
+        q: "El sistema musculoesquelético está constituido por:",
+        options: [
+          { k: "a", t: "Sistema esquelético y músculos" },
+          { k: "b", t: "Sistema endocrino y nervioso" },
+          { k: "c", t: "Sistema digestivo y excretor" }
+        ],
+        correct: "a",
+        why: "Incluye huesos/articulaciones y músculos/tendones."
+      },
+      {
+        id: "ud1-008",
+        typeKey: "u1_ud1",
+        q: "¿Dónde se produce la hematopoyesis?",
+        options: [{ k: "a", t: "Médula ósea roja" }, { k: "b", t: "Médula ósea amarilla" }, { k: "c", t: "Cartílago articular" }],
+        correct: "a",
+        why: "En la médula ósea roja se producen glóbulos rojos, blancos y plaquetas."
+      },
+      {
+        id: "ud1-011",
+        typeKey: "u1_ud1",
+        q: "Las células que construyen hueso y sintetizan matriz ósea son:",
+        options: [{ k: "a", t: "Osteoclastos" }, { k: "b", t: "Osteoblastos" }, { k: "c", t: "Osteocitos" }],
+        correct: "b",
+        why: "Los osteoblastos forman hueso; los osteoclastos lo reabsorben; los osteocitos son maduros."
+      },
+      {
+        id: "ud1-017",
+        typeKey: "u1_ud1",
+        q: "Las vértebras cervicales son:",
+        options: [{ k: "a", t: "12" }, { k: "b", t: "7" }, { k: "c", t: "5" }],
+        correct: "b",
+        why: "Hay 7 vértebras cervicales."
+      },
+      {
+        id: "ud1-020",
+        typeKey: "u1_ud1",
+        q: "Las costillas verdaderas son:",
+        options: [{ k: "a", t: "7 pares" }, { k: "b", t: "5 pares" }, { k: "c", t: "12 pares" }],
+        correct: "a",
+        why: "Las 7 primeras se unen al esternón (verdaderas)."
+      },
+      {
+        id: "ud1-031",
+        typeKey: "u1_ud1",
+        q: "El intercambio gaseoso principal ocurre en:",
+        options: [{ k: "a", t: "Bronquios" }, { k: "b", t: "Alvéolos" }, { k: "c", t: "Faringe" }],
+        correct: "b",
+        why: "En los alvéolos se realiza el intercambio O2/CO2."
+      },
+      {
+        id: "ud1-040",
+        typeKey: "u1_ud1",
+        q: "Capas del corazón (de interior a exterior):",
+        options: [
+          { k: "a", t: "Pericardio, miocardio, endocardio" },
+          { k: "b", t: "Endocardio, miocardio, pericardio" },
+          { k: "c", t: "Pleura, peritoneo, periostio" }
+        ],
+        correct: "b",
+        why: "Endocardio (interior), miocardio, pericardio (exterior)."
+      },
 
       // Seminario 1
-      { id:"sem-011", typeKey:"u1_sem1", q:"La mecánica corporal es:", options:[
-        {k:"a",t:"Uso eficaz, coordinado y seguro del cuerpo para moverse y mantener equilibrio"},{k:"b",t:"Solo levantar pesas"},{k:"c",t:"Solo estiramientos"}
-      ], correct:"a", why:"Incluye alineación, equilibrio y movimiento coordinado." },
-
-      { id:"sem-013", typeKey:"u1_sem1", q:"Base de apoyo amplia y centro de gravedad bajo:", options:[
-        {k:"a",t:"Aumentan la estabilidad"},{k:"b",t:"Disminuyen estabilidad"},{k:"c",t:"No afectan"}
-      ], correct:"a", why:"Principio básico: más base y CG bajo = más estabilidad." },
-
-      { id:"sem-014", typeKey:"u1_sem1", q:"Mover una carga cerca del centro de gravedad:", options:[
-        {k:"a",t:"Requiere menos esfuerzo"},{k:"b",t:"Requiere más esfuerzo"},{k:"c",t:"Es igual"}
-      ], correct:"a", why:"Cuanto más cerca, menor brazo de palanca y menor esfuerzo." },
-
-      { id:"sem-021", typeKey:"u1_sem1", q:"Peso máximo recomendado para manipulación de cargas en sedestación:", options:[
-        {k:"a",t:"5 kg"},{k:"b",t:"25 kg"},{k:"c",t:"50 kg"}
-      ], correct:"a", why:"Se recomienda no superar 5 kg en sedestación." },
-
-      { id:"sem-023", typeKey:"u1_sem1", q:"Al levantar una carga del suelo, se aconseja:", options:[
-        {k:"a",t:"Flexionar rodillas y mantener espalda recta"},{k:"b",t:"Flexionar la columna lumbar"},{k:"c",t:"Girar el tronco con peso en alto"}
-      ], correct:"a", why:"Usar rodillas/caderas y minimizar participación de columna." },
+      {
+        id: "sem-011",
+        typeKey: "u1_sem1",
+        q: "La mecánica corporal es:",
+        options: [
+          { k: "a", t: "Uso eficaz, coordinado y seguro del cuerpo para moverse y mantener equilibrio" },
+          { k: "b", t: "Solo levantar pesas" },
+          { k: "c", t: "Solo estiramientos" }
+        ],
+        correct: "a",
+        why: "Incluye alineación, equilibrio y movimiento coordinado."
+      },
+      {
+        id: "sem-013",
+        typeKey: "u1_sem1",
+        q: "Base de apoyo amplia y centro de gravedad bajo:",
+        options: [{ k: "a", t: "Aumentan la estabilidad" }, { k: "b", t: "Disminuyen estabilidad" }, { k: "c", t: "No afectan" }],
+        correct: "a",
+        why: "Principio básico: más base y CG bajo = más estabilidad."
+      },
+      {
+        id: "sem-014",
+        typeKey: "u1_sem1",
+        q: "Mover una carga cerca del centro de gravedad:",
+        options: [{ k: "a", t: "Requiere menos esfuerzo" }, { k: "b", t: "Requiere más esfuerzo" }, { k: "c", t: "Es igual" }],
+        correct: "a",
+        why: "Cuanto más cerca, menor brazo de palanca y menor esfuerzo."
+      },
+      {
+        id: "sem-021",
+        typeKey: "u1_sem1",
+        q: "Peso máximo recomendado para manipulación de cargas en sedestación:",
+        options: [{ k: "a", t: "5 kg" }, { k: "b", t: "25 kg" }, { k: "c", t: "50 kg" }],
+        correct: "a",
+        why: "Se recomienda no superar 5 kg en sedestación."
+      },
+      {
+        id: "sem-023",
+        typeKey: "u1_sem1",
+        q: "Al levantar una carga del suelo, se aconseja:",
+        options: [
+          { k: "a", t: "Flexionar rodillas y mantener espalda recta" },
+          { k: "b", t: "Flexionar la columna lumbar" },
+          { k: "c", t: "Girar el tronco con peso en alto" }
+        ],
+        correct: "a",
+        why: "Usar rodillas/caderas y minimizar participación de columna."
+      },
 
       // Cuestionario 17 U1
-      { id:"q17-01", typeKey:"u1_test17", q:"¿Qué estructura separa cavidad torácica y abdominal?", options:[
-        {k:"a",t:"Diafragma"},{k:"b",t:"Pleura"},{k:"c",t:"Periostio"}
-      ], correct:"a", why:"El diafragma separa tórax y abdomen y participa en la respiración." },
-      { id:"q17-02", typeKey:"u1_test17", q:"¿Cuántos lóbulos tiene el pulmón izquierdo?", options:[
-        {k:"a",t:"1"},{k:"b",t:"2"},{k:"c",t:"3"}
-      ], correct:"b", why:"El pulmón izquierdo tiene 2 lóbulos; el derecho 3." },
-      { id:"q17-03", typeKey:"u1_test17", q:"La unidad funcional del riñón es:", options:[
-        {k:"a",t:"Alvéolo"},{k:"b",t:"Neurona"},{k:"c",t:"Nefrona"}
-      ], correct:"c", why:"La nefrona filtra la sangre y forma la orina." },
-      { id:"q17-04", typeKey:"u1_test17", q:"La sangre llega al corazón desde el cuerpo por:", options:[
-        {k:"a",t:"Venas cavas"},{k:"b",t:"Aorta"},{k:"c",t:"Arteria pulmonar"}
-      ], correct:"a", why:"Las venas cavas desembocan en la aurícula derecha." },
-      { id:"q17-05", typeKey:"u1_test17", q:"El sistema nervioso central está formado por:", options:[
-        {k:"a",t:"Encéfalo y médula espinal"},{k:"b",t:"Nervios y ganglios"},{k:"c",t:"Solo médula"}
-      ], correct:"a", why:"SNC = encéfalo + médula espinal." },
-      { id:"q17-06", typeKey:"u1_test17", q:"¿Qué estructura evita el paso de alimentos a la tráquea?", options:[
-        {k:"a",t:"Epiglotis"},{k:"b",t:"Laringe"},{k:"c",t:"Bronquio"}
-      ], correct:"a", why:"La epiglotis cierra la entrada laríngea durante la deglución." },
-      { id:"q17-07", typeKey:"u1_test17", q:"Las plaquetas participan principalmente en:", options:[
-        {k:"a",t:"Defensa"},{k:"b",t:"Coagulación"},{k:"c",t:"Intercambio gaseoso"}
-      ], correct:"b", why:"Ayudan a taponar heridas y formar coágulos." },
-      { id:"q17-08", typeKey:"u1_test17", q:"La tráquea se mantiene abierta por:", options:[
-        {k:"a",t:"Anillos cartilaginosos"},{k:"b",t:"Vellosidades"},{k:"c",t:"Músculo liso circular"}
-      ], correct:"a", why:"Los anillos de cartílago evitan el colapso." },
-      { id:"q17-09", typeKey:"u1_test17", q:"El esqueleto axial incluye:", options:[
-        {k:"a",t:"Cabeza, cuello y tronco"},{k:"b",t:"Solo extremidades"},{k:"c",t:"Solo pelvis"}
-      ], correct:"a", why:"Axial = cabeza, cuello y tronco." },
-      { id:"q17-10", typeKey:"u1_test17", q:"Un hueso sesamoideo típico es:", options:[
-        {k:"a",t:"Rótula"},{k:"b",t:"Húmero"},{k:"c",t:"Esternón"}
-      ], correct:"a", why:"La rótula es el ejemplo clásico." },
-      { id:"q17-11", typeKey:"u1_test17", q:"Los alvéolos son importantes porque:", options:[
-        {k:"a",t:"Producen bilis"},{k:"b",t:"Realizan intercambio O2/CO2"},{k:"c",t:"Forman plaquetas"}
-      ], correct:"b", why:"Allí ocurre el intercambio gaseoso." },
-      { id:"q17-12", typeKey:"u1_test17", q:"¿Cuál es el intestino delgado?", options:[
-        {k:"a",t:"Duodeno, yeyuno e íleon"},{k:"b",t:"Ciego, colon y recto"},{k:"c",t:"Faringe, laringe y tráquea"}
-      ], correct:"a", why:"Son las 3 porciones del intestino delgado." },
-      { id:"q17-13", typeKey:"u1_test17", q:"Los osteoclastos se encargan de:", options:[
-        {k:"a",t:"Formar hueso"},{k:"b",t:"Reabsorber/destruir hueso"},{k:"c",t:"Nutrir el cartílago"}
-      ], correct:"b", why:"Osteoclastos = reabsorción ósea." },
-      { id:"q17-14", typeKey:"u1_test17", q:"La diástole es:", options:[
-        {k:"a",t:"Contracción"},{k:"b",t:"Relajación/llenado"},{k:"c",t:"Paro cardiaco"}
-      ], correct:"b", why:"Diástole = relajación y llenado." },
-      { id:"q17-15", typeKey:"u1_test17", q:"Los nervios craneales son:", options:[
-        {k:"a",t:"12 pares"},{k:"b",t:"31 pares"},{k:"c",t:"7 pares"}
-      ], correct:"a", why:"Del encéfalo salen 12 pares." },
-      { id:"q17-16", typeKey:"u1_test17", q:"El músculo cardíaco es:", options:[
-        {k:"a",t:"Liso y voluntario"},{k:"b",t:"Estriado e involuntario"},{k:"c",t:"Liso e involuntario"}
-      ], correct:"b", why:"Es estriado e involuntario." },
-      { id:"q17-17", typeKey:"u1_test17", q:"El colon sigmoideo está:", options:[
-        {k:"a",t:"Antes del recto"},{k:"b",t:"Antes del duodeno"},{k:"c",t:"Dentro del estómago"}
-      ], correct:"a", why:"Va tras el descendente y antes del recto." },
+      {
+        id: "q17-01",
+        typeKey: "u1_test17",
+        q: "¿Qué estructura separa cavidad torácica y abdominal?",
+        options: [{ k: "a", t: "Diafragma" }, { k: "b", t: "Pleura" }, { k: "c", t: "Periostio" }],
+        correct: "a",
+        why: "El diafragma separa tórax y abdomen y participa en la respiración."
+      },
+      {
+        id: "q17-02",
+        typeKey: "u1_test17",
+        q: "¿Cuántos lóbulos tiene el pulmón izquierdo?",
+        options: [{ k: "a", t: "1" }, { k: "b", t: "2" }, { k: "c", t: "3" }],
+        correct: "b",
+        why: "El pulmón izquierdo tiene 2 lóbulos; el derecho 3."
+      },
+      {
+        id: "q17-03",
+        typeKey: "u1_test17",
+        q: "La unidad funcional del riñón es:",
+        options: [{ k: "a", t: "Alvéolo" }, { k: "b", t: "Neurona" }, { k: "c", t: "Nefrona" }],
+        correct: "c",
+        why: "La nefrona filtra la sangre y forma la orina."
+      },
+      {
+        id: "q17-04",
+        typeKey: "u1_test17",
+        q: "La sangre llega al corazón desde el cuerpo por:",
+        options: [{ k: "a", t: "Venas cavas" }, { k: "b", t: "Aorta" }, { k: "c", t: "Arteria pulmonar" }],
+        correct: "a",
+        why: "Las venas cavas desembocan en la aurícula derecha."
+      },
+      {
+        id: "q17-05",
+        typeKey: "u1_test17",
+        q: "El sistema nervioso central está formado por:",
+        options: [{ k: "a", t: "Encéfalo y médula espinal" }, { k: "b", t: "Nervios y ganglios" }, { k: "c", t: "Solo médula" }],
+        correct: "a",
+        why: "SNC = encéfalo + médula espinal."
+      },
+      {
+        id: "q17-06",
+        typeKey: "u1_test17",
+        q: "¿Qué estructura evita el paso de alimentos a la tráquea?",
+        options: [{ k: "a", t: "Epiglotis" }, { k: "b", t: "Laringe" }, { k: "c", t: "Bronquio" }],
+        correct: "a",
+        why: "La epiglotis cierra la entrada laríngea durante la deglución."
+      },
+      {
+        id: "q17-07",
+        typeKey: "u1_test17",
+        q: "Las plaquetas participan principalmente en:",
+        options: [{ k: "a", t: "Defensa" }, { k: "b", t: "Coagulación" }, { k: "c", t: "Intercambio gaseoso" }],
+        correct: "b",
+        why: "Ayudan a taponar heridas y formar coágulos."
+      },
+      {
+        id: "q17-08",
+        typeKey: "u1_test17",
+        q: "La tráquea se mantiene abierta por:",
+        options: [{ k: "a", t: "Anillos cartilaginosos" }, { k: "b", t: "Vellosidades" }, { k: "c", t: "Músculo liso circular" }],
+        correct: "a",
+        why: "Los anillos de cartílago evitan el colapso."
+      },
+      {
+        id: "q17-09",
+        typeKey: "u1_test17",
+        q: "El esqueleto axial incluye:",
+        options: [{ k: "a", t: "Cabeza, cuello y tronco" }, { k: "b", t: "Solo extremidades" }, { k: "c", t: "Solo pelvis" }],
+        correct: "a",
+        why: "Axial = cabeza, cuello y tronco."
+      },
+      {
+        id: "q17-10",
+        typeKey: "u1_test17",
+        q: "Un hueso sesamoideo típico es:",
+        options: [{ k: "a", t: "Rótula" }, { k: "b", t: "Húmero" }, { k: "c", t: "Esternón" }],
+        correct: "a",
+        why: "La rótula es el ejemplo clásico."
+      },
+      {
+        id: "q17-11",
+        typeKey: "u1_test17",
+        q: "Los alvéolos son importantes porque:",
+        options: [{ k: "a", t: "Producen bilis" }, { k: "b", t: "Realizan intercambio O2/CO2" }, { k: "c", t: "Forman plaquetas" }],
+        correct: "b",
+        why: "Allí ocurre el intercambio gaseoso."
+      },
+      {
+        id: "q17-12",
+        typeKey: "u1_test17",
+        q: "¿Cuál es el intestino delgado?",
+        options: [
+          { k: "a", t: "Duodeno, yeyuno e íleon" },
+          { k: "b", t: "Ciego, colon y recto" },
+          { k: "c", t: "Faringe, laringe y tráquea" }
+        ],
+        correct: "a",
+        why: "Son las 3 porciones del intestino delgado."
+      },
+      {
+        id: "q17-13",
+        typeKey: "u1_test17",
+        q: "Los osteoclastos se encargan de:",
+        options: [
+          { k: "a", t: "Formar hueso" },
+          { k: "b", t: "Reabsorber/destruir hueso" },
+          { k: "c", t: "Nutrir el cartílago" }
+        ],
+        correct: "b",
+        why: "Osteoclastos = reabsorción ósea."
+      },
+      {
+        id: "q17-14",
+        typeKey: "u1_test17",
+        q: "La diástole es:",
+        options: [{ k: "a", t: "Contracción" }, { k: "b", t: "Relajación/llenado" }, { k: "c", t: "Paro cardiaco" }],
+        correct: "b",
+        why: "Diástole = relajación y llenado."
+      },
+      {
+        id: "q17-15",
+        typeKey: "u1_test17",
+        q: "Los nervios craneales son:",
+        options: [{ k: "a", t: "12 pares" }, { k: "b", t: "31 pares" }, { k: "c", t: "7 pares" }],
+        correct: "a",
+        why: "Del encéfalo salen 12 pares."
+      },
+      {
+        id: "q17-16",
+        typeKey: "u1_test17",
+        q: "El músculo cardíaco es:",
+        options: [{ k: "a", t: "Liso y voluntario" }, { k: "b", t: "Estriado e involuntario" }, { k: "c", t: "Liso e involuntario" }],
+        correct: "b",
+        why: "Es estriado e involuntario."
+      },
+      {
+        id: "q17-17",
+        typeKey: "u1_test17",
+        q: "El colon sigmoideo está:",
+        options: [{ k: "a", t: "Antes del recto" }, { k: "b", t: "Antes del duodeno" }, { k: "c", t: "Dentro del estómago" }],
+        correct: "a",
+        why: "Va tras el descendente y antes del recto."
+      },
 
       // VF U1
-      { id:"vf-01", typeKey:"u1_vf", q:"La higiene de manos es la medida más eficaz para prevenir infecciones cruzadas.", options:[
-        {k:"a",t:"Verdadero"},{k:"b",t:"Falso"}
-      ], correct:"a", why:"La higiene de manos reduce la transmisión de microorganismos." },
-      { id:"vf-02", typeKey:"u1_vf", q:"En sedestación siempre disminuye la carga sobre los discos lumbares.", options:[
-        {k:"a",t:"Verdadero"},{k:"b",t:"Falso"}
-      ], correct:"b", why:"A menudo aumenta por rectificación lumbar/posición." },
-      { id:"vf-03", typeKey:"u1_vf", q:"Los músculos grandes se fatigan con menor rapidez que los pequeños.", options:[
-        {k:"a",t:"Verdadero"},{k:"b",t:"Falso"}
-      ], correct:"a", why:"Principio de mecánica corporal." },
-      { id:"vf-04", typeKey:"u1_vf", q:"Es recomendable girar el tronco con carga en alto para ahorrar pasos.", options:[
-        {k:"a",t:"Verdadero"},{k:"b",t:"Falso"}
-      ], correct:"b", why:"Aumenta riesgo: se gira con pies y base estable." },
-      { id:"vf-05", typeKey:"u1_vf", q:"La lordosis cervical presenta concavidad posterior.", options:[
-        {k:"a",t:"Verdadero"},{k:"b",t:"Falso"}
-      ], correct:"a", why:"Lordosis cervical y lumbar = concavidad posterior." },
-
-      // =========================
-      // U2 • MCQ (rehacido/expandido a más nivel)
-      // =========================
-
-      // Higiene, guantes, infección cruzada (más fino)
-      { id:"u2h-001", typeKey:"u2_ud2",
-        q:"En un traslado convencional, ¿cuál de estas situaciones justificaría usar guantes NO estériles según precauciones estándar?",
-        options:[
-          {k:"a",t:"Servir la comida al paciente"},
-          {k:"b",t:"Contacto con sangre/fluidos o limpieza de material potencialmente contaminado"},
-          {k:"c",t:"Trasladar una muestra cerrada al laboratorio (sin contacto con fluidos)"},
-          {k:"d",t:"Mover una cama por el pasillo"}
-        ],
-        correct:"b",
-        why:"Los guantes no estériles se usan cuando hay riesgo de contacto con sangre/fluidos o material contaminado. No se recomiendan como rutina para tareas sin riesgo."
+      {
+        id: "vf-01",
+        typeKey: "u1_vf",
+        q: "La higiene de manos es la medida más eficaz para prevenir infecciones cruzadas.",
+        options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+        correct: "a",
+        why: "La higiene de manos reduce la transmisión de microorganismos."
       },
-      { id:"u2h-002", typeKey:"u2_ud2",
-        q:"Si tras retirar los guantes vas a tocar una barandilla y luego al paciente, la medida correcta es:",
-        options:[
-          {k:"a",t:"No hacer higiene de manos porque ya llevabas guantes"},
-          {k:"b",t:"Higiene de manos inmediatamente después de retirar los guantes"},
-          {k:"c",t:"Ponerte otra vez guantes encima de los anteriores"},
-          {k:"d",t:"Solo lavarte las manos si ves sangre"}
-        ],
-        correct:"b",
-        why:"El uso de guantes NO sustituye la higiene de manos. Siempre se realiza higiene tras retirarlos para evitar transmisión."
+      {
+        id: "vf-02",
+        typeKey: "u1_vf",
+        q: "En sedestación siempre disminuye la carga sobre los discos lumbares.",
+        options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+        correct: "b",
+        why: "A menudo aumenta por rectificación lumbar/posición."
       },
-
-      // Mecánica corporal / principios (más aplicados)
-      { id:"u2m-001", typeKey:"u2_ud2",
-        q:"Durante una movilización a cama-sillón, el error que MÁS aumenta riesgo de lesión lumbar del profesional es:",
-        options:[
-          {k:"a",t:"Separar los pies y flexionar rodillas"},
-          {k:"b",t:"Mantener la espalda recta y el peso cerca del cuerpo"},
-          {k:"c",t:"Realizar una torsión de tronco mientras se soporta el peso del paciente"},
-          {k:"d",t:"Coordinar la maniobra con el compañero"}
-        ],
-        correct:"c",
-        why:"La torsión con carga es de lo más lesivo. La técnica busca mover con pies/rodillas, espalda recta y carga cerca."
+      {
+        id: "vf-03",
+        typeKey: "u1_vf",
+        q: "Los músculos grandes se fatigan con menor rapidez que los pequeños.",
+        options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+        correct: "a",
+        why: "Principio de mecánica corporal."
       },
-      { id:"u2m-002", typeKey:"u2_ud2",
-        q:"En movilización, “utilizar al máximo el centro de gravedad” significa principalmente:",
-        options:[
-          {k:"a",t:"Trabajar con la carga lo más alejada posible del cuerpo"},
-          {k:"b",t:"Sostener el peso lo más pegado al cuerpo y con base estable"},
-          {k:"c",t:"Inclinar la espalda hacia delante para hacer palanca"},
-          {k:"d",t:"Realizar la fuerza solo con los brazos"}
-        ],
-        correct:"b",
-        why:"Cargar cerca del cuerpo reduce el brazo de palanca y la carga sobre la columna."
+      {
+        id: "vf-04",
+        typeKey: "u1_vf",
+        q: "Es recomendable girar el tronco con carga en alto para ahorrar pasos.",
+        options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+        correct: "b",
+        why: "Aumenta riesgo: se gira con pies y base estable."
       },
-      { id:"u2m-003", typeKey:"u2_ud2",
-        q:"Antes de movilizar a un paciente dependiente con drenajes y sonda vesical, la prioridad es:",
-        options:[
-          {k:"a",t:"Mover rápido para evitar que se enfríe"},
-          {k:"b",t:"Controlar y asegurar vías/drenajes/sondas para evitar tirones o arrancamientos"},
-          {k:"c",t:"Dejar a la familia sujetar las bolsas"},
-          {k:"d",t:"Subir la barandilla del lado por donde vas a girar"}
-        ],
-        correct:"b",
-        why:"El temario insiste en vigilar vías, drenajes y sondas para prevenir arrancamientos y lesiones."
-      },
-
-      // Posiciones y úlceras (nivel examen)
-      { id:"u2p-001", typeKey:"u2_ud2",
-        q:"Paciente en decúbito lateral. ¿Qué zona aparece como punto de presión típico según el temario?",
-        options:[
-          {k:"a",t:"Sacro"},
-          {k:"b",t:"Trocánter"},
-          {k:"c",t:"Omóplatos"},
-          {k:"d",t:"Mejillas"}
-        ],
-        correct:"b",
-        why:"En decúbito lateral: maléolo, cóndilos, trocánter, costillas, oreja, acromion."
-      },
-      { id:"u2p-002", typeKey:"u2_ud2",
-        q:"La causa fisiopatológica principal de una úlcera por presión es:",
-        options:[
-          {k:"a",t:"Reacción alérgica al colchón"},
-          {k:"b",t:"Colapso de capilares por presión mantenida con disminución del riego sanguíneo"},
-          {k:"c",t:"Falta de hidratación"},
-          {k:"d",t:"Uso de apósitos durante muchas horas"}
-        ],
-        correct:"b",
-        why:"La presión mantenida colapsa capilares, causa isquemia y puede evolucionar a necrosis."
-      },
-
-      // Material y dispositivos (más fino)
-      { id:"u2d-001", typeKey:"u2_ud2",
-        q:"Para un paciente que NO puede dar pequeños pasos pero puede mantenerse de pie con ayuda, el dispositivo más útil para sentarlo en la silla es:",
-        options:[
-          {k:"a",t:"Transfer (rollboard)"},
-          {k:"b",t:"Disco giratorio"},
-          {k:"c",t:"Grúa de techo"},
-          {k:"d",t:"Travesero doblado"}
-        ],
-        correct:"b",
-        why:"El disco giratorio permite rotación en bipedestación cuando no puede pivotar con pasos."
-      },
-      { id:"u2d-002", typeKey:"u2_ud2",
-        q:"En una sedestación con grúa, ¿qué detalle evita molestias/dolor y aumenta seguridad?",
-        options:[
-          {k:"a",t:"Dejar pliegues en el arnés para que “agarre más”"},
-          {k:"b",t:"Asegurar arnés sin pliegues y con talla adecuada"},
-          {k:"c",t:"Bajar al paciente rápido para acabar antes"},
-          {k:"d",t:"Enganchar solo 2 correas del arnés"}
-        ],
-        correct:"b",
-        why:"Pliegues pueden provocar dolor/lesión por presión; talla correcta y arnés bien colocado es clave."
-      },
-
-      // Traslado (secuencia real)
-      { id:"u2t-001", typeKey:"u2_ud2",
-        q:"El paso más correcto al llegar a la unidad para recoger al paciente es:",
-        options:[
-          {k:"a",t:"Entrar directamente en la habitación sin avisar"},
-          {k:"b",t:"Dirigirse a la enfermera responsable del paciente para coordinar el traslado"},
-          {k:"c",t:"Pedir al familiar que firme la documentación"},
-          {k:"d",t:"Preparar el ascensor antes de identificar al paciente"}
-        ],
-        correct:"b",
-        why:"La secuencia del traslado incluye avisar/coordinar con enfermería al llegar a la unidad."
-      },
-      { id:"u2t-002", typeKey:"u2_ud2",
-        q:"Durante el traslado, ante un empeoramiento del paciente, lo correcto es:",
-        options:[
-          {k:"a",t:"Continuar hasta el destino para no interrumpir el circuito"},
-          {k:"b",t:"Entrar en la unidad más cercana y avisar a enfermería para valoración"},
-          {k:"c",t:"Llamar por megafonía y seguir andando"},
-          {k:"d",t:"Parar en el pasillo y esperar a que se recupere"}
-        ],
-        correct:"b",
-        why:"El temario indica que ante imprevistos no se espera al destino: se acude a unidad cercana."
-      },
-
-      // Oxígeno (aplicado y con matiz del temario)
-      { id:"u2o-001", typeKey:"u2_ud2",
-        q:"Antes de iniciar un traslado con botella de O2, el paso más importante es:",
-        options:[
-          {k:"a",t:"Conectar la mascarilla al paciente y luego mirar el manómetro"},
-          {k:"b",t:"Comprobar O2 disponible y estimar autonomía según caudal prescrito"},
-          {k:"c",t:"Abrir el caudal al máximo para ir sobrado"},
-          {k:"d",t:"Usar siempre gafas nasales aunque haya orden de mascarilla"}
-        ],
-        correct:"b",
-        why:"Se debe comprobar el oxígeno restante y asegurar que durará el traslado al caudal indicado."
-      },
-
-      // Aislamientos: inmunodeprimido (más nivel)
-      { id:"u2a-001", typeKey:"u2_ud2",
-        q:"En aislamiento protector (paciente inmunodeprimido), la combinación indicada en el temario para el traslado es:",
-        options:[
-          {k:"a",t:"Paciente con mascarilla quirúrgica; profesional con FFP2 durante el trayecto"},
-          {k:"b",t:"Paciente con FFP2 para el traslado; profesional con quirúrgica para la transferencia"},
-          {k:"c",t:"Paciente sin mascarilla; profesional con FFP3 siempre"},
-          {k:"d",t:"Paciente con FFP2 solo en el ascensor"}
-        ],
-        correct:"b",
-        why:"El temario especifica FFP2 para el paciente durante el traslado y quirúrgica para el profesional en la transferencia."
-      },
-
-      // Drenajes/sondas (más nivel)
-      { id:"u2s-001", typeKey:"u2_ud2",
-        q:"Respecto a bolsas recolectoras (sonda vesical/urímetro) durante una movilización, lo correcto es:",
-        options:[
-          {k:"a",t:"Elevar la bolsa por encima del nivel del paciente para que drene mejor"},
-          {k:"b",t:"Mantener la bolsa por debajo del nivel del paciente y evitar tirones"},
-          {k:"c",t:"Suspender la bolsa colgándola del brazo del paciente"},
-          {k:"d",t:"Desconectar conexiones si molestan durante el giro"}
-        ],
-        correct:"b",
-        why:"Se evita elevar por encima del paciente, no se manipulan conexiones y se previenen tirones."
-      },
-
-      // --- (IMPORTANTE) Para que puedas hacer SIEMPRE 30 preguntas en U2,
-      // añadimos más preguntas de nivel similar (bloque “banco grande”).
-      // ---------------------------------------------------------------
-
-      { id:"u2x-001", typeKey:"u2_ud2",
-        q:"En una movilización entre 2 celadores, el riesgo principal si no se coordina quién manda la maniobra es:",
-        options:[
-          {k:"a",t:"Que el paciente se maree menos"},
-          {k:"b",t:"Que haya movimientos desincronizados y aumente el riesgo de caída/lesión"},
-          {k:"c",t:"Que se reduzca el esfuerzo del profesional"},
-          {k:"d",t:"Que la movilización sea más silenciosa"}
-        ],
-        correct:"b",
-        why:"El temario insiste en acordar quién coordina para evitar indecisiones y movimientos bruscos."
-      },
-      { id:"u2x-002", typeKey:"u2_ud2",
-        q:"¿Cuál es el motivo por el que se recomienda NO sujetar al paciente “directamente de la axila” al incorporarlo?",
-        options:[
-          {k:"a",t:"Porque es incómodo para el profesional únicamente"},
-          {k:"b",t:"Porque puede producir efecto pinza y lesiones en estructuras axilares"},
-          {k:"c",t:"Porque impide que el paciente respire"},
-          {k:"d",t:"Porque está prohibido por ley"}
-        ],
-        correct:"b",
-        why:"Se advierte de no sujetar con manos en axila para evitar lesiones por efecto pinza."
-      },
-      { id:"u2x-003", typeKey:"u2_ud2",
-        q:"En un paciente politraumático, la movilización correcta se caracteriza por:",
-        options:[
-          {k:"a",t:"Girar por segmentos: primero hombros, luego pelvis"},
-          {k:"b",t:"Movilización en bloque con 3 personas, una en cabeza coordinando"},
-          {k:"c",t:"Sentarlo rápido para valorar dolor"},
-          {k:"d",t:"Usar disco giratorio siempre"}
-        ],
-        correct:"b",
-        why:"Politraumático: movilización en bloque, coordinación en cabeza (enfermería/médico) y dos en cuerpo."
-      },
-      { id:"u2x-004", typeKey:"u2_ud2",
-        q:"En un paciente de cirugía cardíaca (esternotomía), al incorporarlo de la cama se debe evitar:",
-        options:[
-          {k:"a",t:"Que use el triángulo/trapecio para tirar con brazos"},
-          {k:"b",t:"Que se abrace el pecho"},
-          {k:"c",t:"Que gire primero de lado"},
-          {k:"d",t:"Que use el codo para incorporarse"}
-        ],
-        correct:"a",
-        why:"Tras cirugía cardíaca no debe usar el triángulo; debe proteger esternón abrazando el pecho y girar de lado."
-      },
-      { id:"u2x-005", typeKey:"u2_ud2",
-        q:"En prótesis de rodilla, en el momento de levantarse, el punto clave es:",
-        options:[
-          {k:"a",t:"Flexionar al máximo la rodilla operada"},
-          {k:"b",t:"No flexionar la rodilla operada en el levantamiento; apoyarse con la pierna no operada"},
-          {k:"c",t:"Apoyar siempre la pierna operada primero"},
-          {k:"d",t:"Evitar que el paciente colabore"}
-        ],
-        correct:"b",
-        why:"Rodilla operada: no flexionarla al levantarse; apoyo con pierna no operada."
-      },
-      { id:"u2x-006", typeKey:"u2_ud2",
-        q:"En un traslado en camilla, ¿qué acción es obligatoria durante el recorrido?",
-        options:[
-          {k:"a",t:"Bajar barandillas para que el paciente vea"},
-          {k:"b",t:"Mantener barandillas levantadas y vigilar al paciente"},
-          {k:"c",t:"Dejar al paciente solo mientras llamas por teléfono"},
-          {k:"d",t:"Quitar la sábana para evitar calor"}
-        ],
-        correct:"b",
-        why:"Barandillas levantadas y vigilancia constante: durante el traslado la responsabilidad es del celador."
-      },
-      { id:"u2x-007", typeKey:"u2_ud2",
-        q:"La definición de “paciente semidependiente” en movilización es:",
-        options:[
-          {k:"a",t:"No ofrece ayuda y requiere movilización total"},
-          {k:"b",t:"Colabora parcialmente y el profesional da apoyo/seguridad"},
-          {k:"c",t:"Solo camina si va sedado"},
-          {k:"d",t:"Siempre requiere grúa"}
-        ],
-        correct:"b",
-        why:"Semidependiente: ayuda en la movilización, el profesional apoya y asegura la maniobra."
-      },
-      { id:"u2x-008", typeKey:"u2_ud2",
-        q:"Antes de realizar una transferencia (cama-camilla), ¿qué es lo correcto según normas generales?",
-        options:[
-          {k:"a",t:"Realizarla siempre solo para ser más rápido"},
-          {k:"b",t:"Verificar identidad del paciente e informar del procedimiento"},
-          {k:"c",t:"No preparar el entorno para evitar perder tiempo"},
-          {k:"d",t:"Manipular conexiones de drenajes si molestan"}
-        ],
-        correct:"b",
-        why:"Normas generales: verificación identidad, informar al paciente y controlar vías/drenajes."
-      },
-      { id:"u2x-009", typeKey:"u2_ud2",
-        q:"En traslado de paciente traumático, una medida que reduce dolor y riesgo es:",
-        options:[
-          {k:"a",t:"Entrar al ascensor de lado para ir más rápido"},
-          {k:"b",t:"Extremar cuidado en desniveles/entrada-salida de ascensores para evitar golpes"},
-          {k:"c",t:"Bajar barandillas para que no se enganche la férula"},
-          {k:"d",t:"Hacer el traslado sin frenar la camilla"}
-        ],
-        correct:"b",
-        why:"Se insiste en controlar golpes y desniveles (especialmente en ascensores) para no causar dolor."
-      },
-      { id:"u2x-010", typeKey:"u2_ud2",
-        q:"Respecto a la limpieza y desinfección del material, ¿qué afirmación es correcta?",
-        options:[
-          {k:"a",t:"Si no se ve sucia, nunca hace falta desinfectar"},
-          {k:"b",t:"Limpieza elimina suciedad visible y es paso previo a desinfección"},
-          {k:"c",t:"Desinfección solo se hace con agua"},
-          {k:"d",t:"Si el paciente estaba aislado, basta con ventilar la camilla"}
-        ],
-        correct:"b",
-        why:"Limpieza = elimina suciedad visible; desinfección = proceso químico que inactiva patógenos."
-      },
-      { id:"u2x-011", typeKey:"u2_ud2",
-  q:"Antes de iniciar una transferencia cama-camilla, ¿qué combinación es la más segura?",
-  options:[
-    {k:"a",t:"Camilla en diagonal y sin frenos, para maniobrar mejor"},
-    {k:"b",t:"Camilla paralela a la cama, frenos puestos y alturas ajustadas"},
-    {k:"c",t:"Camilla perpendicular y con barandillas bajadas"},
-    {k:"d",t:"Da igual la posición mientras el paciente no se mueva"}
-  ],
-  correct:"b",
-  why:"Para transferir con seguridad, camilla paralela, frenos activados y alturas similares reduce esfuerzo y riesgo de caída."
-},
-{ id:"u2x-012", typeKey:"u2_ud2",
-  q:"¿Qué acción es correcta si el paciente lleva drenajes al cambiarlo de cama a camilla?",
-  options:[
-    {k:"a",t:"Tirar con cuidado de los tubos para que no queden doblados"},
-    {k:"b",t:"Comprobar que quedan libres, sin tracción y con holgura suficiente"},
-    {k:"c",t:"Desconectar los drenajes durante la transferencia"},
-    {k:"d",t:"Colocar las bolsas por encima del paciente para que no cuelguen"}
-  ],
-  correct:"b",
-  why:"Siempre evitar tracción/arrancamiento: revisar tubuladuras, holguras y posición de bolsas."
-},
-{ id:"u2x-013", typeKey:"u2_ud2",
-  q:"En movilización, ¿qué instrucción al paciente es más adecuada para coordinar el esfuerzo?",
-  options:[
-    {k:"a",t:"“Cuando quieras, hazlo tú”"},
-    {k:"b",t:"“A la de tres: uno, dos y tres”"},
-    {k:"c",t:"“Muévete sin avisar y yo te sigo”"},
-    {k:"d",t:"“No hace falta que colabores”"}
-  ],
-  correct:"b",
-  why:"Contar “a la de tres” sincroniza al equipo y al paciente, evitando tirones y movimientos bruscos."
-},
-{ id:"u2x-014", typeKey:"u2_ud2",
-  q:"Durante un traslado en silla, el reposapiés debe estar:",
-  options:[
-    {k:"a",t:"Siempre retirado, para que no moleste"},
-    {k:"b",t:"Colocado y ajustado si el paciente lleva los pies apoyados"},
-    {k:"c",t:"Da igual, el paciente puede colgar los pies"},
-    {k:"d",t:"Solo se usa en pacientes pediátricos"}
-  ],
-  correct:"b",
-  why:"El reposapiés evita arrastres, golpes y malas posturas; aporta seguridad y confort."
-},
-{ id:"u2x-015", typeKey:"u2_ud2",
-  q:"El “paciente dependiente” en movilización se caracteriza por:",
-  options:[
-    {k:"a",t:"Colabora plenamente en la maniobra"},
-    {k:"b",t:"Colabora parcialmente"},
-    {k:"c",t:"No colabora y requiere ayuda total del personal/ayudas técnicas"},
-    {k:"d",t:"Solo necesita supervisión"}
-  ],
-  correct:"c",
-  why:"Dependiente = necesita ayuda total; suele requerir 2 profesionales y/o grúa según caso."
-},
-{ id:"u2x-016", typeKey:"u2_ud2",
-  q:"Al subir un paciente hacia la cabecera, lo correcto es:",
-  options:[
-    {k:"a",t:"Cabezal elevado para que el paciente “pese menos”"},
-    {k:"b",t:"Cama horizontal, pedir que flexione rodillas y empuje con plantas de los pies"},
-    {k:"c",t:"Tirar del paciente por los brazos"},
-    {k:"d",t:"Girar el tronco con la carga para ahorrar pasos"}
-  ],
-  correct:"b",
-  why:"Se hace con cama plana, pidiendo colaboración. Evita tirones en brazos y reduce esfuerzo lumbar."
-},
-{ id:"u2x-017", typeKey:"u2_ud2",
-  q:"En un paciente con riesgo de caídas, durante la estancia en cama lo adecuado es:",
-  options:[
-    {k:"a",t:"Barandillas bajadas para que pueda levantarse libremente"},
-    {k:"b",t:"Valorar medidas de seguridad como barandillas y cama baja según protocolo"},
-    {k:"c",t:"Ponerlo siempre en Trendelenburg"},
-    {k:"d",t:"No informar a enfermería para no molestar"}
-  ],
-  correct:"b",
-  why:"La seguridad del paciente es prioritaria; las medidas dependen del protocolo y valoración del equipo."
-},
-{ id:"u2x-018", typeKey:"u2_ud2",
-  q:"¿Qué afirmación sobre el transfer (tabla/rollboard) es correcta?",
-  options:[
-    {k:"a",t:"Se usa para recorrer pasillos con el paciente encima"},
-    {k:"b",t:"Facilita el deslizamiento en transferencias cama-camilla"},
-    {k:"c",t:"Sustituye siempre a la grúa"},
-    {k:"d",t:"Solo se usa en pacientes que caminan"}
-  ],
-  correct:"b",
-  why:"El transfer sirve para deslizar en transferencias; no es un medio de transporte por pasillos."
-},
-{ id:"u2x-019", typeKey:"u2_ud2",
-  q:"Respecto al freno de cama/camilla, ¿cuándo debe activarse con prioridad?",
-  options:[
-    {k:"a",t:"Solo al terminar el traslado"},
-    {k:"b",t:"Durante transferencias y siempre que el paciente suba/baje"},
-    {k:"c",t:"Nunca, porque dificulta maniobrar"},
-    {k:"d",t:"Solo si el paciente lo pide"}
-  ],
-  correct:"b",
-  why:"Frenar en transferencias evita desplazamientos involuntarios y caídas."
-},
-{ id:"u2x-020", typeKey:"u2_ud2",
-  q:"En traslado intrahospitalario, la responsabilidad del paciente durante el recorrido recae en:",
-  options:[
-    {k:"a",t:"El familiar acompañante"},
-    {k:"b",t:"El celador que realiza el traslado"},
-    {k:"c",t:"El médico que lo solicitó"},
-    {k:"d",t:"Nadie, porque es un trayecto corto"}
-  ],
-  correct:"b",
-  why:"Durante el traslado, quien lo realiza debe vigilar y garantizar seguridad y confort."
-},
-{ id:"u2x-021", typeKey:"u2_ud2",
-  q:"Si un paciente empieza con náuseas/vómitos durante el traslado, la actuación más segura es:",
-  options:[
-    {k:"a",t:"Seguir andando para llegar antes"},
-    {k:"b",t:"Colocar al paciente en posición segura si es posible y avisar en la unidad más cercana"},
-    {k:"c",t:"Tumbarlo completamente boca arriba"},
-    {k:"d",t:"Darle agua para cortar el vómito"}
-  ],
-  correct:"b",
-  why:"Riesgo de broncoaspiración: priorizar seguridad, posición adecuada y aviso a personal sanitario."
-},
-{ id:"u2x-022", typeKey:"u2_ud2",
-  q:"La posición de Fowler se asocia principalmente a:",
-  options:[
-    {k:"a",t:"Paciente boca abajo"},
-    {k:"b",t:"Cabezal elevado (incorporado)"},
-    {k:"c",t:"Cabeza más baja que los pies"},
-    {k:"d",t:"Piernas elevadas y cabeza neutra"}
-  ],
-  correct:"b",
-  why:"Fowler = decúbito supino con cabezal elevado (grado variable)."
-},
-{ id:"u2x-023", typeKey:"u2_ud2",
-  q:"¿Qué situación indica mejor el uso de grúa?",
-  options:[
-    {k:"a",t:"Paciente autónomo que camina con bastón"},
-    {k:"b",t:"Paciente muy dependiente con poca o nula colaboración"},
-    {k:"c",t:"Paciente que solo necesita supervisión"},
-    {k:"d",t:"Paciente que puede pivotar sin ayuda"}
-  ],
-  correct:"b",
-  why:"La grúa está indicada en pacientes dependientes con baja colaboración, para evitar lesiones y caídas."
-},
-{ id:"u2x-024", typeKey:"u2_ud2",
-  q:"En el uso del arnés de grúa, un error típico que puede causar dolor es:",
-  options:[
-    {k:"a",t:"Usar la talla adecuada"},
-    {k:"b",t:"Dejar pliegues o arrugas bajo el paciente"},
-    {k:"c",t:"Ajustar correctamente las sujeciones"},
-    {k:"d",t:"Revisar que las correas están equilibradas"}
-  ],
-  correct:"b",
-  why:"Pliegues generan presión localizada y molestias; el arnés debe quedar liso y bien colocado."
-},
-{ id:"u2x-025", typeKey:"u2_ud2",
-  q:"En una transferencia cama-sillón, ¿qué NO debe permitirse?",
-  options:[
-    {k:"a",t:"Que el paciente apoye las manos en la cama para impulsarse si puede"},
-    {k:"b",t:"Que el paciente te sujete por el cuello"},
-    {k:"c",t:"Que el profesional flexione rodillas"},
-    {k:"d",t:"Que se frene el sillón antes de sentar"}
-  ],
-  correct:"b",
-  why:"Sujeción por el cuello desestabiliza y aumenta riesgo de lesión/caída."
-},
-{ id:"u2x-026", typeKey:"u2_ud2",
-  q:"En aislamiento protector (inmunodeprimido), el objetivo principal es:",
-  options:[
-    {k:"a",t:"Evitar que el paciente contagie a otros"},
-    {k:"b",t:"Evitar que el paciente se infecte por microorganismos externos"},
-    {k:"c",t:"Evitar que el paciente camine"},
-    {k:"d",t:"Que el paciente no hable con nadie"}
-  ],
-  correct:"b",
-  why:"Aislamiento protector = proteger al paciente inmunodeprimido del entorno."
-},
-{ id:"u2x-027", typeKey:"u2_ud2",
-  q:"En una silla de traslado, al incorporarse el paciente, lo correcto es:",
-  options:[
-    {k:"a",t:"No frenar la silla para que se adapte al movimiento"},
-    {k:"b",t:"Frenar la silla y colocarla lo más cerca posible del paciente"},
-    {k:"c",t:"Colocarla lejos para tener espacio"},
-    {k:"d",t:"Sentar al paciente sin explicar nada"}
-  ],
-  correct:"b",
-  why:"Freno + proximidad reducen caídas y esfuerzo. Explicar mejora colaboración."
-},
-{ id:"u2x-028", typeKey:"u2_ud2",
-  q:"Tras un traslado con oxígeno, una medida correcta de seguridad del material es:",
-  options:[
-    {k:"a",t:"Dejar la botella abierta para el siguiente"},
-    {k:"b",t:"Cerrar la botella, revisar manómetro y devolver el material correctamente"},
-    {k:"c",t:"Aumentar el caudal para vaciarla antes"},
-    {k:"d",t:"Guardar la botella tumbada sin sujeción"}
-  ],
-  correct:"b",
-  why:"Se cierra el suministro y se revisa/ordena el material para el siguiente uso."
-},
-{ id:"u2x-029", typeKey:"u2_ud2",
-  q:"En una cama hospitalaria, el “tope de pies” sirve para:",
-  options:[
-    {k:"a",t:"Sujetar el palo de suero"},
-    {k:"b",t:"Evitar que el paciente se deslice al elevar el cabezal"},
-    {k:"c",t:"Elevar el oxígeno"},
-    {k:"d",t:"Bloquear el mando eléctrico"}
-  ],
-  correct:"b",
-  why:"Evita deslizamiento del paciente hacia abajo cuando la cama está incorporada."
-},
-{ id:"u2x-030", typeKey:"u2_ud2",
-  q:"En traslado traumático, el aspecto más relevante al pasar por puertas/ascensor es:",
-  options:[
-    {k:"a",t:"Entrar rápido para no esperar"},
-    {k:"b",t:"Evitar golpes y controlar desniveles para no aumentar dolor"},
-    {k:"c",t:"Bajar barandillas para que no choquen"},
-    {k:"d",t:"Dejar que el paciente se incorpore solo"}
-  ],
-  correct:"b",
-  why:"En traumatología se evita cualquier golpe/traqueteo: controla desniveles, puertas y ascensor."
-},
-
-      // --- puedes seguir ampliando aquí si quieres aún más banco, pero ya tienes de sobra para 30 sin repetir.
-
-      // =========================
-      // U2 • Cuestionario de clase (mantenido tal cual)
-      // =========================
-      { id:"u2-custom-01", typeKey:"u2_test11",
-        q:"¿Qué debemos hacer cuando acudimos a una habitación a movilizar a un paciente?",
-        options:[
-          {k:"a",t:"Pedir a la familia que nos ayude a movilizarlo"},
-          {k:"b",t:"Pedir a la familia que esperen fuera de la habitación hasta que terminemos nuestro trabajo"},
-          {k:"c",t:"Pedir a enfermería que deje de hacer lo que está haciendo para venir a ayudarnos"},
-          {k:"d",t:"Antes de comenzar el procedimiento explicaremos al paciente su estado de salud"}
-        ],
-        correct:"b",
-        why:"Preservar intimidad del paciente: pedir a las visitas que esperen fuera. La familia no debe ayudar y el celador no explica estado de salud."
-      },
-      { id:"u2-custom-02", typeKey:"u2_test11",
-        q:"No es objetivo de la movilización:",
-        options:[
-          {k:"a",t:"Contribuir con nuestro trabajo en la recuperación del paciente"},
-          {k:"b",t:"Evitar posibles complicaciones"},
-          {k:"c",t:"Ayudar totalmente al paciente a moverse"},
-          {k:"d",t:"Mantener el cuerpo alineado"}
-        ],
-        correct:"c",
-        why:"Los objetivos incluyen comodidad, alineación, prevenir complicaciones/úlceras y ayudar en recuperación. “Ayudar totalmente” es definición/acción, no objetivo."
-      },
-      { id:"u2-custom-03", typeKey:"u2_test11",
-        q:"Es consecuencia del reposo absoluto prolongado en pacientes:",
-        options:[
-          {k:"a",t:"La debilidad muscular"},
-          {k:"b",t:"La aparición de úlceras por decúbito"},
-          {k:"c",t:"Los problemas circulatorios"},
-          {k:"d",t:"Todas las respuestas son correctas"}
-        ],
-        correct:"d",
-        why:"Reposo prolongado puede causar debilidad muscular, úlceras por presión y problemas circulatorios."
-      },
-      { id:"u2-custom-04", typeKey:"u2_test11",
-        q:"Cuando encontramos que el paciente tiene puntos de presión en los dedos, rodillas o genitales, pensamos que la posición que tiene el paciente es:",
-        options:[
-          {k:"a",t:"Decúbito supino"},
-          {k:"b",t:"Decúbito prono"},
-          {k:"c",t:"Decúbito lateral"},
-          {k:"d",t:"Sedestación"}
-        ],
-        correct:"b",
-        why:"Decúbito prono: dedos, rodillas y genitales (hombres) / mamas (mujeres), entre otros."
-      },
-      { id:"u2-custom-05", typeKey:"u2_test11",
-        q:"¿Cuál es el origen de que se produzcan las úlceras en los pacientes?",
-        options:[
-          {k:"a",t:"El colapso de los capilares que nutren la piel en una zona con presión"},
-          {k:"b",t:"La falta de higiene del paciente"},
-          {k:"c",t:"La sedestación"},
-          {k:"d",t:"El uso excesivo de apósitos y esparadrapos"}
-        ],
-        correct:"a",
-        why:"Presión mantenida colapsa capilares → falta riego → úlcera y posible necrosis."
-      },
-      { id:"u2-custom-06", typeKey:"u2_test11",
-        q:"Si el paciente se encuentra en la cama con el cabezal elevado 90 cm, decimos que su posición es:",
-        options:[
-          {k:"a",t:"Trendelenburg"},
-          {k:"b",t:"Decúbito supino"},
-          {k:"c",t:"Antitrendelenburg"},
-          {k:"d",t:"Posición de Fowler"}
-        ],
-        correct:"d",
-        why:"Fowler: paciente en decúbito supino con cabezal elevado."
-      },
-      { id:"u2-custom-07", typeKey:"u2_test11",
-        q:"Colocar al paciente en posición de seguridad podría evitar:",
-        options:[
-          {k:"a",t:"Un ictus"},
-          {k:"b",t:"Una muerte súbita"},
-          {k:"c",t:"Una broncoaspiración"},
-          {k:"d",t:"Que se muerda la lengua"}
-        ],
-        correct:"c",
-        why:"Posición de seguridad (lateral) reduce riesgo de broncoaspiración en vómitos."
-      },
-      { id:"u2-custom-08", typeKey:"u2_test11",
-        q:"En la movilización del paciente hacia la cabecera de la cama no debemos:",
-        options:[
-          {k:"a",t:"Lavarnos las manos antes del contacto con el paciente"},
-          {k:"b",t:"Elevar la cabecera"},
-          {k:"c",t:"Pedir al paciente que flexione las rodillas y haga fuerza con la planta de los pies"},
-          {k:"d",t:"Poner uno de nuestros brazos por debajo de la cadera"}
-        ],
-        correct:"b",
-        why:"Para subir a cabecera se baja el cabezal y se trabaja con cama plana; se pide colaboración y se colocan manos en hombros/cadera."
-      },
-      { id:"u2-custom-09", typeKey:"u2_test11",
-        q:"En la movilización de cama a sillón no debemos:",
-        options:[
-          {k:"a",t:"Poner previamente una sábana en el sillón"},
-          {k:"b",t:"Al incorporarlo, colocar los brazos del paciente sobre el tórax"},
-          {k:"c",t:"Dejar que el paciente nos sujete por el cuello"},
-          {k:"d",t:"Si no hay riesgos, dejar que pase sólo de la cama al sillón"}
-        ],
-        correct:"c",
-        why:"Nunca permitir sujeción por el cuello: te desestabiliza y aumenta riesgo de lesión/caída."
-      },
-      { id:"u2-custom-10", typeKey:"u2_test11",
-        q:"Referente al uso de las grúas es cierto que:",
-        options:[
-          {k:"a",t:"Hay arneses de diferentes tamaños"},
-          {k:"b",t:"Con ella evitamos que el paciente haga cualquier esfuerzo"},
-          {k:"c",t:"Es doloroso si nos quedan pliegues al colocar el arnés"},
-          {k:"d",t:"Todas las respuestas son ciertas"}
-        ],
-        correct:"d",
-        why:"Arneses con tallas; reduce esfuerzo del paciente; pliegues pueden ser molestos/dolorosos."
-      },
-      { id:"u2-custom-11", typeKey:"u2_test11",
-        q:"¿Cómo se denomina a la pérdida de sensibilidad y fuerza de la parte inferior del cuerpo del paciente?",
-        options:[
-          {k:"a",t:"Hemiplejia"},
-          {k:"b",t:"Paraplejia"},
-          {k:"c",t:"Hemiparesia"},
-          {k:"d",t:"Tetraplejia"}
-        ],
-        correct:"b",
-        why:"Paraplejia afecta a miembros inferiores; hemiplejia es un lado; hemiparesia parcial; tetraplejia 4 extremidades."
+      {
+        id: "vf-05",
+        typeKey: "u1_vf",
+        q: "La lordosis cervical presenta concavidad posterior.",
+        options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+        correct: "a",
+        why: "Lordosis cervical y lumbar = concavidad posterior."
       },
 
       // =========================
-      // U2 • Verdadero/Falso (NUEVO + el que me pasaste)
+      // U2 • MCQ
       // =========================
-      // (a=Verdadero, b=Falso)
-      { id:"u2vf-01", typeKey:"u2_vf",
-        q:"Cuando trasladamos a un paciente inmunodeprimido ha de llevar colocada una mascarilla para su protección.",
-        options:[{k:"a",t:"Verdadero"},{k:"b",t:"Falso"}],
-        correct:"a",
-        why:"Aislamiento protector: el objetivo es proteger al paciente de gérmenes externos durante el traslado."
+      {
+        id: "u2h-001",
+        typeKey: "u2_ud2",
+        q: "En un traslado convencional, ¿cuál de estas situaciones justificaría usar guantes NO estériles según precauciones estándar?",
+        options: [
+          { k: "a", t: "Servir la comida al paciente" },
+          { k: "b", t: "Contacto con sangre/fluidos o limpieza de material potencialmente contaminado" },
+          { k: "c", t: "Trasladar una muestra cerrada al laboratorio (sin contacto con fluidos)" },
+          { k: "d", t: "Mover una cama por el pasillo" }
+        ],
+        correct: "b",
+        why: "Los guantes no estériles se usan cuando hay riesgo de contacto con sangre/fluidos o material contaminado. No se recomiendan como rutina para tareas sin riesgo."
       },
-      { id:"u2vf-02", typeKey:"u2_vf",
-        q:"Cuando coloquemos oxígeno al paciente debemos abrir y regular el caudal antes de conectar la mascarilla a la botella de oxígeno.",
-        options:[{k:"a",t:"Verdadero"},{k:"b",t:"Falso"}],
-        correct:"a",
-        why:"Según el temario: se abre y regula el caudal antes para evitar problemas y comprobar funcionamiento."
+      {
+        id: "u2h-002",
+        typeKey: "u2_ud2",
+        q: "Si tras retirar los guantes vas a tocar una barandilla y luego al paciente, la medida correcta es:",
+        options: [
+          { k: "a", t: "No hacer higiene de manos porque ya llevabas guantes" },
+          { k: "b", t: "Higiene de manos inmediatamente después de retirar los guantes" },
+          { k: "c", t: "Ponerte otra vez guantes encima de los anteriores" },
+          { k: "d", t: "Solo lavarte las manos si ves sangre" }
+        ],
+        correct: "b",
+        why: "El uso de guantes NO sustituye la higiene de manos. Siempre se realiza higiene tras retirarlos para evitar transmisión."
       },
-      { id:"u2vf-03", typeKey:"u2_vf",
-        q:"Debemos comprobar la cantidad de oxígeno que queda en la botella al finalizar el traslado.",
-        options:[{k:"a",t:"Verdadero"},{k:"b",t:"Falso"}],
-        correct:"b",
-        why:"El temario insiste especialmente en comprobar el O2 ANTES de iniciar el traslado para asegurar autonomía; tal como está redactada (“al finalizar”), se considera falsa."
+      {
+        id: "u2m-001",
+        typeKey: "u2_ud2",
+        q: "Durante una movilización a cama-sillón, el error que MÁS aumenta riesgo de lesión lumbar del profesional es:",
+        options: [
+          { k: "a", t: "Separar los pies y flexionar rodillas" },
+          { k: "b", t: "Mantener la espalda recta y el peso cerca del cuerpo" },
+          { k: "c", t: "Realizar una torsión de tronco mientras se soporta el peso del paciente" },
+          { k: "d", t: "Coordinar la maniobra con el compañero" }
+        ],
+        correct: "c",
+        why: "La torsión con carga es de lo más lesivo. La técnica busca mover con pies/rodillas, espalda recta y carga cerca."
       },
-      { id:"u2vf-04", typeKey:"u2_vf",
-        q:"Dentro de las medidas de prevención de dolores de espalda se encuentra cargar al paciente lo más cerca posible de nuestro cuerpo.",
-        options:[{k:"a",t:"Verdadero"},{k:"b",t:"Falso"}],
-        correct:"a",
-        why:"Carga cerca del cuerpo reduce el brazo de palanca y el estrés lumbar."
+      {
+        id: "u2m-002",
+        typeKey: "u2_ud2",
+        q: "En movilización, “utilizar al máximo el centro de gravedad” significa principalmente:",
+        options: [
+          { k: "a", t: "Trabajar con la carga lo más alejada posible del cuerpo" },
+          { k: "b", t: "Sostener el peso lo más pegado al cuerpo y con base estable" },
+          { k: "c", t: "Inclinar la espalda hacia delante para hacer palanca" },
+          { k: "d", t: "Realizar la fuerza solo con los brazos" }
+        ],
+        correct: "b",
+        why: "Cargar cerca del cuerpo reduce el brazo de palanca y la carga sobre la columna."
       },
-      { id:"u2vf-05", typeKey:"u2_vf",
-        q:"El transfer se utiliza para trasladar al paciente de una habitación a otra.",
-        options:[{k:"a",t:"Verdadero"},{k:"b",t:"Falso"}],
-        correct:"b",
-        why:"El transfer es para transferencias (cama-camilla/sillón), no para desplazarse entre habitaciones."
+      {
+        id: "u2m-003",
+        typeKey: "u2_ud2",
+        q: "Antes de movilizar a un paciente dependiente con drenajes y sonda vesical, la prioridad es:",
+        options: [
+          { k: "a", t: "Mover rápido para evitar que se enfríe" },
+          { k: "b", t: "Controlar y asegurar vías/drenajes/sondas para evitar tirones o arrancamientos" },
+          { k: "c", t: "Dejar a la familia sujetar las bolsas" },
+          { k: "d", t: "Subir la barandilla del lado por donde vas a girar" }
+        ],
+        correct: "b",
+        why: "El temario insiste en vigilar vías, drenajes y sondas para prevenir arrancamientos y lesiones."
       },
-      { id:"u2vf-06", typeKey:"u2_vf",
-        q:"Los pacientes intervenidos de prótesis de rodilla requieren reposo de 24 horas.",
-        options:[{k:"a",t:"Verdadero"},{k:"b",t:"Falso"}],
-        correct:"b",
-        why:"Se busca movilización precoz (según protocolos), no reposo absoluto 24h como norma."
+      {
+        id: "u2p-001",
+        typeKey: "u2_ud2",
+        q: "Paciente en decúbito lateral. ¿Qué zona aparece como punto de presión típico según el temario?",
+        options: [{ k: "a", t: "Sacro" }, { k: "b", t: "Trocánter" }, { k: "c", t: "Omóplatos" }, { k: "d", t: "Mejillas" }],
+        correct: "b",
+        why: "En decúbito lateral: maléolo, cóndilos, trocánter, costillas, oreja, acromion."
       },
-      { id:"u2vf-07", typeKey:"u2_vf",
-        q:"La sonda vesical se utiliza para recogida de orina.",
-        options:[{k:"a",t:"Verdadero"},{k:"b",t:"Falso"}],
-        correct:"a",
-        why:"Sonda vesical drena orina hacia bolsa recolectora."
+      {
+        id: "u2p-002",
+        typeKey: "u2_ud2",
+        q: "La causa fisiopatológica principal de una úlcera por presión es:",
+        options: [
+          { k: "a", t: "Reacción alérgica al colchón" },
+          { k: "b", t: "Colapso de capilares por presión mantenida con disminución del riego sanguíneo" },
+          { k: "c", t: "Falta de hidratación" },
+          { k: "d", t: "Uso de apósitos durante muchas horas" }
+        ],
+        correct: "b",
+        why: "La presión mantenida colapsa capilares, causa isquemia y puede evolucionar a necrosis."
       },
-      { id:"u2vf-08", typeKey:"u2_vf",
-        q:"El redón es un tipo de drenaje quirúrgico.",
-        options:[{k:"a",t:"Verdadero"},{k:"b",t:"Falso"}],
-        correct:"a",
-        why:"Redón: drenaje quirúrgico cerrado por aspiración (frecuente en traumatología)."
+      {
+        id: "u2d-001",
+        typeKey: "u2_ud2",
+        q: "Para un paciente que NO puede dar pequeños pasos pero puede mantenerse de pie con ayuda, el dispositivo más útil para sentarlo en la silla es:",
+        options: [{ k: "a", t: "Transfer (rollboard)" }, { k: "b", t: "Disco giratorio" }, { k: "c", t: "Grúa de techo" }, { k: "d", t: "Travesero doblado" }],
+        correct: "b",
+        why: "El disco giratorio permite rotación en bipedestación cuando no puede pivotar con pasos."
       },
-      { id:"u2vf-09", typeKey:"u2_vf",
-        q:"Lo primero que debemos hacer al llegar a la sala con el paciente es preparar la habitación para entrar con el paciente y pasarlo a la cama.",
-        options:[{k:"a",t:"Verdadero"},{k:"b",t:"Falso"}],
-        correct:"b",
-        why:"La secuencia del traslado prioriza avisar/coordinar con enfermería al llegar; luego se prepara y se acomoda."
+      {
+        id: "u2d-002",
+        typeKey: "u2_ud2",
+        q: "En una sedestación con grúa, ¿qué detalle evita molestias/dolor y aumenta seguridad?",
+        options: [
+          { k: "a", t: "Dejar pliegues en el arnés para que “agarre más”" },
+          { k: "b", t: "Asegurar arnés sin pliegues y con talla adecuada" },
+          { k: "c", t: "Bajar al paciente rápido para acabar antes" },
+          { k: "d", t: "Enganchar solo 2 correas del arnés" }
+        ],
+        correct: "b",
+        why: "Pliegues pueden provocar dolor/lesión por presión; talla correcta y arnés bien colocado es clave."
       },
-      { id:"u2vf-10", typeKey:"u2_vf",
-        q:"La identificación activa del paciente se realiza informando a la enfermera por el nombre del paciente, preguntando al paciente su nombre, fecha de nacimiento y comprobando lo que nos dice en su pulsera identificativa.",
-        options:[{k:"a",t:"Verdadero"},{k:"b",t:"Falso"}],
-        correct:"a",
-        why:"IAP: el paciente verbaliza datos y se comprueban con pulsera identificativa."
+      {
+        id: "u2t-001",
+        typeKey: "u2_ud2",
+        q: "El paso más correcto al llegar a la unidad para recoger al paciente es:",
+        options: [
+          { k: "a", t: "Entrar directamente en la habitación sin avisar" },
+          { k: "b", t: "Dirigirse a la enfermera responsable del paciente para coordinar el traslado" },
+          { k: "c", t: "Pedir al familiar que firme la documentación" },
+          { k: "d", t: "Preparar el ascensor antes de identificar al paciente" }
+        ],
+        correct: "b",
+        why: "La secuencia del traslado incluye avisar/coordinar con enfermería al llegar a la unidad."
+      },
+      {
+        id: "u2t-002",
+        typeKey: "u2_ud2",
+        q: "Durante el traslado, ante un empeoramiento del paciente, lo correcto es:",
+        options: [
+          { k: "a", t: "Continuar hasta el destino para no interrumpir el circuito" },
+          { k: "b", t: "Entrar en la unidad más cercana y avisar a enfermería para valoración" },
+          { k: "c", t: "Llamar por megafonía y seguir andando" },
+          { k: "d", t: "Parar en el pasillo y esperar a que se recupere" }
+        ],
+        correct: "b",
+        why: "El temario indica que ante imprevistos no se espera al destino: se acude a unidad cercana."
+      },
+      {
+        id: "u2o-001",
+        typeKey: "u2_ud2",
+        q: "Antes de iniciar un traslado con botella de O2, el paso más importante es:",
+        options: [
+          { k: "a", t: "Conectar la mascarilla al paciente y luego mirar el manómetro" },
+          { k: "b", t: "Comprobar O2 disponible y estimar autonomía según caudal prescrito" },
+          { k: "c", t: "Abrir el caudal al máximo para ir sobrado" },
+          { k: "d", t: "Usar siempre gafas nasales aunque haya orden de mascarilla" }
+        ],
+        correct: "b",
+        why: "Se debe comprobar el oxígeno restante y asegurar que durará el traslado al caudal indicado."
+      },
+      {
+        id: "u2a-001",
+        typeKey: "u2_ud2",
+        q: "En aislamiento protector (paciente inmunodeprimido), la combinación indicada en el temario para el traslado es:",
+        options: [
+          { k: "a", t: "Paciente con mascarilla quirúrgica; profesional con FFP2 durante el trayecto" },
+          { k: "b", t: "Paciente con FFP2 para el traslado; profesional con quirúrgica para la transferencia" },
+          { k: "c", t: "Paciente sin mascarilla; profesional con FFP3 siempre" },
+          { k: "d", t: "Paciente con FFP2 solo en el ascensor" }
+        ],
+        correct: "b",
+        why: "El temario especifica FFP2 para el paciente durante el traslado y quirúrgica para el profesional en la transferencia."
+      },
+      {
+        id: "u2s-001",
+        typeKey: "u2_ud2",
+        q: "Respecto a bolsas recolectoras (sonda vesical/urímetro) durante una movilización, lo correcto es:",
+        options: [
+          { k: "a", t: "Elevar la bolsa por encima del nivel del paciente para que drene mejor" },
+          { k: "b", t: "Mantener la bolsa por debajo del nivel del paciente y evitar tirones" },
+          { k: "c", t: "Suspender la bolsa colgándola del brazo del paciente" },
+          { k: "d", t: "Desconectar conexiones si molestan durante el giro" }
+        ],
+        correct: "b",
+        why: "Se evita elevar por encima del paciente, no se manipulan conexiones y se previenen tirones."
       },
 
-      // Más VF U2 (para tener un banco potente)
-      { id:"u2vf-11", typeKey:"u2_vf",
-        q:"El uso de guantes sustituye la necesidad de realizar higiene de manos.",
-        options:[{k:"a",t:"Verdadero"},{k:"b",t:"Falso"}],
-        correct:"b",
-        why:"Guantes no sustituyen higiene de manos; se hace antes y después."
+      // Banco grande U2 (u2x-001..u2x-030)
+      {
+        id: "u2x-001",
+        typeKey: "u2_ud2",
+        q: "En una movilización entre 2 celadores, el riesgo principal si no se coordina quién manda la maniobra es:",
+        options: [
+          { k: "a", t: "Que el paciente se maree menos" },
+          { k: "b", t: "Que haya movimientos desincronizados y aumente el riesgo de caída/lesión" },
+          { k: "c", t: "Que se reduzca el esfuerzo del profesional" },
+          { k: "d", t: "Que la movilización sea más silenciosa" }
+        ],
+        correct: "b",
+        why: "El temario insiste en acordar quién coordina para evitar indecisiones y movimientos bruscos."
       },
-      { id:"u2vf-12", typeKey:"u2_vf",
-        q:"Durante el traslado nunca hay que dejar solo al paciente.",
-        options:[{k:"a",t:"Verdadero"},{k:"b",t:"Falso"}],
-        correct:"a",
-        why:"Durante el traslado la responsabilidad del paciente es del celador y requiere vigilancia."
+      {
+        id: "u2x-002",
+        typeKey: "u2_ud2",
+        q: "¿Cuál es el motivo por el que se recomienda NO sujetar al paciente “directamente de la axila” al incorporarlo?",
+        options: [
+          { k: "a", t: "Porque es incómodo para el profesional únicamente" },
+          { k: "b", t: "Porque puede producir efecto pinza y lesiones en estructuras axilares" },
+          { k: "c", t: "Porque impide que el paciente respire" },
+          { k: "d", t: "Porque está prohibido por ley" }
+        ],
+        correct: "b",
+        why: "Se advierte de no sujetar con manos en axila para evitar lesiones por efecto pinza."
       },
-      { id:"u2vf-13", typeKey:"u2_vf",
-        q:"En un traslado, las barandillas deben ir levantadas durante el recorrido.",
-        options:[{k:"a",t:"Verdadero"},{k:"b",t:"Falso"}],
-        correct:"a",
-        why:"Seguridad: barandillas levantadas para evitar caídas."
+      {
+        id: "u2x-003",
+        typeKey: "u2_ud2",
+        q: "En un paciente politraumático, la movilización correcta se caracteriza por:",
+        options: [
+          { k: "a", t: "Girar por segmentos: primero hombros, luego pelvis" },
+          { k: "b", t: "Movilización en bloque con 3 personas, una en cabeza coordinando" },
+          { k: "c", t: "Sentarlo rápido para valorar dolor" },
+          { k: "d", t: "Usar disco giratorio siempre" }
+        ],
+        correct: "b",
+        why: "Politraumático: movilización en bloque, coordinación en cabeza y dos en cuerpo."
       },
-      { id:"u2vf-14", typeKey:"u2_vf",
-        q:"En aislamiento protector es correcto retirar la mascarilla del paciente durante el trayecto para que “respire mejor”.",
-        options:[{k:"a",t:"Verdadero"},{k:"b",t:"Falso"}],
-        correct:"b",
-        why:"La mascarilla protege al inmunodeprimido de gérmenes del entorno."
+      {
+        id: "u2x-004",
+        typeKey: "u2_ud2",
+        q: "En un paciente de cirugía cardíaca (esternotomía), al incorporarlo de la cama se debe evitar:",
+        options: [
+          { k: "a", t: "Que use el triángulo/trapecio para tirar con brazos" },
+          { k: "b", t: "Que se abrace el pecho" },
+          { k: "c", t: "Que gire primero de lado" },
+          { k: "d", t: "Que use el codo para incorporarse" }
+        ],
+        correct: "a",
+        why: "Tras cirugía cardíaca no debe usar el triángulo; debe proteger esternón abrazando el pecho."
       },
-      { id:"u2vf-15", typeKey:"u2_vf",
-        q:"En la movilización es recomendable dar órdenes breves y concretas al paciente.",
-        options:[{k:"a",t:"Verdadero"},{k:"b",t:"Falso"}],
-        correct:"a",
-        why:"Favorece colaboración y reduce errores."
-      }];
+      {
+        id: "u2x-005",
+        typeKey: "u2_ud2",
+        q: "En prótesis de rodilla, en el momento de levantarse, el punto clave es:",
+        options: [
+          { k: "a", t: "Flexionar al máximo la rodilla operada" },
+          { k: "b", t: "No flexionar la rodilla operada en el levantamiento; apoyarse con la pierna no operada" },
+          { k: "c", t: "Apoyar siempre la pierna operada primero" },
+          { k: "d", t: "Evitar que el paciente colabore" }
+        ],
+        correct: "b",
+        why: "Rodilla operada: no flexionarla al levantarse; apoyo con pierna no operada."
+      },
+      {
+        id: "u2x-006",
+        typeKey: "u2_ud2",
+        q: "En un traslado en camilla, ¿qué acción es obligatoria durante el recorrido?",
+        options: [
+          { k: "a", t: "Bajar barandillas para que el paciente vea" },
+          { k: "b", t: "Mantener barandillas levantadas y vigilar al paciente" },
+          { k: "c", t: "Dejar al paciente solo mientras llamas por teléfono" },
+          { k: "d", t: "Quitar la sábana para evitar calor" }
+        ],
+        correct: "b",
+        why: "Barandillas levantadas y vigilancia constante."
+      },
+      {
+        id: "u2x-007",
+        typeKey: "u2_ud2",
+        q: "La definición de “paciente semidependiente” en movilización es:",
+        options: [
+          { k: "a", t: "No ofrece ayuda y requiere movilización total" },
+          { k: "b", t: "Colabora parcialmente y el profesional da apoyo/seguridad" },
+          { k: "c", t: "Solo camina si va sedado" },
+          { k: "d", t: "Siempre requiere grúa" }
+        ],
+        correct: "b",
+        why: "Semidependiente: ayuda en la movilización, el profesional apoya y asegura la maniobra."
+      },
+      {
+        id: "u2x-008",
+        typeKey: "u2_ud2",
+        q: "Antes de realizar una transferencia (cama-camilla), ¿qué es lo correcto según normas generales?",
+        options: [
+          { k: "a", t: "Realizarla siempre solo para ser más rápido" },
+          { k: "b", t: "Verificar identidad del paciente e informar del procedimiento" },
+          { k: "c", t: "No preparar el entorno para evitar perder tiempo" },
+          { k: "d", t: "Manipular conexiones de drenajes si molestan" }
+        ],
+        correct: "b",
+        why: "Normas generales: verificación identidad, informar al paciente y controlar vías/drenajes."
+      },
+      {
+        id: "u2x-009",
+        typeKey: "u2_ud2",
+        q: "En traslado de paciente traumático, una medida que reduce dolor y riesgo es:",
+        options: [
+          { k: "a", t: "Entrar al ascensor de lado para ir más rápido" },
+          { k: "b", t: "Extremar cuidado en desniveles/entrada-salida de ascensores para evitar golpes" },
+          { k: "c", t: "Bajar barandillas para que no se enganche la férula" },
+          { k: "d", t: "Hacer el traslado sin frenar la camilla" }
+        ],
+        correct: "b",
+        why: "Se insiste en controlar golpes y desniveles (especialmente en ascensores) para no causar dolor."
+      },
+      {
+        id: "u2x-010",
+        typeKey: "u2_ud2",
+        q: "Respecto a la limpieza y desinfección del material, ¿qué afirmación es correcta?",
+        options: [
+          { k: "a", t: "Si no se ve sucia, nunca hace falta desinfectar" },
+          { k: "b", t: "Limpieza elimina suciedad visible y es paso previo a desinfección" },
+          { k: "c", t: "Desinfección solo se hace con agua" },
+          { k: "d", t: "Si el paciente estaba aislado, basta con ventilar la camilla" }
+        ],
+        correct: "b",
+        why: "Limpieza = elimina suciedad visible; desinfección = proceso químico que inactiva patógenos."
+      },
+      {
+        id: "u2x-011",
+        typeKey: "u2_ud2",
+        q: "Antes de iniciar una transferencia cama-camilla, ¿qué combinación es la más segura?",
+        options: [
+          { k: "a", t: "Camilla en diagonal y sin frenos, para maniobrar mejor" },
+          { k: "b", t: "Camilla paralela a la cama, frenos puestos y alturas ajustadas" },
+          { k: "c", t: "Camilla perpendicular y con barandillas bajadas" },
+          { k: "d", t: "Da igual la posición mientras el paciente no se mueva" }
+        ],
+        correct: "b",
+        why: "Camilla paralela, frenos activados y alturas similares reduce esfuerzo y riesgo de caída."
+      },
+      {
+        id: "u2x-012",
+        typeKey: "u2_ud2",
+        q: "¿Qué acción es correcta si el paciente lleva drenajes al cambiarlo de cama a camilla?",
+        options: [
+          { k: "a", t: "Tirar con cuidado de los tubos para que no queden doblados" },
+          { k: "b", t: "Comprobar que quedan libres, sin tracción y con holgura suficiente" },
+          { k: "c", t: "Desconectar los drenajes durante la transferencia" },
+          { k: "d", t: "Colocar las bolsas por encima del paciente para que no cuelguen" }
+        ],
+        correct: "b",
+        why: "Evitar tracción/arrancamiento: revisar tubuladuras, holguras y posición de bolsas."
+      },
+      {
+        id: "u2x-013",
+        typeKey: "u2_ud2",
+        q: "En movilización, ¿qué instrucción al paciente es más adecuada para coordinar el esfuerzo?",
+        options: [
+          { k: "a", t: "“Cuando quieras, hazlo tú”" },
+          { k: "b", t: "“A la de tres: uno, dos y tres”" },
+          { k: "c", t: "“Muévete sin avisar y yo te sigo”" },
+          { k: "d", t: "“No hace falta que colabores”" }
+        ],
+        correct: "b",
+        why: "Contar “a la de tres” sincroniza al equipo y al paciente."
+      },
+      {
+        id: "u2x-014",
+        typeKey: "u2_ud2",
+        q: "Durante un traslado en silla, el reposapiés debe estar:",
+        options: [
+          { k: "a", t: "Siempre retirado, para que no moleste" },
+          { k: "b", t: "Colocado y ajustado si el paciente lleva los pies apoyados" },
+          { k: "c", t: "Da igual, el paciente puede colgar los pies" },
+          { k: "d", t: "Solo se usa en pacientes pediátricos" }
+        ],
+        correct: "b",
+        why: "El reposapiés evita arrastres, golpes y malas posturas; aporta seguridad y confort."
+      },
+      {
+        id: "u2x-015",
+        typeKey: "u2_ud2",
+        q: "El “paciente dependiente” en movilización se caracteriza por:",
+        options: [
+          { k: "a", t: "Colabora plenamente en la maniobra" },
+          { k: "b", t: "Colabora parcialmente" },
+          { k: "c", t: "No colabora y requiere ayuda total del personal/ayudas técnicas" },
+          { k: "d", t: "Solo necesita supervisión" }
+        ],
+        correct: "c",
+        why: "Dependiente = necesita ayuda total; suele requerir 2 profesionales y/o grúa según caso."
+      },
+      {
+        id: "u2x-016",
+        typeKey: "u2_ud2",
+        q: "Al subir un paciente hacia la cabecera, lo correcto es:",
+        options: [
+          { k: "a", t: "Cabezal elevado para que el paciente “pese menos”" },
+          { k: "b", t: "Cama horizontal, pedir que flexione rodillas y empuje con plantas de los pies" },
+          { k: "c", t: "Tirar del paciente por los brazos" },
+          { k: "d", t: "Girar el tronco con la carga para ahorrar pasos" }
+        ],
+        correct: "b",
+        why: "Se hace con cama plana, pidiendo colaboración. Evita tirones en brazos."
+      },
+      {
+        id: "u2x-017",
+        typeKey: "u2_ud2",
+        q: "En un paciente con riesgo de caídas, durante la estancia en cama lo adecuado es:",
+        options: [
+          { k: "a", t: "Barandillas bajadas para que pueda levantarse libremente" },
+          { k: "b", t: "Valorar medidas de seguridad como barandillas y cama baja según protocolo" },
+          { k: "c", t: "Ponerlo siempre en Trendelenburg" },
+          { k: "d", t: "No informar a enfermería para no molestar" }
+        ],
+        correct: "b",
+        why: "La seguridad del paciente es prioritaria; depende del protocolo y valoración del equipo."
+      },
+      {
+        id: "u2x-018",
+        typeKey: "u2_ud2",
+        q: "¿Qué afirmación sobre el transfer (tabla/rollboard) es correcta?",
+        options: [
+          { k: "a", t: "Se usa para recorrer pasillos con el paciente encima" },
+          { k: "b", t: "Facilita el deslizamiento en transferencias cama-camilla" },
+          { k: "c", t: "Sustituye siempre a la grúa" },
+          { k: "d", t: "Solo se usa en pacientes que caminan" }
+        ],
+        correct: "b",
+        why: "El transfer sirve para deslizar en transferencias; no es un medio de transporte."
+      },
+      {
+        id: "u2x-019",
+        typeKey: "u2_ud2",
+        q: "Respecto al freno de cama/camilla, ¿cuándo debe activarse con prioridad?",
+        options: [
+          { k: "a", t: "Solo al terminar el traslado" },
+          { k: "b", t: "Durante transferencias y siempre que el paciente suba/baje" },
+          { k: "c", t: "Nunca, porque dificulta maniobrar" },
+          { k: "d", t: "Solo si el paciente lo pide" }
+        ],
+        correct: "b",
+        why: "Frenar en transferencias evita desplazamientos involuntarios y caídas."
+      },
+      {
+        id: "u2x-020",
+        typeKey: "u2_ud2",
+        q: "En traslado intrahospitalario, la responsabilidad del paciente durante el recorrido recae en:",
+        options: [
+          { k: "a", t: "El familiar acompañante" },
+          { k: "b", t: "El celador que realiza el traslado" },
+          { k: "c", t: "El médico que lo solicitó" },
+          { k: "d", t: "Nadie, porque es un trayecto corto" }
+        ],
+        correct: "b",
+        why: "Durante el traslado, quien lo realiza debe vigilar y garantizar seguridad y confort."
+      },
+      {
+        id: "u2x-021",
+        typeKey: "u2_ud2",
+        q: "Si un paciente empieza con náuseas/vómitos durante el traslado, la actuación más segura es:",
+        options: [
+          { k: "a", t: "Seguir andando para llegar antes" },
+          { k: "b", t: "Colocar al paciente en posición segura si es posible y avisar en la unidad más cercana" },
+          { k: "c", t: "Tumbarlo completamente boca arriba" },
+          { k: "d", t: "Darle agua para cortar el vómito" }
+        ],
+        correct: "b",
+        why: "Riesgo de broncoaspiración: priorizar seguridad y avisar a personal sanitario."
+      },
+      {
+        id: "u2x-022",
+        typeKey: "u2_ud2",
+        q: "La posición de Fowler se asocia principalmente a:",
+        options: [
+          { k: "a", t: "Paciente boca abajo" },
+          { k: "b", t: "Cabezal elevado (incorporado)" },
+          { k: "c", t: "Cabeza más baja que los pies" },
+          { k: "d", t: "Piernas elevadas y cabeza neutra" }
+        ],
+        correct: "b",
+        why: "Fowler = decúbito supino con cabezal elevado."
+      },
+      {
+        id: "u2x-023",
+        typeKey: "u2_ud2",
+        q: "¿Qué situación indica mejor el uso de grúa?",
+        options: [
+          { k: "a", t: "Paciente autónomo que camina con bastón" },
+          { k: "b", t: "Paciente muy dependiente con poca o nula colaboración" },
+          { k: "c", t: "Paciente que solo necesita supervisión" },
+          { k: "d", t: "Paciente que puede pivotar sin ayuda" }
+        ],
+        correct: "b",
+        why: "Grúa indicada en pacientes dependientes con baja colaboración."
+      },
+      {
+        id: "u2x-024",
+        typeKey: "u2_ud2",
+        q: "En el uso del arnés de grúa, un error típico que puede causar dolor es:",
+        options: [
+          { k: "a", t: "Usar la talla adecuada" },
+          { k: "b", t: "Dejar pliegues o arrugas bajo el paciente" },
+          { k: "c", t: "Ajustar correctamente las sujeciones" },
+          { k: "d", t: "Revisar que las correas están equilibradas" }
+        ],
+        correct: "b",
+        why: "Pliegues generan presión localizada y molestias."
+      },
+      {
+        id: "u2x-025",
+        typeKey: "u2_ud2",
+        q: "En una transferencia cama-sillón, ¿qué NO debe permitirse?",
+        options: [
+          { k: "a", t: "Que el paciente apoye las manos en la cama para impulsarse si puede" },
+          { k: "b", t: "Que el paciente te sujete por el cuello" },
+          { k: "c", t: "Que el profesional flexione rodillas" },
+          { k: "d", t: "Que se frene el sillón antes de sentar" }
+        ],
+        correct: "b",
+        why: "Sujeción por el cuello desestabiliza y aumenta riesgo de lesión/caída."
+      },
+      {
+        id: "u2x-026",
+        typeKey: "u2_ud2",
+        q: "En aislamiento protector (inmunodeprimido), el objetivo principal es:",
+        options: [
+          { k: "a", t: "Evitar que el paciente contagie a otros" },
+          { k: "b", t: "Evitar que el paciente se infecte por microorganismos externos" },
+          { k: "c", t: "Evitar que el paciente camine" },
+          { k: "d", t: "Que el paciente no hable con nadie" }
+        ],
+        correct: "b",
+        why: "Aislamiento protector = proteger al paciente del entorno."
+      },
+      {
+        id: "u2x-027",
+        typeKey: "u2_ud2",
+        q: "En una silla de traslado, al incorporarse el paciente, lo correcto es:",
+        options: [
+          { k: "a", t: "No frenar la silla para que se adapte al movimiento" },
+          { k: "b", t: "Frenar la silla y colocarla lo más cerca posible del paciente" },
+          { k: "c", t: "Colocarla lejos para tener espacio" },
+          { k: "d", t: "Sentar al paciente sin explicar nada" }
+        ],
+        correct: "b",
+        why: "Freno + proximidad reducen caídas y esfuerzo."
+      },
+      {
+        id: "u2x-028",
+        typeKey: "u2_ud2",
+        q: "Tras un traslado con oxígeno, una medida correcta de seguridad del material es:",
+        options: [
+          { k: "a", t: "Dejar la botella abierta para el siguiente" },
+          { k: "b", t: "Cerrar la botella, revisar manómetro y devolver el material correctamente" },
+          { k: "c", t: "Aumentar el caudal para vaciarla antes" },
+          { k: "d", t: "Guardar la botella tumbada sin sujeción" }
+        ],
+        correct: "b",
+        why: "Se cierra el suministro y se revisa/ordena el material."
+      },
+      {
+        id: "u2x-029",
+        typeKey: "u2_ud2",
+        q: "En una cama hospitalaria, el “tope de pies” sirve para:",
+        options: [
+          { k: "a", t: "Sujetar el palo de suero" },
+          { k: "b", t: "Evitar que el paciente se deslice al elevar el cabezal" },
+          { k: "c", t: "Elevar el oxígeno" },
+          { k: "d", t: "Bloquear el mando eléctrico" }
+        ],
+        correct: "b",
+        why: "Evita deslizamiento del paciente hacia abajo cuando la cama está incorporada."
+      },
+      {
+        id: "u2x-030",
+        typeKey: "u2_ud2",
+        q: "En traslado traumático, el aspecto más relevante al pasar por puertas/ascensor es:",
+        options: [
+          { k: "a", t: "Entrar rápido para no esperar" },
+          { k: "b", t: "Evitar golpes y controlar desniveles para no aumentar dolor" },
+          { k: "c", t: "Bajar barandillas para que no choquen" },
+          { k: "d", t: "Dejar que el paciente se incorpore solo" }
+        ],
+        correct: "b",
+        why: "En traumatología se evita cualquier golpe: controlar desniveles, puertas y ascensor."
+      },
+
+      // =========================
+      // U2 • Cuestionario de clase (11)
+      // =========================
+      {
+        id: "u2-custom-01",
+        typeKey: "u2_test11",
+        q: "¿Qué debemos hacer cuando acudimos a una habitación a movilizar a un paciente?",
+        options: [
+          { k: "a", t: "Pedir a la familia que nos ayude a movilizarlo" },
+          { k: "b", t: "Pedir a la familia que esperen fuera de la habitación hasta que terminemos nuestro trabajo" },
+          { k: "c", t: "Pedir a enfermería que deje de hacer lo que está haciendo para venir a ayudarnos" },
+          { k: "d", t: "Antes de comenzar el procedimiento explicaremos al paciente su estado de salud" }
+        ],
+        correct: "b",
+        why: "Preservar intimidad del paciente: pedir a las visitas que esperen fuera. La familia no debe ayudar y el celador no explica estado de salud."
+      },
+      {
+        id: "u2-custom-02",
+        typeKey: "u2_test11",
+        q: "No es objetivo de la movilización:",
+        options: [
+          { k: "a", t: "Contribuir con nuestro trabajo en la recuperación del paciente" },
+          { k: "b", t: "Evitar posibles complicaciones" },
+          { k: "c", t: "Ayudar totalmente al paciente a moverse" },
+          { k: "d", t: "Mantener el cuerpo alineado" }
+        ],
+        correct: "c",
+        why: "Los objetivos incluyen comodidad, alineación, prevenir complicaciones/úlceras y ayudar en recuperación. “Ayudar totalmente” es definición/acción, no objetivo."
+      },
+      {
+        id: "u2-custom-03",
+        typeKey: "u2_test11",
+        q: "Es consecuencia del reposo absoluto prolongado en pacientes:",
+        options: [
+          { k: "a", t: "La debilidad muscular" },
+          { k: "b", t: "La aparición de úlceras por decúbito" },
+          { k: "c", t: "Los problemas circulatorios" },
+          { k: "d", t: "Todas las respuestas son correctas" }
+        ],
+        correct: "d",
+        why: "Reposo prolongado puede causar debilidad muscular, úlceras por presión y problemas circulatorios."
+      },
+      {
+        id: "u2-custom-04",
+        typeKey: "u2_test11",
+        q: "Cuando encontramos que el paciente tiene puntos de presión en los dedos, rodillas o genitales, pensamos que la posición que tiene el paciente es:",
+        options: [{ k: "a", t: "Decúbito supino" }, { k: "b", t: "Decúbito prono" }, { k: "c", t: "Decúbito lateral" }, { k: "d", t: "Sedestación" }],
+        correct: "b",
+        why: "Decúbito prono: dedos, rodillas y genitales (hombres) / mamas (mujeres), entre otros."
+      },
+      {
+        id: "u2-custom-05",
+        typeKey: "u2_test11",
+        q: "¿Cuál es el origen de que se produzcan las úlceras en los pacientes?",
+        options: [
+          { k: "a", t: "El colapso de los capilares que nutren la piel en una zona con presión" },
+          { k: "b", t: "La falta de higiene del paciente" },
+          { k: "c", t: "La sedestación" },
+          { k: "d", t: "El uso excesivo de apósitos y esparadrapos" }
+        ],
+        correct: "a",
+        why: "Presión mantenida colapsa capilares → falta riego → úlcera y posible necrosis."
+      },
+      {
+        id: "u2-custom-06",
+        typeKey: "u2_test11",
+        q: "Si el paciente se encuentra en la cama con el cabezal elevado 90 cm, decimos que su posición es:",
+        options: [{ k: "a", t: "Trendelenburg" }, { k: "b", t: "Decúbito supino" }, { k: "c", t: "Antitrendelenburg" }, { k: "d", t: "Posición de Fowler" }],
+        correct: "d",
+        why: "Fowler: paciente en decúbito supino con cabezal elevado."
+      },
+      {
+        id: "u2-custom-07",
+        typeKey: "u2_test11",
+        q: "Colocar al paciente en posición de seguridad podría evitar:",
+        options: [{ k: "a", t: "Un ictus" }, { k: "b", t: "Una muerte súbita" }, { k: "c", t: "Una broncoaspiración" }, { k: "d", t: "Que se muerda la lengua" }],
+        correct: "c",
+        why: "Posición de seguridad (lateral) reduce riesgo de broncoaspiración en vómitos."
+      },
+      {
+        id: "u2-custom-08",
+        typeKey: "u2_test11",
+        q: "En la movilización del paciente hacia la cabecera de la cama no debemos:",
+        options: [
+          { k: "a", t: "Lavarnos las manos antes del contacto con el paciente" },
+          { k: "b", t: "Elevar la cabecera" },
+          { k: "c", t: "Pedir al paciente que flexione las rodillas y haga fuerza con la planta de los pies" },
+          { k: "d", t: "Poner uno de nuestros brazos por debajo de la cadera" }
+        ],
+        correct: "b",
+        why: "Para subir a cabecera se baja el cabezal y se trabaja con cama plana."
+      },
+      {
+        id: "u2-custom-09",
+        typeKey: "u2_test11",
+        q: "En la movilización de cama a sillón no debemos:",
+        options: [
+          { k: "a", t: "Poner previamente una sábana en el sillón" },
+          { k: "b", t: "Al incorporarlo, colocar los brazos del paciente sobre el tórax" },
+          { k: "c", t: "Dejar que el paciente nos sujete por el cuello" },
+          { k: "d", t: "Si no hay riesgos, dejar que pase sólo de la cama al sillón" }
+        ],
+        correct: "c",
+        why: "Nunca permitir sujeción por el cuello: aumenta riesgo de lesión/caída."
+      },
+      {
+        id: "u2-custom-10",
+        typeKey: "u2_test11",
+        q: "Referente al uso de las grúas es cierto que:",
+        options: [
+          { k: "a", t: "Hay arneses de diferentes tamaños" },
+          { k: "b", t: "Con ella evitamos que el paciente haga cualquier esfuerzo" },
+          { k: "c", t: "Es doloroso si nos quedan pliegues al colocar el arnés" },
+          { k: "d", t: "Todas las respuestas son ciertas" }
+        ],
+        correct: "d",
+        why: "Arneses con tallas; reduce esfuerzo; pliegues pueden ser molestos/dolorosos."
+      },
+      {
+        id: "u2-custom-11",
+        typeKey: "u2_test11",
+        q: "¿Cómo se denomina a la pérdida de sensibilidad y fuerza de la parte inferior del cuerpo del paciente?",
+        options: [{ k: "a", t: "Hemiplejia" }, { k: "b", t: "Paraplejia" }, { k: "c", t: "Hemiparesia" }, { k: "d", t: "Tetraplejia" }],
+        correct: "b",
+        why: "Paraplejia afecta a miembros inferiores; hemiplejia es un lado; hemiparesia parcial; tetraplejia 4 extremidades."
+      },
+
+      // =========================
+      // U2 • Verdadero/Falso
+      // =========================
+      {
+        id: "u2vf-01",
+        typeKey: "u2_vf",
+        q: "Cuando trasladamos a un paciente inmunodeprimido ha de llevar colocada una mascarilla para su protección.",
+        options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+        correct: "a",
+        why: "Aislamiento protector: el objetivo es proteger al paciente de gérmenes externos durante el traslado."
+      },
+      {
+        id: "u2vf-02",
+        typeKey: "u2_vf",
+        q: "Cuando coloquemos oxígeno al paciente debemos abrir y regular el caudal antes de conectar la mascarilla a la botella de oxígeno.",
+        options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+        correct: "a",
+        why: "Se abre y regula el caudal antes para comprobar funcionamiento."
+      },
+      {
+        id: "u2vf-03",
+        typeKey: "u2_vf",
+        q: "Debemos comprobar la cantidad de oxígeno que queda en la botella al finalizar el traslado.",
+        options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+        correct: "b",
+        why: "Se comprueba especialmente ANTES de iniciar el traslado para asegurar autonomía."
+      },
+      {
+        id: "u2vf-04",
+        typeKey: "u2_vf",
+        q: "Dentro de las medidas de prevención de dolores de espalda se encuentra cargar al paciente lo más cerca posible de nuestro cuerpo.",
+        options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+        correct: "a",
+        why: "Carga cerca del cuerpo reduce el estrés lumbar."
+      },
+      {
+        id: "u2vf-05",
+        typeKey: "u2_vf",
+        q: "El transfer se utiliza para trasladar al paciente de una habitación a otra.",
+        options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+        correct: "b",
+        why: "El transfer es para transferencias (cama-camilla/sillón), no para desplazarse."
+      },
+      {
+        id: "u2vf-06",
+        typeKey: "u2_vf",
+        q: "Los pacientes intervenidos de prótesis de rodilla requieren reposo de 24 horas.",
+        options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+        correct: "b",
+        why: "Se busca movilización precoz (según protocolos), no reposo absoluto 24h como norma."
+      },
+      {
+        id: "u2vf-07",
+        typeKey: "u2_vf",
+        q: "La sonda vesical se utiliza para recogida de orina.",
+        options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+        correct: "a",
+        why: "Sonda vesical drena orina hacia bolsa recolectora."
+      },
+      {
+        id: "u2vf-08",
+        typeKey: "u2_vf",
+        q: "El redón es un tipo de drenaje quirúrgico.",
+        options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+        correct: "a",
+        why: "Redón: drenaje quirúrgico cerrado por aspiración."
+      },
+      {
+        id: "u2vf-09",
+        typeKey: "u2_vf",
+        q: "Lo primero que debemos hacer al llegar a la sala con el paciente es preparar la habitación para entrar con el paciente y pasarlo a la cama.",
+        options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+        correct: "b",
+        why: "La secuencia prioriza avisar/coordinar con enfermería al llegar."
+      },
+      {
+        id: "u2vf-10",
+        typeKey: "u2_vf",
+        q: "La identificación activa del paciente se realiza informando a la enfermera por el nombre del paciente, preguntando al paciente su nombre, fecha de nacimiento y comprobando lo que nos dice en su pulsera identificativa.",
+        options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+        correct: "a",
+        why: "IAP: el paciente verbaliza datos y se comprueban con pulsera identificativa."
+      },
+      {
+        id: "u2vf-11",
+        typeKey: "u2_vf",
+        q: "El uso de guantes sustituye la necesidad de realizar higiene de manos.",
+        options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+        correct: "b",
+        why: "Guantes no sustituyen higiene de manos."
+      },
+      {
+        id: "u2vf-12",
+        typeKey: "u2_vf",
+        q: "Durante el traslado nunca hay que dejar solo al paciente.",
+        options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+        correct: "a",
+        why: "Durante el traslado hay que vigilar al paciente."
+      },
+      {
+        id: "u2vf-13",
+        typeKey: "u2_vf",
+        q: "En un traslado, las barandillas deben ir levantadas durante el recorrido.",
+        options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+        correct: "a",
+        why: "Seguridad: barandillas levantadas para evitar caídas."
+      },
+      {
+        id: "u2vf-14",
+        typeKey: "u2_vf",
+        q: "En aislamiento protector es correcto retirar la mascarilla del paciente durante el trayecto para que “respire mejor”.",
+        options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+        correct: "b",
+        why: "La mascarilla protege al inmunodeprimido."
+      },
+      {
+        id: "u2vf-15",
+        typeKey: "u2_vf",
+        q: "En la movilización es recomendable dar órdenes breves y concretas al paciente.",
+        options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+        correct: "a",
+        why: "Favorece colaboración y reduce errores."
+      }
+    ];
 
     // ==========================================================
     //  PUNTUACIÓN (modo points)
@@ -1197,37 +1617,37 @@
     const SCORING = {
       10: { ok: 1, bad: -0.33, blank: 0 },
       20: { ok: 0.5, bad: -0.16, blank: 0 },
-      30: { ok: 0.33, bad: -0.11, blank: 0 },
+      30: { ok: 0.33, bad: -0.11, blank: 0 }
     };
 
     // ==========================================================
     //  DOM
     // ==========================================================
-    const elUnit = document.getElementById('unit');
-    const elExamType = document.getElementById('examType');
-    const elSize = document.getElementById('size');
-    const sizeWrap = document.getElementById('sizeWrap');
+    const elUnit = document.getElementById("unit");
+    const elExamType = document.getElementById("examType");
+    const elSize = document.getElementById("size");
+    const sizeWrap = document.getElementById("sizeWrap");
 
-    const startBtn = document.getElementById('startBtn');
-    const quizSection = document.getElementById('quizSection');
-    const quizEl = document.getElementById('quiz');
-    const actions = document.getElementById('actions');
-    const evaluateBtn = document.getElementById('evaluateBtn');
-    const restartBtn = document.getElementById('restartBtn');
+    const startBtn = document.getElementById("startBtn");
+    const quizSection = document.getElementById("quizSection");
+    const quizEl = document.getElementById("quiz");
+    const actions = document.getElementById("actions");
+    const evaluateBtn = document.getElementById("evaluateBtn");
+    const restartBtn = document.getElementById("restartBtn");
 
-    const results = document.getElementById('results');
-    const review = document.getElementById('review');
-    const rulesText = document.getElementById('rulesText');
-    const rulesKpi = document.getElementById('rulesKpi');
-    const scorePill = document.getElementById('pillPoints');
-    const totalScoreEl = document.getElementById('totalScore');
-    const summaryTextEl = document.getElementById('summaryText');
-    const scoreLabel = document.getElementById('scoreLabel');
+    const results = document.getElementById("results");
+    const review = document.getElementById("review");
+    const rulesText = document.getElementById("rulesText");
+    const rulesKpi = document.getElementById("rulesKpi");
+    const scorePill = document.getElementById("pillPoints");
+    const totalScoreEl = document.getElementById("totalScore");
+    const summaryTextEl = document.getElementById("summaryText");
+    const scoreLabel = document.getElementById("scoreLabel");
 
-    const newExamBtn = document.getElementById('newExamBtn');
-    const backTopBtn = document.getElementById('backTopBtn');
-    const restartFromResultsBtn = document.getElementById('restartFromResultsBtn');
-    const changeConfigBtn = document.getElementById('changeConfigBtn');
+    const newExamBtn = document.getElementById("newExamBtn");
+    const backTopBtn = document.getElementById("backTopBtn");
+    const restartFromResultsBtn = document.getElementById("restartFromResultsBtn");
+    const changeConfigBtn = document.getElementById("changeConfigBtn");
 
     // ==========================================================
     //  ESTADO
@@ -1235,50 +1655,50 @@
     let currentExam = [];
     let locked = false;
 
-    function fmt(n){
+    function fmt(n) {
       const s = (Math.round(n * 100) / 100).toFixed(2);
-      return s.replace(/\.00$/, '').replace(/(\.[0-9])0$/, '$1');
+      return s.replace(/\.00$/, "").replace(/(\.[0-9])0$/, "$1");
     }
 
-    function escapeHtml(str){
+    function escapeHtml(str) {
       return String(str)
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;')
-        .replaceAll("'", '&#039;');
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
     }
 
-    function shuffle(arr){
-      for(let i = arr.length - 1; i > 0; i--){
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [arr[i], arr[j]] = [arr[j], arr[i]];
       }
       return arr;
     }
 
-    function getActiveTypeKey(){
+    function getActiveTypeKey() {
       return elExamType.value;
     }
 
-    function getTypeCfg(typeKey){
+    function getTypeCfg(typeKey) {
       return EXAM_TYPES[typeKey];
     }
 
-    function getCountForSelection(){
+    function getCountForSelection() {
       const cfg = getTypeCfg(getActiveTypeKey());
-      if(cfg.sizeMode === "fixed"){
-        const pool = QUESTION_BANK.filter(q => q.typeKey === getActiveTypeKey());
+      if (cfg.sizeMode === "fixed") {
+        const pool = QUESTION_BANK.filter((q) => q.typeKey === getActiveTypeKey());
         const fixed = cfg.fixedCount ?? pool.length;
         return fixed;
       }
       return Number(elSize.value);
     }
 
-    function setRulesUI(){
+    function setRulesUI() {
       const cfg = getTypeCfg(getActiveTypeKey());
 
-      if(cfg.scoringMode === "count"){
+      if (cfg.scoringMode === "count") {
         scoreLabel.textContent = "Aciertos";
         const n = getCountForSelection();
         const txt = `Reglas: ${n} preguntas · Resultado = aciertos / ${n}.`;
@@ -1297,25 +1717,25 @@
       scorePill.textContent = txt;
     }
 
-    function rebuildExamTypeOptions(){
+    function rebuildExamTypeOptions() {
       const unit = elUnit.value;
       const options = Object.entries(EXAM_TYPES)
-        .filter(([,cfg]) => cfg.unit === unit)
-        .map(([k,cfg]) => ({k, label: cfg.label}));
+        .filter(([, cfg]) => cfg.unit === unit)
+        .map(([k, cfg]) => ({ k, label: cfg.label }));
 
-      elExamType.innerHTML = options.map(o => `<option value="${o.k}">${escapeHtml(o.label)}</option>`).join("");
+      elExamType.innerHTML = options.map((o) => `<option value="${o.k}">${escapeHtml(o.label)}</option>`).join("");
 
       // Defaults
-      if(unit === "u1") elExamType.value = "u1_ud1";
-      if(unit === "u2") elExamType.value = "u2_ud2";
+      if (unit === "u1") elExamType.value = "u1_ud1";
+      if (unit === "u2") elExamType.value = "u2_ud2";
 
       applyTypeUI();
       setRulesUI();
     }
 
-    function applyTypeUI(){
+    function applyTypeUI() {
       const cfg = getTypeCfg(getActiveTypeKey());
-      if(cfg.sizeMode === "fixed"){
+      if (cfg.sizeMode === "fixed") {
         sizeWrap.classList.add("disabled");
         elSize.disabled = true;
       } else {
@@ -1324,37 +1744,37 @@
       }
     }
 
-    function pickExam(typeKey, n){
-      const pool = QUESTION_BANK.filter(q => q.typeKey === typeKey);
-      if(pool.length < n){
+    function pickExam(typeKey, n) {
+      const pool = QUESTION_BANK.filter((q) => q.typeKey === typeKey);
+      if (pool.length < n) {
         throw new Error(`No hay suficientes preguntas en el banco (${pool.length}) para generar ${n}.`);
       }
       return shuffle([...pool]).slice(0, n);
     }
 
-    function renderOption(idx, opt){
+    function renderOption(idx, opt) {
       const name = `q_${idx}`;
       const id = `${name}_${opt.k}`;
       const label = opt.k.toUpperCase();
       return `
         <label class="opt" for="${id}">
-          <input type="radio" id="${id}" name="${name}" value="${opt.k}" ${locked ? 'disabled' : ''} />
+          <input type="radio" id="${id}" name="${name}" value="${opt.k}" ${locked ? "disabled" : ""} />
           <span><b>${label}.</b> ${escapeHtml(opt.t)}</span>
         </label>
       `;
     }
 
-    function renderExam(){
-      quizEl.innerHTML = '';
-      results.style.display = 'none';
-      review.innerHTML = '';
+    function renderExam() {
+      quizEl.innerHTML = "";
+      results.style.display = "none";
+      review.innerHTML = "";
 
       currentExam.forEach((q, idx) => {
-        const qWrap = document.createElement('div');
-        qWrap.className = 'q';
+        const qWrap = document.createElement("div");
+        qWrap.className = "q";
         qWrap.dataset.qid = q.id;
 
-        const optsHtml = q.options.map(opt => renderOption(idx, opt)).join("");
+        const optsHtml = q.options.map((opt) => renderOption(idx, opt)).join("");
 
         qWrap.innerHTML = `
           <div class="qhead">
@@ -1375,7 +1795,7 @@
       });
     }
 
-    function getAnswers(){
+    function getAnswers() {
       const answers = [];
       currentExam.forEach((q, idx) => {
         const name = `q_${idx}`;
@@ -1385,37 +1805,39 @@
       return answers;
     }
 
-    function renderReviewItem(index, q, chosen, status){
-      const node = document.createElement('div');
-      node.className = 'q';
+    function renderReviewItem(index, q, chosen, status) {
+      const node = document.createElement("div");
+      node.className = "q";
 
-      const chosenTxt = chosen ? chosen.toUpperCase() : '—';
+      const chosenTxt = chosen ? chosen.toUpperCase() : "—";
       const correctTxt = q.correct.toUpperCase();
 
-      const optionsHtml = q.options.map(o => {
-        const isCorrect = o.k === q.correct;
-        const isChosen = chosen === o.k;
+      const optionsHtml = q.options
+        .map((o) => {
+          const isCorrect = o.k === q.correct;
+          const isChosen = chosen === o.k;
 
-        let badge = '';
-        if(isCorrect) badge += `<span class="tag good" style="margin-left:8px;">CORRECTA</span>`;
-        if(isChosen && isCorrect) badge += `<span class="tag good" style="margin-left:8px;">TU RESPUESTA</span>`;
-        if(isChosen && !isCorrect) badge += `<span class="tag bad" style="margin-left:8px;">TU RESPUESTA</span>`;
+          let badge = "";
+          if (isCorrect) badge += `<span class="tag good" style="margin-left:8px;">CORRECTA</span>`;
+          if (isChosen && isCorrect) badge += `<span class="tag good" style="margin-left:8px;">TU RESPUESTA</span>`;
+          if (isChosen && !isCorrect) badge += `<span class="tag bad" style="margin-left:8px;">TU RESPUESTA</span>`;
 
-        const extraStyle = isCorrect
-          ? 'border:1px solid rgba(57,217,138,.45); background: rgba(57,217,138,.08);'
-          : (isChosen && !isCorrect)
-            ? 'border:1px solid rgba(255,92,122,.45); background: rgba(255,92,122,.07);'
-            : '';
+          const extraStyle = isCorrect
+            ? "border:1px solid rgba(57,217,138,.45); background: rgba(57,217,138,.08);"
+            : isChosen && !isCorrect
+              ? "border:1px solid rgba(255,92,122,.45); background: rgba(255,92,122,.07);"
+              : "";
 
-        return `
-          <div class="opt" style="${extraStyle}">
-            <div style="min-width:28px; font-weight:900; color: var(--muted);">${escapeHtml(o.k.toUpperCase())}.</div>
-            <div style="flex:1;">
-              <div style="font-size:14px;">${escapeHtml(o.t)} ${badge}</div>
+          return `
+            <div class="opt" style="${extraStyle}">
+              <div style="min-width:28px; font-weight:900; color: var(--muted);">${escapeHtml(o.k.toUpperCase())}.</div>
+              <div style="flex:1;">
+                <div style="font-size:14px;">${escapeHtml(o.t)} ${badge}</div>
+              </div>
             </div>
-          </div>
-        `;
-      }).join('');
+          `;
+        })
+        .join("");
 
       node.innerHTML = `
         <div class="qhead">
@@ -1435,18 +1857,20 @@
       return node;
     }
 
-    function evaluate(){
-      if(locked) return;
+    function evaluate() {
+      if (locked) return;
       locked = true;
 
       const typeKey = getActiveTypeKey();
       const cfg = getTypeCfg(typeKey);
       const answers = getAnswers();
 
-      let ok = 0, bad = 0, blank = 0;
+      let ok = 0;
+      let bad = 0;
+      let blank = 0;
       let score = 0;
 
-      const byId = new Map(currentExam.map(q => [q.id, q]));
+      const byId = new Map(currentExam.map((q) => [q.id, q]));
       const reviewNodes = [];
 
       answers.forEach((a, i) => {
@@ -1455,22 +1879,22 @@
         const correct = q.correct;
 
         let status;
-        if(!chosen){
+        if (!chosen) {
           blank++;
-          status = { type: 'blank', label: 'EN BLANCO' };
-        } else if(chosen === correct){
+          status = { type: "blank", label: "EN BLANCO" };
+        } else if (chosen === correct) {
           ok++;
-          status = { type: 'good', label: 'CORRECTA' };
+          status = { type: "good", label: "CORRECTA" };
         } else {
           bad++;
-          status = { type: 'bad', label: 'INCORRECTA' };
+          status = { type: "bad", label: "INCORRECTA" };
         }
 
-        if(cfg.scoringMode === "points"){
+        if (cfg.scoringMode === "points") {
           const n = Number(elSize.value);
           const s = SCORING[n];
-          if(!chosen) score += s.blank;
-          else if(chosen === correct) score += s.ok;
+          if (!chosen) score += s.blank;
+          else if (chosen === correct) score += s.ok;
           else score += s.bad;
         } else {
           score = ok;
@@ -1479,12 +1903,12 @@
         reviewNodes.push(renderReviewItem(i, q, chosen, status));
       });
 
-      document.querySelectorAll('#quiz input[type="radio"]').forEach(r => r.disabled = true);
-      document.querySelectorAll('#quiz button[data-clear]').forEach(b => b.disabled = true);
+      document.querySelectorAll('#quiz input[type="radio"]').forEach((r) => (r.disabled = true));
+      document.querySelectorAll('#quiz button[data-clear]').forEach((b) => (b.disabled = true));
 
       const total = currentExam.length;
 
-      if(cfg.scoringMode === "count"){
+      if (cfg.scoringMode === "count") {
         totalScoreEl.textContent = `${ok} / ${total}`;
         summaryTextEl.textContent = `${ok} bien · ${bad} mal · ${blank} en blanco`;
       } else {
@@ -1492,33 +1916,33 @@
         summaryTextEl.textContent = `${ok} bien · ${bad} mal · ${blank} en blanco`;
       }
 
-      review.innerHTML = '';
-      reviewNodes.forEach(n => review.appendChild(n));
+      review.innerHTML = "";
+      reviewNodes.forEach((n) => review.appendChild(n));
 
-      results.style.display = 'block';
-      results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      results.style.display = "block";
+      results.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
-    function clearQuestion(idx){
+    function clearQuestion(idx) {
       const name = `q_${idx}`;
-      document.querySelectorAll(`#quiz input[name="${name}"]`).forEach(r => {
+      document.querySelectorAll(`#quiz input[name="${name}"]`).forEach((r) => {
         r.checked = false;
-        r.dataset.wasChecked = '0';
+        r.dataset.wasChecked = "0";
       });
     }
 
-    function resetAll(){
+    function resetAll() {
       locked = false;
       currentExam = [];
-      quizEl.innerHTML = '';
-      review.innerHTML = '';
-      results.style.display = 'none';
-      quizSection.classList.add('hide');
-      actions.classList.add('hide');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      quizEl.innerHTML = "";
+      review.innerHTML = "";
+      results.style.display = "none";
+      quizSection.classList.add("hide");
+      actions.classList.add("hide");
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    function start(){
+    function start() {
       locked = false;
 
       const typeKey = getActiveTypeKey();
@@ -1527,74 +1951,81 @@
       currentExam = pickExam(typeKey, n);
       renderExam();
 
-      quizSection.classList.remove('hide');
-      actions.classList.remove('hide');
+      quizSection.classList.remove("hide");
+      actions.classList.remove("hide");
 
-      quizSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      quizSection.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
     // ==========================================================
     //  EVENTS
     // ==========================================================
-    elUnit.addEventListener('change', () => {
+    elUnit.addEventListener("change", () => {
       rebuildExamTypeOptions();
     });
 
-    elExamType.addEventListener('change', () => {
+    elExamType.addEventListener("change", () => {
       applyTypeUI();
       setRulesUI();
     });
 
-    elSize.addEventListener('change', setRulesUI);
+    elSize.addEventListener("change", setRulesUI);
 
-    startBtn.addEventListener('click', () => {
-      try { start(); }
-      catch(e){ alert(e.message); }
+    startBtn.addEventListener("click", () => {
+      try {
+        start();
+      } catch (e) {
+        alert(e.message);
+      }
     });
 
-    evaluateBtn.addEventListener('click', evaluate);
-    restartBtn.addEventListener('click', resetAll);
+    evaluateBtn.addEventListener("click", evaluate);
+    restartBtn.addEventListener("click", resetAll);
 
     // Dejar en blanco
-    document.addEventListener('click', (e) => {
-      const btn = e.target.closest('[data-clear]');
-      if(!btn) return;
-      if(locked) return;
+    document.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-clear]");
+      if (!btn) return;
+      if (locked) return;
       clearQuestion(Number(btn.dataset.clear));
     });
 
     // Tap again to unselect (mobile-friendly)
-    document.addEventListener('click', (e) => {
-      const r = e.target.closest('#quiz input[type="radio"]');
-      if(!r) return;
-      if(locked) return;
+    document.addEventListener(
+      "click",
+      (e) => {
+        const r = e.target.closest('#quiz input[type="radio"]');
+        if (!r) return;
+        if (locked) return;
 
-      if(r.dataset.wasChecked === '1'){
-        e.preventDefault();
-        r.checked = false;
-        r.dataset.wasChecked = '0';
-      } else {
-        const name = r.name;
-        document.querySelectorAll(`#quiz input[name="${name}"]`).forEach(x => x.dataset.wasChecked = '0');
-        r.dataset.wasChecked = '1';
-      }
-    }, true);
+        if (r.dataset.wasChecked === "1") {
+          e.preventDefault();
+          r.checked = false;
+          r.dataset.wasChecked = "0";
+        } else {
+          const name = r.name;
+          document.querySelectorAll(`#quiz input[name="${name}"]`).forEach((x) => (x.dataset.wasChecked = "0"));
+          r.dataset.wasChecked = "1";
+        }
+      },
+      true
+    );
 
     // Result footer actions
-    newExamBtn.addEventListener('click', () => {
+    newExamBtn.addEventListener("click", () => {
       resetAll();
       start();
     });
 
-    backTopBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    backTopBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    restartFromResultsBtn.addEventListener('click', resetAll);
+    restartFromResultsBtn.addEventListener("click", resetAll);
 
-    changeConfigBtn.addEventListener('click', () => {
+    changeConfigBtn.addEventListener("click", () => {
       resetAll();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
     // Init
