@@ -963,6 +963,22 @@
       30: { ok: 0.33, bad: -0.11, blank: 0 }
     };
 
+    const MIXED_DIFFICULTY_DISTRIBUTION = {
+      10: { easy: 3, medium: 5, hard: 2 },
+      20: { easy: 5, medium: 10, hard: 5 },
+      30: { easy: 8, medium: 15, hard: 7 }
+    };
+
+    function tagU3Difficulties() {
+      QUESTION_BANK.forEach((q) => {
+        if (q.typeKey !== "u3_ud3") return;
+        const n = Number(q.id.split("-")[1]);
+        if (n <= 26) q.difficulty = "easy";
+        else if (n <= 64) q.difficulty = "medium";
+        else q.difficulty = "hard";
+      });
+    }
+
     const elUnit = document.getElementById("unit");
     const elExamType = document.getElementById("examType");
     const elSize = document.getElementById("size");
@@ -1069,11 +1085,45 @@
       }
     }
 
+    function takeRandom(pool, count) {
+      return shuffle([...pool]).slice(0, count);
+    }
+
+    function rebalanceDifficultySelection(selection, poolByDifficulty, targetTotal) {
+      const seen = new Set(selection.map((q) => q.id));
+      const remaining = Object.values(poolByDifficulty).flat().filter((q) => !seen.has(q.id));
+      while (selection.length < targetTotal && remaining.length) {
+        const next = remaining.shift();
+        selection.push(next);
+        seen.add(next.id);
+      }
+      return selection;
+    }
+
     function pickExam(typeKey, n) {
       const pool = QUESTION_BANK.filter((q) => q.typeKey === typeKey);
       if (pool.length < n) {
         throw new Error(`No hay suficientes preguntas en el banco (${pool.length}) para generar ${n}.`);
       }
+
+      if (typeKey === "u3_ud3" && MIXED_DIFFICULTY_DISTRIBUTION[n]) {
+        const distribution = MIXED_DIFFICULTY_DISTRIBUTION[n];
+        const poolByDifficulty = {
+          easy: pool.filter((q) => q.difficulty === "easy"),
+          medium: pool.filter((q) => q.difficulty === "medium"),
+          hard: pool.filter((q) => q.difficulty === "hard")
+        };
+
+        let selection = [
+          ...takeRandom(poolByDifficulty.easy, Math.min(distribution.easy, poolByDifficulty.easy.length)),
+          ...takeRandom(poolByDifficulty.medium, Math.min(distribution.medium, poolByDifficulty.medium.length)),
+          ...takeRandom(poolByDifficulty.hard, Math.min(distribution.hard, poolByDifficulty.hard.length))
+        ];
+
+        selection = rebalanceDifficultySelection(selection, poolByDifficulty, n);
+        return shuffle(selection).slice(0, n);
+      }
+
       return shuffle([...pool]).slice(0, n);
     }
 
