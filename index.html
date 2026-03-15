@@ -1121,6 +1121,9 @@
         ];
 
         selection = rebalanceDifficultySelection(selection, poolByDifficulty, n);
+        if (selection.length < n) {
+          return shuffle([...pool]).slice(0, n);
+        }
         return shuffle(selection).slice(0, n);
       }
 
@@ -1327,6 +1330,7 @@
     restartFromResultsBtn.addEventListener("click", resetAll);
     changeConfigBtn.addEventListener("click", () => { resetAll(); window.scrollTo({ top: 0, behavior: "smooth" }); });
 
+    tagU3Difficulties();
     rebuildExamTypeOptions();
     setRulesUI();
   </script>
