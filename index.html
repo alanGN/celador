@@ -191,12 +191,14 @@
       u1_sem1: { unit: "u1", label: "U1 • Seminario (TME / prevención)", mode: "mcq", sizeMode: "variable", scoringMode: "points" },
       u1_test17: { unit: "u1", label: "U1 • Cuestionario (17 preguntas)", mode: "mcq", sizeMode: "fixed", fixedCount: 17, scoringMode: "count" },
       u1_vf: { unit: "u1", label: "U1 • Verdadero / Falso", mode: "vf", sizeMode: "fixed", fixedCount: null, scoringMode: "count" },
-
+    
       u2_ud2: { unit: "u2", label: "U2 • Movilización y traslado (Nivel 1)", mode: "mcq", sizeMode: "variable", scoringMode: "points" },
       u2_test11: { unit: "u2", label: "U2 • Cuestionario (11 preguntas)", mode: "mcq", sizeMode: "fixed", fixedCount: 11, scoringMode: "count" },
       u2_vf: { unit: "u2", label: "U2 • Verdadero / Falso", mode: "vf", sizeMode: "fixed", fixedCount: null, scoringMode: "count" },
-
-      u3_ud3: { unit: "u3", label: "U3 • Área quirúrgica", mode: "mcq", sizeMode: "variable", scoringMode: "points" }
+    
+      u3_ud3: { unit: "u3", label: "U3 • Área quirúrgica (temario)", mode: "mcq", sizeMode: "variable", scoringMode: "points" },
+      u3_test15: { unit: "u3", label: "U3 • Cuestionario (15 preguntas)", mode: "mcq", sizeMode: "fixed", fixedCount: 15, scoringMode: "count" },
+      u3_vf: { unit: "u3", label: "U3 • Verdadero / Falso", mode: "vf", sizeMode: "fixed", fixedCount: 10, scoringMode: "count" }
     };
 
     const QUESTION_BANK = [
@@ -954,7 +956,453 @@
         options: [{ k: "a", t: "Solo mejora la imagen del profesional" }, { k: "b", t: "Reduce la transmisión de microorganismos y forma parte de la seguridad del paciente" }, { k: "c", t: "Sustituye el uso de guantes" }, { k: "d", t: "Se realiza únicamente al final del turno" }],
         correct: "b",
         why: "La higiene de manos es una medida básica de prevención de infecciones."
-      }
+      };
+      {
+  id: "u3t-001",
+  typeKey: "u3_test15",
+  q: "No es una característica del quirófano:",
+  options: [
+    { k: "a", t: "Estar aislados del ruido" },
+    { k: "b", t: "Tener una climatización específica e independiente" },
+    { k: "c", t: "Estar dispuestos en bloques horizontales o verticales" },
+    { k: "d", t: "Encontrarse en las plantas bajas de los hospitales" }
+  ],
+  correct: "c",
+  why: "El bloque quirúrgico debe ser horizontal, no vertical."
+},
+{
+  id: "u3t-002",
+  typeKey: "u3_test15",
+  q: "¿Qué significan las siglas URPA?",
+  options: [
+    { k: "a", t: "Unidad de reanimación post anestésica aguda" },
+    { k: "b", t: "Unidad de recuperación patológica" },
+    { k: "c", t: "Unidad de recuperación preoperatoria aguda" },
+    { k: "d", t: "Ninguna respuesta es correcta" }
+  ],
+  correct: "a",
+  why: "La URPA atiende al paciente en el postoperatorio inmediato tras la anestesia."
+},
+{
+  id: "u3t-003",
+  typeKey: "u3_test15",
+  q: "En relación al nivel de asepsia, la zona gris o semirrestringida se corresponde con la zona:",
+  options: [
+    { k: "a", t: "Sucia" },
+    { k: "b", t: "Limpia" },
+    { k: "c", t: "Desinfectada" },
+    { k: "d", t: "Estéril" }
+  ],
+  correct: "b",
+  why: "La zona gris es la zona limpia o semirrestringida."
+},
+{
+  id: "u3t-004",
+  typeKey: "u3_test15",
+  q: "Las zonas de reanimación son:",
+  options: [
+    { k: "a", t: "Zonas sucias" },
+    { k: "b", t: "Zonas limpias" },
+    { k: "c", t: "Zonas estériles" },
+    { k: "d", t: "Zonas de libre acceso" }
+  ],
+  correct: "b",
+  why: "La reanimación/URPA se ubica en la zona limpia o gris."
+},
+{
+  id: "u3t-005",
+  typeKey: "u3_test15",
+  q: "En la zona estéril de quirófano, cuando no participamos directamente en la cirugía, nuestra vestimenta estará formada por:",
+  options: [
+    { k: "a", t: "Gorro, guantes, pijama de un solo uso y mascarilla" },
+    { k: "b", t: "Gorro, guantes y pijama de un solo uso" },
+    { k: "c", t: "Gorro, pijama de un solo uso, calzado de uso exclusivo y mascarilla" },
+    { k: "d", t: "Gorro, guantes estériles, pijama de un solo uso, bata, calzado de un solo uso y mascarilla" }
+  ],
+  correct: "c",
+  why: "Si no se participa directamente en la cirugía no se precisa bata ni guantes estériles."
+},
+{
+  id: "u3t-006",
+  typeKey: "u3_test15",
+  q: "Es objetivo del uso de guantes:",
+  options: [
+    { k: "a", t: "Protegernos como profesionales" },
+    { k: "b", t: "Proteger al paciente" },
+    { k: "c", t: "Disminuir el riesgo de infecciones cruzadas" },
+    { k: "d", t: "Todas las respuestas son correctas" }
+  ],
+  correct: "d",
+  why: "Los guantes protegen al profesional, al paciente y disminuyen la contaminación cruzada."
+},
+{
+  id: "u3t-007",
+  typeKey: "u3_test15",
+  q: "Ante un traslado de un paciente en estado de inmunosupresión, ¿quién deberá llevar puesta la mascarilla?",
+  options: [
+    { k: "a", t: "El paciente" },
+    { k: "b", t: "El auxiliar sanitario" },
+    { k: "c", t: "El paciente y el auxiliar sanitario" },
+    { k: "d", t: "Ninguno de los dos" }
+  ],
+  correct: "a",
+  why: "Según el temario, en el traslado por el hospital la mascarilla deberá llevarla el paciente."
+},
+{
+  id: "u3t-008",
+  typeKey: "u3_test15",
+  q: "Dentro de los profesionales que participarán en el acto quirúrgico, ¿quién vigilará y velará por el estado hemodinámico del paciente?",
+  options: [
+    { k: "a", t: "El cirujano" },
+    { k: "b", t: "El cirujano ayudante" },
+    { k: "c", t: "Enfermería" },
+    { k: "d", t: "El anestesista" }
+  ],
+  correct: "d",
+  why: "El anestesista es quien controla el proceso anestésico y la estabilidad hemodinámica."
+},
+{
+  id: "u3t-009",
+  typeKey: "u3_test15",
+  q: "Dentro de los profesionales que participan en el acto quirúrgico, ¿quién será el encargado de la movilización del aparataje?",
+  options: [
+    { k: "a", t: "Enfermería" },
+    { k: "b", t: "TCAI" },
+    { k: "c", t: "El auxiliar sanitario celador" },
+    { k: "d", t: "El técnico de RX" }
+  ],
+  correct: "c",
+  why: "El auxiliar sanitario moviliza aparataje y material necesario para la intervención."
+},
+{
+  id: "u3t-010",
+  typeKey: "u3_test15",
+  q: "Cuando el paciente llega al área quirúrgica, ¿dónde debe ser trasladado por el auxiliar sanitario de quirófano?",
+  options: [
+    { k: "a", t: "Directamente al quirófano" },
+    { k: "b", t: "Directamente a la sala de pre anestesia" },
+    { k: "c", t: "Directamente a la URPA" },
+    { k: "d", t: "Directamente a la sala de enfermería" }
+  ],
+  correct: "b",
+  why: "Primero pasa a la zona de preanestesia, donde lo recibe enfermería de anestesia."
+},
+{
+  id: "u3t-011",
+  typeKey: "u3_test15",
+  q: "Elige la respuesta correcta. Si nos solicitan ayuda para una movilización durante la intervención quirúrgica...",
+  options: [
+    { k: "a", t: "Nos colocaremos guantes estériles y lo movilizaremos por debajo de las sábanas estériles" },
+    { k: "b", t: "No nos colocaremos guantes y lo movilizaremos con cuidado de no tocar el campo estéril" },
+    { k: "c", t: "Nos colocaremos guantes de un solo uso y lo movilizaremos sin problemas de tocar el campo estéril" },
+    { k: "d", t: "Nos colocaremos guantes de un solo uso y lo movilizaremos por debajo de las sábanas estériles" }
+  ],
+  correct: "a",
+  why: "En ese contexto se actúa manteniendo la asepsia y moviendo al paciente por debajo de las sábanas estériles."
+},
+{
+  id: "u3t-012",
+  typeKey: "u3_test15",
+  q: "El número mínimo para movilizar un paciente tras el acto quirúrgico es de:",
+  options: [
+    { k: "a", t: "Dos" },
+    { k: "b", t: "Cuatro" },
+    { k: "c", t: "Seis" },
+    { k: "d", t: "Con el auxiliar sanitario es suficiente" }
+  ],
+  correct: "b",
+  why: "El temario describe una movilización segura con al menos cuatro personas."
+},
+{
+  id: "u3t-013",
+  typeKey: "u3_test15",
+  q: "En el traslado del paciente del área quirúrgica a reanimación, es cierto que:",
+  options: [
+    { k: "a", t: "El monitor irá a los pies del paciente" },
+    { k: "b", t: "El monitor irá en la cabecera del paciente" },
+    { k: "c", t: "Podemos realizar solos dicho traslado" },
+    { k: "d", t: "Iremos acompañados por el cirujano y el anestesista" }
+  ],
+  correct: "a",
+  why: "El monitor se coloca a los pies del paciente para que el anestesista, situado en cabecera, tenga visión directa."
+},
+{
+  id: "u3t-014",
+  typeKey: "u3_test15",
+  q: "Los soportes laterales que utilizaremos cuando necesitemos hacer un decúbito lateral se denominan:",
+  options: [
+    { k: "a", t: "Apoya brazos" },
+    { k: "b", t: "Quita miedos" },
+    { k: "c", t: "Cinchas de fijación" },
+    { k: "d", t: "Ninguna respuesta es correcta" }
+  ],
+  correct: "b",
+  why: "El temario denomina a esos topes laterales como 'quitamiedos'."
+},
+{
+  id: "u3t-015",
+  typeKey: "u3_test15",
+  q: "Cuando nos dispongamos a cruzar el quirófano, la distancia de seguridad que debemos guardar con el campo estéril es de:",
+  options: [
+    { k: "a", t: "1 metro" },
+    { k: "b", t: "10 cm" },
+    { k: "c", t: "30 cm" },
+    { k: "d", t: "50 cm" }
+  ],
+  correct: "d",
+  why: "Debe mantenerse una distancia mínima de 50 cm respecto al campo estéril."
+},
+
+/* =========================
+   UNIDAD 3 · VERDADERO/FALSO
+   ========================= */
+
+{
+  id: "u3vf-01",
+  typeKey: "u3_vf",
+  q: "El área quirúrgica debe encontrarse siempre en la planta más alta del hospital.",
+  options: [
+    { k: "a", t: "Verdadero" },
+    { k: "b", t: "Falso" }
+  ],
+  correct: "b",
+  why: "El bloque quirúrgico debe encontrarse en la planta baja del hospital."
+},
+{
+  id: "u3vf-02",
+  typeKey: "u3_vf",
+  q: "Los auxiliares sanitarios no pueden entrar en la zona estéril del quirófano.",
+  options: [
+    { k: "a", t: "Verdadero" },
+    { k: "b", t: "Falso" }
+  ],
+  correct: "b",
+  why: "Sí pueden entrar y colaborar en tareas como posicionamiento o movilización del aparataje."
+},
+{
+  id: "u3vf-03",
+  typeKey: "u3_vf",
+  q: "La camilla de traslado del paciente crítico consta de monitor, desfibrilador, respirador y material de ventilación.",
+  options: [
+    { k: "a", t: "Verdadero" },
+    { k: "b", t: "Falso" }
+  ],
+  correct: "a",
+  why: "Así se describe la camilla para traslado a UCI o paciente crítico."
+},
+{
+  id: "u3vf-04",
+  typeKey: "u3_vf",
+  q: "Cuando un paciente va a ser colocado en decúbito prono pediremos al paciente que se pase a la mesa quirúrgica y se coloque boca abajo.",
+  options: [
+    { k: "a", t: "Verdadero" },
+    { k: "b", t: "Falso" }
+  ],
+  correct: "b",
+  why: "La colocación quirúrgica la realiza el equipo y muchas veces el paciente ya está anestesiado."
+},
+{
+  id: "u3vf-05",
+  typeKey: "u3_vf",
+  q: "El bloque quirúrgico debe encontrarse cerca de la unidad de cuidados intensivos.",
+  options: [
+    { k: "a", t: "Verdadero" },
+    { k: "b", t: "Falso" }
+  ],
+  correct: "a",
+  why: "Debe estar próximo a la unidad de cuidados críticos."
+},
+{
+  id: "u3vf-06",
+  typeKey: "u3_vf",
+  q: "La sala de reanimación se considera zona limpia.",
+  options: [
+    { k: "a", t: "Verdadero" },
+    { k: "b", t: "Falso" }
+  ],
+  correct: "a",
+  why: "La URPA forma parte de la zona gris o limpia."
+},
+{
+  id: "u3vf-07",
+  typeKey: "u3_vf",
+  q: "El calzado que utilicemos en el área quirúrgica ha de ser buen conductor de la electricidad.",
+  options: [
+    { k: "a", t: "Verdadero" },
+    { k: "b", t: "Falso" }
+  ],
+  correct: "b",
+  why: "Debe ser no conductor de la electricidad."
+},
+{
+  id: "u3vf-08",
+  typeKey: "u3_vf",
+  q: "Durante la cirugía utilizaremos la bata como barrera entre paciente y profesional.",
+  options: [
+    { k: "a", t: "Verdadero" },
+    { k: "b", t: "Falso" }
+  ],
+  correct: "b",
+  why: "En formato examen para auxiliar sanitario, esta afirmación se considera falsa porque no siempre participa vestido de forma estéril en el acto quirúrgico."
+},
+{
+  id: "u3vf-09",
+  typeKey: "u3_vf",
+  q: "Durante el intraoperatorio el auxiliar sanitario ha de estar localizado y disponible en todo momento.",
+  options: [
+    { k: "a", t: "Verdadero" },
+    { k: "b", t: "Falso" }
+  ],
+  correct: "a",
+  why: "Durante el intraoperatorio pueden requerirse cambios de posición, muestras o apoyo logístico."
+},
+{
+  id: "u3vf-10",
+  typeKey: "u3_vf",
+  q: "Las mesas quirúrgicas se caracterizan por ser radiotransparentes, de fácil limpieza, confortables y de multiposición.",
+  options: [
+    { k: "a", t: "Verdadero" },
+    { k: "b", t: "Falso" }
+  ],
+  correct: "a",
+  why: "Es una de las descripciones básicas de la mesa quirúrgica moderna."
+},
+
+/* =========================
+   UNIDAD 3 · PREGUNTAS EXTRA
+   MÁS NIVEL EXAMEN
+   ========================= */
+
+{
+  id: "u3-081",
+  typeKey: "u3_ud3",
+  q: "El acceso al bloque quirúrgico debe estar:",
+  options: [
+    { k: "a", t: "Libre para cualquier visitante" },
+    { k: "b", t: "Debidamente señalizado y limitado al personal autorizado" },
+    { k: "c", t: "Cerrado únicamente por la noche" },
+    { k: "d", t: "Abierto a familiares con bata" }
+  ],
+  correct: "b",
+  why: "El bloque quirúrgico es un área restringida y su acceso debe estar controlado."
+},
+{
+  id: "u3-082",
+  typeKey: "u3_ud3",
+  q: "En la zona sucia del área quirúrgica, el auxiliar sanitario puede realizar funciones como:",
+  options: [
+    { k: "a", t: "Montar el campo estéril" },
+    { k: "b", t: "Traslado de enfermos de URPA a hospitalización, documentación y material" },
+    { k: "c", t: "Intubación del paciente" },
+    { k: "d", t: "Colocación del craneostato" }
+  ],
+  correct: "b",
+  why: "Son tareas logísticas y de traslado propias de esa zona."
+},
+{
+  id: "u3-083",
+  typeKey: "u3_ud3",
+  q: "La mascarilla quirúrgica debe ir:",
+  options: [
+    { k: "a", t: "Floja para poder hablar mejor" },
+    { k: "b", t: "Ajustada a la cara y bien atada" },
+    { k: "c", t: "Solo cubriendo la boca" },
+    { k: "d", t: "Debajo de la nariz si no hay cirugía abierta" }
+  ],
+  correct: "b",
+  why: "Debe ajustarse bien para actuar como barrera eficaz."
+},
+{
+  id: "u3-084",
+  typeKey: "u3_ud3",
+  q: "Cuando un material presenta dudas sobre si está estéril o no, debe considerarse:",
+  options: [
+    { k: "a", t: "Estéril si el envoltorio está seco" },
+    { k: "b", t: "Estéril si lo dice el cirujano" },
+    { k: "c", t: "No estéril" },
+    { k: "d", t: "Útil solo para cirugía menor" }
+  ],
+  correct: "c",
+  why: "Ante la duda, siempre se considera no estéril."
+},
+{
+  id: "u3-085",
+  typeKey: "u3_ud3",
+  q: "Durante el traslado del paciente a quirófano, si porta drenajes, sondas o vías, debemos:",
+  options: [
+    { k: "a", t: "Desconectarlos para evitar enredos" },
+    { k: "b", t: "Revisar que estén bien colocados y protegidos para evitar tirones o roturas" },
+    { k: "c", t: "Dejar esa revisión solo para la familia" },
+    { k: "d", t: "Elevar las bolsas por encima del paciente" }
+  ],
+  correct: "b",
+  why: "Es una medida básica de seguridad durante el traslado."
+},
+{
+  id: "u3-086",
+  typeKey: "u3_ud3",
+  q: "Si el paciente no puede responder durante la identificación prequirúrgica, se comprobará su identidad mediante:",
+  options: [
+    { k: "a", t: "La opinión del celador de planta" },
+    { k: "b", t: "La pulsera identificativa y, si procede, la ayuda de los familiares" },
+    { k: "c", t: "La habitación en la que estaba ingresado" },
+    { k: "d", t: "El nombre escrito en la cama" }
+  ],
+  correct: "b",
+  why: "Así se indica en el proceso de verificación antes del traslado."
+},
+{
+  id: "u3-087",
+  typeKey: "u3_ud3",
+  q: "Durante la movilización intraoperatoria, los movimientos deben realizarse:",
+  options: [
+    { k: "a", t: "Con rapidez y sin interrumpir al cirujano" },
+    { k: "b", t: "De forma lenta, comunicando las acciones y esperando respuesta del equipo" },
+    { k: "c", t: "Solo cuando el auxiliar lo considere necesario" },
+    { k: "d", t: "Sin hablar, para no romper la concentración" }
+  ],
+  correct: "b",
+  why: "La comunicación y la lentitud en maniobras críticas aumentan la seguridad."
+},
+{
+  id: "u3-088",
+  typeKey: "u3_ud3",
+  q: "Una característica básica de la mesa quirúrgica es que debe ser:",
+  options: [
+    { k: "a", t: "Difícil de mover para ganar estabilidad" },
+    { k: "b", t: "Desmontable por segmentos o planos" },
+    { k: "c", t: "Siempre manual" },
+    { k: "d", t: "No compatible con RX" }
+  ],
+  correct: "b",
+  why: "La mesa quirúrgica admite segmentos y accesorios según la cirugía."
+},
+{
+  id: "u3-089",
+  typeKey: "u3_ud3",
+  q: "El carro de paro debe encontrarse:",
+  options: [
+    { k: "a", t: "En cualquier sitio mientras esté dentro del hospital" },
+    { k: "b", t: "En un lugar conocido del área quirúrgica y conectado cuando no se usa" },
+    { k: "c", t: "Dentro de cada quirófano sin excepción" },
+    { k: "d", t: "Guardado bajo llave en administración" }
+  ],
+  correct: "b",
+  why: "Debe estar localizado y el desfibrilador cargando para responder rápido."
+},
+{
+  id: "u3-090",
+  typeKey: "u3_ud3",
+  q: "La finalidad principal de los posicionadores quirúrgicos es:",
+  options: [
+    { k: "a", t: "Acortar el tiempo quirúrgico" },
+    { k: "b", t: "Proteger decúbitos y evitar lesiones por presión o mala postura" },
+    { k: "c", t: "Sujetar el respirador" },
+    { k: "d", t: "Cubrir material no estéril" }
+  ],
+  correct: "b",
+  why: "Se emplean para proteger al paciente anestesiado del mal posicionamiento."
+}
     ];
 
     const SCORING = {
@@ -969,12 +1417,13 @@
       30: { easy: 8, medium: 15, hard: 7 }
     };
 
-    function tagU3Difficulties() {
+   function tagU3Difficulties() {
       QUESTION_BANK.forEach((q) => {
         if (q.typeKey !== "u3_ud3") return;
-        const n = Number(q.id.split("-")[1]);
-        if (n <= 26) q.difficulty = "easy";
-        else if (n <= 64) q.difficulty = "medium";
+        const match = String(q.id).match(/(\d+)$/);
+        const n = match ? Number(match[1]) : 999;
+        if (n <= 30) q.difficulty = "easy";
+        else if (n <= 70) q.difficulty = "medium";
         else q.difficulty = "hard";
       });
     }
