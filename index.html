@@ -1,10 +1,11 @@
 
+
 <!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Simulacro Celador - Unidades 1, 2 y 3</title>
+  <title>Simulacro Celador - Unidades 1, 2, 3 y 4</title>
   <style>
     :root {
       --bg: #0b1220;
@@ -99,7 +100,7 @@
     <header>
       <div class="title">
         <div>
-          <h1>Simulacro (Celador) • Unidades 1, 2 y 3</h1>
+          <h1>Simulacro (Celador) • Unidades 1, 2, 3 y 4</h1>
           <div class="subtitle">Sin backend. Exámenes aleatorios. Pensado para móvil.</div>
         </div>
         <div class="pill" id="scorePill">Puntuación: <b id="pillPoints">-</b></div>
@@ -113,6 +114,7 @@
               <option value="u1">Unidad 1</option>
               <option value="u2">Unidad 2</option>
               <option value="u3">Unidad 3</option>
+              <option value="u4">Unidad 4</option>
             </select>
           </div>
 
@@ -198,7 +200,9 @@
     
       u3_ud3: { unit: "u3", label: "U3 • Área quirúrgica (temario)", mode: "mcq", sizeMode: "variable", scoringMode: "points" },
       u3_test15: { unit: "u3", label: "U3 • Cuestionario (15 preguntas)", mode: "mcq", sizeMode: "fixed", fixedCount: 15, scoringMode: "count" },
-      u3_vf: { unit: "u3", label: "U3 • Verdadero / Falso", mode: "vf", sizeMode: "fixed", fixedCount: 10, scoringMode: "count" }
+      u3_vf: { unit: "u3", label: "U3 • Verdadero / Falso", mode: "vf", sizeMode: "fixed", fixedCount: 10, scoringMode: "count" },
+
+      u4_ud4: { unit: "u4", label: "U4 • Movilización y traslado (Nivel 2 avanzado)", mode: "mcq", sizeMode: "variable", scoringMode: "points" }
     };
 
     const QUESTION_BANK = [
@@ -1408,6 +1412,487 @@
   correct: "b",
   why: "Se emplean para proteger al paciente anestesiado del mal posicionamiento."
 }
+,
+{
+  id: "u4-001",
+  typeKey: "u4_ud4",
+  q: "¿Qué se entiende por paciente crítico según el temario?",
+  options: [{ k: "a", t: "Paciente con dolor intenso pero estable" }, { k: "b", t: "Paciente con alteraciones de uno o varios órganos que pueden comprometer seriamente funciones vitales" }, { k: "c", t: "Paciente ingresado siempre en quirófano" }, { k: "d", t: "Paciente que necesita únicamente reposo absoluto" }],
+  correct: "b",
+  why: "El paciente crítico presenta alteraciones funcionales que pueden comprometer funciones vitales y la supervivencia."
+},
+{
+  id: "u4-002",
+  typeKey: "u4_ud4",
+  q: "¿En qué unidades se localiza por regla general al paciente crítico?",
+  options: [{ k: "a", t: "Consultas externas" }, { k: "b", t: "Unidades de Vigilancia Intensiva o Críticos" }, { k: "c", t: "Hospital de día" }, { k: "d", t: "Rehabilitación ambulatoria" }],
+  correct: "b",
+  why: "El temario indica que habitualmente se encuentra en UVI o unidades de críticos."
+},
+{
+  id: "u4-003",
+  typeKey: "u4_ud4",
+  q: "La Camilla TC fue diseñada principalmente para:",
+  options: [{ k: "a", t: "Trasladar documentación urgente" }, { k: "b", t: "Garantizar el traslado seguro del paciente crítico" }, { k: "c", t: "Sustituir la cama hospitalaria de planta" }, { k: "d", t: "Uso exclusivo en quirófano" }],
+  correct: "b",
+  why: "La camilla TC está pensada para el traslado del paciente crítico con la máxima seguridad."
+},
+{
+  id: "u4-004",
+  typeKey: "u4_ud4",
+  q: "La Camilla TC debe permanecer conectada a la red eléctrica siempre que se pueda para:",
+  options: [{ k: "a", t: "Aumentar la velocidad del traslado" }, { k: "b", t: "Recargar las baterías de sus componentes" }, { k: "c", t: "Evitar usar el monitor" }, { k: "d", t: "Mantener caliente al paciente" }],
+  correct: "b",
+  why: "Su equipamiento funciona con baterías y debe mantenerse cargado."
+},
+{
+  id: "u4-005",
+  typeKey: "u4_ud4",
+  q: "Además de la corriente, la Camilla TC puede conectarse a una toma de pared de:",
+  options: [{ k: "a", t: "Vacío" }, { k: "b", t: "Protóxido" }, { k: "c", t: "Oxígeno" }, { k: "d", t: "Aire comprimido" }],
+  correct: "c",
+  why: "Dispone de alargadera de oxígeno para no gastar las botellas cuando está parada."
+},
+{
+  id: "u4-006",
+  typeKey: "u4_ud4",
+  q: "¿Cuál de estos elementos NO figura entre los componentes principales de la Camilla TC?",
+  options: [{ k: "a", t: "Monitor de constantes" }, { k: "b", t: "Desfibrilador" }, { k: "c", t: "Respirador portátil" }, { k: "d", t: "Mesa de mayo" }],
+  correct: "d",
+  why: "La mesa de mayo no forma parte de la camilla TC; sí monitor, desfibrilador y respirador."
+},
+{
+  id: "u4-007",
+  typeKey: "u4_ud4",
+  q: "Los latiguillos del monitor de constantes sirven para:",
+  options: [{ k: "a", t: "Medir la diuresis" }, { k: "b", t: "Controlar la actividad cardíaca mediante electrodos" }, { k: "c", t: "Tomar la temperatura timpánica" }, { k: "d", t: "Administrar oxígeno" }],
+  correct: "b",
+  why: "Los latiguillos se colocan con electrodos para monitorizar la actividad cardíaca."
+},
+{
+  id: "u4-008",
+  typeKey: "u4_ud4",
+  q: "El pulsioxímetro o saturador mide principalmente:",
+  options: [{ k: "a", t: "La glucemia" }, { k: "b", t: "La presión intracraneal" }, { k: "c", t: "La saturación de oxígeno en sangre" }, { k: "d", t: "El ritmo respiratorio por auscultación" }],
+  correct: "c",
+  why: "Su función es medir la saturación de oxígeno en sangre."
+},
+{
+  id: "u4-009",
+  typeKey: "u4_ud4",
+  q: "El capnógrafo se utiliza para medir:",
+  options: [{ k: "a", t: "La frecuencia cardíaca" }, { k: "b", t: "La concentración de CO2 en el aire expirado" }, { k: "c", t: "La presión venosa central" }, { k: "d", t: "La temperatura central" }],
+  correct: "b",
+  why: "El capnógrafo mide el CO2 espirado, especialmente en pacientes intubados."
+},
+{
+  id: "u4-010",
+  typeKey: "u4_ud4",
+  q: "El manguito o PNI del monitor sirve para:",
+  options: [{ k: "a", t: "Realizar presión arterial no invasiva" }, { k: "b", t: "Medir la presión intracraneal" }, { k: "c", t: "Controlar el electrocardiograma" }, { k: "d", t: "Fijar el brazo al respirador" }],
+  correct: "a",
+  why: "PNI significa presión no invasiva y se coloca en el brazo."
+},
+{
+  id: "u4-011",
+  typeKey: "u4_ud4",
+  q: "Para usar la presión arterial invasiva, el paciente debe portar:",
+  options: [{ k: "a", t: "Una vía periférica" }, { k: "b", t: "Un catéter arterial" }, { k: "c", t: "Una sonda vesical" }, { k: "d", t: "Un drenaje torácico" }],
+  correct: "b",
+  why: "La presión invasiva requiere catéter arterial."
+},
+{
+  id: "u4-012",
+  typeKey: "u4_ud4",
+  q: "El desfibrilador de la Camilla TC puede utilizarse en:",
+  options: [{ k: "a", t: "Un único modo manual" }, { k: "b", t: "Modo manual y modo DEA" }, { k: "c", t: "Modo pediátrico exclusivamente" }, { k: "d", t: "Modo ventilación y modo aspiración" }],
+  correct: "b",
+  why: "El temario menciona modo manual y modo DEA."
+},
+{
+  id: "u4-013",
+  typeKey: "u4_ud4",
+  q: "Las palas del desfibrilador pueden desmontarse para:",
+  options: [{ k: "a", t: "Conectarlas al monitor" }, { k: "b", t: "Transformarlas en uso pediátrico" }, { k: "c", t: "Recargar la batería" }, { k: "d", t: "Convertirlas en capnógrafo" }],
+  correct: "b",
+  why: "Las palas permiten adaptación a uso pediátrico."
+},
+{
+  id: "u4-014",
+  typeKey: "u4_ud4",
+  q: "El respirador portátil Oxilog 2000 necesita conectarse a una botella de O2 para:",
+  options: [{ k: "a", t: "Recibir energía eléctrica" }, { k: "b", t: "Abastecerse del oxígeno necesario para la ventilación" }, { k: "c", t: "Activar el desfibrilador" }, { k: "d", t: "Medir la tensión arterial" }],
+  correct: "b",
+  why: "Necesita oxígeno de botella para ventilar al paciente intubado durante el traslado."
+},
+{
+  id: "u4-015",
+  typeKey: "u4_ud4",
+  q: "La válvula del respirador portátil es importante porque:",
+  options: [{ k: "a", t: "Sujeta el tubo al monitor" }, { k: "b", t: "Dirige el oxígeno inspirado y espirado del paciente" }, { k: "c", t: "Mide la presión intracraneal" }, { k: "d", t: "Sirve de filtro bactericida" }],
+  correct: "b",
+  why: "La válvula direcciona el flujo inspiratorio y espiratorio."
+},
+{
+  id: "u4-016",
+  typeKey: "u4_ud4",
+  q: "El tubo silastic del respirador sirve para:",
+  options: [{ k: "a", t: "Filtrar bacterias del aire" }, { k: "b", t: "Captar volumen y presión respiratoria del paciente" }, { k: "c", t: "Transportar medicación" }, { k: "d", t: "Aspirar secreciones" }],
+  correct: "b",
+  why: "El tubo silastic capta volumen y presión respiratoria."
+},
+{
+  id: "u4-017",
+  typeKey: "u4_ud4",
+  q: "La función del tubo coarrugado es:",
+  options: [{ k: "a", t: "Administrar oxígeno al paciente" }, { k: "b", t: "Tomar la tensión arterial" }, { k: "c", t: "Fijar el tubo endotraqueal" }, { k: "d", t: "Realizar descargas eléctricas" }],
+  correct: "a",
+  why: "El tubo coarrugado conduce el oxígeno hacia el paciente."
+},
+{
+  id: "u4-018",
+  typeKey: "u4_ud4",
+  q: "El filtro bactericida del respirador portátil se coloca para:",
+  options: [{ k: "a", t: "Aumentar la presión arterial" }, { k: "b", t: "Filtrar el aire exhalado por el paciente" }, { k: "c", t: "Lubricar la válvula" }, { k: "d", t: "Cerrar la vía aérea" }],
+  correct: "b",
+  why: "Filtra el aire espirado y se conecta entre válvula y paciente."
+},
+{
+  id: "u4-019",
+  typeKey: "u4_ud4",
+  q: "El aspirador de vacío se utiliza para:",
+  options: [{ k: "a", t: "Administrar medicación continua" }, { k: "b", t: "Aspirar sangre, mucosidad y otros fluidos que dificulten la respiración" }, { k: "c", t: "Controlar la actividad cardíaca" }, { k: "d", t: "Mantener la temperatura del paciente" }],
+  correct: "b",
+  why: "El aspirador retira fluidos que pueden comprometer la función respiratoria."
+},
+{
+  id: "u4-020",
+  typeKey: "u4_ud4",
+  q: "La bomba de perfusión tipo jeringa tiene como función principal:",
+  options: [{ k: "a", t: "Desfibrilar al paciente" }, { k: "b", t: "Administrar medicación de forma exacta" }, { k: "c", t: "Realizar ventilación manual" }, { k: "d", t: "Medir la saturación" }],
+  correct: "b",
+  why: "La bomba de perfusión permite administración precisa de medicación."
+},
+{
+  id: "u4-021",
+  typeKey: "u4_ud4",
+  q: "El ambú o reanimador manual es imprescindible porque:",
+  options: [{ k: "a", t: "Sustituye a las botellas de oxígeno" }, { k: "b", t: "Permite ventilar manualmente si falla el respirador mecánico" }, { k: "c", t: "Se usa para inmovilizar las manos" }, { k: "d", t: "Solo sirve en pacientes conscientes" }],
+  correct: "b",
+  why: "Es la alternativa manual para garantizar la ventilación si falla el respirador."
+},
+{
+  id: "u4-022",
+  typeKey: "u4_ud4",
+  q: "La cánula Guedel sirve para:",
+  options: [{ k: "a", t: "Tomar presión no invasiva" }, { k: "b", t: "Mantener libre la vía bucal evitando la caída de la lengua" }, { k: "c", t: "Aspirar secreciones torácicas" }, { k: "d", t: "Realizar presión arterial invasiva" }],
+  correct: "b",
+  why: "La cánula orofaríngea mantiene permeable la vía aérea superior."
+},
+{
+  id: "u4-023",
+  typeKey: "u4_ud4",
+  q: "La Camilla TC lleva habitualmente:",
+  options: [{ k: "a", t: "Una botella de oxígeno" }, { k: "b", t: "Dos botellas de oxígeno, una de reserva" }, { k: "c", t: "Tres botellas de oxígeno" }, { k: "d", t: "Ninguna botella, solo toma mural" }],
+  correct: "b",
+  why: "El temario especifica dos botellas, una de ellas de reserva."
+},
+{
+  id: "u4-024",
+  typeKey: "u4_ud4",
+  q: "Si durante el traslado se agota una botella de O2, el celador debe:",
+  options: [{ k: "a", t: "Cambiar a la otra botella avisando previamente al médico o enfermera" }, { k: "b", t: "Esperar a llegar al destino" }, { k: "c", t: "Desconectar el respirador" }, { k: "d", t: "Abrir puertas para que entre aire" }],
+  correct: "a",
+  why: "El cambio debe hacerse avisando para que el médico esté preparado con el ambú si fuera necesario."
+},
+{
+  id: "u4-025",
+  typeKey: "u4_ud4",
+  q: "Las alargaderas de la Camilla TC sirven para:",
+  options: [{ k: "a", t: "Aumentar el largo del transfer" }, { k: "b", t: "Conectar corriente y O2 de pared para recargar baterías y ahorrar botellas" }, { k: "c", t: "Sujetar la botella al cabecero" }, { k: "d", t: "Fijar al paciente a la camilla" }],
+  correct: "b",
+  why: "Hay una alargadera de O2 y otra de corriente."
+},
+{
+  id: "u4-026",
+  typeKey: "u4_ud4",
+  q: "La cuchara o camilla de palas debería limitarse a:",
+  options: [{ k: "a", t: "Todo el trayecto hasta planta" }, { k: "b", t: "La movilización inicial del paciente hasta la camilla de transporte" }, { k: "c", t: "El traslado de exitus" }, { k: "d", t: "La cirugía de mano" }],
+  correct: "b",
+  why: "No se recomienda mantenerla durante el transporte; se usa para movilización inicial."
+},
+{
+  id: "u4-027",
+  typeKey: "u4_ud4",
+  q: "La tabla de inmovilización espinal se caracteriza porque:",
+  options: [{ k: "a", t: "Sirve solo para niños" }, { k: "b", t: "Es radiotransparente y útil en politraumatizados" }, { k: "c", t: "Sustituye siempre al colchón" }, { k: "d", t: "Se utiliza para pacientes ambulantes" }],
+  correct: "b",
+  why: "Está destinada a inmovilización total y permite RX."
+},
+{
+  id: "u4-028",
+  typeKey: "u4_ud4",
+  q: "El balón de contrapulsación se emplea para:",
+  options: [{ k: "a", t: "Mejorar el aporte de oxígeno al miocardio y reducir la carga del corazón" }, { k: "b", t: "Aumentar la presión intracraneal" }, { k: "c", t: "Sujetar la vía aérea" }, { k: "d", t: "Realizar aspiración de secreciones" }],
+  correct: "a",
+  why: "Es un sistema de asistencia circulatoria para mejorar perfusión miocárdica y descargar el corazón."
+},
+{
+  id: "u4-029",
+  typeKey: "u4_ud4",
+  q: "La mascarilla reservorio se selecciona habitualmente a:",
+  options: [{ k: "a", t: "2 L/min" }, { k: "b", t: "5 L/min" }, { k: "c", t: "10 L/min" }, { k: "d", t: "15 L/min" }],
+  correct: "d",
+  why: "El temario indica 15 litros por minuto."
+},
+{
+  id: "u4-030",
+  typeKey: "u4_ud4",
+  q: "El sensor PIC se relaciona con la medición de:",
+  options: [{ k: "a", t: "Presión intracraneal" }, { k: "b", t: "Presión arterial no invasiva" }, { k: "c", t: "Saturación periférica" }, { k: "d", t: "Presión venosa central" }],
+  correct: "a",
+  why: "PIC corresponde a presión intracraneal."
+},
+{
+  id: "u4-031",
+  typeKey: "u4_ud4",
+  q: "Durante la transferencia de un paciente crítico, un arrancamiento de vías o drenajes:",
+  options: [{ k: "a", t: "No suele tener repercusión" }, { k: "b", t: "Siempre ocasiona un perjuicio y a veces puede ser grave" }, { k: "c", t: "Solo retrasa el traslado" }, { k: "d", t: "Se resuelve recolocándolo más tarde" }],
+  correct: "b",
+  why: "El temario lo recalca como un riesgo serio."
+},
+{
+  id: "u4-032",
+  typeKey: "u4_ud4",
+  q: "En el traslado con Camilla TC acompañan de forma habitual al paciente:",
+  options: [{ k: "a", t: "Dos auxiliares sanitarios, el médico y su enfermera" }, { k: "b", t: "Solo dos auxiliares" }, { k: "c", t: "Un auxiliar y la familia" }, { k: "d", t: "El médico y un celador de planta" }],
+  correct: "a",
+  why: "Los auxiliares son responsables de la camilla y el médico y enfermera del paciente."
+},
+{
+  id: "u4-033",
+  typeKey: "u4_ud4",
+  q: "Los dos auxiliares que acompañan la Camilla TC son responsables, entre otras cosas, de:",
+  options: [{ k: "a", t: "Prescribir medicación urgente" }, { k: "b", t: "Controlar oxígeno, baterías y que no falte ningún componente" }, { k: "c", t: "Intubar al paciente" }, { k: "d", t: "Interpretar radiografías" }],
+  correct: "b",
+  why: "Deben asegurar el equipamiento y vigilar oxígeno y baterías."
+},
+{
+  id: "u4-034",
+  typeKey: "u4_ud4",
+  q: "Antes del traslado con Camilla TC, al llegar a la unidad, lo primero correcto es:",
+  options: [{ k: "a", t: "Entrar con la camilla directamente en la habitación" }, { k: "b", t: "Dirigirse a la enfermera responsable y confirmar el paciente" }, { k: "c", t: "Llamar a la familia para informar" }, { k: "d", t: "Quitar las barandillas de la cama" }],
+  correct: "b",
+  why: "La coordinación se inicia con la enfermera responsable del paciente."
+},
+{
+  id: "u4-035",
+  typeKey: "u4_ud4",
+  q: "La Camilla TC debe colocarse respecto a la cama del paciente:",
+  options: [{ k: "a", t: "Perpendicular y separada" }, { k: "b", t: "En paralelo y asegurada contra la cama" }, { k: "c", t: "A los pies del paciente" }, { k: "d", t: "Da igual la posición" }],
+  correct: "b",
+  why: "Se coloca paralela y asegurada para que no se separe en la transferencia."
+},
+{
+  id: "u4-036",
+  typeKey: "u4_ud4",
+  q: "En la transferencia con transfer, quien da la orden de mover al paciente suele ser:",
+  options: [{ k: "a", t: "El auxiliar situado a los pies" }, { k: "b", t: "La persona situada en la cabecera controlando cabeza y vía aérea" }, { k: "c", t: "El familiar más cercano" }, { k: "d", t: "El primer profesional que esté libre" }],
+  correct: "b",
+  why: "La persona en cabecera coordina porque controla la cabeza y la intubación."
+},
+{
+  id: "u4-037",
+  typeKey: "u4_ud4",
+  q: "Durante el traslado de un paciente crítico, en términos generales:",
+  options: [{ k: "a", t: "Se debe correr para acortar riesgos" }, { k: "b", t: "No se debe correr salvo indicación expresa del médico o enfermera" }, { k: "c", t: "La velocidad no importa" }, { k: "d", t: "Siempre debe hacerse a la máxima velocidad permitida" }],
+  correct: "b",
+  why: "El temario insiste en no correr salvo indicación expresa."
+},
+{
+  id: "u4-038",
+  typeKey: "u4_ud4",
+  q: "Al finalizar un traslado con Camilla TC, una actuación correcta es:",
+  options: [{ k: "a", t: "Dejar las botellas medio vacías si queda algo" }, { k: "b", t: "Revisar componentes, poner a cargar baterías y reponer material usado" }, { k: "c", t: "Guardar la camilla sin limpiar" }, { k: "d", t: "Desconectar todo para ahorrar energía" }],
+  correct: "b",
+  why: "Hay que dejar la camilla lista para un nuevo uso inmediato."
+},
+{
+  id: "u4-039",
+  typeKey: "u4_ud4",
+  q: "La limpieza se define como:",
+  options: [{ k: "a", t: "Destrucción de toda vida microscópica" }, { k: "b", t: "Eliminación de la suciedad visible, primer paso para una buena desinfección" }, { k: "c", t: "Uso exclusivo de autoclave" }, { k: "d", t: "Inactivación química de virus y bacterias" }],
+  correct: "b",
+  why: "La limpieza elimina suciedad visible antes de desinfectar."
+},
+{
+  id: "u4-040",
+  typeKey: "u4_ud4",
+  q: "La esterilización consiste en:",
+  options: [{ k: "a", t: "Eliminar solo la suciedad visible" }, { k: "b", t: "Destruir toda forma de vida microscópica" }, { k: "c", t: "Aplicar un spray y dejar secar" }, { k: "d", t: "Usar guantes y gafas" }],
+  correct: "b",
+  why: "Esterilizar implica destruir toda forma de vida microscópica."
+},
+{
+  id: "u4-041",
+  typeKey: "u4_ud4",
+  q: "¿Cuál de estos materiales del respirador de la Camilla TC es desechable?",
+  options: [{ k: "a", t: "Válvula" }, { k: "b", t: "Tubo silastic" }, { k: "c", t: "Filtro bactericida" }, { k: "d", t: "Ambú" }],
+  correct: "c",
+  why: "El filtro bactericida, el tubo coarrugado y el capnógrafo se reponen tras cada traslado."
+},
+{
+  id: "u4-042",
+  typeKey: "u4_ud4",
+  q: "¿Cuál de estos materiales del respirador debe esterilizarse después de cada traslado?",
+  options: [{ k: "a", t: "Capnógrafo" }, { k: "b", t: "Tubo coarrugado" }, { k: "c", t: "Válvula" }, { k: "d", t: "Mascarilla reservorio" }],
+  correct: "c",
+  why: "La válvula y el tubo silastic son reutilizables y se esterilizan."
+},
+{
+  id: "u4-043",
+  typeKey: "u4_ud4",
+  q: "Si la camilla se ha manchado con sangre o el paciente iba en aislamiento, se debe realizar:",
+  options: [{ k: "a", t: "Solo ventilación de la habitación" }, { k: "b", t: "Limpieza seguida de desinfección" }, { k: "c", t: "Únicamente esterilización en autoclave de toda la camilla" }, { k: "d", t: "Nada si ya se ha secado" }],
+  correct: "b",
+  why: "El resto de superficies/materiales se limpian y desinfectan."
+},
+{
+  id: "u4-044",
+  typeKey: "u4_ud4",
+  q: "Para usar un desinfectante tipo spray sobre la camilla, el temario recomienda:",
+  options: [{ k: "a", t: "Aplicarlo sin guantes" }, { k: "b", t: "Usarlo con guantes y gafas protectoras en zona ventilada" }, { k: "c", t: "Frotar en seco hasta que desaparezca" }, { k: "d", t: "Mezclarlo con agua oxigenada" }],
+  correct: "b",
+  why: "Se indica protección ocular y guantes, y aplicación en zonas ventiladas."
+},
+{
+  id: "u4-045",
+  typeKey: "u4_ud4",
+  q: "En el aislamiento de contacto, el EPI básico indicado es:",
+  options: [{ k: "a", t: "Mascarilla FFP2 y pantalla" }, { k: "b", t: "Guantes y bata" }, { k: "c", t: "Solo gorro" }, { k: "d", t: "Solo mascarilla quirúrgica" }],
+  correct: "b",
+  why: "Para contacto se indican bata y guantes, retirándolos antes de salir."
+},
+{
+  id: "u4-046",
+  typeKey: "u4_ud4",
+  q: "En el aislamiento por gotas, durante el traslado, el paciente debe llevar:",
+  options: [{ k: "a", t: "Mascarilla quirúrgica" }, { k: "b", t: "FFP2 obligatoria" }, { k: "c", t: "Pantalla facial" }, { k: "d", t: "Ninguna protección" }],
+  correct: "a",
+  why: "En aislamiento por gotas el paciente usa mascarilla quirúrgica si sale de la habitación."
+},
+{
+  id: "u4-047",
+  typeKey: "u4_ud4",
+  q: "En el aislamiento por aire, el personal y las visitas deben usar:",
+  options: [{ k: "a", t: "Guantes únicamente" }, { k: "b", t: "Mascarilla FFP2" }, { k: "c", t: "Mascarilla quirúrgica simple siempre" }, { k: "d", t: "Solo bata" }],
+  correct: "b",
+  why: "Para partículas menores de 5 micras, el personal usa FFP2."
+},
+{
+  id: "u4-048",
+  typeKey: "u4_ud4",
+  q: "En el aislamiento por aire, si el paciente sale de la habitación, debe llevar:",
+  options: [{ k: "a", t: "Pantalla protectora" }, { k: "b", t: "Mascarilla quirúrgica" }, { k: "c", t: "FFP2 obligatoria" }, { k: "d", t: "Manoplas" }],
+  correct: "b",
+  why: "El paciente lleva mascarilla quirúrgica durante la salida o traslado."
+},
+{
+  id: "u4-049",
+  typeKey: "u4_ud4",
+  q: "La Camilla NBQ15 se activa para traslados de pacientes contaminados con:",
+  options: [{ k: "a", t: "Bacterias comunes de contacto" }, { k: "b", t: "Agentes biológicos del grupo IV, como el virus Ébola" }, { k: "c", t: "Solo pacientes con COVID leve" }, { k: "d", t: "Pacientes pediátricos politraumatizados" }],
+  correct: "b",
+  why: "El temario la relaciona con agentes biológicos del grupo IV."
+},
+{
+  id: "u4-050",
+  typeKey: "u4_ud4",
+  q: "La función de la camilla de corazón parado es:",
+  options: [{ k: "a", t: "Trasladar al paciente a rehabilitación" }, { k: "b", t: "Preservar los órganos del fallecido mediante circulación extracorpórea para posible donación" }, { k: "c", t: "Realizar compresiones torácicas automáticas" }, { k: "d", t: "Inmovilizar al paciente politraumatizado" }],
+  correct: "b",
+  why: "Se utiliza cuando existe parada y posibilidad de donación de órganos."
+},
+{
+  id: "u4-051",
+  typeKey: "u4_ud4",
+  q: "El traslado con camilla de corazón parado se realiza desde:",
+  options: [{ k: "a", t: "Quirófano a UCI" }, { k: "b", t: "La unidad donde está el fallecido hasta quirófano para extracción de órganos" }, { k: "c", t: "Urgencias al depósito" }, { k: "d", t: "Radiología a planta" }],
+  correct: "b",
+  why: "Ese es el circuito descrito para la extracción si se autoriza la donación."
+},
+{
+  id: "u4-052",
+  typeKey: "u4_ud4",
+  q: "En el traslado de exitus, una de las primeras comprobaciones al llegar a la unidad es:",
+  options: [{ k: "a", t: "La tensión arterial del paciente" }, { k: "b", t: "La identidad del exitus mediante la pulsera identificativa" }, { k: "c", t: "La saturación de oxígeno" }, { k: "d", t: "La posición de Trendelenburg" }],
+  correct: "b",
+  why: "Se verifica la identidad del fallecido con la pulsera identificativa."
+},
+{
+  id: "u4-053",
+  typeKey: "u4_ud4",
+  q: "Antes de salir al pasillo con un exitus, se debe:",
+  options: [{ k: "a", t: "Avisar a toda la planta por megafonía" }, { k: "b", t: "Asegurar que puertas de otras habitaciones estén cerradas y el pasillo despejado" }, { k: "c", t: "Retirar la lona de la camilla" }, { k: "d", t: "Esperar a que llegue la familia" }],
+  correct: "b",
+  why: "Se busca preservar intimidad y discreción del traslado."
+},
+{
+  id: "u4-054",
+  typeKey: "u4_ud4",
+  q: "La grúa de cinchas es especialmente útil en:",
+  options: [{ k: "a", t: "Pacientes que pueden caminar solos" }, { k: "b", t: "Pacientes politraumatizados o críticos que requieren movilización en bloque" }, { k: "c", t: "Traslado de documentación pesada" }, { k: "d", t: "Cirugía laparoscópica" }],
+  correct: "b",
+  why: "Está pensada para movilización en bloque en curas, higiene o cambios de sábanas."
+},
+{
+  id: "u4-055",
+  typeKey: "u4_ud4",
+  q: "La finalidad principal de la inmovilización del paciente es:",
+  options: [{ k: "a", t: "Aumentar la comodidad del profesional" }, { k: "b", t: "Evitar caídas o arrancamientos de vías, sondas y drenajes" }, { k: "c", t: "Mejorar la saturación de oxígeno" }, { k: "d", t: "Sustituir la vigilancia del paciente" }],
+  correct: "b",
+  why: "La sujeción se indica para prevenir caídas y arrancamientos."
+},
+{
+  id: "u4-056",
+  typeKey: "u4_ud4",
+  q: "Según el temario, una medida importante tras colocar una inmovilización es:",
+  options: [{ k: "a", t: "Retirarla solo al alta médica definitiva" }, { k: "b", t: "Incrementar la vigilancia sobre el paciente inmovilizado" }, { k: "c", t: "Ocultarla bajo mantas para no verla" }, { k: "d", t: "Aflojarla siempre cada 24 horas sin avisar" }],
+  correct: "b",
+  why: "Se debe aumentar la vigilancia y retirarla cuando ya no sea necesaria."
+},
+{
+  id: "u4-057",
+  typeKey: "u4_ud4",
+  q: "Las manoplas se utilizan sobre todo para:",
+  options: [{ k: "a", t: "Fijar firmemente ambos pies" }, { k: "b", t: "Evitar arrancamientos de vías y sondas en pacientes desorientados" }, { k: "c", t: "Trasladar al paciente al quirófano" }, { k: "d", t: "Realizar ventilación manual" }],
+  correct: "b",
+  why: "Las manoplas previenen que el paciente manipule vías, sondas o drenajes."
+},
+{
+  id: "u4-058",
+  typeKey: "u4_ud4",
+  q: "La sujeción abdominal con sistema antivuelco sirve para:",
+  options: [{ k: "a", t: "Sujetar al paciente de la cintura y limitar giros para evitar caídas" }, { k: "b", t: "Presionar el abdomen tras cirugía" }, { k: "c", t: "Fijar el monitor al sillón" }, { k: "d", t: "Evitar la broncoaspiración" }],
+  correct: "a",
+  why: "Combina sujeción de cintura y limitación de giros."
+},
+{
+  id: "u4-059",
+  typeKey: "u4_ud4",
+  q: "Las sujeciones de cuerpo son especialmente prácticas para:",
+  options: [{ k: "a", t: "Evitar caídas de pacientes inestables sentados" }, { k: "b", t: "Fijar el balón de contrapulsación" }, { k: "c", t: "Aumentar la presión arterial" }, { k: "d", t: "Sujetar el tubo coarrugado" }],
+  correct: "a",
+  why: "Se emplean con frecuencia en sillón para pacientes inestables."
+},
+{
+  id: "u4-060",
+  typeKey: "u4_ud4",
+  q: "Cuando un paciente crítico queda inmovilizado, las sujeciones deben retirarse:",
+  options: [{ k: "a", t: "Solo al cambiar de turno" }, { k: "b", t: "En cuanto ya no sean necesarias" }, { k: "c", t: "Nunca durante el ingreso" }, { k: "d", t: "Solo si las solicita la familia" }],
+  correct: "b",
+  why: "El temario indica que deben retirarse en el momento en que dejen de ser necesarias."
+}
     ];
 
     const SCORING = {
@@ -1524,6 +2009,7 @@
       if (unit === "u1") elExamType.value = "u1_ud1";
       if (unit === "u2") elExamType.value = "u2_ud2";
       if (unit === "u3") elExamType.value = "u3_ud3";
+      if (unit === "u4") elExamType.value = "u4_ud4";
       applyTypeUI();
       setRulesUI();
     }
