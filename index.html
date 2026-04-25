@@ -202,7 +202,9 @@
       u3_test15: { unit: "u3", label: "U3 • Cuestionario (15 preguntas)", mode: "mcq", sizeMode: "fixed", fixedCount: 15, scoringMode: "count" },
       u3_vf: { unit: "u3", label: "U3 • Verdadero / Falso", mode: "vf", sizeMode: "fixed", fixedCount: 10, scoringMode: "count" },
 
-      u4_ud4: { unit: "u4", label: "U4 • Movilización y traslado (Nivel 2 avanzado)", mode: "mcq", sizeMode: "variable", scoringMode: "points" }
+      u4_ud4: { unit: "u4", label: "U4 • Movilización y traslado (Nivel 2 avanzado)", mode: "mcq", sizeMode: "variable", scoringMode: "points" },
+      u4_test10: { unit: "u4", label: "U4 • Cuestionario (10 preguntas)", mode: "mcq", sizeMode: "fixed", fixedCount: 10, scoringMode: "count" },
+      u4_vf: { unit: "u4", label: "U4 • Verdadero / Falso", mode: "vf", sizeMode: "fixed", fixedCount: 10, scoringMode: "count" }
     };
 
     const QUESTION_BANK = [
@@ -1892,6 +1894,224 @@
   options: [{ k: "a", t: "Solo al cambiar de turno" }, { k: "b", t: "En cuanto ya no sean necesarias" }, { k: "c", t: "Nunca durante el ingreso" }, { k: "d", t: "Solo si las solicita la familia" }],
   correct: "b",
   why: "El temario indica que deben retirarse en el momento en que dejen de ser necesarias."
+},
+
+/* =========================
+   UNIDAD 4 · CUESTIONARIO OFICIAL (10)
+   ========================= */
+{
+  id: "u4t-001",
+  typeKey: "u4_test10",
+  q: "Para poder medir la saturación de oxígeno de un paciente necesitamos:",
+  options: [
+    { k: "a", t: "Un manguito de presión arterial" },
+    { k: "b", t: "Un pulsioxímetro" },
+    { k: "c", t: "Un capnógrafo" },
+    { k: "d", t: "Los latiguillos" }
+  ],
+  correct: "b",
+  why: "El pulsioxímetro o saturador mide la saturación de oxígeno en sangre."
+},
+{
+  id: "u4t-002",
+  typeKey: "u4_test10",
+  q: "Cuando tengamos que entrar a una habitación en la que el paciente está en aislamiento por contacto y gota, ¿qué debemos hacer?",
+  options: [
+    { k: "a", t: "Ponernos mascarilla quirúrgica y guantes" },
+    { k: "b", t: "Ponernos bata, mascarilla quirúrgica y guantes" },
+    { k: "c", t: "Ponernos bata y guantes" },
+    { k: "d", t: "Ponernos bata, guantes y mascarilla FFP2" }
+  ],
+  correct: "b",
+  why: "Contacto requiere bata y guantes; gota añade mascarilla quirúrgica. La FFP2 es para aislamiento aéreo."
+},
+{
+  id: "u4t-003",
+  typeKey: "u4_test10",
+  q: "No forma parte del respirador mecánico:",
+  options: [
+    { k: "a", t: "El tubo silástic" },
+    { k: "b", t: "El filtro bactericida" },
+    { k: "c", t: "El tubo de aspiración" },
+    { k: "d", t: "El capnógrafo" }
+  ],
+  correct: "c",
+  why: "El tubo de aspiración pertenece al aspirador de vacío, no al conjunto del respirador mecánico."
+},
+{
+  id: "u4t-004",
+  typeKey: "u4_test10",
+  q: "En el respirador mecánico, la función de administrar oxígeno al paciente la realiza:",
+  options: [
+    { k: "a", t: "La válvula" },
+    { k: "b", t: "El capnógrafo" },
+    { k: "c", t: "El tubo silástic" },
+    { k: "d", t: "El tubo coarrugado" }
+  ],
+  correct: "d",
+  why: "El tubo coarrugado administra el oxígeno al paciente conectando respirador y válvula."
+},
+{
+  id: "u4t-005",
+  typeKey: "u4_test10",
+  q: "En el respirador mecánico, la función de captar el volumen y la presión respiratoria del paciente la realiza:",
+  options: [
+    { k: "a", t: "El tubo silástic" },
+    { k: "b", t: "El filtro bactericida" },
+    { k: "c", t: "El tubo de aspiración" },
+    { k: "d", t: "El capnógrafo" }
+  ],
+  correct: "a",
+  why: "El tubo silástic capta el volumen y la presión respiratoria del paciente."
+},
+{
+  id: "u4t-006",
+  typeKey: "u4_test10",
+  q: "¿Cuántas botellas de oxígeno lleva la camilla TC?",
+  options: [
+    { k: "a", t: "Una" },
+    { k: "b", t: "Dos" },
+    { k: "c", t: "Ninguna" },
+    { k: "d", t: "Las que se necesiten" }
+  ],
+  correct: "b",
+  why: "La camilla TC lleva dos botellas de oxígeno, una de ellas de reserva."
+},
+{
+  id: "u4t-007",
+  typeKey: "u4_test10",
+  q: "La función de una de las alargaderas en la camilla TC es:",
+  options: [
+    { k: "a", t: "Recargar la batería" },
+    { k: "b", t: "Utilizar el oxígeno de las botellas" },
+    { k: "c", t: "Permitir los traslados más cómodos" },
+    { k: "d", t: "Ninguna respuesta es correcta" }
+  ],
+  correct: "a",
+  why: "Una alargadera permite conectar la camilla a corriente para recargar baterías; la otra permite conectar oxígeno de pared para no gastar botellas."
+},
+{
+  id: "u4t-008",
+  typeKey: "u4_test10",
+  q: "Para realizar una movilización a un politraumatizado utilizaremos:",
+  options: [
+    { k: "a", t: "La tabla de inmovilización espinal" },
+    { k: "b", t: "La cuchara" },
+    { k: "c", t: "El transfer" },
+    { k: "d", t: "Ninguna, ya que no se podrá inmovilizar" }
+  ],
+  correct: "a",
+  why: "La tabla de inmovilización espinal está destinada a pacientes politraumatizados que precisan inmovilización total."
+},
+{
+  id: "u4t-009",
+  typeKey: "u4_test10",
+  q: "¿Cómo se denomina el proceso de eliminación de toda forma patógena, pero sin eliminar la flora más resistente?",
+  options: [
+    { k: "a", t: "Limpieza" },
+    { k: "b", t: "Desinfección" },
+    { k: "c", t: "Esterilización" },
+    { k: "d", t: "Asepsia" }
+  ],
+  correct: "b",
+  why: "La desinfección elimina o inactiva agentes patógenos, sin alcanzar la destrucción total propia de la esterilización."
+},
+{
+  id: "u4t-010",
+  typeKey: "u4_test10",
+  q: "Durante el traslado de un paciente en aislamiento aéreo:",
+  options: [
+    { k: "a", t: "Deberemos ponernos una mascarilla durante el traslado" },
+    { k: "b", t: "Le pondremos al paciente una mascarilla FFP2" },
+    { k: "c", t: "No pondremos nada al paciente" },
+    { k: "d", t: "Le pondremos al paciente una mascarilla quirúrgica" }
+  ],
+  correct: "d",
+  why: "En aislamiento aéreo, el personal usa FFP2, pero si el paciente sale de la habitación debe llevar mascarilla quirúrgica."
+},
+
+/* =========================
+   UNIDAD 4 · VERDADERO/FALSO OFICIAL (10)
+   ========================= */
+{
+  id: "u4vf-001",
+  typeKey: "u4_vf",
+  q: "La camilla NBQ se utiliza para el traslado de pacientes contaminados con un agente biológico del grupo 4º.",
+  options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+  correct: "a",
+  why: "La camilla NBQ15 se relaciona con traslados de pacientes contaminados por agentes biológicos del grupo IV."
+},
+{
+  id: "u4vf-002",
+  typeKey: "u4_vf",
+  q: "Para controlar la presión invasiva del paciente necesitaremos un capnógrafo.",
+  options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+  correct: "b",
+  why: "La presión invasiva se controla con cable arterial y catéter arterial; el capnógrafo mide CO2 espirado."
+},
+{
+  id: "u4vf-003",
+  typeKey: "u4_vf",
+  q: "La camilla de corazón parado se utiliza para el traslado de pacientes en periodo de reanimación.",
+  options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+  correct: "b",
+  why: "Según el cuestionario, no se define como traslado de pacientes en periodo de reanimación; se asocia al circuito específico de corazón parado/donación."
+},
+{
+  id: "u4vf-004",
+  typeKey: "u4_vf",
+  q: "La función del ambú es la de ventilar al paciente de forma manual cuando el paciente no respira espontáneamente.",
+  options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+  correct: "a",
+  why: "El ambú o reanimador manual permite ventilar al paciente de forma manual."
+},
+{
+  id: "u4vf-005",
+  typeKey: "u4_vf",
+  q: "Durante el traslado de un paciente en aislamiento aéreo le pondremos una mascarilla quirúrgica.",
+  options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+  correct: "a",
+  why: "Cuando el paciente con aislamiento aéreo sale de la habitación, se le coloca mascarilla quirúrgica."
+},
+{
+  id: "u4vf-006",
+  typeKey: "u4_vf",
+  q: "Las mascarillas que utilizamos para aislamiento por aire o por gota son iguales.",
+  options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+  correct: "b",
+  why: "En aislamiento por gota se usa mascarilla quirúrgica; en aislamiento por aire el personal utiliza FFP2."
+},
+{
+  id: "u4vf-007",
+  typeKey: "u4_vf",
+  q: "Los latiguillos, del monitor de constantes vitales, nos permiten leer la actividad cardíaca del paciente.",
+  options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+  correct: "a",
+  why: "Los latiguillos se colocan mediante electrodos y permiten controlar la actividad cardíaca."
+},
+{
+  id: "u4vf-008",
+  typeKey: "u4_vf",
+  q: "El manguito PNI, del monitor de constantes, nos sirve para medir la concentración de CO2 del paciente.",
+  options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+  correct: "b",
+  why: "El manguito PNI mide presión arterial no invasiva; el CO2 lo mide el capnógrafo."
+},
+{
+  id: "u4vf-009",
+  typeKey: "u4_vf",
+  q: "El número de piezas de la válvula que se han de conectar para garantizar una ventilación mecánica efectiva son tres.",
+  options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+  correct: "b",
+  why: "La válvula está formada por cuatro piezas conectadas entre sí."
+},
+{
+  id: "u4vf-010",
+  typeKey: "u4_vf",
+  q: "El proceso de esterilización se realiza en autoclaves a temperaturas superiores a 100ºC.",
+  options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }],
+  correct: "a",
+  why: "La esterilización destruye toda forma de vida microscópica y se realiza en autoclaves a temperaturas superiores a 100ºC."
 }
     ];
 
@@ -1907,13 +2127,19 @@
       30: { easy: 8, medium: 15, hard: 7 }
     };
 
-   function tagU3Difficulties() {
+   function tagDifficulties() {
       QUESTION_BANK.forEach((q) => {
-        if (q.typeKey !== "u3_ud3") return;
+        if (q.typeKey !== "u3_ud3" && q.typeKey !== "u4_ud4") return;
         const match = String(q.id).match(/(\d+)$/);
         const n = match ? Number(match[1]) : 999;
-        if (n <= 30) q.difficulty = "easy";
-        else if (n <= 70) q.difficulty = "medium";
+        if (q.typeKey === "u3_ud3") {
+          if (n <= 30) q.difficulty = "easy";
+          else if (n <= 70) q.difficulty = "medium";
+          else q.difficulty = "hard";
+          return;
+        }
+        if (n <= 20) q.difficulty = "easy";
+        else if (n <= 45) q.difficulty = "medium";
         else q.difficulty = "hard";
       });
     }
@@ -2046,7 +2272,7 @@
         throw new Error(`No hay suficientes preguntas en el banco (${pool.length}) para generar ${n}.`);
       }
 
-      if (typeKey === "u3_ud3" && MIXED_DIFFICULTY_DISTRIBUTION[n]) {
+      if ((typeKey === "u3_ud3" || typeKey === "u4_ud4") && MIXED_DIFFICULTY_DISTRIBUTION[n]) {
         const distribution = MIXED_DIFFICULTY_DISTRIBUTION[n];
         const poolByDifficulty = {
           easy: pool.filter((q) => q.difficulty === "easy"),
@@ -2270,7 +2496,7 @@
     restartFromResultsBtn.addEventListener("click", resetAll);
     changeConfigBtn.addEventListener("click", () => { resetAll(); window.scrollTo({ top: 0, behavior: "smooth" }); });
 
-    tagU3Difficulties();
+    tagDifficulties();
     rebuildExamTypeOptions();
     setRulesUI();
   </script>
