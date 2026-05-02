@@ -1,11 +1,12 @@
 
 
+
 <!doctype html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Simulacro Celador - Unidades 1, 2, 3 y 4</title>
+  <title>Simulacro Celador - Unidades 1, 2, 3, 4 y 5</title>
   <style>
     :root {
       --bg: #0b1220;
@@ -100,7 +101,7 @@
     <header>
       <div class="title">
         <div>
-          <h1>Simulacro (Celador) • Unidades 1, 2, 3 y 4</h1>
+          <h1>Simulacro (Celador) • Unidades 1, 2, 3, 4 y 5</h1>
           <div class="subtitle">Sin backend. Exámenes aleatorios. Pensado para móvil.</div>
         </div>
         <div class="pill" id="scorePill">Puntuación: <b id="pillPoints">-</b></div>
@@ -115,6 +116,7 @@
               <option value="u2">Unidad 2</option>
               <option value="u3">Unidad 3</option>
               <option value="u4">Unidad 4</option>
+              <option value="u5">Unidad 5</option>
             </select>
           </div>
 
@@ -204,7 +206,10 @@
 
       u4_ud4: { unit: "u4", label: "U4 • Movilización y traslado (Nivel 2 avanzado)", mode: "mcq", sizeMode: "variable", scoringMode: "points" },
       u4_test10: { unit: "u4", label: "U4 • Cuestionario (10 preguntas)", mode: "mcq", sizeMode: "fixed", fixedCount: 10, scoringMode: "count" },
-      u4_vf: { unit: "u4", label: "U4 • Verdadero / Falso", mode: "vf", sizeMode: "fixed", fixedCount: 10, scoringMode: "count" }
+      u4_vf: { unit: "u4", label: "U4 • Verdadero / Falso", mode: "vf", sizeMode: "fixed", fixedCount: 10, scoringMode: "count" },
+
+      u5_ud5: { unit: "u5", label: "U5 • Contención verbal y física (temario)", mode: "mcq", sizeMode: "variable", scoringMode: "points" },
+      u5_vf: { unit: "u5", label: "U5 • Verdadero / Falso", mode: "vf", sizeMode: "fixed", fixedCount: 20, scoringMode: "count" }
     };
 
     const QUESTION_BANK = [
@@ -2113,6 +2118,595 @@
   correct: "a",
   why: "La esterilización destruye toda forma de vida microscópica y se realiza en autoclaves a temperaturas superiores a 100ºC."
 }
+,
+/* =========================
+   UNIDAD 5 · CONTENCIÓN VERBAL Y FÍSICA
+   ========================= */
+{
+  id: "u5-001",
+  typeKey: "u5_ud5",
+  q: "¿Cuál es el objetivo principal de la contención emocional según el temario?",
+  options: [{ k: "a", t: "Imponer límites mediante métodos aversivos" }, { k: "b", t: "Poner límites sin generar angustia y entrenar estrategias de afrontamiento" }, { k: "c", t: "Sustituir siempre la intervención farmacológica" }, { k: "d", t: "Evitar toda comunicación con el paciente" }],
+  correct: "b",
+  why: "La contención emocional busca poner límites sin métodos aversivos, entrenar afrontamiento y garantizar seguridad."
+},
+{
+  id: "u5-002",
+  typeKey: "u5_ud5",
+  q: "La agresividad puede manifestarse principalmente como:",
+  options: [{ k: "a", t: "Solo física" }, { k: "b", t: "Solo verbal" }, { k: "c", t: "Verbal o física, contra personas u objetos" }, { k: "d", t: "Únicamente mediante silencio y aislamiento" }],
+  correct: "c",
+  why: "El temario diferencia agresividad verbal, como insultos o amenazas, y física, contra personas u objetos."
+},
+{
+  id: "u5-003",
+  typeKey: "u5_ud5",
+  q: "Una postura o conducta anticipatoria de posible violencia sería:",
+  options: [{ k: "a", t: "Dormir profundamente" }, { k: "b", t: "Caminar en círculos, golpear paredes o sentarse al borde de la silla" }, { k: "c", t: "Pedir agua con tono bajo" }, { k: "d", t: "Cerrar los ojos para relajarse" }],
+  correct: "b",
+  why: "El aumento de actividad psicomotora y las posturas de amenaza pueden anticipar escalada agresiva."
+},
+{
+  id: "u5-004",
+  typeKey: "u5_ud5",
+  q: "Respecto a la agitación, es correcto afirmar que:",
+  options: [{ k: "a", t: "Toda agitación implica agresividad intencional" }, { k: "b", t: "No toda agitación conlleva comportamiento agresivo intencional" }, { k: "c", t: "Solo aparece en pacientes psiquiátricos diagnosticados" }, { k: "d", t: "Siempre dura menos de un minuto" }],
+  correct: "b",
+  why: "El temario recalca que la agitación puede existir sin agresividad intencional asociada."
+},
+{
+  id: "u5-005",
+  typeKey: "u5_ud5",
+  q: "¿Qué elemento externo puede agravar un estado de agitación?",
+  options: [{ k: "a", t: "Ambiente tranquilo y pocos estímulos" }, { k: "b", t: "Ruido, exceso de gente o luz deslumbrante" }, { k: "c", t: "Tono de voz bajo" }, { k: "d", t: "Disminución de estímulos" }],
+  correct: "b",
+  why: "Los estímulos externos como ruido, exceso de gente o luz deslumbrante pueden agravar la agitación."
+},
+{
+  id: "u5-006",
+  typeKey: "u5_ud5",
+  q: "Según el temario, la violencia en pacientes psiquiátricos:",
+  options: [{ k: "a", t: "Implica necesariamente más criminalidad" }, { k: "b", t: "Debe interpretarse sin matices por el diagnóstico" }, { k: "c", t: "Es más frecuente que en población general, pero eso no significa más criminalidad" }, { k: "d", t: "No se relaciona nunca con sustancias" }],
+  correct: "c",
+  why: "El tema advierte contra el estigma: mayor frecuencia de agitación no equivale a mayor criminalidad."
+},
+{
+  id: "u5-007",
+  typeKey: "u5_ud5",
+  q: "¿Cuál de estos perfiles aparece como más propenso a episodios de agitación según el temario?",
+  options: [{ k: "a", t: "Pacientes con esquizofrenia o trastorno psicótico asociado a síndrome orgánico cerebral" }, { k: "b", t: "Pacientes sin ningún factor de riesgo" }, { k: "c", t: "Solo pacientes pediátricos sin patología" }, { k: "d", t: "Personas con alta flexibilidad y buena resolución de conflictos" }],
+  correct: "a",
+  why: "Se citan esquizofrenia, trastorno psicótico asociado a síndrome orgánico cerebral, retraso mental y trastorno de personalidad."
+},
+{
+  id: "u5-008",
+  typeKey: "u5_ud5",
+  q: "En relación con género y agresividad, el temario indica que:",
+  options: [{ k: "a", t: "No hay diferencias descritas" }, { k: "b", t: "Las mujeres realizan siempre agresiones más graves" }, { k: "c", t: "Los hombres muestran conductas violentas con más frecuencia y suelen realizar heteroagresiones más graves" }, { k: "d", t: "Solo existe autoagresión en hombres" }],
+  correct: "c",
+  why: "El temario indica mayor frecuencia en hombres y agresiones más graves generalmente heteroagresivas."
+},
+{
+  id: "u5-009",
+  typeKey: "u5_ud5",
+  q: "Una hipótesis biológica de la agresividad buscaría la explicación en:",
+  options: [{ k: "a", t: "Factores sociales exclusivamente" }, { k: "b", t: "Fallos, lesiones o desregulación a nivel cerebral" }, { k: "c", t: "La organización del centro únicamente" }, { k: "d", t: "El horario de visitas" }],
+  correct: "b",
+  why: "Las hipótesis biológicas se centran en problemas físicos cerebrales o neurotransmisores."
+},
+{
+  id: "u5-010",
+  typeKey: "u5_ud5",
+  q: "Una hipótesis psicosocial de la violencia destacaría factores como:",
+  options: [{ k: "a", t: "Estrés ambiental, modelos educativos negligentes y modelos culturales violentos" }, { k: "b", t: "Solo lesiones orgánicas cerebrales" }, { k: "c", t: "Únicamente fiebre" }, { k: "d", t: "Solo edad avanzada" }],
+  correct: "a",
+  why: "Las hipótesis psicosociales consideran estrés ambiental, modelos educativos, cultura y temperamento."
+},
+{
+  id: "u5-011",
+  typeKey: "u5_ud5",
+  q: "Para que se produzca una conducta violenta, el temario sintetiza cuatro elementos. ¿Cuál NO pertenece a ese grupo?",
+  options: [{ k: "a", t: "Evento disparador" }, { k: "b", t: "Cierto nivel de estrés" }, { k: "c", t: "Medio de agresión" }, { k: "d", t: "Diagnóstico quirúrgico confirmado" }],
+  correct: "d",
+  why: "Los cuatro elementos son detonante, activación/estrés, medio de agresión y víctima o diana."
+},
+{
+  id: "u5-012",
+  typeKey: "u5_ud5",
+  q: "Si eliminamos alguno de los cuatro elementos necesarios para la agresión:",
+  options: [{ k: "a", t: "La agresión no se puede producir en esos términos" }, { k: "b", t: "La agresión aumenta inevitablemente" }, { k: "c", t: "La contención física se vuelve obligatoria" }, { k: "d", t: "Desaparece toda necesidad de observación" }],
+  correct: "a",
+  why: "El temario indica que si eliminamos alguno de esos elementos, la agresión no puede producirse."
+},
+{
+  id: "u5-013",
+  typeKey: "u5_ud5",
+  q: "¿Cuál es un facilitador o indicador potencial de violencia?",
+  options: [{ k: "a", t: "Alta tolerancia a la frustración" }, { k: "b", t: "Habilidad para resolver conflictos" }, { k: "c", t: "Deseo de venganza e intolerancia a la autoridad" }, { k: "d", t: "Comunicación asertiva" }],
+  correct: "c",
+  why: "Deseo de venganza, intolerancia a la autoridad, impulsividad y suspicacia son indicadores potenciales."
+},
+{
+  id: "u5-014",
+  typeKey: "u5_ud5",
+  q: "Una característica protectora ante la violencia es:",
+  options: [{ k: "a", t: "Rigidez confrontadora" }, { k: "b", t: "Capacidad de adaptarse y resolver conflictos" }, { k: "c", t: "Hostilidad sostenida" }, { k: "d", t: "Poca tolerancia a la frustración" }],
+  correct: "b",
+  why: "La flexibilidad, conciliación y resolución de conflictos disminuyen la probabilidad de agresividad."
+},
+{
+  id: "u5-015",
+  typeKey: "u5_ud5",
+  q: "¿Qué factor ambiental favorece la agitación?",
+  options: [{ k: "a", t: "Pocos estímulos" }, { k: "b", t: "Espacio amplio y personal suficiente" }, { k: "c", t: "Exceso de gente en poco espacio y largas esperas" }, { k: "d", t: "Trato calmado" }],
+  correct: "c",
+  why: "El exceso de gente, el personal escaso/inexperto, esperas largas y trato hostil favorecen actos agresivos."
+},
+{
+  id: "u5-016",
+  typeKey: "u5_ud5",
+  q: "La emoción se define en el temario como:",
+  options: [{ k: "a", t: "Una respuesta exclusivamente racional" }, { k: "b", t: "Un estado intenso que influye sobre numerosos órganos" }, { k: "c", t: "Un diagnóstico psiquiátrico" }, { k: "d", t: "Una conducta siempre patológica" }],
+  correct: "b",
+  why: "La emoción es un estado intenso, agradable o penoso, que puede alterar funciones corporales."
+},
+{
+  id: "u5-017",
+  typeKey: "u5_ud5",
+  q: "El sentimiento es:",
+  options: [{ k: "a", t: "La sensación consciente de la reacción emocional" }, { k: "b", t: "Un sinónimo de contención física" }, { k: "c", t: "La ausencia de emoción" }, { k: "d", t: "Una forma de aislamiento" }],
+  correct: "a",
+  why: "El temario define el sentimiento como la sensación consciente de la reacción emocional."
+},
+{
+  id: "u5-018",
+  typeKey: "u5_ud5",
+  q: "¿Cuál de estas emociones se cita como básica?",
+  options: [{ k: "a", t: "Culpa administrativa" }, { k: "b", t: "Miedo" }, { k: "c", t: "Diagnóstico" }, { k: "d", t: "Sedación" }],
+  correct: "b",
+  why: "Se citan miedo, tristeza, alegría y rabia como emociones básicas."
+},
+{
+  id: "u5-019",
+  typeKey: "u5_ud5",
+  q: "Según el temario, reprimir continuamente emociones que no nos agradan puede:",
+  options: [{ k: "a", t: "No tener ninguna repercusión" }, { k: "b", t: "Provocar repercusiones somáticas y psicológicas" }, { k: "c", t: "Garantizar el autocontrol definitivo" }, { k: "d", t: "Sustituir la escucha activa" }],
+  correct: "b",
+  why: "La represión continua puede tener repercusiones somáticas y psicológicas."
+},
+{
+  id: "u5-020",
+  typeKey: "u5_ud5",
+  q: "Para ayudar a controlar emociones, el temario propone:",
+  options: [{ k: "a", t: "Aumentar estímulos" }, { k: "b", t: "Mantener apariencia tranquila y controlar el lenguaje" }, { k: "c", t: "Responder con provocación" }, { k: "d", t: "Evitar toda información comprensible" }],
+  correct: "b",
+  why: "Mantener apariencia tranquila y controlar el lenguaje ayudan a disciplinar emociones."
+},
+{
+  id: "u5-021",
+  typeKey: "u5_ud5",
+  q: "Ante la ansiedad de un usuario, una actuación correcta es:",
+  options: [{ k: "a", t: "Dar por supuesto el motivo" }, { k: "b", t: "Ser breve, conciso y hablar despacio" }, { k: "c", t: "Exigirle que cambie inmediatamente" }, { k: "d", t: "Aplicar lógica insistente aunque no funcione" }],
+  correct: "b",
+  why: "Ante ansiedad se recomienda reconocer signos, no presuponer motivos, ser breve y hablar despacio."
+},
+{
+  id: "u5-022",
+  typeKey: "u5_ud5",
+  q: "Ante la ansiedad, NO deberíamos:",
+  options: [{ k: "a", t: "Estimular la expresión de sentimientos" }, { k: "b", t: "Dar información comprensible" }, { k: "c", t: "Intentar tranquilizar al usuario de forma simplista" }, { k: "d", t: "Ser comprensivos" }],
+  correct: "c",
+  why: "El temario recoge expresamente no intentar tranquilizar al usuario."
+},
+{
+  id: "u5-023",
+  typeKey: "u5_ud5",
+  q: "Ante tristeza, una pauta correcta es:",
+  options: [{ k: "a", t: "Iniciar el acercamiento y dirigir la atención a pequeños avances" }, { k: "b", t: "Forzar decisiones importantes" }, { k: "c", t: "Retirar toda independencia" }, { k: "d", t: "Evitar cualquier contacto profesional" }],
+  correct: "a",
+  why: "Ante tristeza se recomienda acercamiento, respeto, preocupación y atención a pequeños avances."
+},
+{
+  id: "u5-024",
+  typeKey: "u5_ud5",
+  q: "Ante rabia u hostilidad, el profesional debe:",
+  options: [{ k: "a", t: "Responder a provocaciones para marcar autoridad" }, { k: "b", t: "Mantener actitud calmada, segura y firme" }, { k: "c", t: "Ignorar riesgos del entorno" }, { k: "d", t: "Usar contacto físico precoz" }],
+  correct: "b",
+  why: "Ante rabia/hostilidad se indica actitud calmada, no responder a provocaciones, ofrecer ayuda y negociar."
+},
+{
+  id: "u5-025",
+  typeKey: "u5_ud5",
+  q: "En rabia u hostilidad, es especialmente importante vigilar:",
+  options: [{ k: "a", t: "Riesgo de caídas, huidas, armas u objetos peligrosos" }, { k: "b", t: "Solo la temperatura ambiental" }, { k: "c", t: "El color de la ropa" }, { k: "d", t: "La documentación administrativa" }],
+  correct: "a",
+  why: "El temario destaca vigilar riesgos como caídas, huidas, armas u objetos peligrosos."
+},
+{
+  id: "u5-026",
+  typeKey: "u5_ud5",
+  q: "Una habilidad fundamental para una buena contención es una actitud:",
+  options: [{ k: "a", t: "Desafiante e intimidatoria" }, { k: "b", t: "Tranquila, afable, segura y firme" }, { k: "c", t: "Inhibida y pasiva" }, { k: "d", t: "Irónica para cortar la tensión" }],
+  correct: "b",
+  why: "La actitud debe ser tranquila y afable, pero segura y firme, sin desafío ni inhibición."
+},
+{
+  id: "u5-027",
+  typeKey: "u5_ud5",
+  q: "La aproximación al paciente en crisis debe ser:",
+  options: [{ k: "a", t: "Brusca e inmediata" }, { k: "b", t: "Progresiva y consecuente al grado de violencia" }, { k: "c", t: "Siempre física desde el inicio" }, { k: "d", t: "Sin estrategia ni protocolo" }],
+  correct: "b",
+  why: "El temario indica aproximación progresiva y pasos protocolizados e interiorizados."
+},
+{
+  id: "u5-028",
+  typeKey: "u5_ud5",
+  q: "En cuanto al entorno durante una contención, se recomienda:",
+  options: [{ k: "a", t: "Aumentar ruido para distraer" }, { k: "b", t: "Cuidar un entorno tranquilo y seguro, minimizando estímulos" }, { k: "c", t: "Llenar la habitación de personal observador" }, { k: "d", t: "Dejar objetos potencialmente peligrosos al alcance" }],
+  correct: "b",
+  why: "El cuidado del entorno busca tranquilidad, seguridad y reducción de estímulos."
+},
+{
+  id: "u5-029",
+  typeKey: "u5_ud5",
+  q: "La observación de la comunicación no verbal sirve principalmente para:",
+  options: [{ k: "a", t: "Determinar la gravedad de la situación y escoger la actuación" }, { k: "b", t: "Sustituir la intervención verbal" }, { k: "c", t: "Evitar el liderazgo" }, { k: "d", t: "Decidir la medicación sin médico" }],
+  correct: "a",
+  why: "La comunicación no verbal ayuda a valorar gravedad y elegir la respuesta profesional."
+},
+{
+  id: "u5-030",
+  typeKey: "u5_ud5",
+  q: "En una situación de contención, el liderazgo implica que:",
+  options: [{ k: "a", t: "Todos den órdenes a la vez" }, { k: "b", t: "Una persona tome responsabilidad de las actuaciones" }, { k: "c", t: "El usuario marque siempre el protocolo" }, { k: "d", t: "No haya coordinación" }],
+  correct: "b",
+  why: "El temario indica que una persona debe asumir la responsabilidad de las actuaciones."
+},
+{
+  id: "u5-031",
+  typeKey: "u5_ud5",
+  q: "La comunicación en la relación profesional con usuarios es:",
+  options: [{ k: "a", t: "Prescindible si hay protocolo" }, { k: "b", t: "El eje de la relación, porque es imposible no comunicar" }, { k: "c", t: "Solo importante en pacientes conscientes" }, { k: "d", t: "Un elemento secundario frente a la fuerza" }],
+  correct: "b",
+  why: "La comunicación es el eje de la relación y el temario recuerda que es imposible no comunicar."
+},
+{
+  id: "u5-032",
+  typeKey: "u5_ud5",
+  q: "La escucha activa implica:",
+  options: [{ k: "a", t: "Atención, interés y motivación" }, { k: "b", t: "Interrogatorio insistente" }, { k: "c", t: "Dar soluciones rápidas" }, { k: "d", t: "Ignorar el contenido emocional" }],
+  correct: "a",
+  why: "Escuchar activamente significa centrarse en el otro con atención, interés y motivación."
+},
+{
+  id: "u5-033",
+  typeKey: "u5_ud5",
+  q: "La empatía, según el temario, NO debe confundirse con:",
+  options: [{ k: "a", t: "Respeto" }, { k: "b", t: "Conocer los propios límites" }, { k: "c", t: "Sobreimplicación" }, { k: "d", t: "Comprender el universo del otro" }],
+  correct: "c",
+  why: "El tema aclara que empatía no es sobreimplicación."
+},
+{
+  id: "u5-034",
+  typeKey: "u5_ud5",
+  q: "Una respuesta empática debe evitar respuestas espontáneas como:",
+  options: [{ k: "a", t: "Escucha respetuosa" }, { k: "b", t: "Juicio moral, interpretación o interrogatorio" }, { k: "c", t: "Aceptación" }, { k: "d", t: "Silencio atento" }],
+  correct: "b",
+  why: "Dar valoración moral, interpretar, consolar sin más, investigar o solucionar rápidamente son respuestas a evitar."
+},
+{
+  id: "u5-035",
+  typeKey: "u5_ud5",
+  q: "La relación de ayuda profesional se compone de:",
+  options: [{ k: "a", t: "Saber, saber hacer y saber ser" }, { k: "b", t: "Fuerza, velocidad y autoridad" }, { k: "c", t: "Diagnóstico, medicación y alta" }, { k: "d", t: "Orden, castigo y aislamiento" }],
+  correct: "a",
+  why: "El temario divide la competencia relacional en conocimientos, aptitudes y actitudes."
+},
+{
+  id: "u5-036",
+  typeKey: "u5_ud5",
+  q: "La relación de ayuda no es:",
+  options: [{ k: "a", t: "Colaborar con el otro" }, { k: "b", t: "Promover capacidades de la persona ayudada" }, { k: "c", t: "Hacer en lugar de otro" }, { k: "d", t: "Ayudar a valorar recursos" }],
+  correct: "c",
+  why: "La relación de ayuda no consiste en hacer en lugar del otro, sino colaborar con él."
+},
+{
+  id: "u5-037",
+  typeKey: "u5_ud5",
+  q: "El estilo que debería constituir el fondo del profesional que ayuda es:",
+  options: [{ k: "a", t: "Autoritario-punitivo" }, { k: "b", t: "Empático-participativo" }, { k: "c", t: "Evasivo" }, { k: "d", t: "Pasivo-indiferente" }],
+  correct: "b",
+  why: "El temario señala el estilo empático-participativo como fondo del que ayuda."
+},
+{
+  id: "u5-038",
+  typeKey: "u5_ud5",
+  q: "La primera y más importante estrategia de contención es:",
+  options: [{ k: "a", t: "La contención física" }, { k: "b", t: "La prevención" }, { k: "c", t: "La sedación inmediata" }, { k: "d", t: "El aislamiento prolongado" }],
+  correct: "b",
+  why: "El temario lo expresa de forma directa: la primera y más importante estrategia es la prevención."
+},
+{
+  id: "u5-039",
+  typeKey: "u5_ud5",
+  q: "En una crisis de agresividad, el resto del personal disponible debe:",
+  options: [{ k: "a", t: "Marcharse y dejar solo al profesional que interviene" }, { k: "b", t: "Estar preparado y alerta por si debe actuar" }, { k: "c", t: "Gritar instrucciones desde la puerta" }, { k: "d", t: "Grabar la situación" }],
+  correct: "b",
+  why: "Además del profesional que interactúa, el resto debe estar preparado y alerta."
+},
+{
+  id: "u5-040",
+  typeKey: "u5_ud5",
+  q: "Durante una crisis, dejar al individuo sin supervisión:",
+  options: [{ k: "a", t: "No es recomendable mientras dure la crisis" }, { k: "b", t: "Es siempre obligatorio" }, { k: "c", t: "Se indica aunque haya riesgo" }, { k: "d", t: "Sustituye el aislamiento protocolizado" }],
+  correct: "a",
+  why: "El temario indica que no es recomendable dejarlo sin supervisión durante la crisis."
+},
+{
+  id: "u5-041",
+  typeKey: "u5_ud5",
+  q: "Si el individuo esgrime un arma, la actuación indicada es:",
+  options: [{ k: "a", t: "Intentar quitársela de inmediato" }, { k: "b", t: "Inhibirse de actuar y avisar a seguridad o cuerpos competentes" }, { k: "c", t: "Usar el cuerpo como escudo" }, { k: "d", t: "Acercarse por detrás para sorprenderlo" }],
+  correct: "b",
+  why: "La seguridad es prioritaria; ante arma, se avisa a seguridad y no se interviene directamente."
+},
+{
+  id: "u5-042",
+  typeKey: "u5_ud5",
+  q: "Una mirada prolongada en una situación de crisis puede percibirse como:",
+  options: [{ k: "a", t: "Un desafío" }, { k: "b", t: "Una señal terapéutica obligatoria" }, { k: "c", t: "Una forma de escucha activa" }, { k: "d", t: "Un gesto neutro siempre" }],
+  correct: "a",
+  why: "El temario advierte que las miradas prolongadas pueden interpretarse como desafío."
+},
+{
+  id: "u5-043",
+  typeKey: "u5_ud5",
+  q: "El tono de voz recomendado en crisis es:",
+  options: [{ k: "a", t: "Alto y autoritario" }, { k: "b", t: "Calmado y bajo" }, { k: "c", t: "Irónico" }, { k: "d", t: "Rápido y cortante" }],
+  correct: "b",
+  why: "Se recomienda tono calmado y bajo."
+},
+{
+  id: "u5-044",
+  typeKey: "u5_ud5",
+  q: "El contacto físico durante la prevención/intervención verbal debe:",
+  options: [{ k: "a", t: "Evitarse en lo posible" }, { k: "b", t: "Usarse desde el inicio" }, { k: "c", t: "Ser intenso para contener" }, { k: "d", t: "Sustituir la comunicación" }],
+  correct: "a",
+  why: "El temario recomienda evitar el contacto físico en lo posible."
+},
+{
+  id: "u5-045",
+  typeKey: "u5_ud5",
+  q: "La desatención de signos previos de conducta agresiva puede desembocar en:",
+  options: [{ k: "a", t: "Una agitación difícil de controlar" }, { k: "b", t: "Mejor alianza terapéutica" }, { k: "c", t: "Reducción automática del riesgo" }, { k: "d", t: "Mayor colaboración espontánea" }],
+  correct: "a",
+  why: "No atender signos anticipatorios puede acabar en una agitación difícil de controlar y con daños."
+},
+{
+  id: "u5-046",
+  typeKey: "u5_ud5",
+  q: "La estrategia de intervención ante violencia persigue, entre otros objetivos:",
+  options: [{ k: "a", t: "Aumentar la desconfianza para imponer límites" }, { k: "b", t: "Disminuir suspicacia, frustración, estado de alerta y mejorar autocontrol" }, { k: "c", t: "Eliminar toda negociación" }, { k: "d", t: "Provocar cansancio físico" }],
+  correct: "b",
+  why: "Sus objetivos incluyen disminuir desconfianza, mejorar frustración/autocontrol y reducir alerta."
+},
+{
+  id: "u5-047",
+  typeKey: "u5_ud5",
+  q: "La acción primera y principal ante la intervención es:",
+  options: [{ k: "a", t: "Ofrecer ayuda" }, { k: "b", t: "Contener físicamente" }, { k: "c", t: "Aislar sin explicar" }, { k: "d", t: "Administrar fármaco sin vínculo" }],
+  correct: "a",
+  why: "El tema resalta como acción primera y principal: ofrecer ayuda."
+},
+{
+  id: "u5-048",
+  typeKey: "u5_ud5",
+  q: "La intervención verbal puede:",
+  options: [{ k: "a", t: "Solo mejorar la situación" }, { k: "b", t: "Mejorar o agravar la situación" }, { k: "c", t: "Sustituir cualquier protocolo" }, { k: "d", t: "No tener efecto" }],
+  correct: "b",
+  why: "El temario advierte que la intervención verbal puede mejorar o agravar la situación."
+},
+{
+  id: "u5-049",
+  typeKey: "u5_ud5",
+  q: "El objetivo final de la intervención verbal es:",
+  options: [{ k: "a", t: "Reducir el riesgo de incremento de la conducta agresiva" }, { k: "b", t: "Castigar la conducta" }, { k: "c", t: "Demostrar autoridad" }, { k: "d", t: "Aislar siempre al usuario" }],
+  correct: "a",
+  why: "Busca reducir el riesgo de escalada agresiva, poner límites sin enfrentamiento y crear alianza terapéutica."
+},
+{
+  id: "u5-050",
+  typeKey: "u5_ud5",
+  q: "¿Qué característica corresponde a una buena intervención verbal?",
+  options: [{ k: "a", t: "Tono suave y conciliador" }, { k: "b", t: "Gritos breves" }, { k: "c", t: "Confrontación directa" }, { k: "d", t: "Preguntas cerradas acusatorias" }],
+  correct: "a",
+  why: "Serenidad significa tono tranquilo, suave y conciliador."
+},
+{
+  id: "u5-051",
+  typeKey: "u5_ud5",
+  q: "En intervención verbal, la escucha se basa en:",
+  options: [{ k: "a", t: "Preguntas abiertas sobre motivos, necesidades y emociones" }, { k: "b", t: "Interrumpir para cortar la crisis" }, { k: "c", t: "Preguntas trampa" }, { k: "d", t: "Evitar que el usuario hable" }],
+  correct: "a",
+  why: "La escucha incluye preguntas abiertas sobre motivos, necesidades, sentimientos y emociones."
+},
+{
+  id: "u5-052",
+  typeKey: "u5_ud5",
+  q: "La aceptación en intervención verbal implica:",
+  options: [{ k: "a", t: "Permitir que se exprese sin juzgar ni confrontar" }, { k: "b", t: "Aceptar cualquier conducta peligrosa" }, { k: "c", t: "Dejar de poner límites" }, { k: "d", t: "Dar siempre la razón" }],
+  correct: "a",
+  why: "Aceptar no es permitir riesgo, sino escuchar sin juicio ni confrontación, dando tiempo."
+},
+{
+  id: "u5-053",
+  typeKey: "u5_ud5",
+  q: "La asertividad en intervención verbal se concreta en:",
+  options: [{ k: "a", t: "Dar instrucciones breves" }, { k: "b", t: "Explicar discursos largos" }, { k: "c", t: "Subir el tono" }, { k: "d", t: "Negar toda alternativa" }],
+  correct: "a",
+  why: "La asertividad se expresa mediante instrucciones breves."
+},
+{
+  id: "u5-054",
+  typeKey: "u5_ud5",
+  q: "La contención farmacológica se plantea como:",
+  options: [{ k: "a", t: "Castigo ante mala conducta" }, { k: "b", t: "Pauta puntual de rescate terapéutica posterior a la intervención verbal" }, { k: "c", t: "Primera actuación en todos los casos" }, { k: "d", t: "Responsabilidad del celador" }],
+  correct: "b",
+  why: "Debe ser terapéutica, no punitiva, y posterior a establecer vínculo mediante intervención verbal."
+},
+{
+  id: "u5-055",
+  typeKey: "u5_ud5",
+  q: "El aislamiento debería ser:",
+  options: [{ k: "a", t: "Siempre improvisado" }, { k: "b", t: "Protocolizado, en lugar con mínimos estímulos, seguridad, vigilancia y duración definida" }, { k: "c", t: "Sin objetivos ni tiempos" }, { k: "d", t: "Indefinido hasta cambio de turno" }],
+  correct: "b",
+  why: "El aislamiento debe estar protocolizado, con objetivos, condiciones, vigilancia y suspensión cuando se logren objetivos."
+},
+{
+  id: "u5-056",
+  typeKey: "u5_ud5",
+  q: "En contención farmacológica de agitación psicomotriz de causa desconocida, el temario indica pensar primero en:",
+  options: [{ k: "a", t: "Causa médica" }, { k: "b", t: "Falta de educación" }, { k: "c", t: "Simulación voluntaria" }, { k: "d", t: "Castigo conductual" }],
+  correct: "a",
+  why: "Ante agitación psicomotriz de causa desconocida, siempre se debe pensar primero en causa médica."
+},
+{
+  id: "u5-057",
+  typeKey: "u5_ud5",
+  q: "Una gestión ineficaz de la agitación puede provocar:",
+  options: [{ k: "a", t: "Uso innecesario de medidas coercitivas y progresión a violencia" }, { k: "b", t: "Mejor adherencia automáticamente" }, { k: "c", t: "Reducción de costes" }, { k: "d", t: "Desaparición del riesgo" }],
+  correct: "a",
+  why: "El temario relaciona mala gestión con coerción innecesaria, violencia y resultados adversos."
+},
+{
+  id: "u5-058",
+  typeKey: "u5_ud5",
+  q: "El objetivo del tratamiento farmacológico debería ser:",
+  options: [{ k: "a", t: "Sobresedar al paciente hasta impedir evaluación" }, { k: "b", t: "Calmar rápidamente sin sobresedar, permitiendo evaluación clínica" }, { k: "c", t: "Castigar la agitación" }, { k: "d", t: "Evitar toda intervención verbal" }],
+  correct: "b",
+  why: "El objetivo es calmar sin sobresedar para poder evaluar clínicamente."
+},
+{
+  id: "u5-059",
+  typeKey: "u5_ud5",
+  q: "El responsable de indicar la contención farmacológica es:",
+  options: [{ k: "a", t: "El médico" }, { k: "b", t: "El celador" }, { k: "c", t: "La familia" }, { k: "d", t: "El personal de seguridad" }],
+  correct: "a",
+  why: "El médico indica fármaco, dosis, vía y si hay que repetir o aumentar dosis."
+},
+{
+  id: "u5-060",
+  typeKey: "u5_ud5",
+  q: "Un fármaco ideal para contención farmacológica debería:",
+  options: [{ k: "a", t: "Ser traumático e invasivo" }, { k: "b", t: "Tener inicio rápido, calmar sin sedar y buen perfil de seguridad" }, { k: "c", t: "Impedir que el paciente participe" }, { k: "d", t: "Tener alto riesgo de interacciones" }],
+  correct: "b",
+  why: "El fármaco ideal tiene inicio rápido, calma sin sedación excesiva, es no traumático y seguro."
+},
+{
+  id: "u5-061",
+  typeKey: "u5_ud5",
+  q: "Los dos grupos de psicofármacos más usados en contención farmacológica de AP son:",
+  options: [{ k: "a", t: "Antibióticos y analgésicos" }, { k: "b", t: "Antipsicóticos y benzodiacepinas" }, { k: "c", t: "Anticoagulantes y diuréticos" }, { k: "d", t: "Broncodilatadores y antieméticos" }],
+  correct: "b",
+  why: "El temario cita antipsicóticos y benzodiacepinas como los más comunes."
+},
+{
+  id: "u5-062",
+  typeKey: "u5_ud5",
+  q: "Los antipsicóticos o neurolépticos se utilizan en:",
+  options: [{ k: "a", t: "Esquizofrenia, algunas psicosis y estados de agitación" }, { k: "b", t: "Únicamente insomnio leve" }, { k: "c", t: "Solo dolor lumbar" }, { k: "d", t: "Exclusivamente convulsiones" }],
+  correct: "a",
+  why: "Se usan en esquizofrenia, algunas psicosis y estados de agitación."
+},
+{
+  id: "u5-063",
+  typeKey: "u5_ud5",
+  q: "Las benzodiacepinas están indicadas, entre otros, en:",
+  options: [{ k: "a", t: "Ansiedad, insomnio, agitación, espasticidad y convulsiones" }, { k: "b", t: "Solo infecciones" }, { k: "c", t: "Únicamente hemorragias" }, { k: "d", t: "Solo hipertensión arterial" }],
+  correct: "a",
+  why: "El temario enumera ansiedad, insomnio, agitación, espasticidad y convulsiones."
+},
+{
+  id: "u5-064",
+  typeKey: "u5_ud5",
+  q: "Un efecto adverso común de las benzodiacepinas es:",
+  options: [{ k: "a", t: "Sedación, mareo y ataxia de la marcha" }, { k: "b", t: "Mejora inmediata de coordinación" }, { k: "c", t: "Ausencia total de somnolencia" }, { k: "d", t: "Aumento obligatorio de presión arterial" }],
+  correct: "a",
+  why: "Se citan sedación, mareo y ataxia como efectos adversos comunes."
+},
+{
+  id: "u5-065",
+  typeKey: "u5_ud5",
+  q: "¿Cuál de estas vías de administración NO se aconseja salvo balance riesgo/beneficio?",
+  options: [{ k: "a", t: "Oral" }, { k: "b", t: "Inhalada" }, { k: "c", t: "Endovenosa" }, { k: "d", t: "Intramuscular" }],
+  correct: "c",
+  why: "La vía endovenosa no se aconseja salvo que el balance riesgo/beneficio lo permita."
+},
+{
+  id: "u5-066",
+  typeKey: "u5_ud5",
+  q: "La contención física está indicada cuando:",
+  options: [{ k: "a", t: "Hay desacuerdo verbal leve" }, { k: "b", t: "Aumenta la agresividad, hay peligro para la integridad y ha fallado la contención emocional" }, { k: "c", t: "El paciente pregunta muchas veces" }, { k: "d", t: "Se quiere ahorrar tiempo" }],
+  correct: "b",
+  why: "Es necesaria cuando hay peligro para la persona, entorno o profesionales y ha fallado la contención emocional."
+},
+{
+  id: "u5-067",
+  typeKey: "u5_ud5",
+  q: "Antes o durante una contención física se debe:",
+  options: [{ k: "a", t: "No explicar nada" }, { k: "b", t: "Explicar motivos y alternativas" }, { k: "c", t: "Romper el vínculo terapéutico" }, { k: "d", t: "Aplicarla de forma indiscriminada" }],
+  correct: "b",
+  why: "Uno de los aspectos fundamentales es explicar motivos y alternativas."
+},
+{
+  id: "u5-068",
+  typeKey: "u5_ud5",
+  q: "Respecto a fuerza y pacto en contención física, el temario recomienda:",
+  options: [{ k: "a", t: "Mejor pactar que emplear la fuerza" }, { k: "b", t: "Usar siempre fuerza antes de hablar" }, { k: "c", t: "Evitar cualquier alternativa" }, { k: "d", t: "No negociar nunca" }],
+  correct: "a",
+  why: "Se recomienda pactar siempre que sea posible antes que emplear fuerza."
+},
+{
+  id: "u5-069",
+  typeKey: "u5_ud5",
+  q: "Una contención física realizada indiscriminada o inadecuadamente:",
+  options: [{ k: "a", t: "Es peligrosa" }, { k: "b", t: "Es siempre inocua" }, { k: "c", t: "Mejora automáticamente el vínculo" }, { k: "d", t: "No aumenta nunca la agitación" }],
+  correct: "a",
+  why: "El tema advierte que es peligrosa si se realiza indiscriminada o inadecuadamente."
+},
+{
+  id: "u5-070",
+  typeKey: "u5_ud5",
+  q: "En la aproximación física al sujeto, se recomienda:",
+  options: [{ k: "a", t: "Acercarse por detrás para sorprenderlo" }, { k: "b", t: "Acercarse por delante y mantener manos visibles" }, { k: "c", t: "Esconder las manos" }, { k: "d", t: "Realizar gestos amplios y rápidos" }],
+  correct: "b",
+  why: "Se recomienda acercarse por delante para evitar reacciones imprevistas y no esconder las manos."
+}
+,
+/* =========================
+   UNIDAD 5 · VERDADERO/FALSO
+   ========================= */
+{ id: "u5vf-01", typeKey: "u5_vf", q: "La contención emocional sirve para poner límites sin métodos aversivos y sin generar angustia.", options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }], correct: "a", why: "El temario señala este objetivo de forma explícita." },
+{ id: "u5vf-02", typeKey: "u5_vf", q: "Toda agitación comporta siempre un comportamiento agresivo intencional.", options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }], correct: "b", why: "El temario indica que no toda agitación conlleva agresividad intencional." },
+{ id: "u5vf-03", typeKey: "u5_vf", q: "El ruido, el exceso de gente y la luz deslumbrante pueden agravar la agitación.", options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }], correct: "a", why: "Son estímulos externos que pueden empeorar los estados de agitación." },
+{ id: "u5vf-04", typeKey: "u5_vf", q: "Para que se produzca una conducta violenta, el temario resume cuatro elementos: detonante, estrés, medio de agresión y víctima o diana.", options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }], correct: "a", why: "Estos son los cuatro elementos sintetizados en el tema." },
+{ id: "u5vf-05", typeKey: "u5_vf", q: "La habilidad para resolver conflictos y comunicarse adecuadamente actúa como factor protector ante la violencia.", options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }], correct: "a", why: "La flexibilidad y las habilidades sociales reducen la probabilidad de agresividad." },
+{ id: "u5vf-06", typeKey: "u5_vf", q: "Ante ansiedad, lo correcto es exigir al usuario que cambie inmediatamente.", options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }], correct: "b", why: "El temario indica no esperar cambios inmediatos y no ser exigente." },
+{ id: "u5vf-07", typeKey: "u5_vf", q: "Ante rabia u hostilidad, debemos responder a las provocaciones para imponer autoridad.", options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }], correct: "b", why: "Se recomienda no responder a provocaciones y mantener calma firme." },
+{ id: "u5vf-08", typeKey: "u5_vf", q: "La comunicación no verbal ayuda a determinar la gravedad de la situación y escoger la actuación.", options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }], correct: "a", why: "La observación no verbal es una habilidad necesaria en la contención." },
+{ id: "u5vf-09", typeKey: "u5_vf", q: "Empatía significa sobreimplicarse emocionalmente con el usuario.", options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }], correct: "b", why: "El temario aclara que empatía no es sobreimplicación." },
+{ id: "u5vf-10", typeKey: "u5_vf", q: "La primera y más importante estrategia de contención es la prevención.", options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }], correct: "a", why: "El tema lo presenta como idea central." },
+{ id: "u5vf-11", typeKey: "u5_vf", q: "Durante una crisis de agresividad no es recomendable dejar al individuo sin supervisión.", options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }], correct: "a", why: "Aunque se decida aislamiento, debe mantenerse supervisión." },
+{ id: "u5vf-12", typeKey: "u5_vf", q: "Si el individuo esgrime un arma, debemos intentar retirársela rápidamente.", options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }], correct: "b", why: "La seguridad es prioritaria; se avisa a seguridad o cuerpos competentes." },
+{ id: "u5vf-13", typeKey: "u5_vf", q: "Las miradas prolongadas pueden percibirse como un desafío.", options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }], correct: "a", why: "El temario advierte sobre este riesgo en nuestra actitud." },
+{ id: "u5vf-14", typeKey: "u5_vf", q: "La intervención verbal tiene como objetivo reducir el riesgo de incremento de la conducta agresiva.", options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }], correct: "a", why: "Es el objetivo final descrito para la intervención verbal." },
+{ id: "u5vf-15", typeKey: "u5_vf", q: "La contención farmacológica debe entenderse como castigo ante la conducta agresiva.", options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }], correct: "b", why: "El temario recalca que nunca es punitiva, sino terapéutica." },
+{ id: "u5vf-16", typeKey: "u5_vf", q: "El aislamiento debería tener mínimos estímulos, confort, seguridad, vigilancia, duración y situación protocolizada.", options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }], correct: "a", why: "El aislamiento debe estar protocolizado y con objetivos claros." },
+{ id: "u5vf-17", typeKey: "u5_vf", q: "Ante agitación psicomotriz de causa desconocida se debe pensar primero en causa médica.", options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }], correct: "a", why: "El temario lo indica de forma explícita." },
+{ id: "u5vf-18", typeKey: "u5_vf", q: "El objetivo farmacológico ideal es calmar rápidamente al paciente sin sobresedarlo.", options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }], correct: "a", why: "Debe permitir la evaluación clínica posterior." },
+{ id: "u5vf-19", typeKey: "u5_vf", q: "La contención física se indica como primera opción ante cualquier desacuerdo verbal.", options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }], correct: "b", why: "Se reserva para peligro real tras fallar contención emocional." },
+{ id: "u5vf-20", typeKey: "u5_vf", q: "En contención física es preferible pactar antes que emplear la fuerza.", options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }], correct: "a", why: "Es uno de los aspectos fundamentales del cuarto paso." }
+
     ];
 
     const SCORING = {
@@ -2236,6 +2830,7 @@
       if (unit === "u2") elExamType.value = "u2_ud2";
       if (unit === "u3") elExamType.value = "u3_ud3";
       if (unit === "u4") elExamType.value = "u4_ud4";
+      if (unit === "u5") elExamType.value = "u5_ud5";
       applyTypeUI();
       setRulesUI();
     }
