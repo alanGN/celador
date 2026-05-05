@@ -209,6 +209,7 @@
       u4_vf: { unit: "u4", label: "U4 • Verdadero / Falso", mode: "vf", sizeMode: "fixed", fixedCount: 10, scoringMode: "count" },
 
       u5_ud5: { unit: "u5", label: "U5 • Contención verbal y física (temario)", mode: "mcq", sizeMode: "variable", scoringMode: "points" },
+      u5_test10: { unit: "u5", label: "U5 • Cuestionario contención (10 preguntas)", mode: "mcq", sizeMode: "fixed", fixedCount: 10, scoringMode: "count" },
       u5_vf: { unit: "u5", label: "U5 • Verdadero / Falso", mode: "vf", sizeMode: "fixed", fixedCount: 20, scoringMode: "count" }
     };
 
@@ -2683,6 +2684,141 @@
   why: "Se recomienda acercarse por delante para evitar reacciones imprevistas y no esconder las manos."
 }
 ,
+
+/* =========================
+   UNIDAD 5 · CUESTIONARIO CONTENCIÓN (10)
+   Añadido desde el último cuestionario y revisado para estilo examen
+   ========================= */
+{
+  id: "u5t-001",
+  typeKey: "u5_test10",
+  q: "¿Por qué es importante realizar una buena contención emocional?",
+  options: [
+    { k: "a", t: "Para poner límites sin métodos aversivos ni generar angustia, garantizando la seguridad del individuo y su entorno" },
+    { k: "b", t: "Para entrenar al individuo en estrategias de afrontamiento más efectivas" },
+    { k: "c", t: "Para desarrollar el trabajo con mayor satisfacción profesional" },
+    { k: "d", t: "Todas las respuestas son correctas" }
+  ],
+  correct: "d",
+  why: "La contención emocional permite poner límites sin métodos aversivos, entrenar afrontamiento, garantizar seguridad y desarrollar una labor profesional más satisfactoria."
+},
+{
+  id: "u5t-002",
+  typeKey: "u5_test10",
+  q: "¿Qué factores se consideran relevantes en la aparición de la conducta agresiva?",
+  options: [
+    { k: "a", t: "Factores biológicos, como lesiones cerebrales o desregulación de neurotransmisores" },
+    { k: "b", t: "Factores psicosociales, como estrés ambiental, modelos educativos o modelos culturales violentos" },
+    { k: "c", t: "Solo los traumatismos craneales" },
+    { k: "d", t: "Las respuestas a y b son correctas" }
+  ],
+  correct: "d",
+  why: "El temario explica dos grandes perspectivas: biológica y psicosocial. Ambas ayudan a comprender la conducta agresiva."
+},
+{
+  id: "u5t-003",
+  typeKey: "u5_test10",
+  q: "¿Cuál es la forma correcta de establecer contacto verbal con un paciente agitado?",
+  options: [
+    { k: "a", t: "Que intervenga una sola persona, preferiblemente la que tenga mejor relación con el paciente y más entrenamiento" },
+    { k: "b", t: "Que lo haga siempre su médico o enfermera de referencia, aunque no sea quien mejor relación tenga" },
+    { k: "c", t: "Que pueda realizarlo cualquier profesional sin entrenamiento previo" },
+    { k: "d", t: "Las respuestas a y b son correctas" }
+  ],
+  correct: "a",
+  why: "La desescalada verbal recomienda que intervenga solo una persona, evitando interrupciones y eligiendo a quien tenga más vínculo o entrenamiento."
+},
+{
+  id: "u5t-004",
+  typeKey: "u5_test10",
+  q: "¿Qué instrucción de la Fiscalía General del Estado regula el uso de medios de contención mecánicos o farmacológicos?",
+  options: [
+    { k: "a", t: "Ley de bienestar personal 1/2021" },
+    { k: "b", t: "Instrucción 1/2022, de 19 de enero" },
+    { k: "c", t: "Instrucción 1/2024, de 19 de enero" },
+    { k: "d", t: "Instrucción 1/2022, de 30 de febrero" }
+  ],
+  correct: "b",
+  why: "El anexo de contención mecánica cita la Instrucción 1/2022, de 19 de enero, de la Fiscalía General del Estado."
+},
+{
+  id: "u5t-005",
+  typeKey: "u5_test10",
+  q: "Señala la afirmación más correcta sobre las emociones según el temario:",
+  options: [
+    { k: "a", t: "Las emociones pueden clasificarse como positivas o negativas, aunque no son buenas ni malas en sí mismas" },
+    { k: "b", t: "Cada individuo experimenta las emociones de forma particular según experiencias, aprendizajes, carácter y situación" },
+    { k: "c", t: "La expresión emocional debe reprimirse siempre para evitar conflictos" },
+    { k: "d", t: "Solo las emociones positivas son necesarias para sobrevivir" }
+  ],
+  correct: "b",
+  why: "El temario remarca que cada persona experimenta las emociones de forma particular. También advierte que reprimirlas continuamente puede tener repercusiones."
+},
+{
+  id: "u5t-006",
+  typeKey: "u5_test10",
+  q: "En el contexto asistencial, se considera paciente difícil a aquel que:",
+  options: [
+    { k: "a", t: "Ofrece más quejas que agradecimientos" },
+    { k: "b", t: "Presenta únicamente un cuadro patológico de difícil tratamiento" },
+    { k: "c", t: "Ofrece dificultades de manejo por incumplimiento de normas, hostilidad o múltiples demandas" },
+    { k: "d", t: "Presenta dificultades en el habla" }
+  ],
+  correct: "c",
+  why: "El temario relaciona el manejo difícil con transgresión de normas, hostilidad, desconfianza, demandas y problemas de comunicación."
+},
+{
+  id: "u5t-007",
+  typeKey: "u5_test10",
+  q: "¿Cuál es el objetivo principal de la contención física?",
+  options: [
+    { k: "a", t: "Reducir el riesgo que comporta la conducta violenta hacia uno mismo o hacia los demás" },
+    { k: "b", t: "Evitar discusiones innecesarias entre el personal y el paciente" },
+    { k: "c", t: "Garantizar el descanso de los demás usuarios" },
+    { k: "d", t: "Inducir relajación y adelantar el tratamiento intramuscular" }
+  ],
+  correct: "a",
+  why: "La contención física se plantea cuando la conducta agresiva pone en riesgo la integridad del paciente, del entorno o de los profesionales."
+},
+{
+  id: "u5t-008",
+  typeKey: "u5_test10",
+  q: "¿Cuál de los siguientes NO forma parte de los cuatro elementos necesarios para que se produzca una conducta violenta?",
+  options: [
+    { k: "a", t: "Un cierto nivel de estrés" },
+    { k: "b", t: "La falta de autocontrol" },
+    { k: "c", t: "Un medio con el que agredir" },
+    { k: "d", t: "Una víctima o diana" }
+  ],
+  correct: "b",
+  why: "Los cuatro elementos son evento disparador, cierto nivel de estrés, medio de agresión y víctima o diana. La falta de autocontrol es un facilitador, no uno de esos cuatro elementos."
+},
+{
+  id: "u5t-009",
+  typeKey: "u5_test10",
+  q: "Según el temario, el fármaco ideal para la agitación debe tener:",
+  options: [
+    { k: "a", t: "Acción lenta y progresiva" },
+    { k: "b", t: "Efecto sedante intenso como objetivo principal" },
+    { k: "c", t: "Buen perfil de seguridad y bajo índice de efectos adversos" },
+    { k: "d", t: "Un efecto traumático para asegurar la contención" }
+  ],
+  correct: "c",
+  why: "El fármaco ideal debe calmar sin sobresedar, tener inicio rápido y presentar bajo riesgo de efectos adversos graves e interacciones."
+},
+{
+  id: "u5t-010",
+  typeKey: "u5_test10",
+  q: "Señala la afirmación correcta sobre las estrategias de contención:",
+  options: [
+    { k: "a", t: "La prevención es la primera y principal estrategia de contención" },
+    { k: "b", t: "La contención mecánica es siempre el tratamiento más recomendado" },
+    { k: "c", t: "La contención mecánica no forma parte de ningún tratamiento" },
+    { k: "d", t: "Todas las respuestas son correctas" }
+  ],
+  correct: "a",
+  why: "El temario afirma que la primera y más importante estrategia de contención es la prevención. La contención mecánica puede formar parte de un tratamiento, pero no es la opción prioritaria."
+},
 /* =========================
    UNIDAD 5 · VERDADERO/FALSO
    ========================= */
