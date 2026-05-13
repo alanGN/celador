@@ -210,6 +210,7 @@
 
       u5_ud5: { unit: "u5", label: "U5 • Contención verbal y física (temario)", mode: "mcq", sizeMode: "variable", scoringMode: "points" },
       u5_test10: { unit: "u5", label: "U5 • Cuestionario contención (10 preguntas)", mode: "mcq", sizeMode: "fixed", fixedCount: 10, scoringMode: "count" },
+      u5_exam_prep: { unit: "u5", label: "U5 • Preparación examen (50 preguntas)", mode: "mcq", sizeMode: "fixed", fixedCount: 50, scoringMode: "count" },
       u5_vf: { unit: "u5", label: "U5 • Verdadero / Falso", mode: "vf", sizeMode: "fixed", fixedCount: 20, scoringMode: "count" }
     };
 
@@ -2842,6 +2843,1262 @@
 { id: "u5vf-18", typeKey: "u5_vf", q: "El objetivo farmacológico ideal es calmar rápidamente al paciente sin sobresedarlo.", options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }], correct: "a", why: "Debe permitir la evaluación clínica posterior." },
 { id: "u5vf-19", typeKey: "u5_vf", q: "La contención física se indica como primera opción ante cualquier desacuerdo verbal.", options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }], correct: "b", why: "Se reserva para peligro real tras fallar contención emocional." },
 { id: "u5vf-20", typeKey: "u5_vf", q: "En contención física es preferible pactar antes que emplear la fuerza.", options: [{ k: "a", t: "Verdadero" }, { k: "b", t: "Falso" }], correct: "a", why: "Es uno de los aspectos fundamentales del cuarto paso." }
+,
+
+/* =========================
+   UNIDAD 5 · PREPARACIÓN EXAMEN
+   Preguntas largas con distractores largos
+   ========================= */
+{
+  "id": "u5prep-001",
+  "typeKey": "u5_exam_prep",
+  "q": "Durante un turno en una unidad de salud mental, un usuario empieza a caminar de forma repetida por el perímetro de la sala, golpea la pared con el puño y se sienta varias veces en el borde de la silla mirando fijamente al personal. Según el temario, ¿qué interpretación profesional es más adecuada?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Considerarlo únicamente una llamada de atención sin relevancia clínica, ya que no ha agredido físicamente a nadie y por tanto no existe riesgo real."
+    },
+    {
+      "k": "b",
+      "t": "Interpretarlo como un posible aumento de actividad psicomotora con posturas de amenaza, que puede anticipar escalada hacia violencia y exige observación y prevención."
+    },
+    {
+      "k": "c",
+      "t": "Responder de inmediato con contención física completa, aunque no haya existido intento de agresión, para evitar cualquier posibilidad futura de alteración."
+    },
+    {
+      "k": "d",
+      "t": "Dejarlo solo en la sala para que descargue tensión sin supervisión, porque la presencia del personal aumenta siempre la agitación."
+    }
+  ],
+  "correct": "b",
+  "why": "El temario describe caminar en círculos, golpearse el puño o golpear paredes como signos de aumento psicomotor y posturas de amenaza."
+},
+{
+  "id": "u5prep-002",
+  "typeKey": "u5_exam_prep",
+  "q": "Una paciente está triste, apenas se arregla, expresa frustración por su situación y dice que no sabe qué hacer con su vida. En una pregunta de examen tipo ‘¿qué NO debe hacerse?’, ¿cuál sería la opción menos adecuada según las pautas del temario ante la tristeza?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Iniciar un acercamiento respetuoso, demostrar preocupación y dirigir la atención de la paciente hacia pequeños avances que puedan reforzar su independencia."
+    },
+    {
+      "k": "b",
+      "t": "Mantener una actitud amable pero firme, vigilar la higiene diaria y planificar actividades adaptadas al grado de tristeza que presenta."
+    },
+    {
+      "k": "c",
+      "t": "Animarla a tomar cuanto antes decisiones importantes sobre su futuro para que salga de la situación, aunque esté emocionalmente afectada."
+    },
+    {
+      "k": "d",
+      "t": "Estimular progresivamente su propia independencia, evitando hacer todo por ella y acompañando sin invadir su proceso."
+    }
+  ],
+  "correct": "c",
+  "why": "Ante tristeza, el temario indica procurar que no tome decisiones importantes, además de acercamiento, respeto y apoyo."
+},
+{
+  "id": "u5prep-003",
+  "typeKey": "u5_exam_prep",
+  "q": "Un usuario presenta ansiedad intensa antes de una prueba. El profesional quiere ayudarlo, pero el usuario no explica claramente qué le ocurre. ¿Cuál de estas actuaciones sería incorrecta según el temario sobre ansiedad?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Reconocer los signos de ansiedad, no dar por supuesto el motivo y tolerar las tensiones del usuario sin exigir una respuesta inmediata."
+    },
+    {
+      "k": "b",
+      "t": "Ser breve, hablar despacio, dar información comprensible y estimular que exprese sus sentimientos si puede hacerlo."
+    },
+    {
+      "k": "c",
+      "t": "Insistir en tranquilizarlo con frases cerradas como ‘no pasa nada’ y razonar de forma lógica hasta que acepte que no debe estar ansioso."
+    },
+    {
+      "k": "d",
+      "t": "Mostrar comprensión, ajustar la comunicación a su estado y no esperar que el usuario cambie de manera inmediata."
+    }
+  ],
+  "correct": "c",
+  "why": "El temario indica no intentar tranquilizar al usuario, no sorprenderse si la lógica es inútil y no esperar cambios inmediatos."
+},
+{
+  "id": "u5prep-004",
+  "typeKey": "u5_exam_prep",
+  "q": "En una situación de rabia u hostilidad, un paciente insulta al personal y reta verbalmente a quien se le acerca. ¿Qué respuesta se ajusta mejor al temario?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Responder a la provocación con firmeza intimidatoria para demostrar autoridad y cortar cuanto antes la conducta hostil."
+    },
+    {
+      "k": "b",
+      "t": "Mantener una actitud calmada y de aceptación, no responder a provocaciones, ofrecer ayuda, vigilar riesgos y negociar dentro de límites seguros."
+    },
+    {
+      "k": "c",
+      "t": "Ignorar completamente al paciente y dejarlo sin supervisión para que entienda que no se premian las conductas hostiles."
+    },
+    {
+      "k": "d",
+      "t": "Aproximarse rápidamente y tocarle el brazo para demostrar cercanía, aunque el paciente esté en actitud de rabia."
+    }
+  ],
+  "correct": "b",
+  "why": "Ante rabia/hostilidad se recomienda calma, no responder a provocaciones, ofrecer ayuda, vigilar riesgos y negociar."
+},
+{
+  "id": "u5prep-005",
+  "typeKey": "u5_exam_prep",
+  "q": "El examen plantea un caso de paciente en crisis donde el profesional debe escoger la intervención verbal más correcta. ¿Cuál de estas respuestas reúne mejor las características descritas en el temario?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Tono tranquilo y conciliador, respeto a intimidad y derechos, preguntas abiertas, escucha sin juzgar, empatía y órdenes breves cuando sean necesarias."
+    },
+    {
+      "k": "b",
+      "t": "Tono elevado, preguntas cerradas, contacto físico frecuente y mensajes directivos largos para que el paciente entienda claramente quién manda."
+    },
+    {
+      "k": "c",
+      "t": "Evitar hablar de sentimientos, no preguntar por motivos y centrarse solo en que el paciente obedezca de manera inmediata."
+    },
+    {
+      "k": "d",
+      "t": "Dejar que varias personas hablen a la vez para que el paciente perciba presencia de equipo y presión grupal."
+    }
+  ],
+  "correct": "a",
+  "why": "La intervención verbal debe basarse en serenidad, respeto, escucha, aceptación, empatía y asertividad con instrucciones breves."
+},
+{
+  "id": "u5prep-006",
+  "typeKey": "u5_exam_prep",
+  "q": "Según el proyecto BETA de desescalada verbal, un usuario agitado se encuentra en una habitación pequeña. Varios profesionales quieren entrar a la vez para hablarle. ¿Cuál sería la pauta más correcta?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Entrar todos juntos y acercarse mucho al paciente para que se sienta contenido y perciba que el equipo controla la situación."
+    },
+    {
+      "k": "b",
+      "t": "Respetar su espacio personal, mantener al menos dos brazos de distancia y procurar que intervenga una sola persona, preferiblemente la más entrenada o con mejor relación."
+    },
+    {
+      "k": "c",
+      "t": "Invadir el espacio personal si el paciente no responde, porque la proximidad física es la forma principal de transmitir seguridad."
+    },
+    {
+      "k": "d",
+      "t": "Evitar todo contacto verbal hasta que el paciente se calme espontáneamente, aunque siga aumentando su activación."
+    }
+  ],
+  "correct": "b",
+  "why": "BETA indica respetar espacio personal, distancia mínima de dos brazos y contacto verbal por una sola persona entrenada o con ascendencia."
+},
+{
+  "id": "u5prep-007",
+  "typeKey": "u5_exam_prep",
+  "q": "En relación con la contención emocional, el examen pregunta por qué es importante hacerla bien. ¿Cuál es la respuesta más completa y ajustada al temario?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Porque permite castigar conductas inadecuadas de forma menos visible y evita que el resto de usuarios vea el conflicto."
+    },
+    {
+      "k": "b",
+      "t": "Porque sirve para poner límites sin métodos aversivos ni generar angustia, entrenar afrontamiento, garantizar seguridad y realizar una labor profesional más satisfactoria."
+    },
+    {
+      "k": "c",
+      "t": "Porque sustituye todas las demás intervenciones y evita siempre la necesidad de medicación, aislamiento o contención física."
+    },
+    {
+      "k": "d",
+      "t": "Porque su objetivo principal es que el profesional gane la discusión verbal con el paciente sin necesidad de pedir ayuda."
+    }
+  ],
+  "correct": "b",
+  "why": "El temario enumera esos cuatro motivos como importancia de la contención emocional."
+},
+{
+  "id": "u5prep-008",
+  "typeKey": "u5_exam_prep",
+  "q": "Un paciente con agitación psicomotriz no permite obtener una buena filiación inicial del cuadro clínico. ¿Qué enfoque recoge el temario?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Presumir que la agitación es conductual o voluntaria hasta que el paciente pida disculpas."
+    },
+    {
+      "k": "b",
+      "t": "Presumir causa médica hasta que se demuestre lo contrario si no es posible una adecuada valoración inicial."
+    },
+    {
+      "k": "c",
+      "t": "Asumir que toda agitación procede de una enfermedad mental grave y actuar directamente con contención física."
+    },
+    {
+      "k": "d",
+      "t": "Evitar valorar posibles causas porque la prioridad única es terminar la intervención cuanto antes."
+    }
+  ],
+  "correct": "b",
+  "why": "El temario indica que si no se puede filiar el cuadro, la agitación se presume de causa médica hasta demostrar lo contrario."
+},
+{
+  "id": "u5prep-009",
+  "typeKey": "u5_exam_prep",
+  "q": "Una pregunta pide identificar qué elemento NO forma parte de los cuatro elementos necesarios para que se produzca una conducta violenta según el temario. ¿Cuál sería?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Un evento disparador o estímulo precipitante que actúe como detonante de la crisis."
+    },
+    {
+      "k": "b",
+      "t": "Un cierto nivel de estrés o hiperactivación suficiente para que el sujeto esté activado."
+    },
+    {
+      "k": "c",
+      "t": "Un medio de agresión y una víctima o diana sobre la que pueda dirigirse la conducta."
+    },
+    {
+      "k": "d",
+      "t": "La existencia obligatoria de un diagnóstico psiquiátrico grave confirmado previamente."
+    }
+  ],
+  "correct": "d",
+  "why": "Los cuatro elementos son detonante, estrés/hiperactivación, medio de agresión y víctima o diana; no exige diagnóstico psiquiátrico grave."
+},
+{
+  "id": "u5prep-010",
+  "typeKey": "u5_exam_prep",
+  "q": "Un usuario hostil tiene un objeto potencialmente peligroso cerca, hay mucho ruido y demasiadas personas alrededor. ¿Qué medida preventiva se ajusta mejor al temario?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Mantener el entorno igual para no alterar al usuario y centrarse solo en convencerle verbalmente."
+    },
+    {
+      "k": "b",
+      "t": "Extremar el cuidado del entorno, retirar o evitar objetos peligrosos, minimizar estímulos y buscar un lugar estratégico si la situación evoluciona."
+    },
+    {
+      "k": "c",
+      "t": "Aumentar la presencia de espectadores para que el usuario se sienta observado y reduzca su conducta."
+    },
+    {
+      "k": "d",
+      "t": "Dejar el objeto cerca para no provocar frustración, aunque pueda convertirse en medio de agresión."
+    }
+  ],
+  "correct": "b",
+  "why": "La prevención exige cuidar entorno, evitar objetos peligrosos, vigilar armas y minimizar estímulos."
+},
+{
+  "id": "u5prep-011",
+  "typeKey": "u5_exam_prep",
+  "q": "Si un individuo esgrime un arma durante una crisis de agresividad, ¿cuál es la actuación correcta según los consejos generales del temario?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Intentar retirársela rápidamente aprovechando una distracción para evitar que aumente el riesgo."
+    },
+    {
+      "k": "b",
+      "t": "Inhibirse de actuar directamente y avisar a cuerpos de seguridad o personal de seguridad según protocolo."
+    },
+    {
+      "k": "c",
+      "t": "Continuar con la intervención verbal a corta distancia, manteniendo contacto visual prolongado para demostrar seguridad."
+    },
+    {
+      "k": "d",
+      "t": "Acercarse por detrás para sorprenderlo y reducirlo antes de que pueda reaccionar."
+    }
+  ],
+  "correct": "b",
+  "why": "La seguridad es prioritaria: ante arma, no se actúa directamente y se avisa a seguridad."
+},
+{
+  "id": "u5prep-012",
+  "typeKey": "u5_exam_prep",
+  "q": "En una crisis agresiva, además del profesional que interactúa verbalmente con el usuario, ¿qué debe hacer el resto del personal disponible?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Retirarse completamente del área y dejar al profesional solo para no contaminar la relación terapéutica."
+    },
+    {
+      "k": "b",
+      "t": "Permanecer preparado y alerta por si debe actuar, evitando dejar al individuo sin supervisión durante la crisis."
+    },
+    {
+      "k": "c",
+      "t": "Entrar todos al mismo tiempo en la conversación para reforzar el mensaje desde distintas posiciones."
+    },
+    {
+      "k": "d",
+      "t": "Situarse muy cerca del paciente para bloquear salidas, aunque no exista todavía contención física indicada."
+    }
+  ],
+  "correct": "b",
+  "why": "El temario indica que el resto del personal debe estar preparado y alerta, y que no es recomendable dejar sin supervisión."
+},
+{
+  "id": "u5prep-013",
+  "typeKey": "u5_exam_prep",
+  "q": "El profesional mantiene una mirada fija y prolongada sobre un paciente suspicaz, habla con tono alto y adopta una postura rígida. Según el temario, ¿qué problema puede generar esta actitud?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Puede ser percibida como desafío o amenaza, aumentando el riesgo de escalada de la crisis."
+    },
+    {
+      "k": "b",
+      "t": "Es la técnica recomendada para reforzar autoridad sin necesidad de contención física."
+    },
+    {
+      "k": "c",
+      "t": "Es adecuada siempre que el contenido verbal sea correcto, porque la comunicación no verbal no influye en la agitación."
+    },
+    {
+      "k": "d",
+      "t": "Solo resulta problemática si el paciente tiene deterioro cognitivo; en el resto de casos es indiferente."
+    }
+  ],
+  "correct": "a",
+  "why": "El temario advierte contra miradas prolongadas, tono no calmado y gestos amenazantes."
+},
+{
+  "id": "u5prep-014",
+  "typeKey": "u5_exam_prep",
+  "q": "En desescalada verbal, el paciente expresa demandas confusas y sentimientos de rabia. ¿Qué pauta del proyecto BETA se refleja mejor en la respuesta correcta?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Corregir inmediatamente sus demandas y explicarle por qué son irracionales, aunque se sienta invalidado."
+    },
+    {
+      "k": "b",
+      "t": "Identificar y manejar demandas y sentimientos desde la empatía, escuchar activamente y buscar puntos de acuerdo."
+    },
+    {
+      "k": "c",
+      "t": "Evitar hablar de sentimientos, porque hacerlo refuerza la conducta de agitación psicomotriz."
+    },
+    {
+      "k": "d",
+      "t": "Ofrecer alternativas pesimistas para que comprenda las consecuencias negativas de no obedecer."
+    }
+  ],
+  "correct": "b",
+  "why": "BETA incluye identificar demandas y sentimientos desde empatía, escucha activa y búsqueda de puntos de acuerdo."
+},
+{
+  "id": "u5prep-015",
+  "typeKey": "u5_exam_prep",
+  "q": "Una opción de examen dice: ‘La desescalada verbal debe consistir en discursos largos, muy detallados y con muchas instrucciones para que el paciente comprenda la gravedad’. ¿Cómo debe valorarse?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Correcta, porque en agitación cuanto más información recibe el paciente, mayor control emocional desarrolla."
+    },
+    {
+      "k": "b",
+      "t": "Incorrecta, porque la desescalada verbal incluye ser conciso y establecer límites de forma clara."
+    },
+    {
+      "k": "c",
+      "t": "Correcta si el discurso lo hace el médico, ya que el resto del personal no debe intervenir verbalmente."
+    },
+    {
+      "k": "d",
+      "t": "Incorrecta solo si el paciente está triste; en ansiedad o rabia sí convienen discursos extensos."
+    }
+  ],
+  "correct": "b",
+  "why": "BETA indica ser conciso y establecer límites claros; el temario también habla de instrucciones breves."
+},
+{
+  "id": "u5prep-016",
+  "typeKey": "u5_exam_prep",
+  "q": "Un paciente presenta agitación creciente, pero todavía se puede establecer contacto verbal. ¿Cuál es el orden de intervención más coherente con el temario?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Contención física inmediata, después medicación y finalmente explicación verbal si el paciente se calma."
+    },
+    {
+      "k": "b",
+      "t": "Contención emocional/intervención verbal y ambiental desde el inicio, añadiendo progresivamente medicación, aislamiento o contención física según gravedad y necesidad."
+    },
+    {
+      "k": "c",
+      "t": "Aislamiento sin supervisión como primera medida, para evitar que el equipo se exponga al usuario."
+    },
+    {
+      "k": "d",
+      "t": "Medicación siempre como castigo inicial ante cualquier conducta hostil, antes de intentar alianza terapéutica."
+    }
+  ],
+  "correct": "b",
+  "why": "La escalada del temario usa medidas ambientales y verbales siempre, y progresivamente medicación, aislamiento y contención física."
+},
+{
+  "id": "u5prep-017",
+  "typeKey": "u5_exam_prep",
+  "q": "Respecto a la contención farmacológica, ¿cuál es la afirmación más correcta según el temario?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Es una pauta de rescate, posterior a la intervención verbal si esta es insuficiente, terapéutica y no punitiva."
+    },
+    {
+      "k": "b",
+      "t": "Es un castigo para conductas agresivas y se administra para beneficiar principalmente al personal que atiende."
+    },
+    {
+      "k": "c",
+      "t": "Debe utilizarse antes de establecer vínculo verbal, porque hablar con el paciente puede empeorar siempre la situación."
+    },
+    {
+      "k": "d",
+      "t": "Siempre sustituye a la contención verbal y ambiental una vez administrado el medicamento."
+    }
+  ],
+  "correct": "a",
+  "why": "La medicación se describe como pauta puntual de rescate, posterior al vínculo/intervención verbal, no punitiva y beneficiosa para el sujeto."
+},
+{
+  "id": "u5prep-018",
+  "typeKey": "u5_exam_prep",
+  "q": "¿Cuál de estas características encaja con el ‘fármaco ideal’ descrito en el temario para agitación psicomotriz?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Inicio de acción lento, sedación profunda y vía invasiva para asegurar obediencia del paciente."
+    },
+    {
+      "k": "b",
+      "t": "Inicio rápido, calmar sin sobresedar, administración no traumática, fácil y con bajo riesgo de efectos adversos graves."
+    },
+    {
+      "k": "c",
+      "t": "Efecto imprevisible pero muy potente, de administración compleja y con alta carga de efectos adversos aceptables."
+    },
+    {
+      "k": "d",
+      "t": "Ser principalmente traumático para que el paciente recuerde la consecuencia de su conducta."
+    }
+  ],
+  "correct": "b",
+  "why": "El fármaco ideal debe iniciar rápido, calmar sin sedar, ser no invasivo/fácil/no traumático y seguro."
+},
+{
+  "id": "u5prep-019",
+  "typeKey": "u5_exam_prep",
+  "q": "Según el temario, ¿quién es responsable de indicar la contención farmacológica, medicamento, posología, vía y posibles repeticiones de dosis?",
+  "options": [
+    {
+      "k": "a",
+      "t": "El médico, que indica el medicamento, dosis, vía y decide repetir o aumentar la dosis si procede."
+    },
+    {
+      "k": "b",
+      "t": "El auxiliar sanitario, porque es quien observa antes la conducta del paciente en el entorno."
+    },
+    {
+      "k": "c",
+      "t": "Cualquier profesional presente si la situación es incómoda o interrumpe la dinámica de la unidad."
+    },
+    {
+      "k": "d",
+      "t": "El propio paciente, siempre que verbalice qué medicación quiere tomar."
+    }
+  ],
+  "correct": "a",
+  "why": "El responsable de la contención farmacológica es el médico; enfermería administra según indicación."
+},
+{
+  "id": "u5prep-020",
+  "typeKey": "u5_exam_prep",
+  "q": "Sobre las vías de administración de fármacos en contención farmacológica, ¿qué respuesta se ajusta al documento?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Solo se contempla la vía intramuscular en glúteo, porque el resto de vías no aparecen en el temario."
+    },
+    {
+      "k": "b",
+      "t": "Se citan vías oral, inhalada, intramuscular y endovenosa, aunque la endovenosa no se aconseja salvo balance riesgo/beneficio."
+    },
+    {
+      "k": "c",
+      "t": "La vía endovenosa es la primera elección rutinaria porque evita cualquier tipo de riesgo."
+    },
+    {
+      "k": "d",
+      "t": "La vía oral está prohibida en agitación, aunque el paciente colabore."
+    }
+  ],
+  "correct": "b",
+  "why": "El temario cita oral, inhalada, intramuscular y endovenosa, desaconsejando esta última salvo riesgo/beneficio."
+},
+{
+  "id": "u5prep-021",
+  "typeKey": "u5_exam_prep",
+  "q": "¿Cuándo es necesaria la contención física según el temario?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Cuando aumenta la agresividad, hay peligro para la integridad del paciente, entorno o profesionales, y ha fallado la contención emocional."
+    },
+    {
+      "k": "b",
+      "t": "Siempre que el paciente eleve el tono de voz, aunque no exista peligro ni fracaso de otras medidas."
+    },
+    {
+      "k": "c",
+      "t": "Cuando el profesional quiera evitar una discusión larga o garantizar el descanso de otros usuarios sin valorar riesgos."
+    },
+    {
+      "k": "d",
+      "t": "Como primera medida ante cualquier negativa a colaborar, incluso si el paciente está triste pero tranquilo."
+    }
+  ],
+  "correct": "a",
+  "why": "La contención física se reserva para peligro de integridad y fallo de contención emocional."
+},
+{
+  "id": "u5prep-022",
+  "typeKey": "u5_exam_prep",
+  "q": "En contención física, ¿cuál de estas opciones recoge mejor los aspectos fundamentales del temario?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Explicar motivos y alternativas, disponer de número adecuado de personas, pactar si es posible, evitar romper vínculo terapéutico y prevenir daños."
+    },
+    {
+      "k": "b",
+      "t": "Actuar por sorpresa, usar el menor número de personas posible y evitar explicaciones para no negociar con el paciente."
+    },
+    {
+      "k": "c",
+      "t": "Priorizar la fuerza sobre el pacto, porque explicar motivos puede aumentar la agresividad."
+    },
+    {
+      "k": "d",
+      "t": "Entender la contención como inocua para el personal y para el individuo sujetado si se realiza con rapidez."
+    }
+  ],
+  "correct": "a",
+  "why": "El documento indica explicar motivos, tener personal suficiente, pactar mejor que fuerza, evitar romper vínculo y prevenir daños."
+},
+{
+  "id": "u5prep-023",
+  "typeKey": "u5_exam_prep",
+  "q": "Un compañero propone hacer la contención física con pocas personas para no ‘montar espectáculo’. ¿Qué respuesta es más adecuada?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Es correcto si hay prisa, porque cuantas menos personas intervienen menor sensación de amenaza para el usuario."
+    },
+    {
+      "k": "b",
+      "t": "No es adecuado: debe haber un número suficiente de personas y un protocolo conocido para reducir riesgos para paciente y profesionales."
+    },
+    {
+      "k": "c",
+      "t": "Es obligatorio hacerlo solo entre dos personas, porque más profesionales sería coercitivo."
+    },
+    {
+      "k": "d",
+      "t": "Es indiferente, porque el número de personas no influye en la seguridad de la contención."
+    }
+  ],
+  "correct": "b",
+  "why": "El temario subraya número adecuado de personas, protocolo y mecanismos de aviso a personal de apoyo."
+},
+{
+  "id": "u5prep-024",
+  "typeKey": "u5_exam_prep",
+  "q": "En una contención física, el paciente continúa insultando al equipo. ¿Qué debe hacer el personal según las recomendaciones del temario?",
+  "options": [
+    {
+      "k": "a",
+      "t": "No responder a provocaciones, no usar el cuerpo como escudo, retirar objetos personales peligrosos y pedir ayuda sin chillar ni gesticular demasiado."
+    },
+    {
+      "k": "b",
+      "t": "Responder con insultos controlados para equilibrar la relación y descargar la tensión del equipo."
+    },
+    {
+      "k": "c",
+      "t": "Gesticular ampliamente y gritar órdenes para que el paciente entienda con claridad la gravedad del momento."
+    },
+    {
+      "k": "d",
+      "t": "Acercarse por detrás sin avisar para que no anticipe la actuación del equipo."
+    }
+  ],
+  "correct": "a",
+  "why": "El temario recomienda entrenamiento, no responder provocaciones, no usar cuerpo como escudo, retirar objetos peligrosos y pedir ayuda sin chillar."
+},
+{
+  "id": "u5prep-025",
+  "typeKey": "u5_exam_prep",
+  "q": "El temario señala que una mala gestión de la agitación puede tener consecuencias. ¿Cuál es la más completa?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Uso innecesario de medidas coercitivas, progresión a violencia, resultados adversos para pacientes y personal y costes económicos."
+    },
+    {
+      "k": "b",
+      "t": "Únicamente pérdida de tiempo para el servicio, sin consecuencias clínicas relevantes."
+    },
+    {
+      "k": "c",
+      "t": "Solo mayor cansancio del paciente, pero sin impacto en seguridad ni en el equipo."
+    },
+    {
+      "k": "d",
+      "t": "Siempre desaparición espontánea del conflicto porque la agitación se agota por sí sola."
+    }
+  ],
+  "correct": "a",
+  "why": "El documento advierte que una gestión ineficaz puede llevar a coerción innecesaria, violencia, daños y costes."
+},
+{
+  "id": "u5prep-026",
+  "typeKey": "u5_exam_prep",
+  "q": "Sobre las emociones, ¿qué afirmación es más fiel al temario?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Hay emociones buenas que deben expresarse y emociones malas que deben reprimirse para evitar conflictos."
+    },
+    {
+      "k": "b",
+      "t": "No hay emociones buenas o malas; todas permiten expresar cómo nos sentimos, aunque algunas se asocien a placer y otras a sufrimiento."
+    },
+    {
+      "k": "c",
+      "t": "Las emociones negativas no son necesarias para sobrevivir y deben eliminarse mediante control estricto."
+    },
+    {
+      "k": "d",
+      "t": "El profesional debe ignorar las emociones del usuario porque pertenecen a su vida privada."
+    }
+  ],
+  "correct": "b",
+  "why": "El temario diferencia positivas/negativas por placer/sufrimiento, pero aclara que no hay emociones buenas o malas."
+},
+{
+  "id": "u5prep-027",
+  "typeKey": "u5_exam_prep",
+  "q": "Una persona reprime constantemente rabia y tristeza para no molestar. Según el temario, ¿qué puede ocurrir?",
+  "options": [
+    {
+      "k": "a",
+      "t": "La emoción reprimida puede crecer en intensidad y aparecer de forma brusca, además de generar repercusiones somáticas o psicológicas."
+    },
+    {
+      "k": "b",
+      "t": "La emoción desaparece de forma definitiva, que es el objetivo principal del autocontrol emocional."
+    },
+    {
+      "k": "c",
+      "t": "La represión continua mejora la salud mental porque evita verbalizar conflictos."
+    },
+    {
+      "k": "d",
+      "t": "No tiene ninguna consecuencia si la persona no expresa la emoción delante de otros."
+    }
+  ],
+  "correct": "a",
+  "why": "El documento advierte que reprimir emociones puede hacerlas crecer y explotar, con repercusiones somáticas/psicológicas."
+},
+{
+  "id": "u5prep-028",
+  "typeKey": "u5_exam_prep",
+  "q": "Un paciente ansioso pregunta muchas veces lo mismo y parece no responder a explicaciones lógicas. ¿Qué opción NO sería adecuada?",
+  "options": [
+    {
+      "k": "a",
+      "t": "No sorprendernos de que la lógica sea inútil en ese momento y ofrecer información comprensible, breve y repetida con calma."
+    },
+    {
+      "k": "b",
+      "t": "Mostrar comprensión, tolerar sus tensiones y estimular que exprese sentimientos si puede."
+    },
+    {
+      "k": "c",
+      "t": "Reñirle por no entender la explicación y exigirle que cambie inmediatamente porque ya se le ha explicado todo."
+    },
+    {
+      "k": "d",
+      "t": "Hablar despacio, ser conciso y no dar por supuesto el motivo de la ansiedad."
+    }
+  ],
+  "correct": "c",
+  "why": "Ante ansiedad no se debe ser exigente ni esperar cambio inmediato; la lógica puede ser inútil."
+},
+{
+  "id": "u5prep-029",
+  "typeKey": "u5_exam_prep",
+  "q": "En una pregunta sobre tristeza, ¿cuál de estas actuaciones sería adecuada y completa?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Iniciar acercamiento, hacer saber que se le respeta, demostrar preocupación, vigilar higiene, planificar actividades y reforzar pequeños avances."
+    },
+    {
+      "k": "b",
+      "t": "Evitar cualquier acercamiento hasta que la persona pida ayuda explícitamente y resuelva su tristeza por sí misma."
+    },
+    {
+      "k": "c",
+      "t": "Plantear decisiones vitales urgentes para que la persona sienta que avanza, aunque su estado emocional sea muy bajo."
+    },
+    {
+      "k": "d",
+      "t": "Centrarse solo en corregir higiene y conducta, sin mostrar preocupación ni respeto porque podría fomentar dependencia."
+    }
+  ],
+  "correct": "a",
+  "why": "El temario enumera acercamiento, respeto, preocupación, higiene, actividades, pequeños avances e independencia."
+},
+{
+  "id": "u5prep-030",
+  "typeKey": "u5_exam_prep",
+  "q": "En relación con la relación de ayuda, ¿cuál es el enfoque correcto según el temario?",
+  "options": [
+    {
+      "k": "a",
+      "t": "La relación de ayuda es hacer en lugar del otro para resolverle el problema y reducir su sufrimiento inmediatamente."
+    },
+    {
+      "k": "b",
+      "t": "La relación de ayuda colabora con la persona para que valore sus recursos y haga un uso funcional de ellos, promoviendo sus capacidades."
+    },
+    {
+      "k": "c",
+      "t": "La relación de ayuda consiste en aplicar un estilo siempre directivo, sin participación del usuario, para evitar incertidumbre."
+    },
+    {
+      "k": "d",
+      "t": "La relación de ayuda se limita a escuchar sin intervenir nunca, aunque exista riesgo de violencia."
+    }
+  ],
+  "correct": "b",
+  "why": "El temario aclara que no es hacer en lugar de otro, sino colaborar para que use sus recursos."
+},
+{
+  "id": "u5prep-031",
+  "typeKey": "u5_exam_prep",
+  "q": "¿Qué respuesta empática debe evitarse según el temario cuando se habla de empatía disciplinada?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Evitar el juicio moral, la interpretación precipitada, el consuelo automático, el interrogatorio o dar soluciones inmediatas como respuestas espontáneas."
+    },
+    {
+      "k": "b",
+      "t": "Escuchar activamente, respetar los límites propios y tratar de comprender el universo del otro."
+    },
+    {
+      "k": "c",
+      "t": "Transmitir al usuario que se le entiende, acepta y respeta sin sobreimplicarse emocionalmente."
+    },
+    {
+      "k": "d",
+      "t": "Mantener una actitud empática-participativa como fondo de la relación de ayuda."
+    }
+  ],
+  "correct": "a",
+  "why": "El temario dice que la respuesta empática evita respuestas espontáneas como juicio moral, interpretación, apoyo/consuelo, interrogatorio o solución directa."
+},
+{
+  "id": "u5prep-032",
+  "typeKey": "u5_exam_prep",
+  "q": "La comunicación con una persona en crisis se considera un ‘arte’ porque intervienen distintos elementos. ¿Cuál de estas opciones los recoge mejor?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Solo importa el diagnóstico del paciente; el profesional y el contexto no modifican la comunicación."
+    },
+    {
+      "k": "b",
+      "t": "Intervienen la persona en crisis, la persona que ayuda y el contexto de la relación."
+    },
+    {
+      "k": "c",
+      "t": "Intervienen únicamente el tono de voz y la medicación pautada."
+    },
+    {
+      "k": "d",
+      "t": "Depende exclusivamente de que el paciente quiera colaborar desde el inicio."
+    }
+  ],
+  "correct": "b",
+  "why": "El temario señala persona en crisis, persona que ayuda y contexto de la relación."
+},
+{
+  "id": "u5prep-033",
+  "typeKey": "u5_exam_prep",
+  "q": "Sobre la escucha activa, ¿qué opción coincide con el temario?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Escuchar activamente implica atención, interés y motivación, centrando la comunicación en el otro."
+    },
+    {
+      "k": "b",
+      "t": "Escuchar activamente significa permanecer en silencio sin mostrar interés para no reforzar la crisis."
+    },
+    {
+      "k": "c",
+      "t": "Escuchar activamente consiste en interrogar con muchas preguntas cerradas para obtener datos rápidos."
+    },
+    {
+      "k": "d",
+      "t": "Escuchar activamente equivale a aceptar cualquier conducta del paciente sin límites."
+    }
+  ],
+  "correct": "a",
+  "why": "Escucha activa implica atención, interés y motivación centradas en el otro."
+},
+{
+  "id": "u5prep-034",
+  "typeKey": "u5_exam_prep",
+  "q": "Un profesional dice: ‘Tengo empatía porque me implico tanto que acabo sufriendo igual que el paciente’. ¿Cómo debe corregirse según el temario?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Es correcto, porque empatía y sobreimplicación son lo mismo en una relación terapéutica intensa."
+    },
+    {
+      "k": "b",
+      "t": "No es correcto: la empatía busca entender el universo del otro con respeto y límites, pero no es sobreimplicación."
+    },
+    {
+      "k": "c",
+      "t": "Es incorrecto porque la empatía debe evitarse en situaciones de agitación."
+    },
+    {
+      "k": "d",
+      "t": "Es correcto solo si el paciente está triste, pero no si está ansioso."
+    }
+  ],
+  "correct": "b",
+  "why": "El temario aclara que empatía no es sobreimplicación y requiere conocer límites propios."
+},
+{
+  "id": "u5prep-035",
+  "typeKey": "u5_exam_prep",
+  "q": "En la prevención de la violencia, ¿por qué se considera tan importante actuar antes de la crisis?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Porque evitar una crisis agresiva reduce riesgos y daños, y puede impedir que otros individuos del entorno hagan crisis por contagio."
+    },
+    {
+      "k": "b",
+      "t": "Porque permite aplicar contención física antes de que exista peligro, lo que siempre es más seguro."
+    },
+    {
+      "k": "c",
+      "t": "Porque la prevención sustituye la necesidad de protocolos y formación del personal."
+    },
+    {
+      "k": "d",
+      "t": "Porque una vez iniciada la crisis ya no debe intervenirse de ninguna manera."
+    }
+  ],
+  "correct": "a",
+  "why": "El temario explica que prevenir crisis evita daños y evita contagio de crisis agresivas en el entorno."
+},
+{
+  "id": "u5prep-036",
+  "typeKey": "u5_exam_prep",
+  "q": "Un paciente ha presentado episodios de hostilidad previos. La unidad está saturada, hay retrasos y el personal responde de manera brusca. ¿Qué interpretación es correcta según factores ambientales?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Estos elementos pueden actuar como facilitadores ambientales de agitación y violencia."
+    },
+    {
+      "k": "b",
+      "t": "Estos factores no tienen relación con la violencia; solo importan las características biológicas del paciente."
+    },
+    {
+      "k": "c",
+      "t": "La saturación y las esperas son protectoras porque reducen la interacción directa con el usuario."
+    },
+    {
+      "k": "d",
+      "t": "El trato hostil es útil si el paciente ya era hostil, porque establece simetría."
+    }
+  ],
+  "correct": "a",
+  "why": "El exceso de gente, largas esperas, personal escaso/inexperto y trato hostil aumentan actos agresivos."
+},
+{
+  "id": "u5prep-037",
+  "typeKey": "u5_exam_prep",
+  "q": "¿Cuál de estas características sería más protectora frente a la violencia según el temario?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Rigidez, confrontación y baja tolerancia a la frustración."
+    },
+    {
+      "k": "b",
+      "t": "Flexibilidad, capacidad conciliadora, habilidades sociales y comunicación adecuada."
+    },
+    {
+      "k": "c",
+      "t": "Suspiciacia, deseo de venganza y transgresión frecuente de normas."
+    },
+    {
+      "k": "d",
+      "t": "Impulsividad y búsqueda inmediata de recompensa."
+    }
+  ],
+  "correct": "b",
+  "why": "La adaptación, resolución de conflictos, habilidades sociales y comunicación positiva son protectoras."
+},
+{
+  "id": "u5prep-038",
+  "typeKey": "u5_exam_prep",
+  "q": "Un caso clínico menciona intolerancia a la autoridad, mentiras patológicas, impulsividad y poca tolerancia a la frustración. ¿Cómo se clasifican estos datos en el temario?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Como indicadores o facilitadores potenciales de violencia que deben alertar al profesional."
+    },
+    {
+      "k": "b",
+      "t": "Como criterios obligatorios para aplicar contención mecánica inmediata."
+    },
+    {
+      "k": "c",
+      "t": "Como características protectoras que reducen la probabilidad de agresividad."
+    },
+    {
+      "k": "d",
+      "t": "Como síntomas exclusivos de ansiedad leve sin relación con agresividad."
+    }
+  ],
+  "correct": "a",
+  "why": "Son facilitadores/indicadores potenciales de violencia descritos en el documento."
+},
+{
+  "id": "u5prep-039",
+  "typeKey": "u5_exam_prep",
+  "q": "La contención mecánica, según el anexo específico, se define mejor como:",
+  "options": [
+    {
+      "k": "a",
+      "t": "Limitación intencionada y en beneficio del paciente de la libertad de movimientos como parte de un tratamiento, afectando a parte o totalidad del cuerpo."
+    },
+    {
+      "k": "b",
+      "t": "Castigo físico institucional para corregir conductas disruptivas cuando el paciente no obedece."
+    },
+    {
+      "k": "c",
+      "t": "Inmovilización completa obligatoria de todo paciente con diagnóstico psiquiátrico durante una crisis."
+    },
+    {
+      "k": "d",
+      "t": "Medida administrativa sin relación con tratamiento, indicada únicamente para comodidad del personal."
+    }
+  ],
+  "correct": "a",
+  "why": "El anexo define la contención mecánica exactamente como limitación intencionada, en beneficio del paciente y como parte de tratamiento."
+},
+{
+  "id": "u5prep-040",
+  "typeKey": "u5_exam_prep",
+  "q": "En el marco legal de contención mecánica, ¿qué referencia aparece en el anexo?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Instrucción 1/2022, de 19 de enero, de la Fiscalía General del Estado, sobre medios de contención mecánicos o farmacológicos."
+    },
+    {
+      "k": "b",
+      "t": "Instrucción 1/2024, de 30 de febrero, sobre bienestar personal en unidades generales."
+    },
+    {
+      "k": "c",
+      "t": "Ley de bienestar personal 1/2021, de uso exclusivo para hospitales privados."
+    },
+    {
+      "k": "d",
+      "t": "Real Decreto de movilidad quirúrgica, sin relación con salud mental o centros residenciales."
+    }
+  ],
+  "correct": "a",
+  "why": "El anexo cita la Instrucción 1/2022 de 19 de enero de la Fiscalía General del Estado."
+},
+{
+  "id": "u5prep-041",
+  "typeKey": "u5_exam_prep",
+  "q": "El proyecto BETA busca establecer directrices sobre agitación. ¿Cuál es su finalidad según el anexo de desescalada verbal?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Asegurar eficacia y seguridad en el abordaje de la agitación y atender mejor a los intereses del paciente."
+    },
+    {
+      "k": "b",
+      "t": "Priorizar la contención mecánica rápida para reducir tiempo asistencial."
+    },
+    {
+      "k": "c",
+      "t": "Eliminar la intervención verbal cuando exista riesgo de agresividad."
+    },
+    {
+      "k": "d",
+      "t": "Convertir todas las actuaciones en decisiones exclusivamente farmacológicas."
+    }
+  ],
+  "correct": "a",
+  "why": "BETA establece buenas prácticas eficaces y seguras, atendiendo a los intereses del paciente."
+},
+{
+  "id": "u5prep-042",
+  "typeKey": "u5_exam_prep",
+  "q": "En una desescalada verbal, el paciente empieza a aceptar parte de lo que se le dice, pero sigue activado. ¿Qué opción recoge una pauta BETA adecuada?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Buscar puntos de acuerdo, establecer límites claros y ofrecer alternativas optimistas de forma asertiva que favorezcan empoderamiento."
+    },
+    {
+      "k": "b",
+      "t": "Retirar todos los límites para no frustrarlo y prometer cualquier cosa que solicite."
+    },
+    {
+      "k": "c",
+      "t": "Cerrar la conversación inmediatamente porque ya ha aceptado una parte y no hace falta reconciliar."
+    },
+    {
+      "k": "d",
+      "t": "Aumentar el tono de voz para que el límite quede fijado con más autoridad."
+    }
+  ],
+  "correct": "a",
+  "why": "BETA indica buscar acuerdos, límites claros, alternativas optimistas/asertivas y reconciliar."
+},
+{
+  "id": "u5prep-043",
+  "typeKey": "u5_exam_prep",
+  "q": "Un profesional pregunta: ‘¿Qué objetivo tiene la estrategia de intervención ante conducta agresiva?’. ¿Cuál de estas respuestas integra mejor los cuatro objetivos del temario?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Disminuir desconfianza y suspicacia, mejorar frustración/tolerancia, mejorar autocontrol y disminuir alerta o alarma."
+    },
+    {
+      "k": "b",
+      "t": "Aumentar la autoridad externa, reducir toda expresión emocional, aislar al paciente y evitar preguntas sobre su estado."
+    },
+    {
+      "k": "c",
+      "t": "Conseguir obediencia inmediata, aunque aumente la desconfianza, porque la prioridad es finalizar rápido."
+    },
+    {
+      "k": "d",
+      "t": "Eliminar cualquier negociación, reducir información y bloquear físicamente al paciente desde el primer momento."
+    }
+  ],
+  "correct": "a",
+  "why": "La estrategia persigue esos cuatro objetivos: desconfianza, frustración, autocontrol y alerta."
+},
+{
+  "id": "u5prep-044",
+  "typeKey": "u5_exam_prep",
+  "q": "Ante una crisis de agresividad, el temario resume una acción primera y principal. ¿Cuál es?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Ofrecer ayuda."
+    },
+    {
+      "k": "b",
+      "t": "Administrar medicación intramuscular siempre."
+    },
+    {
+      "k": "c",
+      "t": "Aplicar contención física antes de hablar."
+    },
+    {
+      "k": "d",
+      "t": "Derivar al paciente sin valoración."
+    }
+  ],
+  "correct": "a",
+  "why": "El temario destaca como acción primera y principal: ofrecer ayuda."
+},
+{
+  "id": "u5prep-045",
+  "typeKey": "u5_exam_prep",
+  "q": "En una situación de aislamiento como estrategia de intervención, ¿qué planteamiento es más coherente con el temario general de contención?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Debe entenderse como una medida sin supervisión, para que el usuario permanezca solo hasta cansarse."
+    },
+    {
+      "k": "b",
+      "t": "Debe realizarse de forma protocolizada, segura, con vigilancia y con mínimos estímulos, sin abandonar la supervisión del individuo."
+    },
+    {
+      "k": "c",
+      "t": "Debe aplicarse siempre antes de la intervención verbal, porque hablar aumenta la activación."
+    },
+    {
+      "k": "d",
+      "t": "Debe utilizarse para castigar verbalizaciones hostiles aunque no exista riesgo ni agitación."
+    }
+  ],
+  "correct": "b",
+  "why": "El temario indica que no se debe dejar sin supervisión y que el aislamiento debe estar protocolizado y ser seguro."
+},
+{
+  "id": "u5prep-046",
+  "typeKey": "u5_exam_prep",
+  "q": "Una pregunta de examen plantea: ‘¿Qué NO forma parte de una actitud profesional adecuada para la contención?’. ¿Cuál sería la opción incorrecta?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Mostrarse tranquilo, afable, seguro y firme, sin desafío ni inhibición."
+    },
+    {
+      "k": "b",
+      "t": "Aproximarse progresivamente según el grado de violencia y con pasos protocolizados."
+    },
+    {
+      "k": "c",
+      "t": "Observar la comunicación no verbal para valorar gravedad y escoger actuación."
+    },
+    {
+      "k": "d",
+      "t": "Mostrar desafío directo y mantener contacto físico frecuente para que el paciente note presencia profesional."
+    }
+  ],
+  "correct": "d",
+  "why": "La actitud debe evitar desafío y contacto físico innecesario; debe ser tranquila, segura y firme."
+},
+{
+  "id": "u5prep-047",
+  "typeKey": "u5_exam_prep",
+  "q": "En un paciente agitado, ¿qué actuación puede aumentar más el riesgo de escalada según el temario y BETA?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Invadir su espacio personal, adoptar actitud retadora, interrumpirlo y hablar varias personas a la vez."
+    },
+    {
+      "k": "b",
+      "t": "Mantener distancia, hablar una persona, escuchar activamente y buscar acuerdos."
+    },
+    {
+      "k": "c",
+      "t": "Ser conciso, establecer límites claros y ofrecer alternativas optimistas."
+    },
+    {
+      "k": "d",
+      "t": "Identificar demandas y sentimientos desde la empatía, sin juzgar ni confrontar."
+    }
+  ],
+  "correct": "a",
+  "why": "BETA advierte contra invadir espacio, actitud provocativa, múltiples interlocutores e interrupciones."
+},
+{
+  "id": "u5prep-048",
+  "typeKey": "u5_exam_prep",
+  "q": "El usuario está muy activado, pero no ha agredido. El profesional pretende preguntar por su estado y riesgo de perder el control. ¿Qué objetivo de intervención se está trabajando?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Mejorar el autocontrol, preguntando por su estado, riesgo de violencia, razones, deseos y posibilidad de perder el control."
+    },
+    {
+      "k": "b",
+      "t": "Aumentar la frustración para valorar si el paciente reacciona con violencia."
+    },
+    {
+      "k": "c",
+      "t": "Romper la alianza terapéutica para dejar clara la autoridad del equipo."
+    },
+    {
+      "k": "d",
+      "t": "Evitar cualquier comunicación emocional para no reforzar la crisis."
+    }
+  ],
+  "correct": "a",
+  "why": "Uno de los objetivos es mejorar autocontrol preguntando por estado, riesgo, razones, deseos y pérdida de control."
+},
+{
+  "id": "u5prep-049",
+  "typeKey": "u5_exam_prep",
+  "q": "En contención física, ¿por qué el temario insiste en evitar romper el vínculo terapéutico?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Porque la contención puede ser perjudicial para personal y sujeto, puede generar más agitación y debe mantenerse como intervención terapéutica y no punitiva."
+    },
+    {
+      "k": "b",
+      "t": "Porque el vínculo terapéutico solo importa antes de la contención; durante la contención no tiene relevancia."
+    },
+    {
+      "k": "c",
+      "t": "Porque la contención física siempre mejora automáticamente la relación si se hace con fuerza suficiente."
+    },
+    {
+      "k": "d",
+      "t": "Porque el objetivo principal de la contención es que el paciente acepte que no tiene derechos personales."
+    }
+  ],
+  "correct": "a",
+  "why": "El documento dice que la contención es perjudicial para ambos, puede generar más agresividad y debe evitar romper el vínculo."
+},
+{
+  "id": "u5prep-050",
+  "typeKey": "u5_exam_prep",
+  "q": "Una pregunta larga describe a un paciente que no respeta límites, amenaza, presenta suspicacia y hostilidad, pero también expresa miedo y frustración. ¿Qué enfoque es más completo y fiel al temario?",
+  "options": [
+    {
+      "k": "a",
+      "t": "Tratarlo solo como una persona violenta, ignorando miedo y frustración, y centrar la actuación en someter físicamente la conducta."
+    },
+    {
+      "k": "b",
+      "t": "Reconocer indicadores de riesgo, cuidar entorno y seguridad, ofrecer ayuda, intervenir verbalmente con serenidad, respeto, escucha, empatía y límites claros."
+    },
+    {
+      "k": "c",
+      "t": "Evitar cualquier límite porque si se siente frustrado puede aumentar la agresividad."
+    },
+    {
+      "k": "d",
+      "t": "Esperar sin supervisión hasta que la amenaza desaparezca, ya que intervenir puede interpretarse como provocación."
+    }
+  ],
+  "correct": "b",
+  "why": "El enfoque integra riesgo, prevención, ayuda, intervención verbal y límites sin enfrentamiento."
+}
 
     ];
 
