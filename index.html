@@ -212,6 +212,7 @@
       u5_test10: { unit: "u5", label: "U5 • Cuestionario contención (10 preguntas)", mode: "mcq", sizeMode: "fixed", fixedCount: 10, scoringMode: "count" },
       u5_exam_prep: { unit: "u5", label: "U5 • Preparación examen", mode: "mcq", sizeMode: "variable", scoringMode: "points" },
       u5_exam_high: { unit: "u5", label: "U5 • Preparación examen dificultad alta", mode: "mcq", sizeMode: "variable", scoringMode: "points" },
+      u5_percent: { unit: "u5", label: "U5 • Porcentajes y cifras", mode: "mcq", sizeMode: "fixed", fixedCount: 20, scoringMode: "count" },
       u5_vf: { unit: "u5", label: "U5 • Verdadero / Falso", mode: "vf", sizeMode: "fixed", fixedCount: 20, scoringMode: "count" }
     };
 
@@ -6639,6 +6640,271 @@
   ],
   "correct": "a",
   "why": "El aislamiento debe estar protocolizado, con mínimos estímulos, seguridad, vigilancia, objetivos y suspensión al conseguirlos."
+},
+
+/* =========================
+   UNIDAD 5 · PORCENTAJES Y CIFRAS
+   Basado solo en el apartado de epidemiología del PDF de contención.
+   ========================= */
+{
+  id: "u5pct-001",
+  typeKey: "u5_percent",
+  q: "¿Qué porcentaje de pacientes que ingresan en una unidad psiquiátrica han presentado previamente algún comportamiento agresivo?",
+  options: [
+    { k: "a", t: "10%" },
+    { k: "b", t: "25%" },
+    { k: "c", t: "40%" },
+    { k: "d", t: "89,3%" }
+  ],
+  correct: "c",
+  why: "El dato correcto es 40%. Es uno de los porcentajes más directos del apartado de epidemiología: pacientes que ingresan en una unidad psiquiátrica y ya habían presentado comportamiento agresivo."
+},
+{
+  id: "u5pct-002",
+  typeKey: "u5_percent",
+  q: "Durante un episodio de agitación, ¿qué porcentaje de personas agredidas son familiares, amigos o personas cercanas?",
+  options: [
+    { k: "a", t: "40%" },
+    { k: "b", t: "50%" },
+    { k: "c", t: "89,3%" },
+    { k: "d", t: "99%" }
+  ],
+  correct: "c",
+  why: "El 89,3% se refiere a las personas agredidas durante un episodio de agitación: familiares, amigos o personas cercanas. No debe confundirse con el 40% de antecedentes agresivos en pacientes ingresados."
+},
+{
+  id: "u5pct-003",
+  typeKey: "u5_percent",
+  q: "En el estudio Epidemiological Catchment Area citado, ¿qué porcentaje de la población había mostrado conductas violentas como mínimo una vez en la vida?",
+  options: [
+    { k: "a", t: "5,5%" },
+    { k: "b", t: "40%" },
+    { k: "c", t: "50%" },
+    { k: "d", t: "99%" }
+  ],
+  correct: "c",
+  why: "El dato correcto es 50%. Se refiere a población general que había mostrado conductas violentas al menos una vez en la vida."
+},
+{
+  id: "u5pct-004",
+  typeKey: "u5_percent",
+  q: "Si se incluyen las conductas agresivas en niños de 0 a 4 años, ¿a qué porcentaje se eleva prácticamente el dato citado en el estudio?",
+  options: [
+    { k: "a", t: "40%" },
+    { k: "b", t: "50%" },
+    { k: "c", t: "89,3%" },
+    { k: "d", t: "99%" }
+  ],
+  correct: "d",
+  why: "El dato correcto es 99%. El temario lo relaciona con conductas agresivas en niños de 0 a 4 años, no con pacientes psiquiátricos ingresados."
+},
+{
+  id: "u5pct-005",
+  typeKey: "u5_percent",
+  q: "En el estudio citado, si una persona era esquizofrénica, ¿cuántas veces más posibilidad de conductas violentas tenía frente a la población general?",
+  options: [
+    { k: "a", t: "2 veces más" },
+    { k: "b", t: "3,5 veces más" },
+    { k: "c", t: "5,5 veces más" },
+    { k: "d", t: "8,9 veces más" }
+  ],
+  correct: "c",
+  why: "El dato correcto es 5,5 veces más. No es un porcentaje: es una comparación de probabilidad respecto a la población general."
+},
+{
+  id: "u5pct-006",
+  typeKey: "u5_percent",
+  q: "Una pregunta habla de pacientes que ingresan en una unidad psiquiátrica y ya habían tenido comportamiento agresivo. ¿Qué cifra corresponde?",
+  options: [
+    { k: "a", t: "40%" },
+    { k: "b", t: "50%" },
+    { k: "c", t: "89,3%" },
+    { k: "d", t: "99%" }
+  ],
+  correct: "a",
+  why: "La cifra correcta es 40%. La clave está en la frase: pacientes que ingresan en unidad psiquiátrica y comportamiento agresivo previo."
+},
+{
+  id: "u5pct-007",
+  typeKey: "u5_percent",
+  q: "Una pregunta habla de familiares, amigos o personas cercanas agredidas durante un episodio de agitación. ¿Qué cifra corresponde?",
+  options: [
+    { k: "a", t: "40%" },
+    { k: "b", t: "50%" },
+    { k: "c", t: "89,3%" },
+    { k: "d", t: "5,5 veces más" }
+  ],
+  correct: "c",
+  why: "La cifra correcta es 89,3%. Es el dato asociado a quién recibe la agresión durante un episodio de agitación."
+},
+{
+  id: "u5pct-008",
+  typeKey: "u5_percent",
+  q: "Una pregunta habla de conductas violentas como mínimo una vez en la vida en la población general. ¿Qué cifra corresponde?",
+  options: [
+    { k: "a", t: "40%" },
+    { k: "b", t: "50%" },
+    { k: "c", t: "89,3%" },
+    { k: "d", t: "99%" }
+  ],
+  correct: "b",
+  why: "La cifra correcta es 50%. La pista es población general y conductas violentas al menos una vez en la vida."
+},
+{
+  id: "u5pct-009",
+  typeKey: "u5_percent",
+  q: "Una pregunta habla de conductas agresivas en niños entre 0 y 4 años. ¿Qué cifra corresponde?",
+  options: [
+    { k: "a", t: "40%" },
+    { k: "b", t: "50%" },
+    { k: "c", t: "89,3%" },
+    { k: "d", t: "99%" }
+  ],
+  correct: "d",
+  why: "La cifra correcta es 99%. En el temario aparece como un porcentaje prácticamente alcanzado al incluir conductas agresivas en niños de 0 a 4 años."
+},
+{
+  id: "u5pct-010",
+  typeKey: "u5_percent",
+  q: "Una pregunta habla de esquizofrenia y posibilidad de conductas violentas respecto a la población general. ¿Qué dato corresponde?",
+  options: [
+    { k: "a", t: "40%" },
+    { k: "b", t: "50%" },
+    { k: "c", t: "5,5 veces más" },
+    { k: "d", t: "89,3%" }
+  ],
+  correct: "c",
+  why: "El dato correcto es 5,5 veces más. Ojo: no es un porcentaje, sino una comparación de probabilidad."
+},
+{
+  id: "u5pct-011",
+  typeKey: "u5_percent",
+  q: "¿Qué dato corresponde a pacientes con ingreso en unidad psiquiátrica y antecedentes de comportamiento agresivo previo?",
+  options: [
+    { k: "a", t: "El 40%" },
+    { k: "b", t: "El 50%" },
+    { k: "c", t: "El 89,3%" },
+    { k: "d", t: "El 99%" }
+  ],
+  correct: "a",
+  why: "40% es el dato de pacientes que ingresan en unidad psiquiátrica con comportamiento agresivo previo."
+},
+{
+  id: "u5pct-012",
+  typeKey: "u5_percent",
+  q: "¿Qué dato corresponde a personas agredidas que son familiares, amigos o personas cercanas durante una agitación?",
+  options: [
+    { k: "a", t: "El 40%" },
+    { k: "b", t: "El 50%" },
+    { k: "c", t: "El 89,3%" },
+    { k: "d", t: "El 99%" }
+  ],
+  correct: "c",
+  why: "89,3% es el dato asociado a familiares, amigos o personas cercanas agredidas durante un episodio de agitación."
+},
+{
+  id: "u5pct-013",
+  typeKey: "u5_percent",
+  q: "¿Qué dato corresponde a población general que ha mostrado conductas violentas como mínimo una vez en la vida?",
+  options: [
+    { k: "a", t: "El 40%" },
+    { k: "b", t: "El 50%" },
+    { k: "c", t: "El 89,3%" },
+    { k: "d", t: "El 99%" }
+  ],
+  correct: "b",
+  why: "50% es el dato de población general con conductas violentas al menos una vez en la vida según el estudio citado."
+},
+{
+  id: "u5pct-014",
+  typeKey: "u5_percent",
+  q: "¿Qué dato corresponde a conductas agresivas cuando se contemplan niños entre 0 y 4 años?",
+  options: [
+    { k: "a", t: "El 40%" },
+    { k: "b", t: "El 50%" },
+    { k: "c", t: "El 89,3%" },
+    { k: "d", t: "El 99%" }
+  ],
+  correct: "d",
+  why: "99% es el dato relacionado con conductas agresivas en niños entre 0 y 4 años."
+},
+{
+  id: "u5pct-015",
+  typeKey: "u5_percent",
+  q: "¿Qué dato corresponde a esquizofrenia y mayor posibilidad de conductas violentas?",
+  options: [
+    { k: "a", t: "El 40%" },
+    { k: "b", t: "El 50%" },
+    { k: "c", t: "5,5 veces más" },
+    { k: "d", t: "El 89,3%" }
+  ],
+  correct: "c",
+  why: "5,5 veces más es el dato asociado a la posibilidad de conductas violentas en esquizofrenia frente a la población general."
+},
+{
+  id: "u5pct-016",
+  typeKey: "u5_percent",
+  q: "Si en el examen preguntan por el 89,3%, ¿a qué situación se refiere?",
+  options: [
+    { k: "a", t: "A pacientes que ingresan en unidad psiquiátrica con comportamiento agresivo previo." },
+    { k: "b", t: "A familiares, amigos o personas cercanas agredidas durante un episodio de agitación." },
+    { k: "c", t: "A población general con conductas violentas al menos una vez en la vida." },
+    { k: "d", t: "A conductas agresivas en niños de 0 a 4 años." }
+  ],
+  correct: "b",
+  why: "El 89,3% se refiere a las personas agredidas durante un episodio de agitación: familiares, amigos o personas cercanas."
+},
+{
+  id: "u5pct-017",
+  typeKey: "u5_percent",
+  q: "Si en el examen preguntan por el 40%, ¿a qué situación se refiere?",
+  options: [
+    { k: "a", t: "A pacientes que ingresan en unidad psiquiátrica con comportamiento agresivo previo." },
+    { k: "b", t: "A personas agredidas que son familiares o amigos." },
+    { k: "c", t: "A población general con conductas violentas al menos una vez en la vida." },
+    { k: "d", t: "A conductas agresivas en niños de 0 a 4 años." }
+  ],
+  correct: "a",
+  why: "El 40% se refiere a pacientes que ingresan en una unidad psiquiátrica y habían presentado previamente algún comportamiento agresivo."
+},
+{
+  id: "u5pct-018",
+  typeKey: "u5_percent",
+  q: "Si en el examen preguntan por el 50%, ¿a qué situación se refiere?",
+  options: [
+    { k: "a", t: "A ingresos psiquiátricos con comportamiento agresivo previo." },
+    { k: "b", t: "A familiares o amigos agredidos durante una agitación." },
+    { k: "c", t: "A población general que mostró conductas violentas como mínimo una vez en la vida." },
+    { k: "d", t: "A esquizofrenia y posibilidad de violencia." }
+  ],
+  correct: "c",
+  why: "El 50% se refiere a población general que había mostrado conductas violentas como mínimo una vez en la vida."
+},
+{
+  id: "u5pct-019",
+  typeKey: "u5_percent",
+  q: "Si en el examen preguntan por el 99%, ¿a qué situación se refiere?",
+  options: [
+    { k: "a", t: "A pacientes de unidad psiquiátrica con antecedentes agresivos." },
+    { k: "b", t: "A personas cercanas agredidas durante una agitación." },
+    { k: "c", t: "A conductas agresivas en niños entre 0 y 4 años." },
+    { k: "d", t: "A trastornos afectivos con abuso de sustancias." }
+  ],
+  correct: "c",
+  why: "El 99% se relaciona con conductas agresivas en niños entre 0 y 4 años."
+},
+{
+  id: "u5pct-020",
+  typeKey: "u5_percent",
+  q: "Si en el examen preguntan por '5,5 veces más', ¿a qué situación se refiere?",
+  options: [
+    { k: "a", t: "A pacientes con esquizofrenia y posibilidad de conductas violentas respecto a población general." },
+    { k: "b", t: "A familiares agredidos durante una agitación." },
+    { k: "c", t: "A conductas agresivas en niños de 0 a 4 años." },
+    { k: "d", t: "A pacientes ingresados en unidad psiquiátrica con antecedentes de agresividad." }
+  ],
+  correct: "a",
+  why: "5,5 veces más se refiere a la posibilidad de conductas violentas en personas con esquizofrenia frente a la población general."
 }
 
 
